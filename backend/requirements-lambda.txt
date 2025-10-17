@@ -1,0 +1,7 @@
+fastapi
+mangum
+python-dotenv
+boto3
+opensearch-py
+requests-aws4auth
+numpy
