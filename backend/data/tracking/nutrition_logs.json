@@ -1,0 +1,26 @@
+[
+  {
+    "id": "4ff0bd14-fa2f-464b-b406-6ebb752c39e3",
+    "user_id": "test_user_1760742284",
+    "date": "2025-10-18",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 450.0,
+    "protein": 35.0,
+    "carbs": 60.0,
+    "fats": 12.0,
+    "food_items": [
+      {
+        "name": "Oatmeal",
+        "amount": "100g",
+        "calories": 150.0,
+        "protein": 5.0,
+        "carbs": 27.0,
+        "fats": 3.0,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 08:04:46.552221"
+  }
+]

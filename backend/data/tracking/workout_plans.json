@@ -1,0 +1,23 @@
+[
+  {
+    "id": "18d2caa5-d7d6-4121-a25b-66b9a0b23228",
+    "user_id": "test_user_1760742284",
+    "plan_name": "Upper/Lower Split",
+    "description": "4-day intermediate program",
+    "frequency": "4x/week",
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": 4,
+        "reps": "6-8",
+        "rpe": 8.0,
+        "muscle_group": "Chest",
+        "day": "Upper A"
+      }
+    ],
+    "duration_weeks": 8,
+    "active": true,
+    "generated_at": "2025-10-18 08:04:44.965972",
+    "deactivated_at": null
+  }
+]

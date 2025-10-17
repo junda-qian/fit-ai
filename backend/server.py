@@ -14,6 +14,20 @@ from retrieval import HealthRAG
 from energy_calculator import EnergyCalculator, EnergyCalculatorInput, EnergyCalculatorOutput
 from workout_planner import WorkoutPlanner, WorkoutPlannerInput, WorkoutPlanOutput
 
+# Import tracking system components
+from models import (
+    UserProfile, UserProfileCreate,
+    WorkoutPlan, WorkoutPlanCreate,
+    NutritionLog, NutritionLogCreate,
+    WorkoutLog, WorkoutLogCreate,
+    BodyLog, BodyLogCreate,
+    DailySummary
+)
+from database import db
+from datetime import date, timedelta
+from food_database import food_db
+from models import FoodSearchResult
+
 # Load environment variables
 load_dotenv()
 
@@ -279,6 +293,452 @@ async def generate_workout_plan(input_data: WorkoutPlannerInput):
     except Exception as e:
         print(f"Error in workout plan generation: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ==================== TRACKING SYSTEM ENDPOINTS ====================
+# These endpoints handle saving and retrieving tracking data
+
+# ---------- User Profile Endpoints ----------
+# These save/get the results from the Energy Calculator
+
+@app.post("/api/user-profile", response_model=UserProfile)
+async def create_user_profile(profile: UserProfileCreate):
+    """
+    Save user's targets from Energy Calculator
+
+    What this does:
+    1. After user completes energy calculator, frontend sends targets here
+    2. We check if profile already exists for this user
+    3. If exists: UPDATE the profile with new values
+    4. If not: CREATE new profile
+    5. Save to database
+
+    Why we need this:
+    - Dashboard needs to know user's daily targets
+    - Tracking page compares actual intake vs targets
+    """
+    try:
+        # Check if profile already exists
+        existing = db.find_one("user_profiles", {"user_id": profile.user_id})
+
+        if existing:
+            # Update existing profile
+            profile_dict = profile.dict()
+            profile_dict['updated_at'] = datetime.now().isoformat()
+            db.update("user_profiles", {"user_id": profile.user_id}, profile_dict)
+            return UserProfile(**profile_dict, id=existing['id'], created_at=existing['created_at'])
+        else:
+            # Create new profile
+            profile_obj = UserProfile(**profile.dict())
+            profile_dict = profile_obj.dict()
+            profile_dict = json.loads(json.dumps(profile_dict, default=str))
+            db.insert("user_profiles", profile_dict)
+            return profile_obj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/user-profile/{user_id}")
+async def get_user_profile(user_id: str):
+    """
+    Get user's profile and targets
+
+    What this does:
+    - Dashboard calls this to get daily calorie/macro targets
+    - Returns the saved profile from database
+
+    Returns 404 if user hasn't completed calculator yet
+    """
+    try:
+        profile = db.find_one("user_profiles", {"user_id": user_id})
+        if not profile:
+            raise HTTPException(status_code=404, detail="Profile not found. Please complete Energy Calculator first.")
+        return profile
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Workout Plan Endpoints ----------
+# These save/get the generated workout plan
+
+@app.post("/api/workout-plan", response_model=WorkoutPlan)
+async def create_workout_plan(plan: WorkoutPlanCreate):
+    """
+    Save workout plan from Workout Planner
+
+    What this does:
+    1. After AI generates workout plan, frontend sends it here
+    2. Deactivate any previous active plans (user can only have 1 active plan)
+    3. Save new plan as active
+
+    Why we need this:
+    - Workout logging needs to know which exercises to show
+    - Dashboard displays current active plan
+    """
+    try:
+        # Deactivate any existing active plans
+        db.update(
+            "workout_plans",
+            {"user_id": plan.user_id, "active": True},
+            {"active": False, "deactivated_at": datetime.now().isoformat()}
+        )
+
+        # Create new active plan
+        plan_obj = WorkoutPlan(**plan.dict())
+        plan_dict = plan_obj.dict()
+        plan_dict = json.loads(json.dumps(plan_dict, default=str))
+        db.insert("workout_plans", plan_dict)
+        return plan_obj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/workout-plan/{user_id}/active")
+async def get_active_workout_plan(user_id: str):
+    """
+    Get user's currently active workout plan
+
+    Returns the plan that's currently being followed
+    """
+    try:
+        plan = db.find_one("workout_plans", {"user_id": user_id, "active": True})
+        if not plan:
+            raise HTTPException(status_code=404, detail="No active workout plan found")
+        return plan
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Nutrition Logging Endpoints ----------
+# These handle meal/food logging
+
+@app.post("/api/nutrition/logs", response_model=NutritionLog)
+async def create_nutrition_log(log: NutritionLogCreate):
+    """
+    Log a meal or snack
+
+    What this does:
+    1. User logs breakfast/lunch/dinner/snack
+    2. Save to nutrition_logs collection
+    3. Update daily summary (so dashboard loads fast)
+
+    Example:
+    User logs: "Breakfast - Oatmeal, Banana, Protein Powder - 450 cal"
+    """
+    try:
+        log_obj = NutritionLog(**log.dict())
+        log_dict = log_obj.dict()
+        log_dict = json.loads(json.dumps(log_dict, default=str))
+        db.insert("nutrition_logs", log_dict)
+
+        # Update daily summary
+        await _update_daily_summary(log.user_id, log.date)
+
+        return log_obj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/nutrition/logs")
+async def get_nutrition_logs(
+    user_id: str,
+    start_date: date,
+    end_date: date
+):
+    """
+    Get nutrition logs for date range
+
+    Max 31 days to prevent huge queries
+    Used for: Nutrition history page, calendar view
+    """
+    try:
+        # Validate date range (prevent huge queries)
+        if (end_date - start_date).days > 31:
+            raise HTTPException(status_code=400, detail="Max 31 days per request")
+
+        # Find all logs for this user
+        all_logs = db.find("nutrition_logs", {"user_id": user_id})
+
+        # Filter by date range
+        filtered_logs = [
+            log for log in all_logs
+            if start_date <= datetime.fromisoformat(log['date']).date() <= end_date
+        ]
+
+        # Sort by date and time (most recent first)
+        filtered_logs.sort(key=lambda x: (x['date'], x['time']), reverse=True)
+
+        return {
+            "logs": filtered_logs,
+            "total_count": len(filtered_logs)
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Workout Logging Endpoints ----------
+# These handle workout session logging
+
+@app.post("/api/workout/logs", response_model=WorkoutLog)
+async def create_workout_log(log: WorkoutLogCreate):
+    """
+    Log a completed workout session
+
+    What this does:
+    1. User finishes workout
+    2. Logs all exercises, sets, reps, weights
+    3. Save to workout_logs collection
+    4. Update daily summary
+
+    Example:
+    "Upper Body A - Bench Press 3x8 @ 185lbs, Rows 3x10 @ 135lbs..."
+    """
+    try:
+        log_obj = WorkoutLog(**log.dict())
+        log_dict = log_obj.dict()
+        log_dict = json.loads(json.dumps(log_dict, default=str))
+        db.insert("workout_logs", log_dict)
+
+        # Update daily summary
+        await _update_daily_summary(log.user_id, log.date)
+
+        return log_obj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/workout/logs")
+async def get_workout_logs(
+    user_id: str,
+    start_date: date,
+    end_date: date
+):
+    """
+    Get workout logs for date range
+
+    Used for: Workout history page, progress tracking
+    """
+    try:
+        # Validate date range
+        if (end_date - start_date).days > 31:
+            raise HTTPException(status_code=400, detail="Max 31 days per request")
+
+        # Find all logs for this user
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+
+        # Filter by date range
+        filtered_logs = [
+            log for log in all_logs
+            if start_date <= datetime.fromisoformat(log['date']).date() <= end_date
+        ]
+
+        # Sort by date (most recent first)
+        filtered_logs.sort(key=lambda x: x['date'], reverse=True)
+
+        return {
+            "logs": filtered_logs,
+            "total_count": len(filtered_logs)
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Food Search Endpoint ----------
+# USDA FoodData Central search
+
+@app.get("/api/food/search", response_model=FoodSearchResult)
+async def search_foods(query: str, page_size: int = 10):
+    """
+    Search USDA FoodData Central database
+
+    What this does:
+    1. User types food name (e.g., "chicken breast")
+    2. We call USDA API
+    3. Parse and simplify the complex response
+    4. Return clean list of foods with nutrition info
+
+    Example:
+    GET /api/food/search?query=banana&page_size=5
+
+    Returns:
+    {
+      "query": "banana",
+      "total_results": 82,
+      "foods": [
+        {
+          "fdc_id": 173944,
+          "description": "Banana, raw",
+          "calories": 89,
+          "protein": 1.09,
+          "carbs": 22.84,
+          "fats": 0.33,
+          "serving_size": "100",
+          "serving_unit": "g"
+        },
+        ...
+      ]
+    }
+
+    Args:
+        query: Food name to search (e.g., "banana", "chicken")
+        page_size: Number of results (default 10, max 50)
+
+    Returns:
+        List of matching foods with nutrition info
+    """
+    try:
+        if not query or len(query) < 2:
+            raise HTTPException(status_code=400, detail="Query must be at least 2 characters")
+
+        if page_size > 50:
+            page_size = 50
+
+        results = food_db.search_foods(query, page_size)
+        return results
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Food search error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Daily Summary Endpoints ----------
+# These provide fast aggregated data for dashboard
+
+@app.get("/api/summary/daily")
+async def get_daily_summary(user_id: str, date: date):
+    """
+    Get aggregated summary for a specific day
+
+    What this returns:
+    - Total calories, protein, carbs, fats for the day
+    - Number of workouts completed
+    - Weight (if logged)
+    - Targets (from user profile)
+    - Progress percentages (actual vs target)
+
+    Why this is fast:
+    - Pre-computed summaries (updated when logs are added)
+    - Dashboard doesn't have to sum all meals every time
+    """
+    try:
+        # Check if summary exists
+        summary = db.find_one("daily_summaries", {"user_id": user_id, "date": date.isoformat()})
+
+        if not summary:
+            # Compute summary if it doesn't exist
+            summary = await _compute_daily_summary(user_id, date)
+
+        # Get user profile for targets
+        profile = db.find_one("user_profiles", {"user_id": user_id})
+
+        if profile:
+            summary['targets'] = {
+                "calories": profile['target_calories'],
+                "protein": profile['target_protein'],
+                "carbs": profile['target_carbs'],
+                "fats": profile['target_fats']
+            }
+
+            # Calculate progress percentages
+            summary['progress'] = {
+                "calories_pct": round((summary['total_calories'] / profile['target_calories']) * 100) if profile['target_calories'] > 0 else 0,
+                "protein_pct": round((summary['total_protein'] / profile['target_protein']) * 100) if profile['target_protein'] > 0 else 0,
+                "carbs_pct": round((summary['total_carbs'] / profile['target_carbs']) * 100) if profile['target_carbs'] > 0 else 0,
+                "fats_pct": round((summary['total_fats'] / profile['target_fats']) * 100) if profile['target_fats'] > 0 else 0,
+            }
+
+        return summary
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ---------- Helper Functions ----------
+# These compute and update summaries
+
+async def _compute_daily_summary(user_id: str, target_date: date) -> Dict:
+    """
+    Compute daily summary from logs
+
+    This sums up all nutrition logs and counts workouts for a specific day
+    """
+    # Get all nutrition logs for the day
+    nutrition_logs = db.find("nutrition_logs", {"user_id": user_id})
+    day_nutrition = [
+        log for log in nutrition_logs
+        if datetime.fromisoformat(log['date']).date() == target_date
+    ]
+
+    # Get all workout logs for the day
+    workout_logs = db.find("workout_logs", {"user_id": user_id})
+    day_workouts = [
+        log for log in workout_logs
+        if datetime.fromisoformat(log['date']).date() == target_date
+    ]
+
+    # Get weight for the day
+    body_logs = db.find("body_logs", {"user_id": user_id})
+    day_body = [
+        log for log in body_logs
+        if datetime.fromisoformat(log['date']).date() == target_date
+    ]
+
+    # Aggregate
+    total_calories = sum(log['calories'] for log in day_nutrition)
+    total_protein = sum(log['protein'] for log in day_nutrition)
+    total_carbs = sum(log['carbs'] for log in day_nutrition)
+    total_fats = sum(log['fats'] for log in day_nutrition)
+    workouts_completed = len([w for w in day_workouts if w.get('completed', False)])
+    weight = day_body[0]['weight'] if day_body else None
+
+    summary = {
+        "user_id": user_id,
+        "date": target_date.isoformat(),
+        "total_calories": total_calories,
+        "total_protein": total_protein,
+        "total_carbs": total_carbs,
+        "total_fats": total_fats,
+        "workouts_completed": workouts_completed,
+        "weight": weight,
+        "created_at": datetime.now().isoformat(),
+        "updated_at": datetime.now().isoformat()
+    }
+
+    return summary
+
+
+async def _update_daily_summary(user_id: str, target_date: date):
+    """
+    Update or create daily summary
+
+    Called after any nutrition/workout log is added
+    """
+    summary = await _compute_daily_summary(user_id, target_date)
+
+    # Check if summary exists
+    existing = db.find_one("daily_summaries", {
+        "user_id": user_id,
+        "date": target_date.isoformat()
+    })
+
+    if existing:
+        db.update(
+            "daily_summaries",
+            {"user_id": user_id, "date": target_date.isoformat()},
+            summary
+        )
+    else:
+        summary['id'] = str(uuid.uuid4())
+        db.insert("daily_summaries", summary)
 
 
 if __name__ == "__main__":
