@@ -55,6 +55,8 @@ export default function WorkoutPlanner() {
   const [results, setResults] = useState<WorkoutPlanResults | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [planSaved, setPlanSaved] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setInputs({
@@ -104,6 +106,71 @@ export default function WorkoutPlanner() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     generateWorkoutPlan();
+  };
+
+  // Helper function to get user ID from localStorage
+  const getUserId = (): string | null => {
+    return localStorage.getItem('fit_tracker_user_id');
+  };
+
+  // Save workout plan to backend and navigate to tracking dashboard
+  const handleStartPlan = async () => {
+    if (!results) return;
+
+    const userId = getUserId();
+    if (!userId) {
+      setError('Please complete the Energy Calculator first to generate a user profile');
+      window.location.href = '/calculator';
+      return;
+    }
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      // Convert workout plan to backend format
+      // Backend expects: plan_name, description, frequency, exercises array, duration_weeks
+      const planData = {
+        user_id: userId,
+        plan_name: `${inputs.training_frequency}x/Week Training Plan`,
+        description: `Personalized ${inputs.training_status === '1' ? 'Novice' : inputs.training_status === '2' ? 'Intermediate' : 'Advanced'} program with ${inputs.dedication_level} dedication level`,
+        frequency: `${inputs.training_frequency}x/week`,
+        exercises: results.workout_days.flatMap(day =>
+          day.exercises.map(exercise => ({
+            name: exercise.exercise_name,
+            sets: exercise.sets,
+            reps: `${Math.round(8 - (exercise.intensity / 15))} - ${Math.round(12 - (exercise.intensity / 15))}`, // Rough estimate based on intensity
+            rpe: Math.round(exercise.intensity / 10), // Convert intensity% to RPE scale
+            muscle_group: Object.keys(exercise.muscle_activation)[0] || 'General', // Primary muscle
+            day: day.day_name
+          }))
+        ),
+        duration_weeks: 8 // Default 8-week program
+      };
+
+      // Save to backend
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/workout-plan`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(planData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save workout plan');
+      }
+
+      setPlanSaved(true);
+
+      // Navigate to tracking dashboard after 1 second
+      setTimeout(() => {
+        window.location.href = '/tracking/dashboard';
+      }, 1000);
+
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save workout plan. Please try again.');
+      setSaving(false);
+    }
   };
 
   return (
@@ -383,6 +450,39 @@ export default function WorkoutPlanner() {
             </div>
             <p className="text-xs text-gray-500 mt-4">
               Green = within target range ({results.target_volume_range.min}-{results.target_volume_range.max} sets)
+            </p>
+          </div>
+
+          {/* Start Plan Button */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex gap-3">
+              <button
+                onClick={() => { setResults(null); setPlanSaved(false); }}
+                className="flex-1 bg-gray-500 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors"
+              >
+                ↻ Generate New Plan
+              </button>
+              <button
+                onClick={handleStartPlan}
+                disabled={saving || planSaved}
+                className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-colors disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed"
+              >
+                {saving ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                    Saving Plan...
+                  </div>
+                ) : planSaved ? (
+                  '✓ Plan Started! Redirecting...'
+                ) : (
+                  'Start This Plan & Go to Dashboard →'
+                )}
+              </button>
+            </div>
+
+            {/* Info Message */}
+            <p className="text-xs text-gray-500 mt-3 text-center">
+              This plan will be activated and available in your tracking dashboard
             </p>
           </div>
         </div>
