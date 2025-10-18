@@ -158,19 +158,22 @@ export default function TrackingDashboard() {
                     <span className="font-semibold">{Math.round(summary.total_protein)}g / {summary.targets.protein}g</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Carbs:</span>
-                    <span className="font-semibold">{Math.round(summary.total_carbs)}g / {summary.targets.carbs}g</span>
-                  </div>
-                  <div className="flex justify-between">
                     <span className="text-gray-600">Fats:</span>
                     <span className="font-semibold">{Math.round(summary.total_fats)}g / {summary.targets.fats}g</span>
                   </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Carbs:</span>
+                    <span className="font-semibold">{Math.round(summary.total_carbs)}g / {summary.targets.carbs}g</span>
+                  </div>
                 </div>
 
-                <button className="w-full mt-4 bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2">
+                <a
+                  href="/tracking/nutrition"
+                  className="w-full mt-4 bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2"
+                >
                   <Plus className="w-4 h-4" />
                   Log Meal
-                </button>
+                </a>
               </>
             ) : (
               <div className="text-center py-8">
@@ -280,21 +283,6 @@ export default function TrackingDashboard() {
                 <p className="text-xs text-gray-500 mt-1">{Math.round(summary.total_protein)}g / {summary.targets.protein}g</p>
               </div>
 
-              {/* Carbs */}
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium text-gray-700">Carbohydrates</span>
-                  <span className="text-sm text-gray-600">{summary.progress?.carbs_pct}%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
-                  <div
-                    className="bg-green-500 h-3 rounded-full transition-all"
-                    style={{ width: `${Math.min(summary.progress?.carbs_pct || 0, 100)}%` }}
-                  />
-                </div>
-                <p className="text-xs text-gray-500 mt-1">{Math.round(summary.total_carbs)}g / {summary.targets.carbs}g</p>
-              </div>
-
               {/* Fats */}
               <div>
                 <div className="flex justify-between mb-1">
@@ -308,6 +296,21 @@ export default function TrackingDashboard() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{Math.round(summary.total_fats)}g / {summary.targets.fats}g</p>
+              </div>
+
+              {/* Carbs */}
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium text-gray-700">Carbohydrates</span>
+                  <span className="text-sm text-gray-600">{summary.progress?.carbs_pct}%</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div
+                    className="bg-green-500 h-3 rounded-full transition-all"
+                    style={{ width: `${Math.min(summary.progress?.carbs_pct || 0, 100)}%` }}
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">{Math.round(summary.total_carbs)}g / {summary.targets.carbs}g</p>
               </div>
             </div>
           </div>
