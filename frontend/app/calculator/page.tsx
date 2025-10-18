@@ -4,6 +4,7 @@ import Navigation from '@/components/navigation';
 export default function CalculatorPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+      <Navigation />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
@@ -14,8 +15,6 @@ export default function CalculatorPage() {
               Calculate your personalized energy expenditure and target intake based on your training schedule
             </p>
           </div>
-
-          <Navigation />
 
           <EnergyCalculator />
 
