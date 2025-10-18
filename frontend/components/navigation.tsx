@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, MessageSquare, Calculator, Dumbbell, TrendingUp } from 'lucide-react';
+import { Home, MessageSquare, Calculator, Dumbbell, TrendingUp, BarChart3 } from 'lucide-react';
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -13,6 +13,7 @@ export default function Navigation() {
     { href: '/calculator', label: 'Calculator', icon: Calculator },
     { href: '/workout-planner', label: 'Planner', icon: Dumbbell },
     { href: '/tracking/dashboard', label: 'Dashboard', icon: TrendingUp },
+    { href: '/tracking/progress', label: 'Progress', icon: BarChart3 },
   ];
 
   return (

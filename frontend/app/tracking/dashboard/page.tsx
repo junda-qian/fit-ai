@@ -325,14 +325,21 @@ export default function TrackingDashboard() {
           </div>
         )}
 
-        {/* Quick Stats */}
+        {/* Progress Link */}
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-green-600" />
-            This Week
+            Track Your Progress
           </h2>
-          <div className="text-center text-gray-500 py-8">
-            Weekly summary coming soon...
+          <div className="text-center py-8">
+            <p className="text-gray-600 mb-4">View detailed charts and analytics of your fitness journey</p>
+            <a
+              href="/tracking/progress"
+              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+            >
+              <TrendingUp className="w-5 h-5" />
+              View Progress Charts
+            </a>
           </div>
         </div>
       </div>

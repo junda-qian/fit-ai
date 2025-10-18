@@ -721,6 +721,63 @@ async def get_daily_summary(user_id: str, date: date):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/summary/range")
+async def get_daily_summaries_range(
+    user_id: str,
+    start_date: date,
+    end_date: date
+):
+    """
+    Get daily summaries for a date range
+
+    Used for: Progress charts, weekly/monthly views
+    Returns an array of daily summaries with targets and progress
+    """
+    try:
+        # Validate date range
+        if (end_date - start_date).days > 90:
+            raise HTTPException(status_code=400, detail="Max 90 days per request")
+
+        # Get all summaries for this user
+        all_summaries = db.find("daily_summaries", {"user_id": user_id})
+
+        # Filter by date range
+        filtered_summaries = [
+            summary for summary in all_summaries
+            if start_date <= datetime.fromisoformat(summary['date']).date() <= end_date
+        ]
+
+        # Get user profile for targets
+        profile = db.find_one("user_profiles", {"user_id": user_id})
+
+        # Add targets and progress to each summary
+        for summary in filtered_summaries:
+            if profile:
+                summary['targets'] = {
+                    "calories": profile['target_calories'],
+                    "protein": profile['target_protein'],
+                    "carbs": profile['target_carbs'],
+                    "fats": profile['target_fats']
+                }
+
+                # Calculate progress percentages
+                summary['progress'] = {
+                    "calories_pct": round((summary['total_calories'] / profile['target_calories']) * 100) if profile['target_calories'] > 0 else 0,
+                    "protein_pct": round((summary['total_protein'] / profile['target_protein']) * 100) if profile['target_protein'] > 0 else 0,
+                    "carbs_pct": round((summary['total_carbs'] / profile['target_carbs']) * 100) if profile['target_carbs'] > 0 else 0,
+                    "fats_pct": round((summary['total_fats'] / profile['target_fats']) * 100) if profile['target_fats'] > 0 else 0,
+                }
+
+        # Sort by date (most recent first)
+        filtered_summaries.sort(key=lambda x: x['date'], reverse=True)
+
+        return filtered_summaries
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ---------- Helper Functions ----------
 # These compute and update summaries
 
