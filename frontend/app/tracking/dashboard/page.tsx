@@ -213,10 +213,13 @@ export default function TrackingDashboard() {
                   </div>
                 )}
 
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                <a
+                  href="/tracking/workouts"
+                  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                >
                   <Plus className="w-4 h-4" />
                   Log Workout
-                </button>
+                </a>
               </>
             ) : (
               <div className="text-center py-8">
@@ -245,18 +248,24 @@ export default function TrackingDashboard() {
                   <p className="text-gray-600 mt-1">kg</p>
                 </div>
 
-                <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2">
+                <a
+                  href="/tracking/weight"
+                  className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
+                >
                   <Plus className="w-4 h-4" />
                   Update Weight
-                </button>
+                </a>
               </>
             ) : (
               <div className="text-center py-8">
                 <p className="text-gray-500 mb-4">No weight logged today</p>
-                <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2">
+                <a
+                  href="/tracking/weight"
+                  className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
+                >
                   <Plus className="w-4 h-4" />
                   Log Weight
-                </button>
+                </a>
               </div>
             )}
           </div>

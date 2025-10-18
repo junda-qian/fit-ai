@@ -551,6 +551,65 @@ async def get_workout_logs(
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# ---------- Body Logging Endpoints ----------
+# These handle weight and body composition tracking
+
+@app.post("/api/body/logs", response_model=BodyLog)
+async def create_body_log(log: BodyLogCreate):
+    """
+    Log body weight and measurements
+
+    What this does:
+    1. User weighs themselves
+    2. Optionally measures body fat %
+    3. Save to body_logs collection
+    4. Update daily summary (for dashboard weight display)
+
+    Example:
+    User logs: "75.5 kg, 15% body fat"
+    """
+    try:
+        log_obj = BodyLog(**log.dict())
+        log_dict = log_obj.dict()
+        log_dict = json.loads(json.dumps(log_dict, default=str))
+        db.insert("body_logs", log_dict)
+
+        # Update daily summary
+        await _update_daily_summary(log.user_id, log.date)
+
+        return log_obj
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/body/logs")
+async def get_body_logs(
+    user_id: str,
+    start_date: date,
+    end_date: date
+):
+    """
+    Get body logs for date range
+
+    Used for: Weight history page, progress charts
+    """
+    try:
+        all_logs = db.find("body_logs", {"user_id": user_id})
+
+        # Filter by date range
+        filtered_logs = [
+            log for log in all_logs
+            if start_date <= datetime.fromisoformat(log['date']).date() <= end_date
+        ]
+
+        # Sort by date (most recent first)
+        filtered_logs.sort(key=lambda x: x['date'], reverse=True)
+
+        return filtered_logs
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ---------- Food Search Endpoint ----------
 # USDA FoodData Central search
 
