@@ -238,4 +238,16 @@ class JSONDatabase:
 
 # Global database instance
 # This allows us to import and use: from database import db
-db = JSONDatabase()
+
+# Determine which database to use based on environment
+import os
+
+USE_DYNAMODB = os.getenv('USE_DYNAMODB', 'false').lower() == 'true'
+
+if USE_DYNAMODB:
+    from dynamodb_adapter import DynamoDBAdapter
+    db = DynamoDBAdapter()
+    print("✅ Using DynamoDB for tracking data")
+else:
+    db = JSONDatabase()
+    print("✅ Using JSON files for tracking data (local development)")
