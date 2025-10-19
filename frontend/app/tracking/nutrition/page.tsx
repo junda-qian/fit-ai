@@ -442,7 +442,7 @@ export default function NutritionLogging() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
                   <Clock className="w-5 h-5 text-orange-600" />
-                  Today's Meals
+                  Today&apos;s Meals
                 </h2>
                 <div className="space-y-4">
                   {/* Group logs by meal type */}

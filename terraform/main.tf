@@ -233,14 +233,14 @@ resource "aws_lambda_function" "api" {
       DEFAULT_AWS_REGION  = data.aws_region.current.name
 
       # Tracking System Environment Variables
-      USE_DYNAMODB               = "true"
-      USDA_API_KEY               = var.usda_api_key
-      DYNAMODB_USER_PROFILES     = aws_dynamodb_table.tracking_tables["user_profiles"].name
-      DYNAMODB_WORKOUT_PLANS     = aws_dynamodb_table.tracking_tables["workout_plans"].name
-      DYNAMODB_NUTRITION_LOGS    = aws_dynamodb_table.tracking_tables["nutrition_logs"].name
-      DYNAMODB_WORKOUT_LOGS      = aws_dynamodb_table.tracking_tables["workout_logs"].name
-      DYNAMODB_BODY_LOGS         = aws_dynamodb_table.tracking_tables["body_logs"].name
-      DYNAMODB_DAILY_SUMMARIES   = aws_dynamodb_table.tracking_tables["daily_summaries"].name
+      USE_DYNAMODB             = "true"
+      USDA_API_KEY             = var.usda_api_key
+      DYNAMODB_USER_PROFILES   = aws_dynamodb_table.tracking_tables["user_profiles"].name
+      DYNAMODB_WORKOUT_PLANS   = aws_dynamodb_table.tracking_tables["workout_plans"].name
+      DYNAMODB_NUTRITION_LOGS  = aws_dynamodb_table.tracking_tables["nutrition_logs"].name
+      DYNAMODB_WORKOUT_LOGS    = aws_dynamodb_table.tracking_tables["workout_logs"].name
+      DYNAMODB_BODY_LOGS       = aws_dynamodb_table.tracking_tables["body_logs"].name
+      DYNAMODB_DAILY_SUMMARIES = aws_dynamodb_table.tracking_tables["daily_summaries"].name
     }
   }
 
@@ -423,7 +423,7 @@ resource "aws_lambda_permission" "api_gw" {
 # CloudFront distribution
 resource "aws_cloudfront_distribution" "main" {
   aliases = local.aliases
-  
+
   viewer_certificate {
     acm_certificate_arn            = var.use_custom_domain ? aws_acm_certificate.site[0].arn : null
     cloudfront_default_certificate = var.use_custom_domain ? false : true

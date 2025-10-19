@@ -33,10 +33,6 @@ export default function ProgressPage() {
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<'7' | '30' | '90'>('30');
 
-  useEffect(() => {
-    fetchProgressData();
-  }, [dateRange]);
-
   const fetchProgressData = async () => {
     setLoading(true);
     try {
@@ -78,6 +74,11 @@ export default function ProgressPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchProgressData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange]);
 
   const calculateWeightStats = () => {
     if (bodyLogs.length === 0) return null;

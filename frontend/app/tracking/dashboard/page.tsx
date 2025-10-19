@@ -274,7 +274,7 @@ export default function TrackingDashboard() {
         {/* Macro Progress Bars */}
         {summary?.targets && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Today's Macro Breakdown</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">Today&apos;s Macro Breakdown</h2>
 
             <div className="space-y-4">
               {/* Protein */}

@@ -137,7 +137,7 @@ export default function WeightLogging() {
           {/* Left Column - Input Form */}
           <div>
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-lg font-bold text-gray-800 mb-6">Today's Measurement</h2>
+              <h2 className="text-lg font-bold text-gray-800 mb-6">Today&apos;s Measurement</h2>
 
               <div className="space-y-6">
                 {/* Weight Input */}
@@ -300,7 +300,7 @@ export default function WeightLogging() {
                         )}
                         {log.notes && (
                           <div className="text-sm text-gray-600 italic mt-2 pt-2 border-t border-gray-100">
-                            "{log.notes}"
+                            &quot;{log.notes}&quot;
                           </div>
                         )}
                       </div>

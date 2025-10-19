@@ -296,7 +296,7 @@ export default function WorkoutLogging() {
 
                 {currentSets.length === 0 ? (
                   <div className="text-center py-8 text-gray-500 border border-dashed border-gray-300 rounded-lg">
-                    No sets added yet. Click "Add Set" to begin.
+                    No sets added yet. Click &quot;Add Set&quot; to begin.
                   </div>
                 ) : (
                   <div className="space-y-2">
@@ -425,7 +425,7 @@ export default function WorkoutLogging() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
                   <Clock className="w-5 h-5 text-blue-600" />
-                  Today's Workouts
+                  Today&apos;s Workouts
                 </h2>
                 <div className="space-y-4">
                   {todaysWorkouts.map((workout) => (
@@ -448,7 +448,7 @@ export default function WorkoutLogging() {
                       </div>
                       {workout.notes && (
                         <div className="mt-3 text-sm text-gray-600 italic">
-                          "{workout.notes}"
+                          &quot;{workout.notes}&quot;
                         </div>
                       )}
                     </div>
