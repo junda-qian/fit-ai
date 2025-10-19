@@ -404,6 +404,12 @@ resource "aws_apigatewayv2_route" "get_weekly_summary" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
+resource "aws_apigatewayv2_route" "get_summary_range" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/summary/range"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
 # Food Search Route
 resource "aws_apigatewayv2_route" "get_food_search" {
   api_id    = aws_apigatewayv2_api.main.id
