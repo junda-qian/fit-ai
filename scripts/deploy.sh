@@ -47,7 +47,18 @@ npm run build
 
 # Fix Next.js static export directory structure for S3/CloudFront
 echo "🔧 Fixing directory structure for S3 routing..."
-cd out/tracking
+cd out
+
+# Fix top-level pages
+for page in calculator chatbot workout-planner; do
+  if [ -f "$page.html" ]; then
+    mkdir -p "$page"
+    cp "$page.html" "$page/index.html"
+  fi
+done
+
+# Fix tracking pages
+cd tracking
 for page in dashboard nutrition progress weight workouts; do
   if [ -f "$page.html" ]; then
     mkdir -p "$page"
