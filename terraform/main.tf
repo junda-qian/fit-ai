@@ -164,6 +164,43 @@ resource "aws_iam_role_policy" "lambda_opensearch" {
   })
 }
 
+# DynamoDB access for Lambda
+resource "aws_iam_role_policy" "lambda_dynamodb" {
+  name = "${local.name_prefix}-lambda-dynamodb-policy"
+  role = aws_iam_role.lambda_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem"
+        ]
+        Resource = [
+          for table in aws_dynamodb_table.tracking_tables : table.arn
+        ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "dynamodb:Query"
+        ]
+        Resource = [
+          for table in aws_dynamodb_table.tracking_tables : "${table.arn}/index/*"
+        ]
+      }
+    ]
+  })
+}
+
 # Upload Lambda deployment package to S3
 resource "aws_s3_object" "lambda_zip" {
   bucket = aws_s3_bucket.documents.id
@@ -194,6 +231,16 @@ resource "aws_lambda_function" "api" {
       USE_OPENSEARCH      = "true"
       OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint
       DEFAULT_AWS_REGION  = data.aws_region.current.name
+
+      # Tracking System Environment Variables
+      USE_DYNAMODB             = "true"
+      USDA_API_KEY             = var.usda_api_key
+      DYNAMODB_USER_PROFILES   = aws_dynamodb_table.tracking_tables["user_profiles"].name
+      DYNAMODB_WORKOUT_PLANS   = aws_dynamodb_table.tracking_tables["workout_plans"].name
+      DYNAMODB_NUTRITION_LOGS  = aws_dynamodb_table.tracking_tables["nutrition_logs"].name
+      DYNAMODB_WORKOUT_LOGS    = aws_dynamodb_table.tracking_tables["workout_logs"].name
+      DYNAMODB_BODY_LOGS       = aws_dynamodb_table.tracking_tables["body_logs"].name
+      DYNAMODB_DAILY_SUMMARIES = aws_dynamodb_table.tracking_tables["daily_summaries"].name
     }
   }
 
@@ -271,6 +318,105 @@ resource "aws_apigatewayv2_route" "post_generate_workout_plan" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
+# ==================== Tracking System API Routes ====================
+
+# User Profile Routes
+resource "aws_apigatewayv2_route" "post_user_profile" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/user-profile"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_user_profile" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/user-profile/{user_id}"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Workout Plan Routes
+resource "aws_apigatewayv2_route" "post_workout_plan" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/workout-plan"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_active_workout_plan" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/workout-plan/{user_id}/active"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_all_workout_plans" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/workout-plan/{user_id}/all"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Nutrition Logging Routes
+resource "aws_apigatewayv2_route" "post_nutrition_log" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/nutrition/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_nutrition_logs" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/nutrition/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Workout Logging Routes
+resource "aws_apigatewayv2_route" "post_workout_log" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/workout/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_workout_logs" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/workout/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Body Logging Routes
+resource "aws_apigatewayv2_route" "post_body_log" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/body/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_body_logs" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/body/logs"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Summary Routes
+resource "aws_apigatewayv2_route" "get_daily_summary" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/summary/daily"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_weekly_summary" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/summary/weekly"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_summary_range" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/summary/range"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Food Search Route
+resource "aws_apigatewayv2_route" "get_food_search" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/food/search"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
 # Lambda permission for API Gateway
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
@@ -283,7 +429,7 @@ resource "aws_lambda_permission" "api_gw" {
 # CloudFront distribution
 resource "aws_cloudfront_distribution" "main" {
   aliases = local.aliases
-  
+
   viewer_certificate {
     acm_certificate_arn            = var.use_custom_domain ? aws_acm_certificate.site[0].arn : null
     cloudfront_default_certificate = var.use_custom_domain ? false : true

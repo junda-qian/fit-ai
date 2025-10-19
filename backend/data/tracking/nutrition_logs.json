@@ -1,0 +1,122 @@
+[
+  {
+    "id": "4ff0bd14-fa2f-464b-b406-6ebb752c39e3",
+    "user_id": "test_user_1760742284",
+    "date": "2025-10-18",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 450.0,
+    "protein": 35.0,
+    "carbs": 60.0,
+    "fats": 12.0,
+    "food_items": [
+      {
+        "name": "Oatmeal",
+        "amount": "100g",
+        "calories": 150.0,
+        "protein": 5.0,
+        "carbs": 27.0,
+        "fats": 3.0,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 08:04:46.552221"
+  },
+  {
+    "id": "eefdf802-cd27-4e8f-87a1-7ca1b843bad3",
+    "user_id": "user_1760743227722_hwysywm76",
+    "date": "2025-10-18",
+    "meal_type": "breakfast",
+    "time": "09:16:46",
+    "calories": 144.0,
+    "protein": 28.0,
+    "carbs": 0.0,
+    "fats": 3.6,
+    "food_items": [
+      {
+        "name": "Chicken breast, rotisserie, skin not eaten",
+        "amount": "100g",
+        "calories": 144.0,
+        "protein": 28.0,
+        "carbs": 0.0,
+        "fats": 3.6,
+        "fdc_id": 2705964
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 09:16:46.395508"
+  },
+  {
+    "id": "b8e0f07b-ff8a-4ccb-a05c-e74347019b7d",
+    "user_id": "user_1760743227722_hwysywm76",
+    "date": "2025-10-18",
+    "meal_type": "snack",
+    "time": "09:17:49",
+    "calories": 67.0,
+    "protein": 1.5,
+    "carbs": 13.1,
+    "fats": 0.9,
+    "food_items": [
+      {
+        "name": "Frozen mocha coffee drink, decaffeinated",
+        "amount": "100g",
+        "calories": 67.0,
+        "protein": 1.5,
+        "carbs": 13.1,
+        "fats": 0.9,
+        "fdc_id": 2710422
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 09:17:49.658417"
+  },
+  {
+    "id": "e6d18bfd-05fc-4bd3-aa68-9fdb76eab337",
+    "user_id": "user_1760743227722_hwysywm76",
+    "date": "2025-10-18",
+    "meal_type": "breakfast",
+    "time": "09:27:23",
+    "calories": 67.0,
+    "protein": 0.65,
+    "carbs": 14.8,
+    "fats": 1.05,
+    "food_items": [
+      {
+        "name": "Apple, candied",
+        "amount": "50g",
+        "calories": 67.0,
+        "protein": 0.65,
+        "carbs": 14.8,
+        "fats": 1.05,
+        "fdc_id": 2709294
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 09:27:23.963619"
+  },
+  {
+    "id": "f45c32ba-447f-42ff-bc33-82f4e3408d43",
+    "user_id": "user_1760743227722_hwysywm76",
+    "date": "2025-10-18",
+    "meal_type": "lunch",
+    "time": "09:33:48",
+    "calories": 508.0,
+    "protein": 28.4,
+    "carbs": 55.6,
+    "fats": 18.4,
+    "food_items": [
+      {
+        "name": "Ramen bowl, NFS",
+        "amount": "400g",
+        "calories": 508.0,
+        "protein": 28.4,
+        "carbs": 55.6,
+        "fats": 18.4,
+        "fdc_id": 2709153
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18 09:33:48.261054"
+  }
+]

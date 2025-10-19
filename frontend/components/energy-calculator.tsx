@@ -50,6 +50,8 @@ export default function EnergyCalculator() {
   const [results, setResults] = useState<CalculatorResults | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -99,6 +101,79 @@ export default function EnergyCalculator() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     calculateEnergy();
+  };
+
+  // Helper function to generate/get user ID
+  const getUserId = (): string => {
+    // Check if user ID exists in localStorage
+    let userId = localStorage.getItem('fit_tracker_user_id');
+
+    if (!userId) {
+      // Generate new user ID: user_timestamp_randomString
+      userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('fit_tracker_user_id', userId);
+    }
+
+    return userId;
+  };
+
+  // Save profile to backend and navigate to workout planner
+  const handleSaveAndContinue = async () => {
+    if (!results) return;
+
+    setSaving(true);
+    setError(null);
+
+    try {
+      const userId = getUserId();
+
+      // Determine goal based on energy balance factor
+      let goal = 'maintain';
+      const energyFactor = parseFloat(inputs.energy_balance_factor);
+      if (energyFactor > 1.0) {
+        goal = 'bulk';
+      } else if (energyFactor < 1.0) {
+        goal = 'cut';
+      }
+
+      // Prepare profile data matching backend UserProfileCreate model
+      const profileData = {
+        user_id: userId,
+        target_calories: Math.round(results.average_target_energy_intake),
+        target_protein: results.macro_targets.protein_grams,
+        target_carbs: results.macro_targets.carbs_grams,
+        target_fats: results.macro_targets.fat_grams,
+        bmr: results.cunningham_bmr,
+        tdee: results.maintenance_energy_intake,
+        activity_level: parseFloat(inputs.physical_activity_factor),
+        goal: goal,
+        body_weight_kg: parseFloat(inputs.bodyweight_kg),
+        body_fat_pct: parseFloat(inputs.body_fat_percentage)
+      };
+
+      // Save to backend
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/user-profile`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save profile');
+      }
+
+      setSaved(true);
+
+      // Navigate to workout planner after 1 second
+      setTimeout(() => {
+        window.location.href = '/workout-planner';
+      }, 1000);
+
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save targets. Please try again.');
+      setSaving(false);
+    }
   };
 
   return (
@@ -417,6 +492,41 @@ export default function EnergyCalculator() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Save & Continue Button */}
+            <div className="pt-6 border-t-2 border-gray-200">
+              <div className="flex gap-3">
+                <button
+                  onClick={() => { setResults(null); setSaved(false); }}
+                  className="flex-1 bg-gray-500 text-white py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors"
+                >
+                  ↻ Recalculate
+                </button>
+                <button
+                  onClick={handleSaveAndContinue}
+                  disabled={saving || saved}
+                  className="flex-1 bg-gradient-to-r from-green-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-blue-700 transition-colors disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed"
+                >
+                  {saving ? (
+                    <>
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                        Saving...
+                      </div>
+                    </>
+                  ) : saved ? (
+                    '✓ Saved! Redirecting...'
+                  ) : (
+                    'Save & Continue to Workout Planner →'
+                  )}
+                </button>
+              </div>
+
+              {/* Info Message */}
+              <p className="text-xs text-gray-500 mt-3 text-center">
+                Your targets will be saved and used in the tracking dashboard
+              </p>
             </div>
           </div>
         )}

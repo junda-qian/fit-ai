@@ -1,0 +1,28 @@
+[
+  {
+    "user_id": "test_user_1760742284",
+    "date": "2025-10-18",
+    "total_calories": 450.0,
+    "total_protein": 35.0,
+    "total_carbs": 60.0,
+    "total_fats": 12.0,
+    "workouts_completed": 0,
+    "weight": null,
+    "created_at": "2025-10-18T08:04:46.552654",
+    "updated_at": "2025-10-18T08:04:46.552655",
+    "id": "b7cef72e-f3ab-4c63-adbc-3a013ea02361"
+  },
+  {
+    "user_id": "user_1760743227722_hwysywm76",
+    "date": "2025-10-18",
+    "total_calories": 786.0,
+    "total_protein": 58.55,
+    "total_carbs": 83.5,
+    "total_fats": 23.95,
+    "workouts_completed": 0,
+    "weight": null,
+    "created_at": "2025-10-18T09:33:48.261608",
+    "updated_at": "2025-10-18T09:33:48.261652",
+    "id": "eb26c7d5-3f5a-4316-b164-8b14015820b9"
+  }
+]

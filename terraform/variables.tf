@@ -51,3 +51,9 @@ variable "root_domain" {
   type        = string
   default     = ""
 }
+
+variable "usda_api_key" {
+  description = "USDA FoodData Central API Key for food database searches"
+  type        = string
+  sensitive   = true
+}
