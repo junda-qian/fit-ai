@@ -41,6 +41,9 @@ backend/faiss_metadata.json
 memory/
 backend/memory/
 
+# Tracking data files (test data - should not be in version control)
+backend/data/tracking/*.json
+
 # Logs
 *.log
 logs/
