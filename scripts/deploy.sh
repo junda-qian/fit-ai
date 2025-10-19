@@ -44,6 +44,18 @@ echo "NEXT_PUBLIC_API_URL=$API_URL" > .env.production
 
 npm install
 npm run build
+
+# Fix Next.js static export directory structure for S3/CloudFront
+echo "🔧 Fixing directory structure for S3 routing..."
+cd out/tracking
+for page in dashboard nutrition progress weight workouts; do
+  if [ -f "$page.html" ]; then
+    mkdir -p "$page"
+    cp "$page.html" "$page/index.html"
+  fi
+done
+cd ../..
+
 aws s3 sync ./out "s3://$FRONTEND_BUCKET/" --delete
 cd ..
 
