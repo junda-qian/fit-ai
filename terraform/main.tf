@@ -146,23 +146,25 @@ resource "aws_iam_role_policy_attachment" "lambda_s3" {
 }
 
 # OpenSearch Serverless access for Lambda
-resource "aws_iam_role_policy" "lambda_opensearch" {
-  name = "${local.name_prefix}-lambda-opensearch-policy"
-  role = aws_iam_role.lambda_role.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "aoss:APIAccessAll"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
-}
+# TEMPORARILY DISABLED: OpenSearch is disabled to save costs
+# Uncomment when chatbot RAG feature is needed
+# resource "aws_iam_role_policy" "lambda_opensearch" {
+#   name = "${local.name_prefix}-lambda-opensearch-policy"
+#   role = aws_iam_role.lambda_role.id
+#
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow"
+#         Action = [
+#           "aoss:APIAccessAll"
+#         ]
+#         Resource = "*"
+#       }
+#     ]
+#   })
+# }
 
 # DynamoDB access for Lambda
 resource "aws_iam_role_policy" "lambda_dynamodb" {
@@ -228,8 +230,8 @@ resource "aws_lambda_function" "api" {
       S3_BUCKET           = aws_s3_bucket.memory.id
       USE_S3              = "true"
       BEDROCK_MODEL_ID    = var.bedrock_model_id
-      USE_OPENSEARCH      = "true"
-      OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint
+      USE_OPENSEARCH      = "false"
+      # OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint  # Disabled to save costs
       DEFAULT_AWS_REGION  = data.aws_region.current.id
 
       # Tracking System Environment Variables
