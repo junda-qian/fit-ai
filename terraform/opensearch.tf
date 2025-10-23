@@ -83,6 +83,10 @@ resource "aws_opensearchserverless_collection" "health_docs" {
 
   tags = local.common_tags
 
+  timeouts {
+    create = "40m"
+  }
+
   depends_on = [
     aws_opensearchserverless_security_policy.encryption,
     aws_opensearchserverless_security_policy.network

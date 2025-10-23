@@ -230,7 +230,7 @@ resource "aws_lambda_function" "api" {
       BEDROCK_MODEL_ID    = var.bedrock_model_id
       USE_OPENSEARCH      = "true"
       OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint
-      DEFAULT_AWS_REGION  = data.aws_region.current.name
+      DEFAULT_AWS_REGION  = data.aws_region.current.id
 
       # Tracking System Environment Variables
       USE_DYNAMODB             = "true"
