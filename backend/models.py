@@ -7,7 +7,7 @@ Pydantic models provide:
 - Automatic validation (ensures data is correct)
 - API documentation (FastAPI uses these to generate docs)
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from typing import Optional, List, Dict
 from datetime import datetime, date, time
 from uuid import uuid4
@@ -235,26 +235,106 @@ class BodyLog(BaseModel):
     """
     Body measurements and weight tracking
 
-    Used for tracking weight, body fat %, and measurements over time
+    Supports multiple body composition tracking methods:
+    1. Skinfold measurements (PREFERRED) - Most reliable for trend detection
+    2. Circumference measurements - Simple and reliable alternative
+    3. Body fat % estimates - Least reliable but acceptable
+    4. Progress photos - Visual tracking
+
+    Used for tracking weight, body composition, and measurements over time
     """
     id: str = Field(default_factory=lambda: str(uuid4()))
     user_id: str
     date: date
     weight: float  # in kg or lbs
+
+    # Body Composition Method 1: Skinfold Measurements (PREFERRED) ⭐
+    # Measures subcutaneous fat thickness directly in millimeters
+    # Most reliable for detecting fat mass trends (not affected by hydration)
+    skinfolds: Optional[Dict[str, float]] = None  # {tricep: 12.0, abdomen: 18.0, thigh: 17.0, ...}
+    skinfold_sum: Optional[float] = None  # Auto-calculated sum of all skinfold sites (mm)
+
+    # Body Composition Method 2: Circumference Measurements (ALTERNATIVE)
+    # Simple measurements with tape measure
+    waist_cm: Optional[float] = None  # At navel level, morning, empty stomach
+    hips_cm: Optional[float] = None
+    neck_cm: Optional[float] = None  # For Navy method BF% calculation
+    chest_cm: Optional[float] = None
+    bicep_cm: Optional[float] = None
+    thigh_cm: Optional[float] = None
+
+    # Body Composition Method 3: Body Fat % Estimate (FALLBACK)
+    # Less reliable due to measurement error, but still useful
     body_fat_pct: Optional[float] = None
-    measurements: Optional[Dict[str, float]] = None  # chest, waist, arms, etc.
+    body_fat_method: Optional[str] = None  # "jackson_pollock_3", "jackson_pollock_7", "navy", "bia_scale", "dexa", "visual"
+
+    # Body Composition Method 4: Progress Photos (OPTIONAL)
+    # For visual tracking and AI analysis
+    photo_front: Optional[str] = None  # S3 URL or local path
+    photo_side: Optional[str] = None
+    photo_back: Optional[str] = None
+
+    # Legacy field (deprecated, use specific fields above)
+    measurements: Optional[Dict[str, float]] = None  # Generic measurements dict (for backward compatibility)
+
     notes: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.now)
 
+    @model_validator(mode='after')
+    def calculate_skinfold_sum(self):
+        """Auto-calculate skinfold_sum if skinfolds are provided but sum is not"""
+        if self.skinfolds and not self.skinfold_sum:
+            self.skinfold_sum = sum(self.skinfolds.values())
+        return self
+
 
 class BodyLogCreate(BaseModel):
-    """Request model for creating body log"""
+    """
+    Request model for creating body log
+
+    All body composition fields are optional - user can track with any combination:
+    - Just weight
+    - Weight + skinfolds
+    - Weight + waist circumference
+    - Weight + body fat %
+    - Full tracking with all methods
+    """
     user_id: str
     date: date
     weight: float
+
+    # Skinfold measurements (preferred method)
+    skinfolds: Optional[Dict[str, float]] = None
+    skinfold_sum: Optional[float] = None  # Can be provided or auto-calculated
+
+    # Circumference measurements
+    waist_cm: Optional[float] = None
+    hips_cm: Optional[float] = None
+    neck_cm: Optional[float] = None
+    chest_cm: Optional[float] = None
+    bicep_cm: Optional[float] = None
+    thigh_cm: Optional[float] = None
+
+    # Body fat percentage
     body_fat_pct: Optional[float] = None
+    body_fat_method: Optional[str] = None
+
+    # Progress photos
+    photo_front: Optional[str] = None
+    photo_side: Optional[str] = None
+    photo_back: Optional[str] = None
+
+    # Legacy/generic measurements
     measurements: Optional[Dict[str, float]] = None
+
     notes: Optional[str] = None
+
+    @model_validator(mode='after')
+    def calculate_skinfold_sum(self):
+        """Auto-calculate skinfold_sum if skinfolds are provided but sum is not"""
+        if self.skinfolds and not self.skinfold_sum:
+            self.skinfold_sum = sum(self.skinfolds.values())
+        return self
 
 
 # ==================== Daily Summary ====================
