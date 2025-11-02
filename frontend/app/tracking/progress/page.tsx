@@ -9,6 +9,8 @@ interface BodyLog {
   date: string;
   weight: number;
   body_fat_pct: number | null;
+  skinfold_sum: number | null;
+  skinfolds: Record<string, number> | null;
 }
 
 interface DailySummary {
@@ -276,6 +278,22 @@ export default function ProgressPage() {
           </div>
         )}
 
+        {/* Skinfold Chart */}
+        {bodyLogs.filter(log => log.skinfold_sum !== null).length > 0 && (
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <TrendingUp className="w-6 h-6 text-teal-600" />
+              Body Composition (Skinfolds)
+            </h2>
+            <p className="text-sm text-gray-600 mb-4">
+              Skinfold sum (7 sites) - Lower values indicate reduced body fat
+            </p>
+            <div className="relative" style={{ height: '300px' }}>
+              <SkinfoldChart data={bodyLogs} />
+            </div>
+          </div>
+        )}
+
         {/* Nutrition Chart */}
         {dailySummaries.length > 0 && dailySummaries.some(s => s.targets) && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
@@ -447,8 +465,26 @@ function CaloriesChart({ data }: { data: DailySummary[] }) {
 
         {/* Bars */}
         {summariesWithTargets.map((summary, idx) => {
-          const barHeight = (summary.total_calories / maxCalories) * chartHeight;
           const x = idx * (barWidth + barGap);
+
+          // Show placeholder for days with no data
+          if (summary.total_calories === 0) {
+            return (
+              <rect
+                key={idx}
+                x={x}
+                y={chartHeight - 10}
+                width={barWidth}
+                height={10}
+                fill="#e5e7eb"
+                opacity="0.5"
+              >
+                <title>{`${summary.date}: No nutrition logged`}</title>
+              </rect>
+            );
+          }
+
+          const barHeight = (summary.total_calories / maxCalories) * chartHeight;
           const isOverTarget = summary.total_calories > target * 1.1;
           const isUnderTarget = summary.total_calories < target * 0.9;
           const color = isOverTarget ? '#ef4444' : isUnderTarget ? '#f59e0b' : '#10b981';
@@ -493,11 +529,31 @@ function MacrosChart({ data }: { data: DailySummary[] }) {
       <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-full" preserveAspectRatio="none">
         {summariesWithTargets.map((summary, idx) => {
           const totalMacros = summary.total_protein + summary.total_carbs + summary.total_fats;
+          const x = idx * (barWidth + barGap);
+
+          // Skip days with no nutrition data (totalMacros = 0) to avoid NaN
+          if (totalMacros === 0) {
+            return (
+              <g key={idx}>
+                {/* Placeholder for days with no data */}
+                <rect
+                  x={x}
+                  y={chartHeight - 10}
+                  width={barWidth}
+                  height={10}
+                  fill="#e5e7eb"
+                  opacity="0.5"
+                >
+                  <title>{`${summary.date} - No nutrition logged`}</title>
+                </rect>
+              </g>
+            );
+          }
+
           const proteinPct = (summary.total_protein / totalMacros) * 100;
           const carbsPct = (summary.total_carbs / totalMacros) * 100;
           const fatsPct = (summary.total_fats / totalMacros) * 100;
 
-          const x = idx * (barWidth + barGap);
           const proteinHeight = (proteinPct / 100) * chartHeight;
           const carbsHeight = (carbsPct / 100) * chartHeight;
           const fatsHeight = (fatsPct / 100) * chartHeight;
@@ -598,6 +654,112 @@ function WorkoutChart({ data }: { data: DailySummary[] }) {
       <div className="text-xs text-gray-600 mt-2 flex justify-between">
         <span>{new Date(data[0].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
         <span>{new Date(data[data.length - 1].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+      </div>
+    </div>
+  );
+}
+
+// Skinfold Sum Chart Component
+function SkinfoldChart({ data }: { data: BodyLog[] }) {
+  // Filter only logs with skinfold measurements
+  const skinfoldLogs = data.filter(log => log.skinfold_sum !== null && log.skinfold_sum > 0);
+
+  if (skinfoldLogs.length === 0) return null;
+
+  const skinfoldSums = skinfoldLogs.map(d => d.skinfold_sum!);
+  const minSum = Math.min(...skinfoldSums);
+  const maxSum = Math.max(...skinfoldSums);
+  const range = maxSum - minSum || 1;
+  const padding = range * 0.1;
+
+  const chartHeight = 250;
+  const chartWidth = 100; // percentage
+
+  const points = skinfoldLogs.map((log, idx) => {
+    const x = skinfoldLogs.length === 1 ? chartWidth / 2 : (idx / (skinfoldLogs.length - 1)) * chartWidth;
+    const y = chartHeight - ((log.skinfold_sum! - minSum + padding) / (range + 2 * padding)) * chartHeight;
+    return { x, y, date: log.date, sum: log.skinfold_sum! };
+  });
+
+  const pathData = points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+
+  // Calculate stats
+  const startSum = skinfoldSums[0];
+  const endSum = skinfoldSums[skinfoldSums.length - 1];
+  const totalChange = endSum - startSum;
+  const percentChange = ((totalChange / startSum) * 100).toFixed(1);
+
+  return (
+    <div className="w-full h-full flex flex-col">
+      {/* Stats banner */}
+      <div className="bg-teal-50 border border-teal-200 rounded-lg p-3 mb-4 flex justify-between items-center flex-shrink-0">
+        <div>
+          <span className="text-sm text-teal-700 font-medium">Starting: {startSum.toFixed(1)}mm</span>
+        </div>
+        <div className="text-center">
+          <span className={`text-lg font-bold ${totalChange < 0 ? 'text-green-600' : 'text-orange-600'}`}>
+            {totalChange > 0 ? '+' : ''}{totalChange.toFixed(1)}mm ({percentChange}%)
+          </span>
+          <div className="text-xs text-teal-600">Change over {skinfoldLogs.length} weeks</div>
+        </div>
+        <div>
+          <span className="text-sm text-teal-700 font-medium">Current: {endSum.toFixed(1)}mm</span>
+        </div>
+      </div>
+
+      {/* Chart container - separate from banner so dots align correctly */}
+      <div className="w-full flex-1 relative" style={{ minHeight: '200px' }}>
+        <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-full" preserveAspectRatio="none">
+          {/* Grid lines */}
+          {[0, 25, 50, 75, 100].map(pct => (
+            <line
+              key={pct}
+              x1="0"
+              y1={chartHeight * (pct / 100)}
+              x2={chartWidth}
+              y2={chartHeight * (pct / 100)}
+              stroke="#e5e7eb"
+              strokeWidth="0.5"
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
+
+          {/* Line */}
+          <path
+            d={pathData}
+            fill="none"
+            stroke="#14b8a6"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        {/* Points as HTML elements */}
+        {points.map((p, idx) => (
+          <div
+            key={idx}
+            className="absolute w-3 h-3 rounded-full bg-teal-600 border-2 border-white shadow-sm cursor-pointer"
+            style={{
+              left: `${p.x}%`,
+              top: `${(p.y / chartHeight) * 100}%`,
+              transform: 'translate(-50%, -50%)',
+            }}
+            title={`${p.date}: ${p.sum.toFixed(1)}mm`}
+          />
+        ))}
+
+        {/* Y-axis labels */}
+        <div className="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-600 -ml-12">
+          <span>{(minSum + range + padding).toFixed(1)} mm</span>
+          <span>{(minSum + padding).toFixed(1)} mm</span>
+        </div>
+      </div>
+
+      {/* X-axis labels */}
+      <div className="flex justify-between text-xs text-gray-600 mt-2 flex-shrink-0">
+        <span>{new Date(skinfoldLogs[0].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+        <span className="text-teal-600 font-medium">{skinfoldLogs.length} weekly measurements</span>
+        <span>{new Date(skinfoldLogs[skinfoldLogs.length - 1].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
       </div>
     </div>
   );

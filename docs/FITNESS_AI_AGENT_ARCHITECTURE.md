@@ -181,88 +181,146 @@ But NOT needed for routine plan adjustments - those happen automatically.
 
 ## Agent Specifications
 
-### **1. Weekly Progress Analyzer Agent** ⭐ (Primary)
+### **1. Weekly Progress Analyzer Agent** ⭐ (Primary - Orchestrator)
 
-**Purpose**: Proactively monitor user progress and trigger plan adjustments
+**Purpose**: Orchestrate weekly check-ins by coordinating specialist agents and managing plan updates
 
 **Trigger**: EventBridge cron (every Monday 6 AM UTC)
 
+**Key Design Principle**:
+> The analyzer is an **orchestrator**, not a decision-maker. It gathers data and coordinates specialists who make domain-specific decisions using their expert algorithms. This avoids the problem of using fixed thresholds that don't account for individual differences (body fat %, training status, sex, etc.).
+
 **Responsibilities**:
-- Pull last 14 days of user data (weight logs, workout logs, nutrition logs, sleep logs)
-- Calculate trends using moving averages to filter noise
-- Detect issues requiring intervention:
-  - Weight plateau (no change for 14+ days)
-  - Weight loss/gain too fast or too slow
-  - Strength plateau (no progression for 3+ weeks)
-  - Volume drops (15%+ decrease, injury/burnout signal)
-  - Overtraining signals (insufficient recovery, too many consecutive training days)
-- Determine if plan adjustment is needed
-- Invoke appropriate specialist agents if issues detected
-- Generate user notification with reasoning and changes
+- Pull last 14-28 days of user data (weight, body composition, workouts, nutrition, sleep)
+- Calculate trends and prepare shared context for all specialists
+- **Always invoke specialist agents** with full context (they decide if changes are needed)
+- Coordinate multiple specialists (Nutrition, Training, Recovery, Analytics)
+- Resolve conflicts between specialist recommendations
+- Aggregate updates from all specialists
+- Generate integrated user notification with reasoning
 - Store weekly analysis results in DynamoDB
+- Track adjustment history to prevent over-correction
+
+**Why Always Invoke Specialists?**
+- ✅ Specialists have domain expertise and context-aware algorithms
+- ✅ No fixed thresholds - each user's "plateau" is different based on body composition, goals, training status
+- ✅ Specialists can detect nuances (e.g., body recomposition vs true plateau)
+- ✅ Enables multi-factor decision making (weight + body fat + strength + recovery)
+- ✅ Cost is negligible (~$0.001 per invocation × once/week)
+- ✅ Simple orchestrator code - all complexity in specialists where it belongs
 
 **Function Tools**:
 - `analyze_weight_trend(user_id, days=14)` → TrendAnalysis
-- `detect_strength_plateaus(user_id, weeks=3)` → List[PlateauDetection]
+- `analyze_body_composition_trend(user_id, days=14)` → BodyCompositionAnalysis
+- `analyze_strength_trends(user_id, weeks=4)` → StrengthAnalysis
 - `analyze_volume_trend(user_id, weeks=2)` → VolumeAnalysis
-- `detect_overtraining(user_id)` → OvertrainingRisk
-- `invoke_nutrition_specialist(user_id, issues)` → NutritionUpdate
-- `invoke_training_specialist(user_id, issues)` → TrainingUpdate
-- `invoke_recovery_specialist(user_id, issues)` → RecoveryUpdate
+- `calculate_recovery_metrics(user_id)` → RecoveryMetrics
+- `invoke_nutrition_specialist(user_id, context)` → NutritionRecommendation
+- `invoke_training_specialist(user_id, context)` → TrainingRecommendation
+- `invoke_recovery_specialist(user_id, context)` → RecoveryRecommendation
+- `invoke_analytics_specialist(user_id, context)` → ProgressReport
 
-**Detection Rules**:
+**Data Quality Requirements**:
 ```python
-# Weight trends (14-day analysis)
-weight_plateau_threshold = 0.1 kg/week  # Less than 100g change
-weight_loss_too_fast = -1.0 kg/week     # More than 1kg loss
-weight_gain_too_fast = 0.5 kg/week      # More than 500g gain
-
-# Body fat trends (14-day analysis)
-body_fat_plateau_threshold = 0.2%       # Less than 0.2% change
-body_fat_significant_change = 0.5%      # 0.5%+ change is meaningful
-
-# Strength trends (3-week analysis)
-strength_plateau_weeks = 3              # No progression for 3 weeks
-strength_regression = -5%               # 5% strength loss
-
-# Volume trends (2-week analysis)
-volume_drop_threshold = -15%            # 15% volume decrease
-
-# Recovery signals
-max_consecutive_workouts = 6            # 6+ days without rest
-sleep_deficit = 1.5h below target       # Consistent sleep debt
-
-# Minimum data requirements
+# Minimum data requirements for meaningful analysis
 min_weight_logs = 5                     # Need 5+ logs in 14 days
-min_body_fat_logs = 2                   # Need 2+ body fat measurements in 14 days
+min_body_composition_logs = 2           # Need 2+ measurements in 14 days (skinfolds/waist/BF%)
 min_workout_logs = 2                    # Need 2+ workouts in 14 days
 min_nutrition_logs = 10                 # Need 10+ days of nutrition tracking
+
+# If minimum data not met, notify user to improve tracking consistency
+# Still invoke specialists - they can handle missing data gracefully
 ```
 
 **Example Flow**:
 ```python
-# Monday 6 AM: EventBridge triggers weekly analysis
+# Monday 6 AM: EventBridge triggers weekly analysis for user_123
 
-# For user_123:
-# 1. Pull 14 days of data
-#    - Weight: 78.5kg (14 days ago) → 78.4kg (today), avg: 78.5kg
-#    - Workouts: 4 sessions logged
-#    - Squat 1RM estimate: 100kg (4 weeks ago) → 100kg (today) ← PLATEAU
-#
-# 2. Detect issues:
-#    - weight_plateau: True (only -0.1kg in 14 days, goal is weight loss)
-#    - strength_plateau: True (squat hasn't progressed in 3 weeks)
-#
-# 3. Invoke specialists:
-#    - nutrition_specialist(issues=["weight_plateau"])
-#      → Recommend: reduce calories 2200→2000
-#    - training_specialist(issues=["strength_plateau:squat"])
-#      → Recommend: change rep scheme 5x5→3x8, deload 10%
-#
-# 4. Generate plan update
-# 5. Store in weekly_analyses table
-# 6. Update active_plans table (version 3)
-# 7. Send notification to user
+# Step 1: Gather ALL data and calculate trends (deterministic)
+context = {
+    "user_profile": {
+        "goal": "lose_weight",
+        "sex": "male",
+        "body_fat_pct": 20.5,
+        "training_status": "intermediate"
+    },
+    "weight_trend": {
+        "starting_weight": 78.5,
+        "current_weight": 78.4,
+        "weekly_rate_kg": -0.07,  # Very slow loss
+        "weekly_rate_pct": 0.09,  # 0.09% per week
+    },
+    "body_comp_trend": {
+        "method": "skinfolds",
+        "starting_sum": 50,
+        "current_sum": 48,
+        "change_mm": -2,  # Fat decreasing!
+        "trend": "decreasing"
+    },
+    "nutrition_summary": {
+        "avg_calories": 2180,
+        "days_logged": 12
+    },
+    "workout_summary": {
+        "sessions": 4,
+        "squat_1rm_estimate": 100,  # No change in 4 weeks
+        "squat_1rm_4weeks_ago": 100
+    }
+}
+
+# Step 2: Always invoke specialists with full context
+# (They make the decisions, not the orchestrator)
+
+nutrition_rec = await invoke_nutrition_specialist(user_id, context)
+# Nutrition Specialist applies Nutrition Agent Reasoning algorithm:
+# - Sees weight plateau (0.09% weekly) BUT skinfolds decreasing (-2mm)
+# - Recognizes: Body recomposition happening!
+# - Decision: MAINTAIN current calories
+# Returns: {"adjustment_category": "none", "reasoning": "..."}
+
+training_rec = await invoke_training_specialist(user_id, context)
+# Training Specialist:
+# - Sees squat plateau (no progression in 4 weeks)
+# - Decision: Modify program to break plateau
+# Returns: {"has_recommendations": true, "changes": [...]}
+
+recovery_rec = await invoke_recovery_specialist(user_id, context)
+# Returns: {"sleep_adequate": true, "needs_deload": false}
+
+analytics_report = await invoke_analytics_specialist(user_id, context)
+# Returns: Progress summary, charts, insights
+
+# Step 3: Resolve conflicts (if any)
+# (None in this case - nutrition says maintain, training says adjust program)
+
+# Step 4: Aggregate updates
+updates = {
+    "nutrition": None,  # No change needed (recomp happening)
+    "training": training_rec.changes,  # Apply squat program change
+    "recovery": None
+}
+
+# Step 5: Store analysis
+await db.weekly_analyses.insert({
+    "user_id": user_123,
+    "week_starting": "2025-11-04",
+    "context": context,
+    "recommendations": {
+        "nutrition": nutrition_rec,
+        "training": training_rec,
+        "recovery": recovery_rec
+    },
+    "updates_applied": updates,
+    "analyzed_at": datetime.now()
+})
+
+# Step 6: Send integrated notification
+await send_notification(user_id, {
+    "title": "Weekly Check-In (Nov 4, 2025)",
+    "nutrition": "✅ Maintaining calories (2180) - body recomposition happening!",
+    "training": "🔧 Squat program adjusted to break plateau",
+    "analytics": analytics_report.summary
+})
 ```
 
 **Structured Output**:
@@ -270,10 +328,22 @@ min_nutrition_logs = 10                 # Need 10+ days of nutrition tracking
 class WeeklyAnalysisResult(BaseModel):
     user_id: str
     week_starting: date
-    data_summary: DataSummary
-    issues_detected: List[DetectedIssue]
-    plan_updated: bool
-    updates: Optional[Dict[str, Any]]  # nutrition, training, recovery updates
+
+    # Context gathered (deterministic data)
+    context: AnalysisContext  # Weight trends, body comp, workouts, nutrition, recovery
+
+    # Specialist recommendations (AI decisions)
+    recommendations: SpecialistRecommendations
+    #   nutrition: NutritionRecommendation
+    #   training: TrainingRecommendation
+    #   recovery: RecoveryRecommendation
+    #   analytics: ProgressReport
+
+    # Updates actually applied (after conflict resolution)
+    updates_applied: Dict[str, Any]  # {"nutrition": None, "training": {...}, "recovery": None}
+
+    # Metadata
+    plan_updated: bool  # True if any specialist recommended changes
     notification_sent: bool
     analyzed_at: datetime
 ```
@@ -1708,7 +1778,7 @@ ai_agents/  # Renamed from alex_backend
     context.py
     models.py          # Pydantic models for structured outputs
     db_client.py
-    detection_rules.py # Shared threshold constants
+    trend_analysis.py  # Shared trend calculation functions (deterministic)
   mcp_servers/
     usda_food_server.py
     exercise_db_server.py
@@ -1882,167 +1952,206 @@ def lambda_handler(event, context):
         analyze_user_progress(user['user_id'])
 ```
 
-#### **Step 3: Analyze user progress (user_123)**
+#### **Step 3: Gather context (user_123)**
 ```python
 # ai_agents/weekly_analyzer/agent.py
 
 async def analyze_user_progress(user_id: str):
-    # 1. Pull 14 days of data
+    # 1. Pull 14-28 days of data
+    user_profile = db.user_profiles.find_one({"user_id": user_id})
     weight_logs = db.body_logs.find_recent(user_id, days=14)
-    workout_logs = db.workout_logs.find_recent(user_id, days=14)
+    body_comp_logs = db.body_logs.find_recent(user_id, days=14)
+    workout_logs = db.workout_logs.find_recent(user_id, days=28)  # 4 weeks for training analysis
     nutrition_logs = db.nutrition_logs.find_recent(user_id, days=14)
+    sleep_logs = db.sleep_logs.find_recent(user_id, days=14)
 
     # Data for user_123:
     # Weight: [78.5, 78.6, 78.4, 78.5, 78.6, 78.4] kg (6 logs)
+    # Skinfolds: [50mm, 49mm, 48mm] (3 logs)
     # Workouts: 4 sessions logged
     # Nutrition: averaging 2180 cal/day
 
-    # 2. Calculate trends
-    weight_trend = analyze_weight_trend(weight_logs)
-    # Returns: {
-    #   "avg_weight": 78.5,
-    #   "weekly_rate": -0.07 kg/week,  # Nearly flat
-    #   "is_plateau": True
-    # }
+    # 2. Calculate trends (deterministic - no AI)
+    context = {
+        "user_profile": {
+            "goal": user_profile.goal,  # "lose_weight"
+            "sex": user_profile.sex,  # "male"
+            "body_fat_pct": 20.5,
+            "training_status": "intermediate"
+        },
+        "weight_trend": analyze_weight_trend(weight_logs),
+        # Returns: {
+        #   "starting_weight": 78.5,
+        #   "current_weight": 78.4,
+        #   "avg_weight": 78.5,
+        #   "weekly_rate_kg": -0.07,  # Nearly flat
+        #   "weekly_rate_pct": 0.09  # 0.09% per week
+        # }
 
-    strength_plateaus = detect_strength_plateaus(workout_logs, weeks=3)
-    # Returns: [
-    #   {
-    #     "exercise": "squat",
-    #     "plateau_weeks": 3,
-    #     "current_1rm_estimate": 100kg,
-    #     "previous_1rm_estimate": 100kg
-    #   }
-    # ]
+        "body_comp_trend": analyze_body_composition_trend(body_comp_logs),
+        # Returns: {
+        #   "method": "skinfolds",
+        #   "confidence": "high",
+        #   "starting_sum": 50,
+        #   "current_sum": 48,
+        #   "change_mm": -2,  # Fat decreasing!
+        #   "trend": "decreasing"
+        # }
 
-    # 3. Detect issues
-    issues = []
+        "nutrition_summary": {
+            "avg_calories": 2180,
+            "avg_protein_g": 160,
+            "days_logged": 12,
+            "compliance_pct": 86  # 12/14 days
+        },
 
-    # Weight plateau detected (goal is weight loss)
-    if weight_trend["is_plateau"] and user_profile["goal"] == "lose_weight":
-        issues.append({
-            "type": "weight_plateau",
-            "severity": "medium",
-            "description": f"No weight change in 14 days (avg {weight_trend['avg_weight']}kg)",
-            "recommended_action": "reduce_calories"
-        })
+        "workout_summary": analyze_strength_trends(workout_logs),
+        # Returns: {
+        #   "sessions": 4,
+        #   "strength_trends": {
+        #     "squat": {"current_1rm": 100, "4weeks_ago": 100, "change_pct": 0},  # Plateau
+        #     "bench": {"current_1rm": 80, "4weeks_ago": 77, "change_pct": 3.9}   # Progressing
+        #   }
+        # }
 
-    # Strength plateau detected on squat
-    if len(strength_plateaus) > 0:
-        issues.append({
-            "type": "strength_plateau",
-            "severity": "low",
-            "description": f"Squat: No progression in 3 weeks",
-            "recommended_action": "modify_training_program",
-            "metadata": {"exercise": "squat"}
-        })
+        "recovery_metrics": calculate_recovery_metrics(sleep_logs, workout_logs)
+        # Returns: {
+        #   "avg_sleep_hours": 7.5,
+        #   "sleep_quality": "good",
+        #   "consecutive_workout_days": 3,
+        #   "needs_deload": False
+        # }
+    }
 
-    # 4. Determine if plan adjustment needed
-    if len(issues) > 0:
-        await adjust_plan(user_id, issues)
+    # 3. NO DECISION MAKING - Always invoke specialists with full context
+    await coordinate_specialists(user_id, context)
 ```
 
-#### **Step 4: Invoke specialist agents**
+#### **Step 4: Coordinate specialists (always invoke)**
 ```python
-# ai_agents/weekly_analyzer/plan_adjuster.py
+# ai_agents/weekly_analyzer/specialist_coordinator.py
 
-async def adjust_plan(user_id: str, issues: List[dict]):
+async def coordinate_specialists(user_id: str, context: dict):
+    """
+    Always invoke all relevant specialists with full context.
+    Specialists make the decisions, orchestrator just coordinates.
+    """
+
+    # Always invoke Nutrition Specialist (for users with weight goals)
+    nutrition_rec = await invoke_nutrition_specialist(
+        user_id=user_id,
+        context=context
+    )
+    # Nutrition Specialist applies Nutrition Agent Reasoning algorithm:
+    # - Sees weight nearly flat (0.09% weekly) but skinfolds decreasing (-2mm)
+    # - Recognizes: Body recomposition happening!
+    # - Decision: MAINTAIN current calories
+    #
+    # Returns: {
+    #   "current_calorie_average": 2180,
+    #   "current_body_fat_pct": 20.5,
+    #   "observed_weekly_weight_change_pct": 0.09,
+    #   "skinfold_change_mm": -2,
+    #   "recommended_calories": 2180,  # No change (recomp happening)
+    #   "recommended_deficit_or_surplus_pct": 0,
+    #   "optimal_deficit_or_surplus_pct": 20,  # Would be optimal if true plateau
+    #   "recommended_macros": {"protein_g": 160, "carbs_g": 200, "fat_g": 67},
+    #   "reasoning": "Weight plateau detected, but skinfolds decreased by 2mm. This indicates successful body recomposition (fat loss + muscle gain). No calorie adjustment needed - maintain current intake.",
+    #   "body_composition_status": "recomp",
+    #   "adjustment_category": "none"  # ← Specialist says no change needed
+    # }
+
+    # Always invoke Training Specialist
+    training_rec = await invoke_training_specialist(
+        user_id=user_id,
+        context=context
+    )
+    # Training Specialist:
+    # - Sees squat plateau (no progression in 4 weeks)
+    # - Bench press progressing well
+    # - Decision: Modify squat program only
+    #
+    # Returns: {
+    #   "has_recommendations": True,
+    #   "changes": [{
+    #     "exercise": "squat",
+    #     "current_program": "5x5 @ 100kg",
+    #     "new_program": "3x8 @ 90kg (volume phase)",
+    #     "reasoning": "Breaking plateau with higher rep range and deload"
+    #   }]
+    # }
+
+    # Always invoke Recovery Specialist
+    recovery_rec = await invoke_recovery_specialist(
+        user_id=user_id,
+        context=context
+    )
+    # Returns: {"sleep_adequate": True, "needs_deload": False}
+
+    # Always invoke Analytics Specialist
+    analytics_report = await invoke_analytics_specialist(
+        user_id=user_id,
+        context=context
+    )
+    # Returns: Progress summary, charts, insights
+
+    # Aggregate updates (only apply changes where adjustment_category != "none")
     updates = {}
+    if nutrition_rec.adjustment_category != "none":
+        updates["nutrition"] = nutrition_rec  # Not applied in this case
+    if training_rec.has_recommendations:
+        updates["training"] = training_rec  # Applied (squat program change)
+    if recovery_rec.needs_deload:
+        updates["recovery"] = recovery_rec
 
-    # Issue: weight_plateau → Invoke Nutrition Specialist
-    if any(i["type"] == "weight_plateau" for i in issues):
-        nutrition_update = await invoke_nutrition_specialist(
-            user_id=user_id,
-            context={
-                "current_avg_calories": 2180,
-                "avg_weight_kg": 78.5,
-                "weekly_weight_change_pct": 0.0,  # Plateau
-                "body_fat_pct": 20.5,
-                "body_fat_change_pct": -0.1,  # Slight decrease
-                "sex": "male",
-                "goal": "lose_weight"
-            }
-        )
+    # Resolve conflicts if multiple specialists recommend changes
+    # Example: If both nutrition (increase calories) AND training (increase volume)
+    # recommend changes, prioritize nutrition and defer training for next week
+    updates = resolve_conflicts(updates, context)
 
-        # Nutrition Specialist reasoning:
-        # 1. Weight plateau (0.0% weekly change) BUT body fat decreased (-0.1%)
-        # 2. This indicates body recomposition (fat loss + muscle gain)
-        # 3. Decision: MAINTAIN current calories (no change needed)
-        #
-        # Alternate scenario if body fat was unchanged:
-        # 1. Weight plateau + body fat unchanged = true plateau
-        # 2. Body fat 20.5% (male) = Average category → optimal deficit 20%
-        # 3. Current intake 2180 kcal = maintenance
-        # 4. Target: 2180 * 0.8 = 1744 kcal (20% deficit)
+    # Store weekly analysis results
+    await store_analysis_results(user_id, context, nutrition_rec, training_rec, recovery_rec, updates)
 
-        # Returns: {
-        #   "current_calorie_average": 2180,
-        #   "current_body_fat_pct": 20.5,
-        #   "observed_weekly_weight_change_pct": 0.0,
-        #   "recommended_calories": 2180,  # No change (recomp happening)
-        #   "recommended_deficit_or_surplus_pct": 0,
-        #   "optimal_deficit_or_surplus_pct": 20,  # Would be optimal if true plateau
-        #   "recommended_macros": {"protein_g": 160, "carbs_g": 200, "fat_g": 67},
-        #   "reasoning": "Weight plateau detected, but body fat decreased by 0.1%. This indicates successful body recomposition (fat loss + muscle gain). No calorie adjustment needed - maintain current intake.",
-        #   "body_composition_status": "recomp",
-        #   "adjustment_category": "maintain"
-        # }
-        updates["nutrition"] = nutrition_update
-
-    # Example: Active weight loss scenario (too fast)
-    # User data:
-    #   - Female, 20% body fat (athletic)
-    #   - Weight: 65kg → 64.5kg over 14 days
-    #   - Weekly loss rate: 0.77% (65kg → 64.5kg = 0.5kg loss, 0.5/65 = 0.77%)
-    #   - Current avg intake: 1600 kcal
-    # Specialist reasoning:
-    #   1. Weekly loss 0.77% → estimated deficit ~20% (from Table 2)
-    #   2. Body fat 20% (female, athletic) → optimal deficit 10% (from Table 1)
-    #   3. Estimated deficit (20%) > Optimal deficit (10%) → losing too fast
-    #   4. Estimated maintenance: 1600 / (1 - 0.20) = 2000 kcal
-    #   5. New target: 2000 * 0.9 = 1800 kcal (10% deficit)
-    # Result: Increase from 1600 to 1800 kcal to slow weight loss
-
-    # Issue: strength_plateau → Invoke Training Specialist
-    if any(i["type"] == "strength_plateau" for i in issues):
-        training_update = await invoke_training_specialist(
-            user_id=user_id,
-            context={
-                "plateaued_exercise": "squat",
-                "current_program": "5x5 @ 100kg",
-                "weeks_plateaued": 3
-            }
-        )
-        # Returns: {
-        #   "exercise": "squat",
-        #   "old_program": "5x5 @ 100kg",
-        #   "new_program": "3x8 @ 90kg (volume phase)",
-        #   "reasoning": "Breaking plateau with higher rep range and deload..."
-        # }
-        updates["training"] = training_update
+    # Send notification to user
+    await send_notification(user_id, updates, analytics_report)
 
     return updates
 ```
 
+**Example of Nutrition Specialist Reasoning (Too Fast Weight Loss):**
+```python
+# Different user scenario - Female losing weight too fast
+context_female = {
+    "user_profile": {"goal": "lose_weight", "sex": "female", "body_fat_pct": 20, "training_status": "intermediate"},
+    "weight_trend": {"weekly_rate_pct": 0.77},  # 0.77% per week
+    "nutrition_summary": {"avg_calories": 1600}
+}
+
+nutrition_rec = await invoke_nutrition_specialist(user_id, context_female)
+# Nutrition Specialist reasoning:
+#   1. Weekly loss 0.77% → estimated deficit ~20% (from Table 2 in Nutrition Agent Reasoning)
+#   2. Body fat 20% (female, athletic) → optimal deficit 10% (from Table 1)
+#   3. Estimated deficit (20%) > Optimal deficit (10%) → losing too fast (risk muscle loss)
+#   4. Estimated maintenance: 1600 / (1 - 0.20) = 2000 kcal
+#   5. New target: 2000 * 0.9 = 1800 kcal (10% deficit)
+#
+# Returns: {
+#   "adjustment_category": "increase",  # ← Specialist says increase calories
+#   "recommended_calories": 1800,  # Up from 1600
+#   "reasoning": "Weight loss too fast (0.77%/week). Increase calories to prevent muscle loss."
+# }
+```
+
 #### **Step 5: Update plans in DynamoDB**
 ```python
-# Update active_plans table
+# Update active_plans table (only for specialists that recommended changes)
 
-# Nutrition plan update
-db.active_plans.create({
-    "user_id": "user_123",
-    "plan_type": "nutrition",
-    "version": 3,
-    "target_calories": 2000,
-    "macro_split": {"protein_g": 160, "carbs_g": 200, "fat_g": 67},
-    "reason_for_update": "Weight plateau detected in weekly analysis",
-    "previous_version": 2,
-    "updated_by": "weekly_analyzer",
-    "created_at": "2025-10-27T06:05:00Z",
-    "active": True
-})
+# Nutrition plan - NO UPDATE
+# Nutrition Specialist returned adjustment_category = "none"
+# because body recomposition is happening (fat loss + muscle gain)
+# Current plan stays active (2200 cal/day)
 
-# Training plan update
+# Training plan - UPDATE APPLIED
 db.active_plans.create({
     "user_id": "user_123",
     "plan_type": "training",
@@ -2056,8 +2165,9 @@ db.active_plans.create({
             "rest_seconds": 180
         }
     ],
-    "reason_for_update": "Squat strength plateau - switching to volume phase",
+    "reason_for_update": "Training Specialist: Squat plateau (no progress 3 weeks) - switching to volume phase",
     "updated_by": "weekly_analyzer",
+    "specialist": "training_specialist",
     "created_at": "2025-10-27T06:05:00Z",
     "active": True
 })
@@ -2076,37 +2186,46 @@ db.weekly_analyses.create({
         "weight_logs_count": 6,
         "workout_logs_count": 4,
         "avg_weight_kg": 78.5,
-        "weight_change_kg": -0.1,
+        "weight_change_kg": -0.07,  # Minimal change (0.09%/week)
+        "weight_change_pct": 0.09,
+        "skinfold_sum_mm": 72,  # Down from 74mm (week ago)
+        "skinfold_change_mm": -2,
         "avg_calories": 2180
     },
 
-    "issues_detected": [
-        {
-            "type": "weight_plateau",
-            "severity": "medium",
-            "description": "No weight change in 14 days (avg 78.5kg)"
-        },
-        {
-            "type": "strength_plateau",
-            "severity": "low",
-            "description": "Squat: No progression in 3 weeks"
-        }
-    ],
-
-    "plan_updated": True,
-    "updates": {
+    # Orchestrator always invokes specialists, stores their recommendations
+    "specialist_recommendations": {
         "nutrition": {
-            "old_calories": 2200,
-            "new_calories": 2000,
-            "reasoning": "Weight plateaued for 14 days. Creating 200 cal deficit..."
+            "adjustment_category": "none",  # ← Specialist says no change
+            "current_calories": 2200,
+            "recommended_calories": 2200,  # No change
+            "reasoning": "Body recomposition detected: Weight nearly flat (0.09%/week) but skinfold sum decreased 2mm. Fat loss + muscle gain happening. MAINTAIN current calories."
         },
         "training": {
-            "exercise": "squat",
-            "old_program": "5x5 @ 100kg",
-            "new_program": "3x8 @ 90kg",
-            "reasoning": "Breaking plateau with volume phase..."
+            "has_recommendations": True,
+            "exercise_updates": [
+                {
+                    "exercise": "squat",
+                    "old_program": "5x5 @ 100kg",
+                    "new_program": "3x8 @ 90kg",
+                    "reasoning": "No progression in 3 weeks. Switching to volume phase to break plateau."
+                }
+            ]
+        },
+        "recovery": {
+            "needs_deload": False,
+            "reasoning": "Recovery metrics normal. No deload needed."
+        },
+        "analytics": {
+            "key_insights": [
+                "Body recomposition in progress (rare and desirable!)",
+                "Training intensity may have caused squat plateau"
+            ]
         }
     },
+
+    "plan_updated": True,  # Training plan updated (nutrition maintained)
+    "updates_applied": ["training"],  # Only training specialist recommendations applied
 
     "analyzed_at": "2025-10-27T06:00:00Z",
     "notification_sent": True
@@ -2122,12 +2241,12 @@ db.weekly_analyses.create({
 Your AI coach analyzed your progress from Oct 20-27:
 
 ✅ Logged 6 weigh-ins, 4 workouts
-⚠️ Weight plateau detected (no change in 14 days)
-⚠️ Squat hasn't progressed in 3 weeks
+🎯 Body recomposition detected! (fat ↓, muscle ↑)
+⚙️ Squat program adjusted (volume phase)
 
-I've updated your plan:
-• Nutrition: 2200 → 2000 cal/day
-• Training: Modified squat program (volume phase)
+Updates to your plan:
+• Nutrition: 2200 cal/day (no change - recomp working!)
+• Training: Modified squat program (3x8 @ 90kg)
 
 Tap to see details →
 ```
@@ -2135,11 +2254,31 @@ Tap to see details →
 #### **Step 8: User views dashboard**
 
 User opens app and sees updated Weekly Analysis Dashboard with:
-- Summary of detected issues
-- Reasoning for changes
-- Updated meal plan (2000 cal)
-- Updated workout program (3x8 @ 90kg squats)
-- No action needed - just follow the new plan!
+
+**Week Oct 20-27 Summary:**
+- ✅ 6 weigh-ins, 4 workouts logged
+- Weight: 78.5 kg (minimal change: -0.07 kg)
+- Skinfold sum: 72 mm (improved: -2 mm) 📉
+- Average calories: 2180 cal/day
+
+**Specialist Insights:**
+
+🍎 **Nutrition Specialist:**
+> "Body recomposition detected! Weight nearly flat (0.09%/week) but skinfold sum decreased 2mm. This means you're losing fat AND gaining muscle - exactly what we want. MAINTAIN current calories (2200 cal/day)."
+
+🏋️ **Training Specialist:**
+> "Squat hasn't progressed in 3 weeks at 5x5 @ 100kg. Switching to volume phase (3x8 @ 90kg) to stimulate new adaptations and break plateau."
+
+💤 **Recovery Specialist:**
+> "All recovery metrics normal. No deload needed. Continue current training frequency."
+
+📊 **Analytics:**
+> "Body recomposition in progress (rare and desirable outcome!). Training adjustments will complement your current nutrition strategy."
+
+**Action Items:**
+- ✅ Nutrition plan: No changes (2200 cal/day)
+- ⚙️ Training plan: Updated squat program (tap to view)
+- No action needed - just follow the updated plan!
 
 ---
 
@@ -2553,14 +2692,15 @@ terraform apply -var="enable_weekly_schedule=true"
 - Coordinates multi-domain adjustments
 
 ### **8. Extensibility**
-- Easy to add new detection rules (e.g., injury risk, supplement timing)
-- New specialist agents can be added independently
+- Easy to add new specialists (e.g., injury prevention, supplement timing)
+- New specialist agents can be added independently without modifying orchestrator
 - MCP servers enable external data integration
+- Orchestrator pattern: All complexity in specialists, simple coordination logic
 
 ### **9. Type Safety & Reliability**
 - Pydantic models ensure structured, validated outputs
-- Detection thresholds are configurable and testable
-- Clear contracts between agents
+- Specialist algorithms are independently testable with fixed inputs
+- Clear contracts between orchestrator and specialists
 
 ### **10. Observability**
 - Each agent is independently traceable
