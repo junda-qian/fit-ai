@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Dumbbell, Plus, Trash2, ArrowLeft, Clock, Save } from 'lucide-react';
+import { Dumbbell, Plus, Trash2, ArrowLeft, Clock, Save, ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Link from 'next/link';
 
@@ -35,6 +35,14 @@ interface Exercise {
   day: string;
 }
 
+interface WorkoutPlan {
+  plan_name: string;
+  description: string;
+  frequency: string;
+  exercises: Exercise[];
+  duration_weeks: number;
+}
+
 export default function WorkoutLogging() {
   const [workoutName, setWorkoutName] = useState('');
   const [exercises, setExercises] = useState<WorkoutExercise[]>([]);
@@ -44,6 +52,8 @@ export default function WorkoutLogging() {
   const [notes, setNotes] = useState('');
   const [todaysWorkouts, setTodaysWorkouts] = useState<WorkoutLog[]>([]);
   const [planExercises, setPlanExercises] = useState<Exercise[]>([]);
+  const [workoutPlan, setWorkoutPlan] = useState<WorkoutPlan | null>(null);
+  const [showPlan, setShowPlan] = useState(true);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -61,6 +71,7 @@ export default function WorkoutLogging() {
 
       if (response.ok) {
         const data = await response.json();
+        setWorkoutPlan(data);
         setPlanExercises(data.exercises || []);
         if (data.plan_name) {
           setWorkoutName(data.plan_name);
@@ -192,6 +203,21 @@ export default function WorkoutLogging() {
     }
   };
 
+  // Group exercises by day for organized display
+  const getExercisesByDay = () => {
+    if (!workoutPlan?.exercises) return {};
+
+    const exercisesByDay: { [key: string]: Exercise[] } = {};
+    workoutPlan.exercises.forEach(exercise => {
+      if (!exercisesByDay[exercise.day]) {
+        exercisesByDay[exercise.day] = [];
+      }
+      exercisesByDay[exercise.day].push(exercise);
+    });
+
+    return exercisesByDay;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <Navigation />
@@ -209,6 +235,78 @@ export default function WorkoutLogging() {
           </h1>
           <p className="text-gray-600">Track your training session</p>
         </div>
+
+        {/* Workout Plan Display */}
+        {workoutPlan && (
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+                  <Calendar className="w-6 h-6 text-purple-600" />
+                  Your Workout Program
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  {workoutPlan.plan_name} • {workoutPlan.frequency} • {workoutPlan.duration_weeks} weeks
+                </p>
+              </div>
+              <button
+                onClick={() => setShowPlan(!showPlan)}
+                className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium"
+              >
+                {showPlan ? (
+                  <>
+                    <ChevronUp className="w-5 h-5" />
+                    Hide Plan
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="w-5 h-5" />
+                    Show Plan
+                  </>
+                )}
+              </button>
+            </div>
+
+            {showPlan && (
+              <div className="mt-4">
+                <p className="text-sm text-gray-600 mb-4">{workoutPlan.description}</p>
+
+                <div className="space-y-4">
+                  {Object.entries(getExercisesByDay()).map(([day, dayExercises]) => (
+                    <div key={day} className="border border-gray-200 rounded-lg p-4">
+                      <h3 className="font-bold text-gray-800 mb-3 text-lg">{day}</h3>
+                      <div className="space-y-2">
+                        {dayExercises.map((exercise, idx) => (
+                          <div
+                            key={idx}
+                            className="flex justify-between items-center bg-gray-50 px-4 py-3 rounded-lg hover:bg-purple-50 transition-colors cursor-pointer"
+                            onClick={() => handleSelectPlanExercise(exercise)}
+                            title="Click to add to workout"
+                          >
+                            <div>
+                              <div className="font-semibold text-gray-800">{exercise.name}</div>
+                              <div className="text-sm text-gray-600">
+                                {exercise.muscle_group}
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <div className="font-medium text-gray-800">
+                                {exercise.sets} sets × {exercise.reps} reps
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                RPE {exercise.rpe}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Exercise Input */}
