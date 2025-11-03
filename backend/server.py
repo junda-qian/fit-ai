@@ -13,6 +13,11 @@ from context import get_health_prompt
 from retrieval import HealthRAG
 from energy_calculator import EnergyCalculator, EnergyCalculatorInput, EnergyCalculatorOutput
 from workout_planner import WorkoutPlanner, WorkoutPlannerInput, WorkoutPlanOutput
+from strength_standards import (
+    calculate_1rm,
+    determine_training_status,
+    calculate_overall_status
+)
 
 # Import tracking system components
 from models import (
@@ -410,6 +415,115 @@ async def get_active_workout_plan(user_id: str):
     except HTTPException:
         raise
     except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/estimate-training-status")
+async def estimate_training_status(request: Dict):
+    """
+    Estimate user's training status based on their best lifts
+
+    Analyzes workout logs for the 4 key exercises (Bench Press, Overhead Press,
+    Deadlift, Squat) and determines training status using ExRx.net standards.
+
+    Request body:
+    {
+      "user_id": "...",
+      "bodyweight_kg": 75,
+      "sex": "male"
+    }
+
+    Returns:
+    {
+      "overall_status": "Intermediate",
+      "exercises": {
+        "Bench Press": {"1rm": 85.0, "status": "Intermediate"},
+        "Press": {"1rm": 55.0, "status": "Intermediate"},
+        "Deadlift": {"1rm": 140.0, "status": "Intermediate"},
+        "Squat": {"1rm": 120.0, "status": "Advanced"}
+      },
+      "recommendation": "Current training status: Intermediate. Recommended intensity: 80% for compounds, 65% for isolations."
+    }
+    """
+    try:
+        user_id = request['user_id']
+        bodyweight = request['bodyweight_kg']
+        sex = request['sex']
+
+        # Get user's workout logs
+        workout_logs = db.find("workout_logs", {"user_id": user_id})
+
+        # Key exercises to analyze
+        key_exercises = {
+            "Bench Press": ["bench press", "barbell bench press"],
+            "Press": ["overhead press", "press", "barbell overhead press", "dumbbell overhead press"],
+            "Deadlift": ["deadlift", "powerlifting deadlift", "romanian deadlift"],
+            "Squat": ["squat", "barbell squat", "back squat"]
+        }
+
+        best_lifts = {}
+
+        # Find best performance for each key exercise
+        for standard_name, exercise_variations in key_exercises.items():
+            best_1rm = 0
+
+            for log in workout_logs:
+                for exercise in log.get('exercises', []):
+                    exercise_name_lower = exercise['name'].lower()
+
+                    # Check if exercise matches any variation
+                    if any(variation in exercise_name_lower for variation in exercise_variations):
+                        # Find heaviest set
+                        for set_data in exercise['sets']:
+                            weight = set_data.get('weight', 0)
+                            reps = set_data.get('reps', 0)
+
+                            if weight > 0 and reps > 0:
+                                # Calculate 1RM for this set
+                                estimated_1rm = calculate_1rm(weight, reps)
+
+                                if estimated_1rm > best_1rm:
+                                    best_1rm = estimated_1rm
+
+            # Determine status if user has performed this exercise
+            if best_1rm > 0:
+                status = determine_training_status(
+                    standard_name, best_1rm, bodyweight, sex
+                )
+                best_lifts[standard_name] = {
+                    "1rm": round(best_1rm, 1),
+                    "status": status
+                }
+
+        # Calculate overall status
+        if best_lifts:
+            statuses = [lift['status'] for lift in best_lifts.values()]
+            overall_status = calculate_overall_status(statuses)
+        else:
+            overall_status = "Novice"  # Default if no data
+
+        # Generate recommendation based on status
+        intensity_recommendations = {
+            "Untrained": {"compound": 60, "isolation": 60},
+            "Novice": {"compound": 60, "isolation": 60},
+            "Intermediate": {"compound": 80, "isolation": 65},
+            "Advanced": {"compound": 85, "isolation": 70},
+            "Elite": {"compound": 85, "isolation": 70}
+        }
+
+        intensity = intensity_recommendations.get(overall_status, {"compound": 60, "isolation": 60})
+        recommendation = f"Current training status: {overall_status}. Recommended intensity: {intensity['compound']}% for compound exercises, {intensity['isolation']}% for isolation exercises."
+
+        return {
+            "overall_status": overall_status,
+            "exercises": best_lifts,
+            "recommendation": recommendation
+        }
+
+    except KeyError as e:
+        raise HTTPException(status_code=400, detail=f"Missing required field: {str(e)}")
+    except Exception as e:
+        print(f"Error estimating training status: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
