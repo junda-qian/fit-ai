@@ -30,6 +30,7 @@ interface Exercise {
   name: string;
   sets: number;
   reps: string;
+  intensity?: number;  // Optional for backward compatibility with old plans
   rpe: number;
   muscle_group: string;
   day: string;
@@ -105,7 +106,7 @@ export default function WorkoutLogging() {
   };
 
   const handleAddSet = () => {
-    setCurrentSets([...currentSets, { reps: 10, weight: 0, rpe: 7 }]);
+    setCurrentSets([...currentSets, { reps: 10, weight: 0, rpe: 7 }]); // Default RPE 7 (not shown in UI)
   };
 
   const handleUpdateSet = (index: number, field: keyof ExerciseSet, value: number) => {
@@ -142,7 +143,12 @@ export default function WorkoutLogging() {
     setCurrentExercise(exercise.name);
     // Initialize sets based on plan
     const numSets = exercise.sets || 3;
-    const defaultReps = parseInt(exercise.reps.split('-')[0]) || 10;
+
+    // Use calculated reps from intensity if available, otherwise use stored reps
+    const defaultReps = exercise.intensity
+      ? parseInt(calculateRepsFromIntensity(exercise.name, exercise.intensity))
+      : parseInt(exercise.reps.split('-')[0]) || 10;
+
     const initialSets = Array(numSets).fill(null).map(() => ({
       reps: defaultReps,
       weight: 0,
@@ -201,6 +207,47 @@ export default function WorkoutLogging() {
     } finally {
       setSaving(false);
     }
+  };
+
+  // Calculate reps based on intensity and exercise type
+  const calculateRepsFromIntensity = (exerciseName: string, intensity: number): string => {
+    // Intensity-Rep relationship table
+    const repTable: { [key: number]: { benchPress: number; legPress: number; other: number } } = {
+      95: { benchPress: 3, legPress: 7, other: 3 },
+      90: { benchPress: 4, legPress: 9, other: 5 },
+      85: { benchPress: 6, legPress: 11, other: 7 },
+      80: { benchPress: 9, legPress: 13, other: 10 },
+      75: { benchPress: 12, legPress: 16, other: 12 },
+      70: { benchPress: 14, legPress: 19, other: 15 },
+      65: { benchPress: 17, legPress: 23, other: 17 },
+      60: { benchPress: 19, legPress: 27, other: 20 },
+    };
+
+    // Determine exercise type
+    const lowerName = exerciseName.toLowerCase();
+    let exerciseType: 'benchPress' | 'legPress' | 'other' = 'other';
+
+    if (lowerName.includes('bench press') || lowerName.includes('bench')) {
+      exerciseType = 'benchPress';
+    } else if (lowerName.includes('leg press')) {
+      exerciseType = 'legPress';
+    }
+
+    // Find closest intensity in table (round to nearest 5%)
+    const intensityLevels = Object.keys(repTable).map(Number).sort((a, b) => b - a);
+    let closestIntensity = intensityLevels[0];
+    let minDiff = Math.abs(intensity - closestIntensity);
+
+    for (const level of intensityLevels) {
+      const diff = Math.abs(intensity - level);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIntensity = level;
+      }
+    }
+
+    const reps = repTable[closestIntensity][exerciseType];
+    return `${reps}`;
   };
 
   // Group exercises by day for organized display
@@ -291,10 +338,10 @@ export default function WorkoutLogging() {
                             </div>
                             <div className="text-right">
                               <div className="font-medium text-gray-800">
-                                {exercise.sets} sets × {exercise.reps} reps
+                                {exercise.sets} sets × {exercise.intensity ? calculateRepsFromIntensity(exercise.name, exercise.intensity) : exercise.reps} reps
                               </div>
                               <div className="text-sm text-gray-600">
-                                RPE {exercise.rpe}
+                                {exercise.intensity ? `${exercise.intensity}% intensity` : `RPE ${exercise.rpe}`}
                               </div>
                             </div>
                           </div>
@@ -354,7 +401,7 @@ export default function WorkoutLogging() {
                     >
                       <div className="font-semibold text-gray-800">{exercise.name}</div>
                       <div className="text-sm text-gray-600">
-                        {exercise.sets} sets × {exercise.reps} reps • {exercise.muscle_group}
+                        {exercise.sets} sets × {exercise.intensity ? calculateRepsFromIntensity(exercise.name, exercise.intensity) : exercise.reps} reps • {exercise.muscle_group} • {exercise.intensity ? `${exercise.intensity}% intensity` : `RPE ${exercise.rpe}`}
                       </div>
                     </button>
                   ))}
@@ -417,17 +464,6 @@ export default function WorkoutLogging() {
                           className="w-20 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <span className="text-xs text-gray-600">kg</span>
-                        <input
-                          type="number"
-                          value={set.rpe}
-                          onChange={(e) => handleUpdateSet(idx, 'rpe', parseFloat(e.target.value))}
-                          placeholder="RPE"
-                          min="1"
-                          max="10"
-                          step="0.5"
-                          className="w-16 px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <span className="text-xs text-gray-600">RPE</span>
                         <button
                           onClick={() => handleRemoveSet(idx)}
                           className="ml-auto text-red-600 hover:text-red-700"

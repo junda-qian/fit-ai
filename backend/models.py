@@ -70,6 +70,7 @@ class Exercise(BaseModel):
     name: str
     sets: int
     reps: str  # e.g., "6-8", "10-12"
+    intensity: Optional[int] = None  # % of 1RM (e.g., 60, 70, 80) - optional for backward compatibility
     rpe: float  # Rate of Perceived Exertion (1-10)
     muscle_group: str
     day: str  # e.g., "Upper A", "Lower B", "Push Day"
@@ -175,11 +176,11 @@ class ExerciseSet(BaseModel):
     """
     Single set in a workout
 
-    Example: Bench Press - Set 1: 8 reps @ 185 lbs, RPE 8
+    Example: Bench Press - Set 1: 8 reps @ 185 lbs
     """
     reps: int
     weight: float  # in lbs or kg
-    rpe: float  # 1-10 scale
+    rpe: Optional[float] = 7.0  # 1-10 scale, optional (defaults to 7)
 
 
 class WorkoutExercise(BaseModel):

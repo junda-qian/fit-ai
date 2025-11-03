@@ -140,6 +140,7 @@ export default function WorkoutPlanner() {
             name: exercise.exercise_name,
             sets: exercise.sets,
             reps: `${Math.round(8 - (exercise.intensity / 15))} - ${Math.round(12 - (exercise.intensity / 15))}`, // Rough estimate based on intensity
+            intensity: exercise.intensity, // Store intensity percentage
             rpe: Math.round(exercise.intensity / 10), // Convert intensity% to RPE scale
             muscle_group: Object.keys(exercise.muscle_activation)[0] || 'General', // Primary muscle
             day: day.day_name
