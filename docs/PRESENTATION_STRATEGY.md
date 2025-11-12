@@ -303,6 +303,12 @@ Pick 2-3 impactful challenges:
 - Solution: "Warmed Lambda functions, optimized prompts, parallel agent calls"
 - **Transferable insight**: "Serverless needs performance tuning just like traditional servers"
 
+**Challenge 4: Over-Engineering the Architecture** ⭐
+- Problem: "I started with an orchestrator pattern inspired by ALEX—but realized only 1 agent ran weekly"
+- Solution: "Removed the orchestrator entirely. Nutrition Specialist now runs independently"
+- **Result**: Simpler, faster, cheaper—still multi-agent, just not artificially coordinated
+- **Transferable insight**: "Start with the problem, not the architecture. The best code is sometimes the code you delete."
+
 **3C: Deployment & Operations (1 min)**
 - Terraform: "Infrastructure as Code - entire AWS setup in version control"
 - CI/CD: "One command deploys frontend + backend + database"
@@ -346,6 +352,7 @@ This app: AI adaptation at $15-25/mo, infinite scale
 1. AI agents > simple functions when you need adaptation and decision-making
 2. Serverless + AI = powerful combination for low-cost MVPs
 3. Multi-agent systems can solve complex coordination problems
+4. **Problem-first, not architecture-first** - Don't force your problem into a cool pattern
 
 **For Business Teams**:
 1. AI enables new business models (personal coaching at scale)
@@ -398,6 +405,40 @@ This app: AI adaptation at $15-25/mo, infinite scale
 - Blog post or documentation
 - Office hours: "I'll do a workshop if 5+ people interested"
 
+✅ **Add**: Lesson on Architecture Simplification ⭐ (HIGHLY RECOMMENDED)
+- **Why this is powerful**: Shows maturity, pragmatism, and willingness to adapt
+- **Story arc**: "I started with orchestrator → realized it was unnecessary → removed it → better system"
+- **Visual**: Before/after architecture diagram showing removed orchestrator
+- **Key message**: "Don't copy cool architectures blindly. Start with your problem."
+- **Delivery tip**: Be vulnerable - "I was excited about orchestrators, but questioning it was the right call"
+- **Audience impact**: Everyone relates to over-engineering; this shows wisdom
+
+**Suggested Slide Content**:
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LESSON LEARNED: PROBLEM-FIRST, NOT ARCHITECTURE-FIRST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ INITIAL DESIGN (Week 2)          ✅ REFACTORED (Week 4)
+
+EventBridge                          EventBridge
+    ↓                                    ↓
+Orchestrator  ← Unnecessary!        Nutrition Specialist
+    ↓                                (does everything)
+Nutrition Specialist                     ↓
+    ↓                                Database
+Database
+
+WHAT I LEARNED:
+• Don't force your problem into a cool architecture
+• Only 1 agent ran weekly → no orchestration needed
+• Removed 1 Lambda, ~50 lines of code
+• Result: Simpler, faster, cheaper, STILL multi-agent
+
+💡 "The best architecture solves YOUR problem, not someone else's"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
 ---
 
 ## Presentation Flow Optimization
@@ -409,14 +450,17 @@ This app: AI adaptation at $15-25/mo, infinite scale
 4. **What is AI Agent** (1-2 slides with diagram)
 5. **Live Demo or Video** (embedded)
 6. **Architecture** (1 slide - use simplified version)
-7. **Build Challenges** (3 slides - 1 per challenge)
-8. **Deployment & Operations** (1 slide)
-9. **Business Case** (1 slide)
-10. **Applicability to Our Company** (1 slide) ⭐ Critical
-11. **Key Takeaways** (1 slide)
-12. **Thank You + Resources** (1 slide)
+7. **Build Challenges** (4 slides - 1 per challenge, including architecture simplification)
+8. **Lesson Learned: Problem-First Architecture** (1 slide) ⭐ NEW - highly impactful
+9. **Deployment & Operations** (1 slide)
+10. **Business Case** (1 slide)
+11. **Applicability to Our Company** (1 slide) ⭐ Critical
+12. **Key Takeaways** (1 slide)
+13. **Thank You + Resources** (1 slide)
 
-**Total**: ~12-13 slides for 15 minutes = perfect pace
+**Total**: ~13-14 slides for 15 minutes = perfect pace
+
+**Note**: The "Lesson Learned" slide can be combined with Challenge 4 or presented separately for emphasis
 
 ---
 
@@ -436,8 +480,15 @@ This app: AI adaptation at $15-25/mo, infinite scale
 
 4. **Show continuous learning**: "Here's what I'd do differently next time"
    - Builds credibility (you're reflective, not arrogant)
+   - **Example**: The orchestrator removal story shows you adapt and improve
 
-5. **Connect to company goals**: Research company's strategic priorities
+5. **Demonstrate pragmatism over dogma**: ⭐ NEW
+   - Share the orchestrator removal story as evidence of practical thinking
+   - "I questioned a cool pattern when it didn't fit my problem"
+   - Shows: technical judgment, willingness to simplify, focus on user value
+   - **Delivery**: "I was excited about orchestrators, but asking 'do I need this?' led to a better system"
+
+6. **Connect to company goals**: Research company's strategic priorities
    - If company is adopting AI → "This shows practical AI implementation"
    - If company values innovation → "This explores emerging tech (multi-agent systems)"
    - If company focuses on efficiency → "This does personalization at scale with minimal cost"
@@ -466,8 +517,18 @@ Your plan is **excellent** - you're showcasing:
 - Business thinking (market analysis, profitability)
 - Communication skills (teaching concepts)
 - Leadership (helping others learn)
+- **Engineering judgment** (knowing when to simplify) ⭐ NEW
 
-**One key addition**: Make sure ~20% of your presentation explicitly connects to your company's context. This shows you're not just building cool things in isolation - you're thinking about how to drive company value.
+**Two key additions**:
+
+1. **Make sure ~20% of your presentation explicitly connects to your company's context**. This shows you're not just building cool things in isolation - you're thinking about how to drive company value.
+
+2. **Feature the orchestrator removal story prominently** ⭐. This single lesson will likely be the most memorable part of your presentation because:
+   - Everyone has over-engineered something
+   - It shows maturity and self-awareness
+   - It's a concrete example of good engineering judgment
+   - It's honest and relatable (you made a mistake, then fixed it)
+   - It demonstrates the core principle: solve problems, don't just apply patterns
 
 **Suggested title**:
 *"Building a Multi-Agent AI SaaS: From Problem to Production in 8 Weeks"*

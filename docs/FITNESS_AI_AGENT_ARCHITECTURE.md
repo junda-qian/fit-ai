@@ -1,5 +1,5 @@
 # Fitness AI Agent Architecture
-## Multi-Agent System with Tools and MCP Servers
+## Multi-Agent System with Tools
 
 Inspired by ALEX Financial Planner's multi-agent architecture, adapted for fitness coaching.
 
@@ -9,10 +9,9 @@ Inspired by ALEX Financial Planner's multi-agent architecture, adapted for fitne
 
 This document outlines a multi-agent AI fitness coaching system that:
 - **Proactively monitors** user progress with weekly automated analysis
-- Uses **specialized agents** for nutrition, training, recovery, and analytics
+- Uses **specialized agents** for nutrition and training optimization
 - **Automatically adjusts** meal and training plans based on detected trends
 - Integrates **function tools** for calculations and data access
-- Leverages **MCP servers** for external data (USDA food DB, exercise library)
 - Follows **OpenAI Agents SDK patterns** from the ALEX project
 - Deploys as **AWS Lambda functions** with EventBridge scheduling
 - Provides **intelligent coordination** between potentially conflicting advice
@@ -64,12 +63,7 @@ This document outlines a multi-agent AI fitness coaching system that:
 - Tools are stateless, context provides state
 - Easy to test and reason about
 
-### 5. **MCP Server Integration**
-- Playwright MCP for web research in ALEX Researcher
-- Clean async context manager pattern
-- Proper lifecycle management in Lambda
-
-### 6. **Lambda as Microservices**
+### 5. **Lambda as Microservices**
 - Each agent = separate Lambda function
 - Function tools invoke other Lambdas
 - Enables independent scaling and deployment
@@ -118,107 +112,149 @@ But NOT needed for routine plan adjustments - those happen automatically.
 ### **Agent Structure**
 
 ```
+┌──────────────────────────────────────────────────────────────────┐
+│                TWO INDEPENDENT AGENT FLOWS                       │
+└──────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════
+ FLOW 1: Weekly Nutrition Analysis (Scheduled - EventBridge)
+═══════════════════════════════════════════════════════════════════
+
 ┌─────────────────────────────────────────────────────┐
 │     EventBridge Scheduler (Every Monday 6 AM)        │
-│          Triggers weekly analysis cron               │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│       Weekly Analysis Coordinator                    │
-│  - Fetch all active users                           │
-│  - Trigger analysis Lambda for each user            │
-└────────────────────┬────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────┐
-│       Weekly Progress Analyzer Agent ⭐              │
-│  FOR EACH USER:                                     │
+│         Nutrition Specialist Agent                   │
+│  FOR EACH ACTIVE USER:                              │
 │  1. Pull last 14 days of data                       │
-│  2. Calculate trends (weight, strength, volume)     │
-│  3. Detect anomalies/plateaus                       │
-│  4. Determine if plan adjustment needed             │
-│  5. If yes → invoke specialist agents               │
+│      - Weight logs                                  │
+│      - Body composition logs (skinfolds/waist/BF%)  │
+│      - Nutrition logs                               │
+│      - Workout logs (for bulk assessment)           │
+│  2. Calculate trends                                │
+│      - Weight trend (weekly rate %)                 │
+│      - Body composition trend                       │
+│      - Average calorie intake                       │
+│  3. Apply nutrition algorithm                       │
+│      - Estimate maintenance calories                │
+│      - Calculate optimal deficit/surplus            │
+│      - Detect body recomposition                    │
+│      - Make calorie/macro recommendations           │
+│  4. Store weekly analysis                           │
+│  5. Update nutrition plan (if needed)               │
+│  6. Send notification to user                       │
 └────────────────────┬────────────────────────────────┘
                      │
-     ┌───────────────┼──────────┬──────────────┐
-     │               │          │              │
-     ▼               ▼          ▼              ▼
-┌─────────┐ ┌────────────┐ ┌──────────┐ ┌─────────┐
-│Nutrition│ │  Training  │ │ Recovery │ │Analytics│
-│Specialist│ │ Specialist │ │Specialist│ │Specialist│
-└────┬────┘ └─────┬──────┘ └────┬─────┘ └────┬────┘
-     │            │              │            │
-     │       Function Tools      │            │
-     ▼            ▼              ▼            ▼
+                     ▼
+              ┌─────────────────┐
+              │ weekly_analyses │
+              │ active_plans    │
+              │   (nutrition)   │
+              └─────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+ FLOW 2: Session-to-Session Training (Event-Driven - Post Workout)
+═══════════════════════════════════════════════════════════════════
+
 ┌─────────────────────────────────────────────────────┐
-│               Function Tools Layer                   │
-│  - calculate_tdee()                                  │
-│  - calculate_macros()                                │
-│  - analyze_weight_trend(days=14)                     │
-│  - detect_strength_plateau(weeks=3)                  │
-│  - calculate_1rm()                                   │
-│  - detect_overtraining()                             │
-│  - analyze_volume_trend(weeks=2)                     │
-└─────────────┬───────────────────────────────────────┘
-              │
-     ┌────────┼─────────┬─────────────┐
-     ▼        ▼         ▼             ▼
-┌──────┐ ┌────────┐ ┌────────┐ ┌──────────┐
-│ USDA │ │Exercise│ │Metrics │ │DynamoDB  │
-│ MCP  │ │  MCP   │ │ Tools  │ │ Client   │
-└──────┘ └────────┘ └────────┘ └──────────┘
-                                     │
-                     ┌───────────────┴──────────────┐
-                     ▼                              ▼
-              ┌──────────────┐            ┌─────────────────┐
-              │ active_plans │            │ weekly_analyses │
-              │   (table)    │            │     (table)     │
-              └──────────────┘            └─────────────────┘
+│   User logs workout via /api/workouts/log           │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│   Backend saves workout + invokes Training Agent    │
+│   (async Lambda invocation - don't block user)     │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│       Training Specialist Agent                      │
+│  FOR EACH EXERCISE in workout:                      │
+│  1. Get exercise config (progression model, etc)    │
+│  2. Analyze first set vs rep target                 │
+│  3. Apply Linear/Rep Range progression rules        │
+│  4. Prescribe next session (weight, reps, action)   │
+│  5. Detect plateaus/regressions                     │
+│  6. Update user_exercises table                     │
+│  7. Store training recommendation                   │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+              ┌─────────────────────┐
+              │   user_exercises     │
+              │ (next_session update)│
+              │                      │
+              │training_recommendations│
+              └─────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+ Function Tools Layer (Shared)
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────┐
+│  Nutrition Tools:                                   │
+│  - calculate_tdee()                                 │
+│  - calculate_macros()                               │
+│  - analyze_weight_trend(days=14)                    │
+│  - analyze_body_composition_trend(days=14)          │
+│  - estimate_maintenance_calories()                  │
+│  - calculate_optimal_deficit()                      │
+│  - calculate_optimal_surplus()                      │
+│                                                     │
+│  Training Tools:                                    │
+│  - apply_linear_progressive_rules()                 │
+│  - apply_rep_range_rules()                          │
+│  - detect_plateau()                                 │
+│  - detect_regression()                              │
+│  - calculate_plateau_breaker_weight()               │
+│  - suggest_progression_model_switch()               │
+│  - calculate_1rm()                                  │
+└─────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Agent Specifications
 
-### **1. Weekly Progress Analyzer Agent** ⭐ (Primary - Orchestrator)
+### **1. Nutrition Specialist Agent** ⭐ (Primary - Weekly Scheduled)
 
-**Purpose**: Orchestrate weekly check-ins by coordinating specialist agents and managing plan updates
+**Purpose**: Analyze nutrition data weekly and provide evidence-based calorie/macro adjustments
 
 **Trigger**: EventBridge cron (every Monday 6 AM UTC)
 
 **Key Design Principle**:
-> The analyzer is an **orchestrator**, not a decision-maker. It gathers data and coordinates specialists who make domain-specific decisions using their expert algorithms. This avoids the problem of using fixed thresholds that don't account for individual differences (body fat %, training status, sex, etc.).
+> This agent operates independently - it gathers data, calculates trends, makes decisions, and stores results all in one Lambda function. No orchestrator needed.
+
+**Why Weekly?**
+- ✅ Body weight trends require 14+ days to filter out daily fluctuations (water retention, sodium, hormones)
+- ✅ Body composition changes are gradual (2+ weeks minimum to detect real fat/muscle changes)
+- ✅ Nutrition adjustments should be conservative to avoid yo-yo dieting
+- ✅ Weekly check-ins match real-world coaching cadence
 
 **Responsibilities**:
 - Pull last 14-28 days of user data (weight, body composition, workouts, nutrition, sleep)
-- Calculate trends and prepare shared context for all specialists
-- **Always invoke specialist agents** with full context (they decide if changes are needed)
-- Coordinate multiple specialists (Nutrition, Training, Recovery, Analytics)
-- Resolve conflicts between specialist recommendations
-- Aggregate updates from all specialists
-- Generate integrated user notification with reasoning
+- Calculate trends (weight trend, body composition trend, average calorie intake)
+- Apply nutrition algorithm:
+  - Estimate maintenance calories
+  - Calculate optimal deficit/surplus based on body fat %, sex, training status
+  - Detect body recomposition vs true plateaus
+  - Make calorie/macro recommendations
 - Store weekly analysis results in DynamoDB
+- Update nutrition plan (if changes needed)
+- Send notification to user
 - Track adjustment history to prevent over-correction
 
-**Why Always Invoke Specialists?**
-- ✅ Specialists have domain expertise and context-aware algorithms
-- ✅ No fixed thresholds - each user's "plateau" is different based on body composition, goals, training status
-- ✅ Specialists can detect nuances (e.g., body recomposition vs true plateau)
-- ✅ Enables multi-factor decision making (weight + body fat + strength + recovery)
-- ✅ Cost is negligible (~$0.001 per invocation × once/week)
-- ✅ Simple orchestrator code - all complexity in specialists where it belongs
-
-**Function Tools**:
-- `analyze_weight_trend(user_id, days=14)` → TrendAnalysis
-- `analyze_body_composition_trend(user_id, days=14)` → BodyCompositionAnalysis
-- `analyze_strength_trends(user_id, weeks=4)` → StrengthAnalysis
-- `analyze_volume_trend(user_id, weeks=2)` → VolumeAnalysis
-- `calculate_recovery_metrics(user_id)` → RecoveryMetrics
-- `invoke_nutrition_specialist(user_id, context)` → NutritionRecommendation
-- `invoke_training_specialist(user_id, context)` → TrainingRecommendation
-- `invoke_recovery_specialist(user_id, context)` → RecoveryRecommendation
-- `invoke_analytics_specialist(user_id, context)` → ProgressReport
+**Input Context** (gathered by the agent itself):
+- User profile (age, weight, height, sex, activity level, body fat %, goal)
+- Recent nutrition logs (last 14-30 days)
+- Weight trend data (14-day analysis)
+- Body composition trend data (14-day analysis)
+- Current training status (novice/intermediate/advanced)
+- Strength progression data (for bulking scenarios)
 
 **Data Quality Requirements**:
 ```python
@@ -229,126 +265,129 @@ min_workout_logs = 2                    # Need 2+ workouts in 14 days
 min_nutrition_logs = 10                 # Need 10+ days of nutrition tracking
 
 # If minimum data not met, notify user to improve tracking consistency
-# Still invoke specialists - they can handle missing data gracefully
 ```
 
 **Example Flow**:
 ```python
-# Monday 6 AM: EventBridge triggers weekly analysis for user_123
+# ai_agents/nutrition_specialist/lambda_handler.py
 
-# Step 1: Gather ALL data and calculate trends (deterministic)
-context = {
-    "user_profile": {
-        "goal": "lose_weight",
-        "sex": "male",
-        "body_fat_pct": 20.5,
-        "training_status": "intermediate"
-    },
-    "weight_trend": {
-        "starting_weight": 78.5,
-        "current_weight": 78.4,
-        "weekly_rate_kg": -0.07,  # Very slow loss
-        "weekly_rate_pct": 0.09,  # 0.09% per week
-    },
-    "body_comp_trend": {
-        "method": "skinfolds",
-        "starting_sum": 50,
-        "current_sum": 48,
-        "change_mm": -2,  # Fat decreasing!
-        "trend": "decreasing"
-    },
-    "nutrition_summary": {
-        "avg_calories": 2180,
-        "days_logged": 12
-    },
-    "workout_summary": {
-        "sessions": 4,
-        "squat_1rm_estimate": 100,  # No change in 4 weeks
-        "squat_1rm_4weeks_ago": 100
+def lambda_handler(event, context):
+    """
+    EventBridge triggers this every Monday at 6 AM UTC.
+    Processes all active users.
+    """
+    # 1. Fetch all active users
+    users = db.user_profiles.find_all_active()
+
+    results = []
+    for user in users:
+        # 2. Gather data and calculate trends
+        data = gather_14_day_data(user["user_id"])
+
+        # 3. Apply nutrition algorithm
+        recommendation = apply_nutrition_algorithm(user, data)
+
+        # 4. Store weekly analysis
+        store_weekly_analysis(user["user_id"], data, recommendation)
+
+        # 5. Update nutrition plan if needed
+        if recommendation.adjustment_category != "none":
+            update_nutrition_plan(user["user_id"], recommendation)
+
+        # 6. Send notification
+        send_notification(user["user_id"], recommendation)
+
+        results.append(recommendation)
+
+    return {"users_processed": len(results)}
+
+
+def gather_14_day_data(user_id: str) -> dict:
+    """Gather all data and calculate trends"""
+    user_profile = db.user_profiles.find_one({"user_id": user_id})
+    weight_logs = db.body_logs.find_recent(user_id, days=14)
+    body_comp_logs = db.body_logs.find_recent(user_id, days=14)
+    nutrition_logs = db.nutrition_logs.find_recent(user_id, days=14)
+    workout_logs = db.workout_logs.find_recent(user_id, days=14)
+
+    return {
+        "user_profile": {
+            "goal": user_profile.goal,
+            "sex": user_profile.sex,
+            "body_fat_pct": calculate_current_body_fat(body_comp_logs),
+            "training_status": user_profile.training_status
+        },
+        "weight_trend": analyze_weight_trend(weight_logs),
+        "body_comp_trend": analyze_body_composition_trend(body_comp_logs),
+        "nutrition_summary": {
+            "avg_calories": calculate_avg_calories(nutrition_logs),
+            "days_logged": len(nutrition_logs)
+        },
+        "workout_summary": analyze_strength_trends(workout_logs)
     }
-}
 
-# Step 2: Always invoke specialists with full context
-# (They make the decisions, not the orchestrator)
 
-nutrition_rec = await invoke_nutrition_specialist(user_id, context)
-# Nutrition Specialist applies Nutrition Agent Reasoning algorithm:
-# - Sees weight plateau (0.09% weekly) BUT skinfolds decreasing (-2mm)
-# - Recognizes: Body recomposition happening!
-# - Decision: MAINTAIN current calories
-# Returns: {"adjustment_category": "none", "reasoning": "..."}
+def apply_nutrition_algorithm(user: dict, data: dict) -> NutritionRecommendation:
+    """Apply evidence-based nutrition algorithm"""
+    # See Nutrition Agent Reasoning section for full algorithm
+    # 1. Estimate maintenance calories from current intake and weight change rate
+    # 2. Calculate optimal deficit/surplus based on body fat %, sex, training status
+    # 3. Detect body recomposition (weight flat but skinfolds decreasing)
+    # 4. Make recommendation
 
-training_rec = await invoke_training_specialist(user_id, context)
-# Training Specialist:
-# - Sees squat plateau (no progression in 4 weeks)
-# - Decision: Modify program to break plateau
-# Returns: {"has_recommendations": true, "changes": [...]}
+    maintenance = estimate_maintenance_calories(
+        data["nutrition_summary"]["avg_calories"],
+        data["weight_trend"]["weekly_rate_pct"]
+    )
 
-recovery_rec = await invoke_recovery_specialist(user_id, context)
-# Returns: {"sleep_adequate": true, "needs_deload": false}
+    optimal_deficit = calculate_optimal_deficit(
+        data["user_profile"]["body_fat_pct"],
+        data["user_profile"]["sex"]
+    )
 
-analytics_report = await invoke_analytics_specialist(user_id, context)
-# Returns: Progress summary, charts, insights
+    # Body recomposition check
+    if (data["weight_trend"]["weekly_rate_pct"] < 0.2 and
+        data["body_comp_trend"]["trend"] == "decreasing"):
+        return NutritionRecommendation(
+            adjustment_category="none",
+            recommended_calories=data["nutrition_summary"]["avg_calories"],
+            reasoning="Body recomposition detected - maintain current intake"
+        )
 
-# Step 3: Resolve conflicts (if any)
-# (None in this case - nutrition says maintain, training says adjust program)
-
-# Step 4: Aggregate updates
-updates = {
-    "nutrition": None,  # No change needed (recomp happening)
-    "training": training_rec.changes,  # Apply squat program change
-    "recovery": None
-}
-
-# Step 5: Store analysis
-await db.weekly_analyses.insert({
-    "user_id": user_123,
-    "week_starting": "2025-11-04",
-    "context": context,
-    "recommendations": {
-        "nutrition": nutrition_rec,
-        "training": training_rec,
-        "recovery": recovery_rec
-    },
-    "updates_applied": updates,
-    "analyzed_at": datetime.now()
-})
-
-# Step 6: Send integrated notification
-await send_notification(user_id, {
-    "title": "Weekly Check-In (Nov 4, 2025)",
-    "nutrition": "✅ Maintaining calories (2180) - body recomposition happening!",
-    "training": "🔧 Squat program adjusted to break plateau",
-    "analytics": analytics_report.summary
-})
+    # ... rest of algorithm
 ```
+
+**Function Tools**:
+- `analyze_weight_trend(logs, days=14)` → TrendAnalysis
+- `analyze_body_composition_trend(logs, days=14)` → BodyCompositionAnalysis
+- `estimate_maintenance_calories(current_intake, weight_loss_rate)` → float
+- `calculate_optimal_deficit(body_fat_pct, sex)` → float (%)
+- `calculate_optimal_surplus(training_status)` → float (%)
+- `calculate_tdee()` → float
+- `calculate_macros()` → MacroSplit
 
 **Structured Output**:
 ```python
-class WeeklyAnalysisResult(BaseModel):
-    user_id: str
-    week_starting: date
+class NutritionRecommendation(BaseModel):
+    current_calorie_average: int
+    current_body_fat_pct: float
+    observed_weekly_weight_change_pct: float
 
-    # Context gathered (deterministic data)
-    context: AnalysisContext  # Weight trends, body comp, workouts, nutrition, recovery
+    # Recommendations
+    recommended_calories: int
+    recommended_deficit_or_surplus_pct: float
+    optimal_deficit_or_surplus_pct: float
+    recommended_macros: MacroSplit
 
-    # Specialist recommendations (AI decisions)
-    recommendations: SpecialistRecommendations
-    #   nutrition: NutritionRecommendation
-    #   training: TrainingRecommendation
-    #   recovery: RecoveryRecommendation
-    #   analytics: ProgressReport
+    # Decision
+    adjustment_category: str  # "increase", "decrease", "none"
+    reasoning: str
+    body_composition_status: str  # "fat_loss", "muscle_gain", "recomp", "maintenance"
 
-    # Updates actually applied (after conflict resolution)
-    updates_applied: Dict[str, Any]  # {"nutrition": None, "training": {...}, "recovery": None}
-
-    # Metadata
-    plan_updated: bool  # True if any specialist recommended changes
-    notification_sent: bool
-    analyzed_at: datetime
+    confidence: float  # 0.0-1.0
 ```
 
-**Lambda**: `fitness-weekly-analyzer`
+**Lambda**: `fitness-nutrition-specialist`
 
 ---
 
@@ -368,9 +407,6 @@ class WeeklyAnalysisResult(BaseModel):
 **Function Tools**:
 - `invoke_nutrition_specialist()`
 - `invoke_training_specialist()`
-- `invoke_recovery_specialist()`
-- `invoke_analytics_specialist()`
-- `invoke_motivation_agent()`
 
 **Example Questions**:
 - "Can I substitute chicken with tofu in my meal plan?"
@@ -382,373 +418,213 @@ class WeeklyAnalysisResult(BaseModel):
 
 ---
 
-### **3. Nutrition Specialist Agent**
+### **3. Training Specialist Agent**
 
-**Purpose**: Analyzes nutrition data and provides evidence-based calorie/macro recommendations
+**Purpose**: Provides session-to-session progression recommendations based on logged workout performance
 
-**Input Context**:
-- User profile (age, weight, height, sex, activity level, body fat %, goal)
-- Recent nutrition logs (last 14-30 days)
-- Weight trend data (14-day analysis)
-- Body fat trend data (14-day analysis)
-- Current training status (novice/intermediate/advanced)
-- Strength progression data (for bulking scenarios)
+**Trigger**: Event-driven - invoked after each workout log (NOT scheduled weekly)
 
-**Responsibilities**:
-- Detect calorie/macro plateau patterns
-- Calculate optimal deficit/surplus using evidence-based tables (see **Nutrition Agent Reasoning** section)
-- Distinguish between weight plateau and body recomposition
-- Recommend personalized calorie adjustments based on:
-  - Body fat percentage
-  - Observed weight loss/gain rate
-  - Training status
-  - Strength progression
-- Generate meal plans using USDA MCP
-- Suggest macro splits based on goals
-- Coordinate with Training Specialist when needed (e.g., bulking with poor strength gains)
+**Training Philosophy**: User-driven autoregulated progression with two core models
 
-**Algorithm Overview**:
+The app follows a **user-controlled, autoregulated** training philosophy where users execute their workouts and make real-time decisions (like autoregulating weight increases mid-session). The Training Agent's role is to **analyze completed sessions and prescribe the next session's parameters** based on algorithmic progression rules.
 
-**For Cutting (Fat Loss):**
-1. Analyze 14-day weight and body fat trends
-2. If plateau: Check body fat change
-   - Fat unchanged → create deficit based on body fat % (5-50% depending on leanness)
-   - Fat decreasing → no changes (body recomposition occurring)
-3. If weight loss happening:
-   - Calculate observed weekly loss rate
-   - Estimate current deficit from loss rate
-   - Compare to optimal deficit for body fat level
-   - Adjust calories to match optimal deficit
-
-**For Bulking (Muscle Gain):**
-1. Analyze weight, body fat, and strength trends
-2. Apply surplus based on training status (5-15% novice, 2-7% intermediate, 1-3% advanced)
-3. Monitor for excessive fat gain
-4. Coordinate with Training Specialist if strength not progressing
-
-**See "Nutrition Agent Reasoning" section for complete decision trees and tables.**
-
-**Function Tools**:
-- `calculate_tdee(weight, height, age, sex, activity_level)` → float
-- `calculate_macros(calories, goal)` → MacroSplit
-- `analyze_weight_trend(days=14)` → TrendAnalysis (weekly rate, plateau detection)
-- `analyze_body_composition_trend(days=14)` → BodyCompositionAnalysis (method, trend, confidence)
-  - Prioritizes skinfolds > waist > body fat % > inference
-  - Returns trend direction and confidence level
-- `estimate_maintenance_calories(current_intake, weight_loss_rate)` → float
-- `calculate_optimal_deficit(body_fat_pct, sex)` → float (%)
-- `calculate_optimal_surplus(training_status)` → float (%)
-- `search_high_protein_foods(max_calories)` → List[Food] (via USDA MCP)
-
-**Structured Output**:
-```python
-class NutritionRecommendation(BaseModel):
-    # Current state
-    current_calorie_average: float
-    current_body_fat_pct: Optional[float]
-    observed_weekly_weight_change_pct: float
-
-    # Recommendations
-    recommended_calories: float
-    recommended_deficit_or_surplus_pct: float
-    optimal_deficit_or_surplus_pct: float  # Target based on body fat/training status
-    recommended_macros: MacroSplit
-
-    # Reasoning
-    reasoning: str
-    body_composition_status: str  # "plateau", "recomp", "cutting", "bulking"
-    adjustment_category: str  # "none", "increase", "decrease", "maintain"
-
-    # Optional meal plan
-    meal_plan: Optional[List[Meal]]
-    confidence: float  # 0.0-1.0
-```
-
-**Lambda**: `fitness-nutrition-specialist`
+Users do NOT follow pre-planned programs. Instead, they:
+1. Have specific exercises with rep targets
+2. Follow simple progression rules (Linear Progressive or Rep Range)
+3. Make session-to-session adjustments based on performance
+4. The Training Agent tracks patterns and applies rules automatically
 
 ---
 
-### **4. Training Specialist Agent**
+### **Progression Model 1: Linear Progressive**
 
-**Purpose**: Analyzes workout data and provides program recommendations
+**Principle**: Linear progression in weight on the first work set. Every session you hit your rep target, add the increment to next session's weight.
 
-**Input Context**:
-- User profile (experience level, available equipment)
-- Recent workout logs (last 4-8 weeks)
-- Exercise performance trends
-- Current goals (strength/hypertrophy/endurance)
+**How It Works**:
+- Only the **first work set** is the progression benchmark
+- Subsequent sets' reps don't influence weight progression
+- Hit rep target in set 1 → add increment next session
+- Miss rep target in set 1 → implement reactive deload
+
+**Example**:
+```
+Bench Press: 3 sets, rep target 11, increment 2.5kg
+
+Session 1: 120kg x 11, 8, 7  → Hit target ✓
+Session 2: 122.5kg x 11, 7, 6  → Hit target ✓
+Session 3: 125kg x 11, 9, 6  → Hit target ✓
+Session 4: 127.5kg x 10  → Missed target ✗ (reactive deload)
+Session 5: 125kg x 11  → Retry previous successful weight
+Session 6: 127.5kg x 11  → Success, continue
+```
+
+**Reactive Deloads**:
+If you miss your rep target in the first set:
+1. Replace remaining sets with low-rep explosive speed work (3-5 reps at 60-70% 1RM)
+2. Mark the session as needing attention (red flag)
+3. Next session: return to the weight you previously hit for the rep target
+4. Retry the failed weight after successful completion
+
+**Autoregulated Progression**:
+If after set 1 you feel you can still hit the rep target with more weight, increase within the same session to progress faster than 1 increment per session.
+
+---
+
+### **Progression Model 2: Rep Range Progression**
+
+**Principle**: Progress either in weight OR reps. Hit rep target → add weight. Don't hit rep target → add reps next session.
+
+**How It Works**:
+- First set is the progression benchmark
+- When you hit rep target → increase weight by increment next session
+- When you don't hit rep target → keep same weight, try for more reps next session
+- Experience natural rep decrease when weight increases
+- Build reps back up to rep target before adding more weight
+
+**Example**:
+```
+Squat: rep target 11, increment 2.5kg
+
+Session 1: 100kg x 11  → Hit target, add weight
+Session 2: 102.5kg x 9  → Didn't hit target, add reps
+Session 3: 102.5kg x 10  → Added a rep, try again
+Session 4: 102.5kg x 11  → Hit target, add weight
+Session 5: 105kg x 8  → Didn't hit target, add reps
+...
+```
+
+**Plateau Breakers**:
+If you don't progress for 2+ sessions (same reps at same weight):
+1. **Plateau detected**
+2. Next session: increase weight by ~10% (up to max ~3RM for compounds, ~5RM for isolation)
+3. Do lower-volume, high-intensity work (3-5 reps max)
+4. Then return to the plateaued weight and try to increase reps again
+
+**Reactive Deloads**:
+If reps **regress** (go down instead of up):
+1. Replace remaining sets with speed work (3-5 reps at 60-70% 1RM)
+2. Next session: implement plateau breaker
+3. Then return to building reps
+
+**Example with Plateau Breaker**:
+```
+Session 1: 102.5kg x 10
+Session 2: 102.5kg x 10  → Plateau detected
+Session 3: 113kg x 5  → Plateau breaker (~10% increase)
+Session 4: 102.5kg x 11  → Back to plateau weight, hit target
+Session 5: 105kg x 8  → Add weight, continue
+```
+
+---
+
+### **When to Switch Between Models**
+
+**Start with Linear Progressive** when:
+- Your available increment is small enough for consistent progress
+- You can hit rep target most sessions (>70% success rate)
+
+**Switch to Rep Range Progression** when:
+- Your increment becomes too large (failing to hit rep target >50% of sessions)
+- You need to "build up" to the next weight increment
+- Linear progression causes too many reactive deloads
+
+**Example Scenario**:
+```
+User has bench press with 5kg increment (smallest plates available)
+
+Week 1-4: 100kg → 105kg → 110kg → 115kg (linear, hitting targets)
+Week 5: 120kg x fail  → 115kg retry → 120kg x fail again
+Week 6: Agent suggests "Your 5kg increment is too large. Switch to Rep Range."
+
+Rep Range mode:
+Session 1: 115kg x 11 ✓
+Session 2: 120kg x 9 (build reps)
+Session 3: 120kg x 10 (build reps)
+Session 4: 120kg x 11 ✓ (now ready for 125kg)
+```
+
+**Switch back to Linear Progressive** when:
+- You acquire smaller increments (e.g., buy 1.25kg micro-plates)
+- Your strength increases enough that the increment is manageable again
+
+---
+
+### **Input Context (Per Workout)**:
+- Exercise configuration:
+  - Progression model (linear vs rep_range)
+  - Rep target
+  - Available increments (user's equipment)
+  - Selected increment
+- Today's logged sets: `[{weight, reps}, {weight, reps}, ...]`
+- Recent session history (last 4-8 sessions of this exercise)
+- Current exercise state (current weight, last successful weight, plateau count)
 
 **Responsibilities**:
-- Detect strength plateaus per exercise
-- Recommend progressive overload strategies
-- Suggest exercise substitutions for injuries
-- Generate workout programs
-- Identify deload needs
+- **Analyze first set performance** against rep target
+- **Apply progression rules** (linear or rep range) algorithmically
+- **Detect plateaus** (no progress for 2+ sessions in rep range)
+- **Detect regressions** (reps decreased from last session)
+- **Prescribe next session** (weight, target reps, action type)
+- **Flag reactive deloads** when performance regresses significantly
+- **Suggest plateau breakers** when stalled
+- **Recommend progression model switches** when increment becomes issue
 
 **Function Tools**:
+- `analyze_exercise_session(exercise, sets_logged, config, history)` → NextSessionRecommendation
+- `apply_linear_progressive_rules(first_set, rep_target, increment, last_session)` → NextSession
+- `apply_rep_range_rules(first_set, rep_target, increment, history)` → NextSession
+- `detect_plateau(recent_sessions, progression_model)` → PlateauAnalysis
+- `detect_regression(today_reps, last_session_reps)` → bool
+- `calculate_plateau_breaker_weight(current_weight, exercise_type)` → float
+- `suggest_progression_model_switch(failure_rate, increment)` → ModelSwitchSuggestion
 - `calculate_1rm(weight, reps)` → float
-- `analyze_volume_progression(exercise_logs)` → VolumeAnalysis
-- `detect_strength_plateau(exercise, logs)` → PlateauAnalysis
-- `search_exercise_alternatives(exercise, constraint)` → List[Exercise] (via Exercise MCP)
 
 **Structured Output**:
 ```python
-class TrainingRecommendation(BaseModel):
-    plateaued_exercises: List[str]
-    recommended_changes: List[ProgramChange]
-    progressive_overload_strategy: str
-    deload_needed: bool
+class NextSessionRecommendation(BaseModel):
+    exercise_name: str
+    progression_model: str  # "linear" or "rep_range"
+
+    # Today's analysis
+    today_first_set: Set  # {weight: 100, reps: 11}
+    hit_rep_target: bool
+    plateau_detected: bool
+    regression_detected: bool
+    reactive_deload_implemented: bool
+
+    # Next session prescription (algorithmic)
+    next_weight: float
+    next_rep_target: int
+    action_type: str  # "increase_weight", "add_reps", "plateau_breaker", "reactive_deload", "retry"
+
+    # User-facing messages
+    message: str  # "Hit rep target! Next session: 102.5kg x 11"
     reasoning: str
+
+    # Optional suggestions
+    model_switch_suggestion: Optional[ModelSwitchSuggestion]
+    increment_adjustment_suggestion: Optional[float]
+
     confidence: float
 ```
 
-**Lambda**: `fitness-training-specialist`
+**Lambda**: `fitness-training-specialist` (invoked after each workout log, not scheduled)
 
----
-
-### **5. Recovery Specialist Agent**
-
-**Purpose**: Monitors recovery indicators and prevents overtraining
-
-**Input Context**:
-- Sleep logs
-- Body composition logs (weight, measurements)
-- Workout frequency and intensity
-- Subjective recovery scores (if available)
-
-**Responsibilities**:
-- Detect overtraining symptoms
-- Recommend rest days
-- Suggest deload weeks
-- Monitor weight loss/gain rate safety
-- Identify recovery deficits
-
-**Function Tools**:
-- `calculate_training_volume(workout_logs)` → VolumeMetrics
-- `detect_overtraining(volume, sleep, weight_trend)` → OvertrainingRisk
-- `recommend_deload(training_history)` → DeloadRecommendation
-
-**Structured Output**:
+**API Integration**:
 ```python
-class RecoveryRecommendation(BaseModel):
-    overtraining_risk: str  # "low", "moderate", "high"
-    recommended_rest_days: int
-    deload_recommended: bool
-    reasoning: str
-    sleep_quality_score: Optional[float]
+# After user logs workout via /api/workouts/log
+# Backend invokes Training Specialist Lambda asynchronously:
+
+lambda_client.invoke(
+    FunctionName="fitness-training-specialist",
+    InvocationType="Event",  # Async
+    Payload=json.dumps({
+        "user_id": user_id,
+        "workout_id": workout_id,
+        "exercises": exercises_logged
+    })
+)
 ```
-
-**Lambda**: `fitness-recovery-specialist`
-
----
-
-### **6. Analytics Specialist Agent**
-
-**Purpose**: Provides insights and predictions from historical data
-
-**Input Context**:
-- All historical logs (nutrition, workouts, body metrics)
-- User goals and targets
-- Time-series data
-
-**Responsibilities**:
-- Generate weekly/monthly summaries
-- Predict goal achievement timeline
-- Identify patterns and correlations
-- Provide data-driven insights
-- Track milestone progress
-
-**Function Tools**:
-- `calculate_trend(data_points)` → TrendMetrics
-- `predict_goal_date(current_rate, target)` → PredictionResult
-- `find_correlations(nutrition, training, body_metrics)` → List[Insight]
-
-**Structured Output**:
-```python
-class AnalyticsInsight(BaseModel):
-    weekly_summary: WeeklySummary
-    goal_progress: GoalProgress
-    predictions: List[Prediction]
-    insights: List[str]  # e.g., "You plateau every 4 weeks on average"
-    recommendations: List[str]
-```
-
-**Lambda**: `fitness-analytics-specialist`
-
----
-
-### **7. Motivation Agent**
-
-**Purpose**: Provides encouragement, celebrates milestones, builds engagement
-
-**Input Context**:
-- Recent achievements (PRs, streaks, weight milestones)
-- User's current mood/state (from analytics)
-- Historical engagement patterns
-
-**Responsibilities**:
-- Celebrate personal records
-- Encourage during plateaus
-- Recognize consistency streaks
-- Provide motivational context
-- Generate achievement badges
-
-**No complex tools needed** - mostly templates and simple logic
-
-**Structured Output**:
-```python
-class MotivationMessage(BaseModel):
-    message: str
-    achievements_unlocked: List[Achievement]
-    encouragement_context: str
-    tone: str  # "celebration", "encouragement", "challenge"
-```
-
-**Lambda**: `fitness-motivation-agent`
-
----
-
-## MCP Server Implementations
-
-### **1. USDA Food Database MCP Server**
-
-**Tools Exposed**:
-```python
-@mcp_tool
-async def search_foods(
-    query: str,
-    filters: Optional[FoodFilters] = None
-) -> List[Food]:
-    """Search USDA FoodData Central"""
-
-@mcp_tool
-async def get_nutrition_facts(
-    food_id: str,
-    portion_grams: float
-) -> NutritionFacts:
-    """Get detailed nutrition for specific food"""
-
-@mcp_tool
-async def find_high_protein_foods(
-    max_calories: int,
-    min_protein_grams: int
-) -> List[Food]:
-    """Find protein-rich foods within calorie budget"""
-
-@mcp_tool
-async def calculate_recipe_macros(
-    ingredients: List[Ingredient]
-) -> RecipeMacros:
-    """Calculate total macros for a recipe"""
-```
-
-**Implementation**:
-```python
-# mcp/usda_food_mcp.py
-from agents.mcp import MCPServerStdio
-
-def create_usda_mcp_server():
-    """Create USDA Food Database MCP server"""
-    params = {
-        "command": "python",
-        "args": ["-m", "mcp_servers.usda_food_server"]
-    }
-    return MCPServerStdio(params=params)
-```
-
-**Server Code** (`mcp_servers/usda_food_server.py`):
-```python
-import os
-import requests
-from mcp.server import Server
-from mcp.types import Tool, TextContent
-
-app = Server("usda-food-database")
-
-USDA_API_KEY = os.getenv("USDA_API_KEY")
-USDA_API_URL = "https://api.nal.usda.gov/fdc/v1"
-
-@app.list_tools()
-async def list_tools():
-    return [
-        Tool(
-            name="search_foods",
-            description="Search USDA FoodData Central",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string"},
-                    "max_results": {"type": "number", "default": 10}
-                },
-                "required": ["query"]
-            }
-        )
-    ]
-
-@app.call_tool()
-async def call_tool(name: str, arguments: dict):
-    if name == "search_foods":
-        query = arguments["query"]
-        max_results = arguments.get("max_results", 10)
-
-        response = requests.get(
-            f"{USDA_API_URL}/foods/search",
-            params={
-                "api_key": USDA_API_KEY,
-                "query": query,
-                "pageSize": max_results
-            }
-        )
-
-        foods = response.json().get("foods", [])
-
-        results = []
-        for food in foods:
-            results.append({
-                "fdc_id": food["fdcId"],
-                "description": food["description"],
-                "calories": next((n["value"] for n in food.get("foodNutrients", [])
-                                if n["nutrientName"] == "Energy"), None),
-                "protein": next((n["value"] for n in food.get("foodNutrients", [])
-                              if n["nutrientName"] == "Protein"), None)
-            })
-
-        return [TextContent(type="text", text=str(results))]
-```
-
----
-
-### **2. Exercise Database MCP Server**
-
-**Tools Exposed**:
-```python
-@mcp_tool
-async def search_exercises(
-    muscle_group: str,
-    equipment: Optional[str] = None,
-    difficulty: Optional[str] = None
-) -> List[Exercise]:
-    """Search exercise library by criteria"""
-
-@mcp_tool
-async def get_exercise_details(exercise_id: str) -> ExerciseDetails:
-    """Get full details including form cues, muscles worked"""
-
-@mcp_tool
-async def find_exercise_alternatives(
-    exercise_id: str,
-    constraint: str  # e.g., "no barbell", "low impact"
-) -> List[Exercise]:
-    """Find alternative exercises with constraints"""
-
-@mcp_tool
-async def get_progression_path(exercise_id: str) -> ProgressionPath:
-    """Get easier/harder variations"""
-```
-
-**Data Source**: ExerciseDB API (RapidAPI) or custom database
-
-**Implementation Pattern**: Similar to USDA MCP above
 
 ---
 
@@ -1537,7 +1413,73 @@ async def ask_coach(request: CoachRequest):
 
 #### **3. DynamoDB Schema Additions**
 
-**New Table: `weekly_analyses`** ⭐ (Primary)
+**New Table: `user_exercises`** ⭐ (Training - stores exercise configuration and next session)
+```python
+{
+    "user_id": "string",  # Partition key
+    "exercise_name": "bench_press",  # Sort key
+
+    # Exercise configuration (set by user)
+    "progression_model": "rep_range",  # "linear" or "rep_range"
+    "rep_target": 11,
+    "num_sets": 3,
+    "available_increments": [1.25, 2.5, 5],  # kg (user's equipment)
+    "selected_increment": 2.5,
+
+    # Current state
+    "current_weight": 102.5,
+    "last_successful_weight": 100,  # Last weight where rep target was hit
+    "plateau_count": 0,  # Number of consecutive sessions without progress
+
+    # Next session prescription (updated by Training Agent after each workout)
+    "next_session": {
+        "weight": 102.5,
+        "target_reps": 11,
+        "action": "add_reps",  # "increase_weight", "add_reps", "plateau_breaker", "reactive_deload", "retry"
+        "message": "Try to hit 11 reps today with 102.5kg",
+        "reasoning": "Last session hit 10 reps. Build up to rep target before adding weight."
+    },
+
+    "created_at": "2025-01-15",
+    "updated_at": "2025-11-08"
+}
+```
+
+**New Table: `training_recommendations`** (Training - stores agent analysis per workout)
+```python
+{
+    "user_id": "string",  # Partition key
+    "recommendation_id": "uuid",  # Sort key (or timestamp)
+    "workout_id": "uuid",  # FK to workout_logs
+    "exercise_name": "bench_press",
+    "analyzed_at": "2025-11-08T14:30:00Z",
+
+    # Today's analysis
+    "today_analysis": {
+        "first_set": {"weight": 100, "reps": 11},
+        "hit_rep_target": true,
+        "plateau_detected": false,
+        "regression_detected": false,
+        "reactive_deload_implemented": false
+    },
+
+    # Next session prescription
+    "next_session": {
+        "weight": 102.5,
+        "target_reps": 11,
+        "action": "increase_weight",
+        "reasoning": "Hit rep target - adding 2.5kg increment"
+    },
+
+    # Optional suggestions
+    "suggestions": {
+        "model_switch": null,  # or {"from": "linear", "to": "rep_range", "reason": "..."}
+        "increment_adjustment": null
+    }
+}
+```
+
+**New Table: `weekly_analyses`** ⭐ (Nutrition - weekly check-ins)
 ```python
 {
     "user_id": "string",  # Partition key
@@ -1582,7 +1524,7 @@ async def ask_coach(request: CoachRequest):
         "total_training_volume": 15000  # kg
     },
 
-    # Issues detected
+    # Issues detected (nutrition-related only)
     "issues_detected": [
         {
             "type": "weight_plateau",
@@ -1590,29 +1532,16 @@ async def ask_coach(request: CoachRequest):
             "description": "No weight change in 14 days (avg 78.5kg)",
             "recommended_action": "reduce_calories",
             "metadata": {}
-        },
-        {
-            "type": "strength_plateau",
-            "severity": "low",
-            "description": "Squat: No progression in 3 weeks",
-            "recommended_action": "modify_training_program",
-            "metadata": {"exercise": "squat"}
         }
     ],
 
-    # Plan updates (if any)
+    # Plan updates (nutrition only - training handled separately per workout)
     "plan_updated": true,
     "updates": {
         "nutrition": {
             "old_calories": 2200,
             "new_calories": 2000,
             "reasoning": "Weight plateau detected..."
-        },
-        "training": {
-            "exercise": "squat",
-            "old_program": "5x5 @ 100kg",
-            "new_program": "3x8 @ 90kg",
-            "reasoning": "Breaking plateau with volume phase..."
         }
     },
 
@@ -1626,16 +1555,16 @@ async def ask_coach(request: CoachRequest):
 }
 ```
 
-**New Table: `active_plans`** ⭐ (Primary)
+**New Table: `active_plans`** ⭐ (Nutrition only)
 ```python
 {
     "user_id": "string",  # Partition key
-    "plan_type": "nutrition",  # Sort key: "nutrition" or "training"
+    "plan_type": "nutrition",  # Always "nutrition" (training handled in user_exercises table)
     "version": 3,
     "created_at": "2025-10-27T06:00:00Z",
     "active": true,
 
-    # Nutrition plan fields (if plan_type == "nutrition")
+    # Nutrition plan fields
     "target_calories": 2000,
     "macro_split": {
         "protein_g": 160,
@@ -1650,25 +1579,14 @@ async def ask_coach(request: CoachRequest):
         }
     ],
 
-    # Training plan fields (if plan_type == "training")
-    "program_name": "Push Pull Legs",
-    "frequency": "4x/week",
-    "exercises": [
-        {
-            "name": "Squat",
-            "sets": 3,
-            "reps": 8,
-            "weight_kg": 90,
-            "rest_seconds": 180
-        }
-    ],
-
     # Metadata
     "reason_for_update": "Weight plateau detected in weekly analysis",
     "previous_version": 2,
-    "updated_by": "weekly_analyzer"  # or "nutrition_specialist"
+    "updated_by": "nutrition_specialist"
 }
 ```
+
+**Note**: Training prescriptions are stored per-exercise in the `user_exercises` table, not as a unified "training plan".
 
 **Updated Table: `body_logs`** ⭐ (Enhanced with skinfold support)
 ```python
@@ -1727,13 +1645,11 @@ async def ask_coach(request: CoachRequest):
     "response": "string",  # Final coaching response
     "recommendations": {
         "nutrition": {...},
-        "training": {...},
-        "recovery": {...}
+        "training": {...}
     },
     "specialist_results": {
         "nutrition_specialist": {...},
-        "training_specialist": {...},
-        ...
+        "training_specialist": {...}
     },
     "created_at": "ISO8601",
     "completed_at": "ISO8601"
@@ -1765,23 +1681,11 @@ ai_agents/  # Renamed from alex_backend
     agent.py
     lambda_handler.py
     tools.py
-  recovery_specialist/
-    agent.py
-    lambda_handler.py
-  analytics_specialist/
-    agent.py
-    lambda_handler.py
-  motivation_agent/
-    agent.py
-    lambda_handler.py
   shared/
     context.py
     models.py          # Pydantic models for structured outputs
     db_client.py
     trend_analysis.py  # Shared trend calculation functions (deterministic)
-  mcp_servers/
-    usda_food_server.py
-    exercise_db_server.py
 ```
 
 #### **5. Frontend Integration**
@@ -1939,9 +1843,9 @@ export default function CoachChat() {
 }
 ```
 
-#### **Step 2: Weekly Analyzer fetches all active users**
+#### **Step 2: Nutrition Specialist fetches all active users**
 ```python
-# ai_agents/weekly_analyzer/lambda_handler.py
+# ai_agents/nutrition_specialist/lambda_handler.py
 
 def lambda_handler(event, context):
     # Get all users with active plans
@@ -1949,14 +1853,14 @@ def lambda_handler(event, context):
 
     # Process each user (can be parallelized)
     for user in active_users:
-        analyze_user_progress(user['user_id'])
+        analyze_user_nutrition(user['user_id'])
 ```
 
-#### **Step 3: Gather context (user_123)**
+#### **Step 3: Gather data and calculate trends (user_123)**
 ```python
-# ai_agents/weekly_analyzer/agent.py
+# ai_agents/nutrition_specialist/agent.py
 
-async def analyze_user_progress(user_id: str):
+async def analyze_user_nutrition(user_id: str):
     # 1. Pull 14-28 days of data
     user_profile = db.user_profiles.find_one({"user_id": user_id})
     weight_logs = db.body_logs.find_recent(user_id, days=14)
@@ -2005,7 +1909,7 @@ async def analyze_user_progress(user_id: str):
             "compliance_pct": 86  # 12/14 days
         },
 
-        "workout_summary": analyze_strength_trends(workout_logs),
+        "workout_summary": analyze_strength_trends(workout_logs)
         # Returns: {
         #   "sessions": 4,
         #   "strength_trends": {
@@ -2013,35 +1917,24 @@ async def analyze_user_progress(user_id: str):
         #     "bench": {"current_1rm": 80, "4weeks_ago": 77, "change_pct": 3.9}   # Progressing
         #   }
         # }
-
-        "recovery_metrics": calculate_recovery_metrics(sleep_logs, workout_logs)
-        # Returns: {
-        #   "avg_sleep_hours": 7.5,
-        #   "sleep_quality": "good",
-        #   "consecutive_workout_days": 3,
-        #   "needs_deload": False
-        # }
     }
 
     # 3. NO DECISION MAKING - Always invoke specialists with full context
     await coordinate_specialists(user_id, context)
 ```
 
-#### **Step 4: Coordinate specialists (always invoke)**
+#### **Step 4: Apply nutrition algorithm**
 ```python
-# ai_agents/weekly_analyzer/specialist_coordinator.py
+# ai_agents/nutrition_specialist/agent.py
 
-async def coordinate_specialists(user_id: str, context: dict):
+async def apply_nutrition_algorithm(user_id: str, context: dict) -> NutritionRecommendation:
     """
-    Always invoke all relevant specialists with full context.
-    Specialists make the decisions, orchestrator just coordinates.
+    Apply evidence-based nutrition algorithm directly.
+    No coordination needed - this agent does everything.
     """
 
-    # Always invoke Nutrition Specialist (for users with weight goals)
-    nutrition_rec = await invoke_nutrition_specialist(
-        user_id=user_id,
-        context=context
-    )
+    # Apply Nutrition Agent Reasoning algorithm:
+    recommendation = calculate_nutrition_recommendation(context)
     # Nutrition Specialist applies Nutrition Agent Reasoning algorithm:
     # - Sees weight nearly flat (0.09% weekly) but skinfolds decreasing (-2mm)
     # - Recognizes: Body recomposition happening!
@@ -2081,28 +1974,12 @@ async def coordinate_specialists(user_id: str, context: dict):
     #   }]
     # }
 
-    # Always invoke Recovery Specialist
-    recovery_rec = await invoke_recovery_specialist(
-        user_id=user_id,
-        context=context
-    )
-    # Returns: {"sleep_adequate": True, "needs_deload": False}
-
-    # Always invoke Analytics Specialist
-    analytics_report = await invoke_analytics_specialist(
-        user_id=user_id,
-        context=context
-    )
-    # Returns: Progress summary, charts, insights
-
     # Aggregate updates (only apply changes where adjustment_category != "none")
     updates = {}
     if nutrition_rec.adjustment_category != "none":
         updates["nutrition"] = nutrition_rec  # Not applied in this case
     if training_rec.has_recommendations:
         updates["training"] = training_rec  # Applied (squat program change)
-    if recovery_rec.needs_deload:
-        updates["recovery"] = recovery_rec
 
     # Resolve conflicts if multiple specialists recommend changes
     # Example: If both nutrition (increase calories) AND training (increase volume)
@@ -2110,10 +1987,10 @@ async def coordinate_specialists(user_id: str, context: dict):
     updates = resolve_conflicts(updates, context)
 
     # Store weekly analysis results
-    await store_analysis_results(user_id, context, nutrition_rec, training_rec, recovery_rec, updates)
+    await store_analysis_results(user_id, context, nutrition_rec, training_rec, updates)
 
     # Send notification to user
-    await send_notification(user_id, updates, analytics_report)
+    await send_notification(user_id, updates)
 
     return updates
 ```
@@ -2211,16 +2088,6 @@ db.weekly_analyses.create({
                     "reasoning": "No progression in 3 weeks. Switching to volume phase to break plateau."
                 }
             ]
-        },
-        "recovery": {
-            "needs_deload": False,
-            "reasoning": "Recovery metrics normal. No deload needed."
-        },
-        "analytics": {
-            "key_insights": [
-                "Body recomposition in progress (rare and desirable!)",
-                "Training intensity may have caused squat plateau"
-            ]
         }
     },
 
@@ -2268,12 +2135,6 @@ User opens app and sees updated Weekly Analysis Dashboard with:
 
 🏋️ **Training Specialist:**
 > "Squat hasn't progressed in 3 weeks at 5x5 @ 100kg. Switching to volume phase (3x8 @ 90kg) to stimulate new adaptations and break plateau."
-
-💤 **Recovery Specialist:**
-> "All recovery metrics normal. No deload needed. Continue current training frequency."
-
-📊 **Analytics:**
-> "Body recomposition in progress (rare and desirable outcome!). Training adjustments will complement your current nutrition strategy."
 
 **Action Items:**
 - ✅ Nutrition plan: No changes (2200 cal/day)
@@ -2543,32 +2404,58 @@ terraform apply -var="enable_weekly_schedule=true"
 
 ## Implementation Roadmap
 
-### **Phase 1: Foundation & Weekly Analyzer (Week 1-2)** ⭐
+### **Phase 1: Foundation (Week 1)** ⭐
 - [ ] Set up `ai_agents/` directory structure
 - [ ] Create shared models and context wrappers
-- [ ] Create function tools: `analyze_weight_trend`, `analyze_body_composition_trend`, `calculate_tdee`, `calculate_macros`
 - [ ] Add DynamoDB tables: `weekly_analyses`, `active_plans`
 - [ ] Update `body_logs` table schema to support:
   - [ ] Skinfold measurements (preferred method)
   - [ ] Circumference measurements (waist, hips, neck, etc.)
   - [ ] Body fat % estimates with method tracking
   - [ ] Progress photos (S3 URLs)
-- [ ] Implement Weekly Progress Analyzer agent (core detection logic)
-- [ ] Add EventBridge cron rule for Monday 6 AM
-- [ ] Test basic weekly analysis flow end-to-end
 
-### **Phase 2: Nutrition & Training Specialists (Week 3)**
-- [ ] Implement Nutrition Specialist agent with evidence-based deficit/surplus algorithm
+### **Phase 2: Nutrition Specialist Agent (Week 2-3)**
+- [ ] Implement Nutrition Specialist Lambda (single agent, no orchestrator)
 - [ ] Create nutrition function tools:
+  - [ ] `analyze_weight_trend(logs, days=14)` → TrendAnalysis
+  - [ ] `analyze_body_composition_trend(logs, days=14)` → BodyCompositionAnalysis
   - [ ] `estimate_maintenance_calories(current_intake, weight_loss_rate)`
   - [ ] `calculate_optimal_deficit(body_fat_pct, sex)`
   - [ ] `calculate_optimal_surplus(training_status)`
-- [ ] Implement Training Specialist agent
-- [ ] Create training function tools: `calculate_1rm`, `detect_strength_plateau`, `analyze_volume_trend`
-- [ ] Integrate specialists with Weekly Analyzer
-- [ ] Test plan adjustment workflow with body composition scenarios
+  - [ ] `calculate_tdee()` and `calculate_macros()`
+- [ ] Implement data gathering logic (14-day trends)
+- [ ] Implement evidence-based nutrition algorithm
+- [ ] Implement storage (weekly_analyses table) and notifications
+- [ ] Add EventBridge cron rule for Monday 6 AM
+- [ ] Test with sample users:
+  - [ ] Weight plateau + body recomposition scenario
+  - [ ] Losing too fast scenario
+  - [ ] Bulking scenario
+  - [ ] Insufficient data scenario
 
-### **Phase 3: Frontend & Notifications (Week 4)**
+### **Phase 3: Training Specialist (Event-Driven) (Week 4)**
+- [ ] Add DynamoDB tables: `user_exercises`, `training_recommendations`
+- [ ] Create exercise configuration UI:
+  - [ ] Exercise setup form (progression model, rep target, available increments)
+  - [ ] API endpoint: `/api/exercises/configure`
+- [ ] Implement Training Specialist agent (event-driven, post-workout)
+- [ ] Create training function tools:
+  - [ ] `apply_linear_progressive_rules(first_set, rep_target, increment, last_session)`
+  - [ ] `apply_rep_range_rules(first_set, rep_target, increment, history)`
+  - [ ] `detect_plateau(recent_sessions, progression_model)`
+  - [ ] `detect_regression(today_reps, last_session_reps)`
+  - [ ] `calculate_plateau_breaker_weight(current_weight, exercise_type)`
+  - [ ] `suggest_progression_model_switch(failure_rate, increment)`
+  - [ ] `calculate_1rm(weight, reps)`
+- [ ] Update `/api/workouts/log` endpoint to invoke Training Agent asynchronously
+- [ ] Test session-to-session progression rules:
+  - [ ] Linear Progressive flow (hit target → add weight)
+  - [ ] Rep Range flow (build reps → add weight)
+  - [ ] Plateau detection and plateau breaker prescription
+  - [ ] Reactive deload detection
+  - [ ] Progression model switch suggestion
+
+### **Phase 4: Frontend & Notifications (Week 5)**
 - [ ] Build Weekly Analysis Dashboard (primary UI)
 - [ ] Create API endpoints: `/api/weekly-analysis/{user_id}/latest`, `/api/plans/{user_id}/active`
 - [ ] Add push notifications for weekly check-ins
@@ -2579,28 +2466,19 @@ terraform apply -var="enable_weekly_schedule=true"
   - [ ] Progress photo upload
   - [ ] Body composition trend charts (skinfold sum over time)
   - [ ] Onboarding tutorial for caliper usage
-- [ ] Test full user experience flow
+- [ ] Add Training-specific UI:
+  - [ ] Display next-session prescription on workout page (what to do today)
+  - [ ] Show prescription updated by Training Agent after previous workout
+- [ ] Test full user experience flow (nutrition + training)
 
-### **Phase 4: MCP Servers (Week 5)** (Optional for MVP)
-- [ ] Build USDA Food Database MCP server
-- [ ] Integrate MCP with Nutrition Specialist for meal planning
-- [ ] Test meal plan generation with real food data
-- [ ] (Optional) Build Exercise Database MCP
-
-### **Phase 5: Additional Specialists (Week 6)**
-- [ ] Implement Recovery Specialist (overtraining detection)
-- [ ] Implement Analytics Specialist (insights and predictions)
-- [ ] Implement Motivation Agent (achievements, encouragement)
-- [ ] Add more sophisticated conflict resolution
-
-### **Phase 6: On-Demand Chat (Week 7)** (Secondary)
+### **Phase 5: On-Demand Chat (Week 6)** (Secondary)
 - [ ] Implement Coach Orchestrator agent for Q&A
 - [ ] Add `coach_jobs` DynamoDB table
 - [ ] Create `/api/coach/ask` endpoint
 - [ ] Build chat UI component (secondary feature)
 - [ ] Test common question scenarios
 
-### **Phase 7: Polish & Demo Prep (Week 8)**
+### **Phase 6: Polish & Demo Prep (Week 7)**
 - [ ] Add observability (CloudWatch logs, metrics)
 - [ ] Performance optimization (parallel user processing)
 - [ ] Create demo scenarios with realistic sample data
@@ -2694,7 +2572,6 @@ terraform apply -var="enable_weekly_schedule=true"
 ### **8. Extensibility**
 - Easy to add new specialists (e.g., injury prevention, supplement timing)
 - New specialist agents can be added independently without modifying orchestrator
-- MCP servers enable external data integration
 - Orchestrator pattern: All complexity in specialists, simple coordination logic
 
 ### **9. Type Safety & Reliability**
@@ -2714,8 +2591,7 @@ terraform apply -var="enable_weekly_schedule=true"
 | Aspect | ALEX (Financial) | Fitness Coach |
 |--------|------------------|---------------|
 | **Orchestrator** | Planner | Coach Orchestrator |
-| **Specialists** | Tagger, Reporter, Charter, Retirement, Researcher | Nutrition, Training, Recovery, Analytics, Motivation |
-| **MCP Servers** | Playwright (web research) | USDA Food DB, Exercise Library |
+| **Specialists** | Tagger, Reporter, Charter, Retirement, Researcher | Nutrition, Training |
 | **Tools** | Market insights, price updates | TDEE calc, 1RM calc, trend analysis |
 | **Data Source** | Aurora PostgreSQL | DynamoDB |
 | **Conflict Type** | Data validation | Competing recommendations |
@@ -2728,7 +2604,7 @@ terraform apply -var="enable_weekly_schedule=true"
 1. **✅ Architecture Updated** - Now reflects proactive weekly analysis model
 2. **Decide on implementation order** - Recommended: Start with Phase 1 (Weekly Analyzer + basic detection)
 3. **Set up project structure** - Create `ai_agents/` directory
-4. **Choose MVP scope** - Weekly analysis + Nutrition + Training specialists (no MCP servers initially)
+4. **Choose MVP scope** - Weekly analysis + Nutrition + Training specialists
 5. **Begin implementation** - Start with core detection logic and function tools
 
 ### **Recommended First Steps:**
