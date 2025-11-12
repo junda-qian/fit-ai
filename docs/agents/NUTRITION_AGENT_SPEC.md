@@ -904,6 +904,7 @@ def lambda_handler(event, context):
     Processes all active users.
     """
     # 1. Fetch all active users
+    # See DATABASE_CLIENT_INTERFACE.md for complete db API
     users = db.user_profiles.find_all_active()
 
     results = []
@@ -932,8 +933,12 @@ def lambda_handler(event, context):
 
 
 def gather_14_day_data(user_id: str) -> dict:
-    """Gather all data and calculate trends"""
-    user_profile = db.user_profiles.find_one({"user_id": user_id})
+    """
+    Gather all data and calculate trends.
+
+    Database methods documented in: docs/DATABASE_CLIENT_INTERFACE.md
+    """
+    user_profile = db.user_profiles.find_by_user_id(user_id)
     weight_logs = db.body_logs.find_recent(user_id, days=14)
     body_comp_logs = db.body_logs.find_recent(user_id, days=14)
     nutrition_logs = db.nutrition_logs.find_recent(user_id, days=14)
