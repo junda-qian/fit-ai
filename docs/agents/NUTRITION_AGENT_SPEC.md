@@ -63,7 +63,19 @@ The Nutrition Specialist Agent is a **proactive, weekly-scheduled AI agent** tha
 
 ## Input Context
 
-The agent gathers all data itself (no external orchestrator):
+The agent gathers all data itself (no external orchestrator).
+
+**User Profile Fields Required:**
+See [User Profile Schema](../USER_PROFILE_SCHEMA.md) for complete specification.
+
+Required fields:
+- `goal`: "lose_weight", "build_muscle", "maintain"
+- `sex`: "male" or "female" (for Table 1 deficit calculation)
+- `training_status`: "novice", "intermediate", "advanced" (for Table 3 surplus calculation)
+- `body_fat_pct`: Current body fat percentage (for Table 1)
+- `is_active`: Filter for weekly analysis
+
+### Input Data Structure
 
 ```python
 {
