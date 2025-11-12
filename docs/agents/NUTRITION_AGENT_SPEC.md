@@ -116,6 +116,172 @@ min_nutrition_logs = 10                 # Need 10+ days of nutrition tracking
 
 ---
 
+## Implementation Approach: Pure Python (Deterministic)
+
+### Decision: No AI Reasoning in Nutrition Agent
+
+The Nutrition Specialist uses **pure Python implementation** of the evidence-based algorithms (Tables 1-3). **AI is NOT used for decision-making** in this agent.
+
+**Why Deterministic?**
+- ✅ **100% Reliable** - No hallucinations or unpredictable behavior
+- ✅ **Fast** - No API calls for core decisions (<100ms per user)
+- ✅ **Cost-Efficient** - $0 AI cost (vs $0.03-0.05/user with AI reasoning)
+- ✅ **Testable** - Exact logic is traceable and unit-testable
+- ✅ **Explainable** - Clear reasoning: "Table 1 says 20% deficit for your body fat level"
+- ✅ **Predictable** - Same inputs always produce same outputs
+
+**Where AI IS Used:**
+User-facing communication is handled by the **Communication Specialist Agent** (separate agent), which translates technical recommendations into personalized, motivating messages.
+
+### Core Algorithm Implementation
+
+```python
+def apply_nutrition_algorithm(user: dict, data: dict) -> NutritionRecommendation:
+    """
+    Apply evidence-based nutrition algorithm using pure Python.
+    Implements Tables 1-3 as deterministic if/else logic.
+
+    NO AI is used in this function.
+    """
+
+    # 1. Estimate maintenance calories (pure math)
+    maintenance = estimate_maintenance_calories(
+        data["nutrition_summary"]["avg_calories"],
+        data["weight_trend"]["weekly_rate_pct"]
+    )
+
+    # 2. Calculate optimal deficit/surplus (lookup Table 1 or Table 3)
+    if user["goal"] == "lose_weight":
+        optimal_deficit_pct = calculate_optimal_deficit(
+            data["user_profile"]["body_fat_pct"],
+            data["user_profile"]["sex"]
+        )
+    else:
+        surplus_info = calculate_optimal_surplus(
+            data["user_profile"]["training_status"]
+        )
+        optimal_surplus_pct = surplus_info["recommended_surplus_pct"]
+
+    # 3. Detect body recomposition (pure logic)
+    is_plateau = data["weight_trend"]["is_plateau"]
+    body_fat_decreasing = data["body_comp_trend"]["trend"] == "decreasing"
+
+    if is_plateau and body_fat_decreasing:
+        # Body recomposition - no adjustment needed
+        return NutritionRecommendation(
+            current_calorie_average=data["nutrition_summary"]["avg_calories"],
+            recommended_calories=data["nutrition_summary"]["avg_calories"],
+            adjustment_category="none",
+            reasoning="Body recomposition detected: weight stable but body fat decreasing.",
+            body_composition_status="recomp",
+            confidence=1.0
+        )
+    elif user["goal"] == "lose_weight":
+        # Apply cutting algorithm (Tables 1 & 2)
+        return apply_cutting_algorithm(user, data, maintenance, optimal_deficit_pct)
+    else:
+        # Apply bulking algorithm (Table 3)
+        return apply_bulking_algorithm(user, data, maintenance, optimal_surplus_pct)
+
+
+def apply_cutting_algorithm(
+    user: dict,
+    data: dict,
+    maintenance: float,
+    optimal_deficit_pct: float
+) -> NutritionRecommendation:
+    """
+    Implement cutting algorithm from Tables 1 & 2.
+    Pure Python - no AI.
+    """
+    weekly_loss_pct = abs(data["weight_trend"]["weekly_rate_pct"])
+
+    # Map loss rate to estimated deficit (Table 2)
+    if weekly_loss_pct < 0.1:
+        estimated_deficit_pct = 0  # Maintenance
+    elif weekly_loss_pct <= 0.3:
+        estimated_deficit_pct = 10
+    elif weekly_loss_pct <= 0.7:
+        estimated_deficit_pct = 20
+    elif weekly_loss_pct <= 1.1:
+        estimated_deficit_pct = 30
+    else:
+        estimated_deficit_pct = 50
+
+    # Compare estimated vs optimal
+    if abs(estimated_deficit_pct - optimal_deficit_pct) <= 5:
+        # On track
+        adjustment = "none"
+        recommended_calories = data["nutrition_summary"]["avg_calories"]
+        reasoning = f"Weight loss proceeding at optimal pace ({weekly_loss_pct:.1f}%/week)."
+
+    elif estimated_deficit_pct > optimal_deficit_pct:
+        # Losing too fast
+        adjustment = "increase"
+        recommended_calories = maintenance * (1 - optimal_deficit_pct / 100)
+        reasoning = f"Weight loss too fast ({weekly_loss_pct:.1f}%/week). Increase to {recommended_calories:.0f} cal ({optimal_deficit_pct}% deficit)."
+
+    else:
+        # Losing too slow
+        adjustment = "decrease"
+        recommended_calories = maintenance * (1 - optimal_deficit_pct / 100)
+        reasoning = f"Weight loss too slow ({weekly_loss_pct:.1f}%/week). Decrease to {recommended_calories:.0f} cal ({optimal_deficit_pct}% deficit)."
+
+    return NutritionRecommendation(
+        current_calorie_average=data["nutrition_summary"]["avg_calories"],
+        current_body_fat_pct=data["user_profile"]["body_fat_pct"],
+        observed_weekly_weight_change_pct=data["weight_trend"]["weekly_rate_pct"],
+        recommended_calories=int(recommended_calories),
+        recommended_deficit_or_surplus_pct=-optimal_deficit_pct,
+        optimal_deficit_or_surplus_pct=-optimal_deficit_pct,
+        recommended_macros=calculate_macros(recommended_calories, user),
+        adjustment_category=adjustment,
+        reasoning=reasoning,
+        body_composition_status="fat_loss",
+        confidence=1.0
+    )
+```
+
+### Testing Strategy
+
+**Unit Tests (Deterministic):**
+```python
+def test_cutting_algorithm_optimal_pace():
+    """Test that algorithm maintains calories when on track"""
+    user = {"goal": "lose_weight", "sex": "male"}
+    data = {
+        "user_profile": {"body_fat_pct": 20},
+        "weight_trend": {"weekly_rate_pct": -0.7, "is_plateau": False},
+        "nutrition_summary": {"avg_calories": 2000},
+        "body_comp_trend": {"trend": "decreasing"}
+    }
+
+    recommendation = apply_nutrition_algorithm(user, data)
+
+    assert recommendation.adjustment_category == "none"
+    assert recommendation.recommended_calories == 2000
+    assert "optimal pace" in recommendation.reasoning.lower()
+
+
+def test_body_recomposition_detection():
+    """Test that body recomp is properly detected"""
+    user = {"goal": "lose_weight", "sex": "male"}
+    data = {
+        "user_profile": {"body_fat_pct": 18},
+        "weight_trend": {"weekly_rate_pct": 0.05, "is_plateau": True},
+        "nutrition_summary": {"avg_calories": 2200},
+        "body_comp_trend": {"trend": "decreasing"}
+    }
+
+    recommendation = apply_nutrition_algorithm(user, data)
+
+    assert recommendation.adjustment_category == "none"
+    assert recommendation.body_composition_status == "recomp"
+    assert "body recomposition" in recommendation.reasoning.lower()
+```
+
+---
+
 ## Function Tools
 
 ### 1. Trend Analysis Tools

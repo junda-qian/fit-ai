@@ -127,23 +127,25 @@ But NOT needed for routine plan adjustments - those happen automatically.
                      ▼
 ┌─────────────────────────────────────────────────────┐
 │         Nutrition Specialist Agent                   │
+│  (Deterministic - Pure Python, No AI)               │
 │  FOR EACH ACTIVE USER:                              │
 │  1. Pull last 14 days of data                       │
 │      - Weight logs                                  │
 │      - Body composition logs (skinfolds/waist/BF%)  │
 │      - Nutrition logs                               │
 │      - Workout logs (for bulk assessment)           │
-│  2. Calculate trends                                │
+│  2. Calculate trends (deterministic)                │
 │      - Weight trend (weekly rate %)                 │
 │      - Body composition trend                       │
 │      - Average calorie intake                       │
-│  3. Apply nutrition algorithm                       │
+│  3. Apply nutrition algorithm (pure Python)         │
 │      - Estimate maintenance calories                │
 │      - Calculate optimal deficit/surplus            │
 │      - Detect body recomposition                    │
 │      - Make calorie/macro recommendations           │
 │  4. Store weekly analysis                           │
 │  5. Update nutrition plan (if needed)               │
+│  6. Flag for communication                          │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -151,7 +153,35 @@ But NOT needed for routine plan adjustments - those happen automatically.
               │ weekly_analyses │
               │ active_plans    │
               │   (nutrition)   │
-              └─────────────────┘
+              │communication_pending: true│
+              └────────┬────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────────────┐
+│     EventBridge Scheduler (Monday 6:05 AM)          │
+│     Triggers after Nutrition/Training complete      │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│         Communication Specialist Agent               │
+│  (AI-Powered - Uses Bedrock Claude)                 │
+│  FOR EACH USER WITH PENDING COMMUNICATION:          │
+│  1. Read nutrition recommendation                   │
+│  2. Read training summary                           │
+│  3. Gather user history (streak, achievements)      │
+│  4. Generate personalized message (AI)              │
+│      - Acknowledge progress                         │
+│      - Explain nutrition changes                    │
+│      - Review training performance                  │
+│      - Motivate for upcoming week                   │
+│  5. Store communication                             │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+              ┌─────────────────────┐
+              │weekly_communications │
+              └─────────────────────┘
 
 
 ═══════════════════════════════════════════════════════════════════
@@ -263,8 +293,9 @@ Your app currently has:
 ### Integration Points
 
 For detailed schema and API specifications, see:
-- [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) - Weekly analysis, DynamoDB schema, Lambda handler
-- [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) - Session-to-session progression, exercise configuration, API integration
+- [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) - Weekly analysis, deterministic algorithm, DynamoDB schema
+- [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) - Session-to-session progression, exercise configuration
+- [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) - AI-powered weekly summaries, personalized messaging
 
 #### EventBridge Scheduled Rule
 ```python
@@ -299,17 +330,21 @@ terraform/
   eventbridge.tf       # EventBridge cron rules
 
 ai_agents/  # Renamed from alex_backend
-  nutrition_specialist/  # Primary proactive agent (weekly)
-    agent.py
+  nutrition_specialist/  # Weekly (deterministic - pure Python)
     lambda_handler.py
+    algorithm.py        # Pure Python implementation of Tables 1-3
     tools.py
-  training_specialist/   # Event-driven (post-workout)
-    agent.py
+  training_specialist/   # Event-driven (deterministic - pure Python)
     lambda_handler.py
+    algorithm.py
     tools.py
-  orchestrator/          # Secondary: on-demand chat
-    agent.py
+  communication_specialist/  # Weekly (AI-powered - Bedrock)
     lambda_handler.py
+    agent.py           # AI agent for message generation
+    prompts.py
+  orchestrator/          # On-demand chat (AI-powered - future)
+    lambda_handler.py
+    agent.py
     prompts.py
   shared/
     context.py
@@ -463,16 +498,16 @@ variable "enable_weekly_schedule" {
 ### Phase 1: Foundation (Week 1)
 - [ ] Set up `ai_agents/` directory structure
 - [ ] Create shared models and context wrappers
-- [ ] Add DynamoDB tables: `weekly_analyses`, `active_plans`, `user_exercises`, `training_recommendations`
+- [ ] Add DynamoDB tables: `weekly_analyses`, `active_plans`, `weekly_communications`, `user_exercises`, `training_recommendations`
 - [ ] Update `body_logs` table schema to support skinfolds, circumferences, and body fat tracking
 
 ### Phase 2: Nutrition Specialist Agent (Week 2-3)
 See [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) for complete implementation details
-- [ ] Implement Nutrition Specialist Lambda (single agent, no orchestrator)
-- [ ] Create nutrition function tools
-- [ ] Implement evidence-based nutrition algorithm
-- [ ] Add EventBridge cron rule for Monday 6 AM
-- [ ] Test with sample users
+- [ ] Implement Nutrition Specialist Lambda (deterministic - pure Python)
+- [ ] Create nutrition function tools (trend analysis, calculations)
+- [ ] Implement evidence-based nutrition algorithm (Tables 1-3)
+- [ ] Add EventBridge cron rule for Monday 6:00 AM
+- [ ] Test with sample users (unit tests for deterministic logic)
 
 ### Phase 3: Training Specialist (Event-Driven) (Week 4)
 See [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) for complete implementation details
@@ -482,19 +517,28 @@ See [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) for complete implemen
 - [ ] Update `/api/workouts/log` endpoint to invoke Training Agent asynchronously
 - [ ] Test session-to-session progression rules
 
-### Phase 4: Frontend Integration (Week 5)
-- [ ] Build Weekly Analysis Dashboard (primary UI)
-- [ ] Create API endpoints for viewing analysis results
+### Phase 4: Communication Specialist Agent (Week 5)
+See [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) for complete implementation details
+- [ ] Implement Communication Specialist Lambda (AI-powered)
+- [ ] Create AI prompt for personalized weekly summaries
+- [ ] Implement user history analysis (streaks, achievements)
+- [ ] Add EventBridge cron rule for Monday 6:05 AM
+- [ ] Test message generation quality
+
+### Phase 5: Frontend Integration (Week 6)
+- [ ] Build Weekly Analysis Dashboard (displays communication messages)
+- [ ] Create API endpoints for viewing weekly communications
 - [ ] Add body composition logging UI (skinfolds, waist, photos)
 - [ ] Add training prescription UI (display next session recommendation)
+- [ ] Show user metrics (streak, achievements, progress)
 
-### Phase 5: On-Demand Chat (Week 6) (Secondary)
+### Phase 6: On-Demand Chat (Week 7) (Secondary)
 - [ ] Implement Coach Orchestrator agent for Q&A
 - [ ] Add `coach_jobs` DynamoDB table
 - [ ] Create `/api/coach/ask` endpoint
 - [ ] Build chat UI component
 
-### Phase 6: Polish & Demo Prep (Week 7)
+### Phase 7: Polish & Demo Prep (Week 8)
 - [ ] Add observability (CloudWatch logs, metrics)
 - [ ] Performance optimization
 - [ ] Create demo scenarios with realistic sample data
