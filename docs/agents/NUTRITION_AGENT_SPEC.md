@@ -49,7 +49,6 @@ The Nutrition Specialist Agent is a **proactive, weekly-scheduled AI agent** tha
 │      - Make calorie/macro recommendations           │
 │  4. Store weekly analysis                           │
 │  5. Update nutrition plan (if needed)               │
-│  6. Send notification to user                       │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -609,9 +608,6 @@ def lambda_handler(event, context):
         if recommendation.adjustment_category != "none":
             update_nutrition_plan(user["user_id"], recommendation)
 
-        # 7. Send notification
-        send_notification(user["user_id"], recommendation)
-
         results.append(recommendation)
 
     return {"users_processed": len(results)}
@@ -738,10 +734,6 @@ def apply_nutrition_algorithm(user: dict, data: dict) -> NutritionRecommendation
         }
     },
 
-    # Notification
-    "notification_sent": true,
-    "notification_sent_at": "2025-10-27T06:15:00Z",
-
     # Metadata
     "analyzed_at": "2025-10-27T06:00:00Z",
     "analysis_duration_ms": 3500
@@ -856,9 +848,7 @@ def apply_nutrition_algorithm(user: dict, data: dict) -> NutritionRecommendation
 **Environment variables**:
 - `DYNAMODB_TABLE_PREFIX`: Table name prefix
 - `BEDROCK_MODEL_ID`: Claude model ID
-- `NOTIFICATION_SERVICE_URL`: For sending push notifications
 
 **IAM Permissions**:
 - DynamoDB: Read/Write access to `user_profiles`, `body_logs`, `nutrition_logs`, `workout_logs`, `weekly_analyses`, `active_plans`
 - Bedrock: Invoke model
-- SNS/SQS: Send notifications

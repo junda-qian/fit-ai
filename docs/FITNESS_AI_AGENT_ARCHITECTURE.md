@@ -36,7 +36,7 @@ This document outlines a multi-agent AI fitness coaching system that:
 2. Every Monday: AI analyzes last 14 days of data (weight, body fat %, workouts, nutrition)
 3. AI detects issues (plateau, body recomposition, too fast/slow progress, overtraining)
 4. AI updates meal/training plan if needed using personalized deficit/surplus calculations
-5. User receives notification with changes + reasoning (e.g., "Body fat decreased despite weight plateau - keep current calories!")
+5. User views analysis in dashboard with changes + reasoning (e.g., "Body fat decreased despite weight plateau - keep current calories!")
 6. User follows updated plan (no diagnosis required)
 
 ---
@@ -81,7 +81,7 @@ The AI coach operates like a real coach - monitoring your progress automatically
 2. **14-day trend analysis**: Pulls last 2 weeks of data (weight, workouts, sleep, nutrition)
 3. **Issue detection**: Identifies plateaus, anomalies, overtraining signals
 4. **Automatic adjustments**: Updates meal/training plans if needed
-5. **Notification**: User receives summary of changes and reasoning
+5. **Store results**: User can view analysis and changes in dashboard
 
 **Why 14 days?**
 - Daily weight fluctuates due to water retention, sodium intake, hormones
@@ -144,7 +144,6 @@ But NOT needed for routine plan adjustments - those happen automatically.
 │      - Make calorie/macro recommendations           │
 │  4. Store weekly analysis                           │
 │  5. Update nutrition plan (if needed)               │
-│  6. Send notification to user                       │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -483,10 +482,9 @@ See [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) for complete implemen
 - [ ] Update `/api/workouts/log` endpoint to invoke Training Agent asynchronously
 - [ ] Test session-to-session progression rules
 
-### Phase 4: Frontend & Notifications (Week 5)
+### Phase 4: Frontend Integration (Week 5)
 - [ ] Build Weekly Analysis Dashboard (primary UI)
-- [ ] Create API endpoints
-- [ ] Add push notifications for weekly check-ins
+- [ ] Create API endpoints for viewing analysis results
 - [ ] Add body composition logging UI (skinfolds, waist, photos)
 - [ ] Add training prescription UI (display next session recommendation)
 
