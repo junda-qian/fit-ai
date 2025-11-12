@@ -240,6 +240,92 @@ def apply_cutting_algorithm(
         body_composition_status="fat_loss",
         confidence=1.0
     )
+
+
+def apply_bulking_algorithm(
+    user: dict,
+    data: dict,
+    maintenance: float,
+    optimal_surplus_pct: float
+) -> NutritionRecommendation:
+    """
+    Implement bulking algorithm from Table 3.
+    Pure Python - no AI.
+    """
+    weekly_gain_pct = data["weight_trend"]["weekly_rate_pct"]  # Positive if gaining
+    body_fat_trend = data["body_comp_trend"]["trend"]  # "increasing", "stable", "decreasing"
+    strength_progressing = data.get("workout_summary", {}).get("strength_progressing", True)
+
+    # Get target gain rate from Table 3
+    surplus_info = calculate_optimal_surplus(data["user_profile"]["training_status"])
+    target_gain_min = surplus_info["target_weekly_gain_pct_min"]
+    target_gain_max = surplus_info["target_weekly_gain_pct_max"]
+
+    # Scenario 1: No weight gain (plateau)
+    if abs(weekly_gain_pct) < 0.1:
+        # Not gaining weight - need to add surplus
+        adjustment = "increase"
+        recommended_calories = maintenance * (1 + optimal_surplus_pct / 100)
+        reasoning = f"No weight gain detected. Increase to {recommended_calories:.0f} cal ({optimal_surplus_pct}% surplus) to support muscle growth."
+
+    # Scenario 2: Weight gain above expected rate
+    elif weekly_gain_pct > target_gain_max:
+        if body_fat_trend == "stable" and strength_progressing:
+            # Gaining muscle efficiently - maintain
+            adjustment = "none"
+            recommended_calories = data["nutrition_summary"]["avg_calories"]
+            reasoning = f"Gaining weight ({weekly_gain_pct:.1f}%/week) with stable body fat and strength progress. Maintain {recommended_calories} cal."
+        else:
+            # Gaining too much fat - reduce calories
+            adjustment = "decrease"
+            recommended_calories = maintenance * (1 + optimal_surplus_pct / 100)
+            reasoning = f"Weight gain too fast ({weekly_gain_pct:.1f}%/week) with body fat increasing. Reduce to {recommended_calories:.0f} cal ({optimal_surplus_pct}% surplus)."
+
+    # Scenario 3: Weight gain within expected rate
+    else:  # target_gain_min <= weekly_gain_pct <= target_gain_max
+        if body_fat_trend == "stable" and strength_progressing:
+            # Good progress, room for more
+            adjustment = "increase"
+            recommended_calories = data["nutrition_summary"]["avg_calories"] * 1.05
+            reasoning = f"Gaining at optimal rate ({weekly_gain_pct:.1f}%/week) with stable body fat. Increase to {recommended_calories:.0f} cal for more muscle gain."
+
+        elif body_fat_trend == "increasing" and strength_progressing:
+            # Some fat gain acceptable, but watch it
+            if data["body_comp_trend"].get("total_change_mm", 0) > 5:  # Significant fat gain
+                adjustment = "decrease"
+                recommended_calories = maintenance * (1 + optimal_surplus_pct / 100)
+                reasoning = f"Body fat increasing significantly. Reduce to {recommended_calories:.0f} cal ({optimal_surplus_pct}% surplus) while maintaining strength gains."
+            else:
+                # Minor fat gain is acceptable during bulk
+                adjustment = "none"
+                recommended_calories = data["nutrition_summary"]["avg_calories"]
+                reasoning = f"Gaining weight ({weekly_gain_pct:.1f}%/week) with minor fat gain and strength progress. Maintain {recommended_calories} cal."
+
+        elif body_fat_trend == "increasing" and not strength_progressing:
+            # Gaining fat without strength - problem
+            adjustment = "decrease"
+            recommended_calories = maintenance * (1 + (optimal_surplus_pct / 2) / 100)  # Smaller surplus
+            reasoning = f"Gaining fat without strength progress. Reduce to {recommended_calories:.0f} cal. Training may need adjustment."
+
+        else:
+            # Default: maintain current
+            adjustment = "none"
+            recommended_calories = data["nutrition_summary"]["avg_calories"]
+            reasoning = f"Gaining at optimal rate ({weekly_gain_pct:.1f}%/week). Maintain {recommended_calories} cal."
+
+    return NutritionRecommendation(
+        current_calorie_average=data["nutrition_summary"]["avg_calories"],
+        current_body_fat_pct=data["user_profile"]["body_fat_pct"],
+        observed_weekly_weight_change_pct=data["weight_trend"]["weekly_rate_pct"],
+        recommended_calories=int(recommended_calories),
+        recommended_deficit_or_surplus_pct=optimal_surplus_pct,
+        optimal_deficit_or_surplus_pct=optimal_surplus_pct,
+        recommended_macros=calculate_macros(recommended_calories, user),
+        adjustment_category=adjustment,
+        reasoning=reasoning,
+        body_composition_status="muscle_gain",
+        confidence=1.0
+    )
 ```
 
 ### Testing Strategy
@@ -278,6 +364,60 @@ def test_body_recomposition_detection():
     assert recommendation.adjustment_category == "none"
     assert recommendation.body_composition_status == "recomp"
     assert "body recomposition" in recommendation.reasoning.lower()
+
+
+def test_bulking_algorithm_plateau():
+    """Test bulking when not gaining weight"""
+    user = {"goal": "build_muscle", "sex": "male"}
+    data = {
+        "user_profile": {"body_fat_pct": 15, "training_status": "intermediate"},
+        "weight_trend": {"weekly_rate_pct": 0.05, "is_plateau": True},
+        "nutrition_summary": {"avg_calories": 2500},
+        "body_comp_trend": {"trend": "stable"},
+        "workout_summary": {"strength_progressing": True}
+    }
+
+    recommendation = apply_nutrition_algorithm(user, data)
+
+    assert recommendation.adjustment_category == "increase"
+    assert recommendation.recommended_calories > 2500
+    assert "surplus" in recommendation.reasoning.lower()
+
+
+def test_bulking_algorithm_gaining_too_fast():
+    """Test bulking when gaining weight too fast with fat gain"""
+    user = {"goal": "build_muscle", "sex": "male"}
+    data = {
+        "user_profile": {"body_fat_pct": 15, "training_status": "intermediate"},
+        "weight_trend": {"weekly_rate_pct": 0.8, "is_plateau": False},  # Too fast (>0.5% for intermediate)
+        "nutrition_summary": {"avg_calories": 3000},
+        "body_comp_trend": {"trend": "increasing", "total_change_mm": 8},  # Fat increasing
+        "workout_summary": {"strength_progressing": True}
+    }
+
+    recommendation = apply_nutrition_algorithm(user, data)
+
+    assert recommendation.adjustment_category == "decrease"
+    assert recommendation.recommended_calories < 3000
+    assert "too fast" in recommendation.reasoning.lower()
+
+
+def test_bulking_algorithm_optimal_rate():
+    """Test bulking when gaining at optimal rate with stable body fat"""
+    user = {"goal": "build_muscle", "sex": "male"}
+    data = {
+        "user_profile": {"body_fat_pct": 15, "training_status": "intermediate"},
+        "weight_trend": {"weekly_rate_pct": 0.3, "is_plateau": False},  # Within 0.2-0.5% for intermediate
+        "nutrition_summary": {"avg_calories": 2800},
+        "body_comp_trend": {"trend": "stable"},
+        "workout_summary": {"strength_progressing": True}
+    }
+
+    recommendation = apply_nutrition_algorithm(user, data)
+
+    # Could be "increase" (room for more) or "none" (maintain)
+    assert recommendation.adjustment_category in ["increase", "none"]
+    assert "optimal rate" in recommendation.reasoning.lower() or "stable body fat" in recommendation.reasoning.lower()
 ```
 
 ---
