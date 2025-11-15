@@ -971,6 +971,180 @@ async def _update_daily_summary(user_id: str, target_date: date):
         db.insert("daily_summaries", summary)
 
 
+# ============================================================================
+# Nutrition Agent Endpoint
+# ============================================================================
+
+@app.post("/api/nutrition/analyze")
+async def analyze_nutrition(request: Dict):
+    """
+    Analyze nutrition and provide recommendations using Nutrition Specialist Agent.
+
+    Analyzes last 14 days of data (weight, body composition, nutrition, workouts)
+    and returns personalized nutrition recommendations.
+
+    Request body:
+    {
+        "user_id": "test_user_90day"
+    }
+
+    Returns:
+    {
+        "recommendation": {
+            "current_calorie_average": 2200,
+            "recommended_calories": 2000,
+            "adjustment_category": "decrease",
+            "reasoning": "...",
+            ...
+        }
+    }
+    """
+    # Import nutrition agent (lazy import to avoid circular dependencies)
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+
+    from ai_agents.nutrition_specialist import (
+        apply_nutrition_algorithm,
+        analyze_weight_trend,
+        analyze_body_composition_trend
+    )
+    from ai_agents.shared.models import NutritionSummary, WorkoutSummary
+
+    user_id = request.get("user_id")
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user_id is required")
+
+    # 1. Fetch user profile
+    user_profile = db.find_one("user_profiles", {"user_id": user_id})
+    if not user_profile:
+        raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+
+    # 2. Fetch last 14 days of data
+    from datetime import datetime, timedelta
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=13)  # 14 days total
+
+    # Get all body logs for weight trend
+    all_body_logs = db.find("body_logs", {"user_id": user_id})
+    body_logs_14d = [
+        log for log in all_body_logs
+        if datetime.fromisoformat(log['date']) >= start_date
+    ]
+
+    # Get daily summaries (contains aggregated daily nutrition + workout data)
+    all_daily_summaries = db.find("daily_summaries", {"user_id": user_id})
+    daily_summaries_14d = [
+        log for log in all_daily_summaries
+        if datetime.fromisoformat(log['date']) >= start_date
+    ]
+
+    # 3. Analyze weight trend
+    weight_logs_for_analysis = [
+        {"date": log['date'], "weight": log['weight']}
+        for log in body_logs_14d
+        if log.get('weight')
+    ]
+    weight_trend = analyze_weight_trend(weight_logs_for_analysis, days=14)
+
+    # 4. Analyze body composition trend
+    body_comp_logs_for_analysis = [
+        {
+            "date": log['date'],
+            "skinfold_sum": log.get('skinfold_sum'),
+            "skinfolds": log.get('skinfolds'),
+            "waist_cm": log.get('waist_cm'),
+            "body_fat_pct": log.get('body_fat_pct')
+        }
+        for log in body_logs_14d
+    ]
+    body_comp_trend = analyze_body_composition_trend(body_comp_logs_for_analysis, days=14)
+
+    # 5. Summarize nutrition (from daily summaries)
+    nutrition_logged_days = [
+        summary for summary in daily_summaries_14d
+        if summary.get('total_calories', 0) > 0
+    ]
+
+    if nutrition_logged_days:
+        avg_calories = sum(log.get('total_calories', 0) for log in nutrition_logged_days) / len(nutrition_logged_days)
+        avg_protein = sum(log.get('total_protein', 0) for log in nutrition_logged_days) / len(nutrition_logged_days)
+    else:
+        avg_calories = user_profile.get('target_calories', 2000)
+        avg_protein = user_profile.get('target_protein', 160)
+
+    nutrition_summary = NutritionSummary(
+        days_analyzed=14,
+        days_logged=len(nutrition_logged_days),
+        avg_calories=avg_calories,
+        avg_protein_g=avg_protein,
+        compliance_pct=(len(nutrition_logged_days) / 14) * 100,
+        sufficient_data=len(nutrition_logged_days) >= 10
+    )
+
+    # 6. Summarize workouts (from daily summaries)
+    workout_days = [
+        summary for summary in daily_summaries_14d
+        if summary.get('workouts_completed', 0) > 0
+    ]
+
+    workout_summary = WorkoutSummary(
+        days_analyzed=14,
+        sessions=len(workout_days),
+        strength_progressing=True,  # Simplified for now
+        sufficient_data=len(workout_days) >= 2
+    )
+
+    # 7. Run nutrition algorithm
+    recommendation = apply_nutrition_algorithm(
+        user_profile,
+        weight_trend,
+        body_comp_trend,
+        nutrition_summary,
+        workout_summary
+    )
+
+    # 8. Return recommendation
+    return {
+        "user_id": user_id,
+        "analysis_date": datetime.now().isoformat(),
+        "data_quality": {
+            "weight_logs": len(weight_logs_for_analysis),
+            "body_comp_logs": len([l for l in body_comp_logs_for_analysis if l.get('skinfold_sum')]),
+            "nutrition_days": len(nutrition_logged_days),
+            "workout_days": len(workout_days)
+        },
+        "trends": {
+            "weight": {
+                "current": weight_trend.current_weight,
+                "avg": weight_trend.avg_weight,
+                "weekly_rate_pct": weight_trend.weekly_rate_pct,
+                "is_plateau": weight_trend.is_plateau,
+                "trend": weight_trend.trend
+            },
+            "body_composition": {
+                "method": body_comp_trend.method,
+                "confidence": body_comp_trend.confidence,
+                "trend": body_comp_trend.trend,
+                "interpretation": body_comp_trend.interpretation
+            }
+        },
+        "recommendation": {
+            "current_calorie_average": recommendation.current_calorie_average,
+            "recommended_calories": recommendation.recommended_calories,
+            "recommended_macros": {
+                "protein_g": recommendation.recommended_macros.protein_g,
+                "carbs_g": recommendation.recommended_macros.carbs_g,
+                "fat_g": recommendation.recommended_macros.fat_g
+            },
+            "adjustment_category": recommendation.adjustment_category,
+            "reasoning": recommendation.reasoning,
+            "body_composition_status": recommendation.body_composition_status,
+            "confidence": recommendation.confidence
+        }
+    }
+
+
 if __name__ == "__main__":
     import uvicorn
 

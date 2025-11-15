@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TrendingUp, Scale, Flame, Dumbbell, Calendar, ArrowLeft } from 'lucide-react';
+import { TrendingUp, Scale, Flame, Dumbbell, Calendar, ArrowLeft, Sparkles } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Link from 'next/link';
 
@@ -29,11 +29,27 @@ interface DailySummary {
   };
 }
 
+interface NutritionRecommendation {
+  current_calorie_average: number;
+  recommended_calories: number;
+  recommended_macros: {
+    protein_g: number;
+    carbs_g: number;
+    fat_g: number;
+  };
+  adjustment_category: 'increase' | 'decrease' | 'none';
+  reasoning: string;
+  body_composition_status: string;
+  confidence: number;
+}
+
 export default function ProgressPage() {
   const [bodyLogs, setBodyLogs] = useState<BodyLog[]>([]);
   const [dailySummaries, setDailySummaries] = useState<DailySummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<'7' | '30' | '90'>('30');
+  const [nutritionRecommendation, setNutritionRecommendation] = useState<NutritionRecommendation | null>(null);
+  const [loadingRecommendation, setLoadingRecommendation] = useState(false);
 
   const fetchProgressData = async () => {
     setLoading(true);
@@ -81,6 +97,30 @@ export default function ProgressPage() {
     fetchProgressData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateRange]);
+
+  const fetchNutritionRecommendation = async () => {
+    setLoadingRecommendation(true);
+    try {
+      const userId = localStorage.getItem('fit_tracker_user_id');
+      if (!userId) return;
+
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/nutrition/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setNutritionRecommendation(data.recommendation);
+      }
+    } catch (err) {
+      console.error('Error fetching nutrition recommendation:', err);
+    } finally {
+      setLoadingRecommendation(false);
+    }
+  };
 
   const calculateWeightStats = () => {
     if (bodyLogs.length === 0) return null;
@@ -263,6 +303,111 @@ export default function ProgressPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Evidence-Based Nutrition Recommendation */}
+        <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl shadow-lg p-6 mb-8 border-2 border-purple-200">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-purple-600" />
+              <h2 className="text-xl font-bold text-gray-800">Evidence-Based Nutrition Analysis</h2>
+            </div>
+            <button
+              onClick={fetchNutritionRecommendation}
+              disabled={loadingRecommendation}
+              className="bg-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-purple-700 disabled:bg-purple-300 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+            >
+              {loadingRecommendation ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                  Analyzing...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-4 h-4" />
+                  Get Recommendation
+                </>
+              )}
+            </button>
+          </div>
+
+          {nutritionRecommendation ? (
+            <div className="space-y-4">
+              {/* Status Badge */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className={`px-4 py-2 rounded-full font-medium ${
+                  nutritionRecommendation.adjustment_category === 'decrease'
+                    ? 'bg-orange-100 text-orange-700'
+                    : nutritionRecommendation.adjustment_category === 'increase'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'bg-green-100 text-green-700'
+                }`}>
+                  {nutritionRecommendation.adjustment_category === 'decrease' && '📉 Decrease Calories'}
+                  {nutritionRecommendation.adjustment_category === 'increase' && '📈 Increase Calories'}
+                  {nutritionRecommendation.adjustment_category === 'none' && '✅ Maintain Current Plan'}
+                </span>
+                <span className="px-4 py-2 rounded-full bg-purple-100 text-purple-700 font-medium">
+                  {nutritionRecommendation.body_composition_status === 'fat_loss' && '🔥 Fat Loss'}
+                  {nutritionRecommendation.body_composition_status === 'muscle_gain' && '💪 Muscle Gain'}
+                  {nutritionRecommendation.body_composition_status === 'recomp' && '⚡ Body Recomposition'}
+                  {nutritionRecommendation.body_composition_status === 'maintenance' && '🎯 Maintenance'}
+                </span>
+              </div>
+
+              {/* Calorie Recommendation */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h3 className="font-bold text-gray-800 mb-3">Calorie Recommendation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-sm text-gray-600">Current Average</span>
+                    <div className="text-2xl font-bold text-gray-800">{nutritionRecommendation.current_calorie_average} cal/day</div>
+                  </div>
+                  <div>
+                    <span className="text-sm text-gray-600">Recommended</span>
+                    <div className={`text-2xl font-bold ${
+                      nutritionRecommendation.adjustment_category === 'decrease'
+                        ? 'text-orange-600'
+                        : nutritionRecommendation.adjustment_category === 'increase'
+                        ? 'text-blue-600'
+                        : 'text-green-600'
+                    }`}>
+                      {nutritionRecommendation.recommended_calories} cal/day
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Macro Recommendation */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h3 className="font-bold text-gray-800 mb-3">Recommended Macros</h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Protein</div>
+                    <div className="text-xl font-bold text-red-600">{nutritionRecommendation.recommended_macros.protein_g}g</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Carbs</div>
+                    <div className="text-xl font-bold text-green-600">{nutritionRecommendation.recommended_macros.carbs_g}g</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Fats</div>
+                    <div className="text-xl font-bold text-yellow-600">{nutritionRecommendation.recommended_macros.fat_g}g</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Reasoning */}
+              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <h3 className="font-bold text-purple-900 mb-2">Analysis</h3>
+                <p className="text-purple-800">{nutritionRecommendation.reasoning}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-600">
+              <p className="mb-2">Click the button above to get personalized nutrition recommendations based on your last 14 days of data.</p>
+              <p className="text-sm text-gray-500">Uses a deterministic algorithm that analyzes your weight trend, body composition, nutrition compliance, and workout frequency to provide research-backed guidance.</p>
+            </div>
+          )}
         </div>
 
         {/* Weight Chart */}
