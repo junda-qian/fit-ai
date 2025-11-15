@@ -177,20 +177,45 @@ def main():
     workout_logs = []
     daily_summaries = []
 
-    # Generate user profile
+    # Generate user profile (updated for Nutrition Agent)
     user_profile = {
         "id": str(uuid.uuid4()),
         "user_id": TEST_USER_ID,
+
+        # Personal info (NEW - required for Nutrition Agent)
+        "name": "Alex",
+        "age": 30,
+        "sex": "male",  # Required for Table 1 (optimal deficit)
+        "height_cm": 180,
+
+        # Current metrics
+        "body_weight_kg": START_WEIGHT,
+        "body_fat_pct": START_BODY_FAT,
+
+        # Fitness goals (UPDATED - new terminology)
+        "goal": "lose_weight",  # Changed from "cut"
+        "training_status": "intermediate",  # NEW - for Table 3 (bulking)
+
+        # Nutrition targets
         "target_calories": TARGET_CALORIES,
         "target_protein": TARGET_PROTEIN,
         "target_carbs": TARGET_CARBS,
         "target_fats": TARGET_FATS,
+
+        # Energy calculations
         "bmr": 1850.0,
         "tdee": 2640.0,
         "activity_level": 1.4,
-        "goal": "cut",
-        "body_weight_kg": START_WEIGHT,
-        "body_fat_pct": START_BODY_FAT,
+
+        # Account status (NEW)
+        "is_active": True,  # For weekly analysis filtering
+
+        # Communication preferences (NEW)
+        "communication_style": "encouraging",
+        "language": "en",
+        "timezone": "UTC",
+
+        # Timestamps
         "created_at": START_DATE.isoformat(),
         "updated_at": datetime.now().isoformat()
     }
