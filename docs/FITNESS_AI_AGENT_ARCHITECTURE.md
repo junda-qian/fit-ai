@@ -7,15 +7,21 @@ Inspired by ALEX Financial Planner's multi-agent architecture, adapted for fitne
 
 ## Executive Summary
 
-This document outlines a multi-agent AI fitness coaching system that:
-- **Proactively monitors** user progress with weekly automated analysis
-- Uses **specialized agents** for nutrition and training optimization
-- **Automatically adjusts** meal and training plans based on detected trends
-- Integrates **function tools** for calculations and data access
-- Follows **OpenAI Agents SDK patterns** from the ALEX project
-- Deploys as **AWS Lambda functions** with EventBridge scheduling
-- Provides **intelligent coordination** between potentially conflicting advice
-- Uses **14-day trend analysis** to filter out daily noise (water retention, sleep variance)
+This document outlines a **hybrid multi-agent AI fitness coaching system** that combines deterministic algorithms with AI-powered communication:
+
+**Core Architecture:**
+- **Deterministic Decision-Making**: Nutrition and Training agents use pure Python algorithms (fast, reliable, testable)
+- **AI-Powered Communication**: Communication and Coach agents use AI for natural language (flexible, engaging)
+- **Proactive Monitoring**: Weekly automated analysis of user progress
+- **Event-Driven Training**: Session-to-session progression after each workout
+- **AWS Lambda Deployment**: Serverless, auto-scaling microservices
+- **14-Day Trend Analysis**: Filters out daily noise (water retention, sleep variance)
+
+**Four Specialized Agents:**
+1. **Nutrition Specialist** (Deterministic - Pure Python) - Weekly scheduled
+2. **Training Specialist** (Deterministic - Pure Python) - Post-workout event-driven
+3. **Communication Specialist** (AI - Bedrock Claude) - Weekly scheduled
+4. **Coach Orchestrator** (AI - OpenAI SDK) - On-demand conversational Q&A
 
 ### Key Paradigm Shift: Proactive vs Reactive
 
@@ -41,32 +47,38 @@ This document outlines a multi-agent AI fitness coaching system that:
 
 ---
 
-## Key Learnings from ALEX Backend
+## Key Design Principles
 
-### 1. Orchestrator Pattern
-- **Planner agent** coordinates specialist agents via function tools
-- Each specialist has a single responsibility
-- Orchestrator decides which agents to invoke based on context
+### 1. Hybrid Architecture: Deterministic Core + AI Communication Layer
+
+**Critical decisions are deterministic:**
+- Nutrition adjustments use evidence-based tables (deficit/surplus calculations)
+- Training progression follows algorithmic rules (linear/rep range progression)
+- Fast execution (<100ms per user), zero cost for decisions
+- 100% testable, predictable, and explainable
+
+**User communication is AI-powered:**
+- Translates technical recommendations into personalized messages
+- Handles natural language Q&A
+- Adapts tone and detail level to user preferences
+- Cost-effective (~$0.02-0.05 per user per week)
 
 ### 2. Structured Output with Pydantic
-- Use `output_type` parameter for validated responses
-- Pydantic models ensure data quality
-- Field validators enforce business rules (e.g., macros sum to 100%)
+- Use Pydantic models for validated, structured agent outputs
+- Field validators enforce business rules
+- Type safety across the entire system
 
-### 3. Pre-processing Before AI
-- Handle deterministic logic outside agents (e.g., `handle_missing_instruments`)
-- Only use AI for decisions requiring reasoning
-- Reduces costs and improves reliability
+### 3. Independent Agent Deployment
+- Each agent = separate AWS Lambda function
+- Agents don't depend on each other for execution
+- Can be developed, tested, and deployed independently
+- Enables independent scaling
 
-### 4. Context Wrapper Pattern
-- `RunContextWrapper[ContextClass]` provides clean context access to tools
-- Tools are stateless, context provides state
-- Easy to test and reason about
-
-### 5. Lambda as Microservices
-- Each agent = separate Lambda function
-- Function tools invoke other Lambdas
-- Enables independent scaling and deployment
+### 4. Clear Separation of Concerns
+- **Nutrition Specialist**: Makes nutrition decisions
+- **Training Specialist**: Makes training decisions
+- **Communication Specialist**: Explains decisions to users
+- **Coach Orchestrator**: Answers user questions (read-only)
 
 ---
 
@@ -127,25 +139,25 @@ But NOT needed for routine plan adjustments - those happen automatically.
                      ▼
 ┌─────────────────────────────────────────────────────┐
 │         Nutrition Specialist Agent                   │
-│  (Deterministic - Pure Python, No AI)               │
+│  (Deterministic - Pure Python, NO AI)               │
 │  FOR EACH ACTIVE USER:                              │
 │  1. Pull last 14 days of data                       │
 │      - Weight logs                                  │
-│      - Body composition logs (skinfolds/waist/BF%)  │
+│      - Body composition logs (SKINFOLDS preferred)  │
 │      - Nutrition logs                               │
 │      - Workout logs (for bulk assessment)           │
 │  2. Calculate trends (deterministic)                │
 │      - Weight trend (weekly rate %)                 │
-│      - Body composition trend                       │
+│      - Body composition trend (skinfold sum)        │
 │      - Average calorie intake                       │
-│  3. Apply nutrition algorithm (pure Python)         │
+│  3. Apply nutrition algorithm (Tables 1-3)          │
 │      - Estimate maintenance calories                │
-│      - Calculate optimal deficit/surplus            │
+│      - Calculate optimal deficit/surplus by BF%     │
 │      - Detect body recomposition                    │
 │      - Make calorie/macro recommendations           │
 │  4. Store weekly analysis                           │
 │  5. Update nutrition plan (if needed)               │
-│  6. Flag for communication                          │
+│  6. Flag for communication (communication_pending)  │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -201,14 +213,18 @@ But NOT needed for routine plan adjustments - those happen automatically.
                      ▼
 ┌─────────────────────────────────────────────────────┐
 │       Training Specialist Agent                      │
+│  (Deterministic - Pure Python, NO AI)               │
 │  FOR EACH EXERCISE in workout:                      │
 │  1. Get exercise config (progression model, etc)    │
 │  2. Analyze first set vs rep target                 │
-│  3. Apply Linear/Rep Range progression rules        │
+│  3. Apply progression rules (algorithmic):          │
+│      - Linear Progressive: Hit reps → add weight    │
+│      - Rep Range: Hit reps → add weight, else reps  │
 │  4. Prescribe next session (weight, reps, action)   │
 │  5. Detect plateaus/regressions                     │
-│  6. Update user_exercises table                     │
-│  7. Store training recommendation                   │
+│  6. Implement reactive deloads/plateau breakers     │
+│  7. Update user_exercises table                     │
+│  8. Store training recommendation                   │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -221,11 +237,45 @@ But NOT needed for routine plan adjustments - those happen automatically.
 
 
 ═══════════════════════════════════════════════════════════════════
+ FLOW 3: On-Demand Conversational Coaching (User-Initiated)
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────┐
+│   User asks question via /api/coach/ask             │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│         Coach Orchestrator Agent                     │
+│  (AI-Powered - OpenAI SDK with Function Calling)    │
+│  1. Understand user question (natural language)     │
+│  2. Dynamically call function tools:                │
+│      - get_user_profile()                           │
+│      - get_weekly_analysis()                        │
+│      - get_nutrition_logs()                         │
+│      - get_workout_logs()                           │
+│      - get_body_logs()                              │
+│      - get_nutrition_recommendation()               │
+│      - get_training_status()                        │
+│  3. Synthesize information from multiple sources    │
+│  4. Generate personalized, educational response     │
+│  5. Support multi-turn conversations                │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+              ┌─────────────────┐
+              │   User receives  │
+              │ natural language │
+              │    response      │
+              └─────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
  Function Tools Layer (Shared)
 ═══════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────┐
-│  Nutrition Tools:                                   │
+│  Nutrition Tools (Deterministic):                   │
 │  - calculate_tdee()                                 │
 │  - calculate_macros()                               │
 │  - analyze_weight_trend(days=14)                    │
@@ -234,7 +284,7 @@ But NOT needed for routine plan adjustments - those happen automatically.
 │  - calculate_optimal_deficit()                      │
 │  - calculate_optimal_surplus()                      │
 │                                                     │
-│  Training Tools:                                    │
+│  Training Tools (Deterministic):                    │
 │  - apply_linear_progressive_rules()                 │
 │  - apply_rep_range_rules()                          │
 │  - detect_plateau()                                 │
@@ -242,6 +292,16 @@ But NOT needed for routine plan adjustments - those happen automatically.
 │  - calculate_plateau_breaker_weight()               │
 │  - suggest_progression_model_switch()               │
 │  - calculate_1rm()                                  │
+│                                                     │
+│  Data Retrieval Tools (for Coach Orchestrator):     │
+│  - get_user_profile()                               │
+│  - get_nutrition_logs(days)                         │
+│  - get_workout_logs(days, exercise)                 │
+│  - get_body_logs(days)                              │
+│  - get_weekly_analysis(week)                        │
+│  - get_nutrition_recommendation()                   │
+│  - get_training_status(exercise)                    │
+│  - analyze_progress(metric, timeframe)              │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -292,10 +352,11 @@ Your app currently has:
 
 ### Integration Points
 
-For detailed schema and API specifications, see:
-- [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) - Weekly analysis, deterministic algorithm, DynamoDB schema
-- [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) - Session-to-session progression, exercise configuration
-- [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) - AI-powered weekly summaries, personalized messaging
+For detailed implementation specifications, see:
+- [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) - Weekly analysis, deterministic algorithm (Tables 1-3), skinfold tracking, DynamoDB schema
+- [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) - Session-to-session progression, Linear Progressive & Rep Range models, exercise configuration
+- [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) - AI-powered weekly summaries with Bedrock Claude, personalized messaging, achievement tracking
+- [Coach Orchestrator Spec](./agents/COACH_ORCHESTRATOR_SPEC.md) - Conversational AI with OpenAI SDK, function calling, natural language Q&A
 
 #### EventBridge Scheduled Rule
 ```python
@@ -329,28 +390,32 @@ terraform/
   lambda_ai_agents.tf  # New file for AI agent Lambdas
   eventbridge.tf       # EventBridge cron rules
 
-ai_agents/  # Renamed from alex_backend
-  nutrition_specialist/  # Weekly (deterministic - pure Python)
+ai_agents/
+  nutrition_specialist/     # Weekly (deterministic - pure Python)
     lambda_handler.py
-    algorithm.py        # Pure Python implementation of Tables 1-3
+    algorithm.py            # Pure Python implementation of Tables 1-3
     tools.py
-  training_specialist/   # Event-driven (deterministic - pure Python)
+    test_algorithm.py       # Unit tests for deterministic logic
+  training_specialist/      # Event-driven (deterministic - pure Python)
     lambda_handler.py
-    algorithm.py
+    algorithm.py            # Linear Progressive & Rep Range algorithms
     tools.py
-  communication_specialist/  # Weekly (AI-powered - Bedrock)
+    test_algorithm.py       # Unit tests for progression rules
+  communication_specialist/ # Weekly (AI-powered - Bedrock Claude)
     lambda_handler.py
-    agent.py           # AI agent for message generation
-    prompts.py
-  orchestrator/          # On-demand chat (AI-powered - future)
+    agent.py                # Bedrock Claude agent for message generation
+    prompts.py              # System prompts for personalized communication
+  coach_orchestrator/       # On-demand (AI-powered - OpenAI SDK)
     lambda_handler.py
-    agent.py
-    prompts.py
+    agent.py                # OpenAI SDK conversation logic
+    tools.py                # Function tool definitions
+    prompts.py              # System prompts for coaching
+    test_coach.py           # Tests for conversation flow
   shared/
     context.py
-    models.py          # Pydantic models for structured outputs
-    db_client.py
-    trend_analysis.py  # Shared trend calculation functions (deterministic)
+    models.py               # Pydantic models for structured outputs
+    db_client.py            # Database interface (see DATABASE_CLIENT_INTERFACE.md)
+    trend_analysis.py       # Shared trend calculation functions (deterministic)
 ```
 
 ---
@@ -406,20 +471,33 @@ variable "enable_weekly_schedule" {
 
 ### Cost Estimates
 
-**Weekly Nutrition Analysis (Primary Cost):**
+**Weekly Nutrition Analysis:**
 - Lambda invocations: 1 per user per week
-- Bedrock Claude costs: ~$0.03-0.05 per user per week
-- **Monthly cost for 1000 users: ~$165/month**
+- **AI Cost: $0** (deterministic - pure Python)
+- Lambda compute: ~$0.0001 per user per week
+- **Monthly cost for 1000 users: ~$0.40/month**
 
 **Training Analysis (Event-Driven):**
 - Lambda invocations: ~3-4 per user per week (post-workout)
-- Smaller token usage (simpler algorithm)
-- **Monthly cost for 1000 users: ~$40/month**
+- **AI Cost: $0** (deterministic - pure Python)
+- Lambda compute: ~$0.0003 per user per week
+- **Monthly cost for 1000 users: ~$1.20/month**
 
-**Total: ~$205/month for 1000 users**
-- Much more cost-effective than human coaches ($100+ per client/month)
+**Communication Specialist (AI-Powered):**
+- Lambda invocations: 1 per user per week
+- Bedrock Claude costs: ~$0.02 per user per week
+- **Monthly cost for 1000 users: ~$80/month**
+
+**Coach Orchestrator (AI-Powered, On-Demand):**
+- Usage: ~4 conversations per user per month
+- OpenAI GPT-4 Turbo: ~$0.048 per conversation
+- **Monthly cost for 1000 users: ~$192/month**
+
+**Total: ~$273/month for 1000 active users**
+- Critical decisions are FREE (deterministic)
+- AI cost only for user communication and Q&A
+- Much cheaper than human coaches ($100+ per client/month)
 - Cost scales linearly with users
-- Pay only for actual AI usage, not idle time
 
 ### Observability
 - CloudWatch logs for each Lambda invocation
@@ -438,58 +516,77 @@ variable "enable_weekly_schedule" {
 
 ## Key Advantages of This Architecture
 
-### 1. Proactive Coaching (Not Reactive)
+### 1. Hybrid Architecture: Best of Both Worlds
+- **Deterministic core** for critical decisions (nutrition, training) = Fast, reliable, testable, FREE
+- **AI communication layer** for user experience = Personalized, engaging, motivating
+- Clear separation prevents AI hallucinations from affecting plan adjustments
+
+### 2. Proactive Coaching (Not Reactive)
 - User doesn't need to diagnose problems themselves
-- Agent automatically detects plateaus and anomalies
+- Agents automatically detect plateaus and anomalies
 - Weekly rhythm matches real coaching cadence
 - Reduces cognitive load for users
 
-### 2. Data-Driven with Noise Filtering
+### 3. Evidence-Based & Deterministic
+- Nutrition algorithm implements peer-reviewed tables (optimal deficit by body fat %)
+- Training progression follows proven programming principles
+- 100% testable, reproducible, and explainable
+- No AI "black box" for critical decisions
+
+### 4. Data-Driven with Noise Filtering
 - 14-day trend analysis filters out daily fluctuations
+- Skinfold measurements provide reliable fat loss tracking (preferred over body fat % alone)
 - Avoids over-reacting to water retention, poor sleep, etc.
-- Statistical approach to plateau detection
 - Minimum data requirements prevent premature adjustments
 
-### 3. Transparent Plan Adjustments
+### 5. Transparent Plan Adjustments
 - Users see exactly what changed and why
 - Reasoning is stored and displayed
 - Plan version history for accountability
 - Builds trust through transparency
 
-### 4. Separation of Concerns
+### 6. Separation of Concerns
+- **Nutrition Specialist**: Makes nutrition decisions
+- **Training Specialist**: Makes training decisions
+- **Communication Specialist**: Explains decisions to users
+- **Coach Orchestrator**: Answers questions (read-only)
 - Each agent has one job, easier to test and improve
-- Nutrition and training agents operate independently
-- Specialists focus on domain-specific recommendations
 
-### 5. Scalability
+### 7. Scalability
 - Lambda auto-scales, no infrastructure management
 - EventBridge handles scheduling for all users
 - Parallel processing possible for large user bases
+- DynamoDB handles high throughput
 
-### 6. Cost Efficiency
-- ~$0.04 per user per week for AI coaching
+### 8. Cost Efficiency
+- Critical decisions are FREE (deterministic algorithms)
+- AI cost only for user communication (~$0.27 per user per month)
 - Pay only for actual AI usage, not idle time
 - 100x cheaper than human coaches
 
-### 7. Intelligent Conflict Resolution
-- Detects when recommendations conflict (e.g., cut calories vs add volume)
-- Makes trade-offs based on user's primary goal
-- Coordinates multi-domain adjustments
+### 9. Natural Language Interface
+- Coach Orchestrator provides conversational Q&A
+- Users ask questions in plain English
+- AI dynamically calls specialist functions
+- Educational explanations build user knowledge
 
-### 8. Extensibility
-- Easy to add new specialists (e.g., injury prevention, supplement timing)
+### 10. Extensibility
+- Easy to add new specialists (e.g., injury prevention, sleep optimization)
 - New specialist agents can be added independently
-- Clear interfaces between agents
+- Clear function tool interfaces
+- Coach Orchestrator automatically gains access to new capabilities
 
-### 9. Type Safety & Reliability
+### 11. Type Safety & Reliability
 - Pydantic models ensure structured, validated outputs
-- Specialist algorithms are independently testable with fixed inputs
-- Clear contracts between orchestrator and specialists
+- Deterministic algorithms are unit-testable with fixed inputs
+- Clear contracts between agents
+- No runtime surprises
 
-### 10. Observability
+### 12. Observability
 - Each agent is independently traceable
 - Weekly analysis results stored for audit
 - Plan change history preserved
+- CloudWatch logs for all Lambda invocations
 
 ---
 
@@ -532,11 +629,14 @@ See [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) for complet
 - [ ] Add training prescription UI (display next session recommendation)
 - [ ] Show user metrics (streak, achievements, progress)
 
-### Phase 6: On-Demand Chat (Week 7) (Secondary)
-- [ ] Implement Coach Orchestrator agent for Q&A
-- [ ] Add `coach_jobs` DynamoDB table
+### Phase 6: Coach Orchestrator (Week 7)
+See [Coach Orchestrator Spec](./agents/COACH_ORCHESTRATOR_SPEC.md) for complete implementation details
+- [ ] Implement Coach Orchestrator agent with OpenAI SDK
+- [ ] Create function tools for data retrieval and specialist calls
+- [ ] Set up conversation state management
 - [ ] Create `/api/coach/ask` endpoint
 - [ ] Build chat UI component
+- [ ] Test multi-turn conversations
 
 ### Phase 7: Polish & Demo Prep (Week 8)
 - [ ] Add observability (CloudWatch logs, metrics)
@@ -550,24 +650,55 @@ See [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) for complet
 
 | Aspect | ALEX (Financial) | Fitness Coach |
 |--------|------------------|---------------|
-| **Orchestrator** | Planner | Coach Orchestrator (optional) |
-| **Specialists** | Tagger, Reporter, Charter, Retirement, Researcher | Nutrition, Training |
-| **Tools** | Market insights, price updates | TDEE calc, 1RM calc, trend analysis |
+| **Orchestrator** | Planner (AI-powered) | Coach Orchestrator (AI-powered with OpenAI SDK) |
+| **Specialists** | Tagger, Reporter, Charter, Retirement, Researcher (AI) | Nutrition (Deterministic), Training (Deterministic), Communication (AI) |
+| **Decision Making** | AI reasoning for all decisions | Hybrid: Deterministic for critical decisions, AI for communication |
+| **Tools** | Market insights, price updates | TDEE calc, 1RM calc, trend analysis, body composition tracking |
 | **Data Source** | Aurora PostgreSQL | DynamoDB |
-| **Conflict Type** | Data validation | Competing recommendations |
-| **Output** | Portfolio report + charts | Coaching advice + action plan |
-| **Trigger** | User request | Weekly scheduled + post-workout events |
+| **Conflict Type** | Data validation | Competing recommendations (calorie vs volume adjustments) |
+| **Output** | Portfolio report + charts | Weekly analysis + personalized coaching messages + next session prescriptions |
+| **Trigger** | User request | Weekly scheduled + post-workout events + on-demand chat |
+| **Cost per User** | Higher (all AI) | Lower (deterministic core, AI only for UX) |
+
+---
+
+## Agent Specifications
+
+For complete implementation details, see:
+
+1. **[Nutrition Specialist Agent](./agents/NUTRITION_AGENT_SPEC.md)**
+   - Weekly scheduled (EventBridge - Mondays 6:00 AM)
+   - Deterministic algorithm (Pure Python - NO AI)
+   - Evidence-based Tables 1-3 for deficit/surplus calculation
+   - Skinfold-based body composition tracking
+   - Body recomposition detection
+
+2. **[Training Specialist Agent](./agents/TRAINING_AGENT_SPEC.md)**
+   - Event-driven (post-workout)
+   - Deterministic progression models (Pure Python - NO AI)
+   - Linear Progressive and Rep Range progression
+   - Plateau/regression detection
+   - Reactive deloads and plateau breakers
+
+3. **[Communication Specialist Agent](./agents/COMMUNICATION_AGENT_SPEC.md)**
+   - Weekly scheduled (EventBridge - Mondays 6:05 AM)
+   - AI-powered (Bedrock Claude)
+   - Translates technical recommendations into personalized messages
+   - Achievement tracking and motivation
+   - Multi-language ready
+
+4. **[Coach Orchestrator Agent](./agents/COACH_ORCHESTRATOR_SPEC.md)**
+   - On-demand conversational Q&A
+   - AI-powered (OpenAI SDK with function calling)
+   - Natural language interface to fitness system
+   - Multi-turn conversations
+   - Educational explanations
 
 ---
 
 ## Next Steps
 
-1. **Review Agent Specifications**: Read detailed specs for each agent:
-   - [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) - Complete algorithm, tools, and schema
-   - [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) - Progression models, rules, and API integration
-
+1. **Review detailed agent specifications** (linked above)
 2. **Set up project structure** - Create `ai_agents/` directory
-
-3. **Choose MVP scope** - Weekly analysis + Nutrition + Training specialists
-
-4. **Begin implementation** - Start with nutrition agent or training agent based on priority
+3. **Choose MVP scope** - Recommend starting with Nutrition + Training specialists (deterministic, cost-free)
+4. **Begin implementation** - Follow the implementation roadmap (Phase 1-7)
