@@ -284,6 +284,128 @@ class UserProfile(BaseModel):
 
 
 # ============================================================================
+# Training Agent Models
+# ============================================================================
+
+class Set(BaseModel):
+    """
+    A single set in a workout.
+
+    Used to track individual sets and analyze performance.
+    """
+    weight: float = Field(..., ge=0, description="Weight used (kg)")
+    reps: int = Field(..., ge=0, description="Reps completed")
+
+
+class Session(BaseModel):
+    """
+    A workout session for a specific exercise.
+
+    Used in session history for progression analysis.
+    """
+    date: str = Field(..., description="Session date (ISO format)")
+    first_set: Set = Field(..., description="First work set (progression benchmark)")
+
+
+class ExerciseConfig(BaseModel):
+    """
+    Configuration for an exercise's progression model.
+
+    Stored in user_exercises table.
+    """
+    progression_model: Literal["linear", "rep_range"] = Field(..., description="Progression model")
+    rep_target: int = Field(..., ge=1, le=50, description="Target reps for progression")
+    num_sets: int = Field(..., ge=1, le=10, description="Number of sets per session")
+    available_increments: list[float] = Field(..., description="Available weight increments (kg)")
+    selected_increment: float = Field(..., ge=0, description="Selected increment for this exercise")
+
+
+class NextSession(BaseModel):
+    """
+    Prescription for the next workout session.
+
+    Contains weight, reps, and action type.
+    """
+    weight: float = Field(..., ge=0, description="Prescribed weight (kg)")
+    target_reps: int = Field(..., ge=1, description="Target reps")
+    action: Literal[
+        "increase_weight",
+        "add_reps",
+        "plateau_breaker",
+        "reactive_deload",
+        "retry"
+    ] = Field(..., description="Action type for next session")
+    message: str = Field(..., description="User-facing message")
+    reasoning: str = Field(..., description="Why this prescription was made")
+
+
+class NextSessionRecommendation(BaseModel):
+    """
+    Complete recommendation output from Training Specialist Agent.
+
+    Includes today's analysis and next session prescription.
+    """
+    exercise_name: str = Field(..., description="Exercise name")
+    progression_model: Literal["linear", "rep_range"] = Field(..., description="Progression model used")
+
+    # Today's analysis
+    today_first_set: Set = Field(..., description="Today's first set")
+    hit_rep_target: bool = Field(..., description="Whether rep target was hit")
+    plateau_detected: bool = Field(False, description="Whether plateau was detected")
+    regression_detected: bool = Field(False, description="Whether regression was detected")
+    reactive_deload_implemented: bool = Field(False, description="Whether reactive deload was needed")
+
+    # Next session prescription (algorithmic)
+    next_weight: float = Field(..., ge=0, description="Next session weight (kg)")
+    next_rep_target: int = Field(..., ge=1, description="Next session target reps")
+    action_type: Literal[
+        "increase_weight",
+        "add_reps",
+        "plateau_breaker",
+        "reactive_deload",
+        "retry"
+    ] = Field(..., description="Action type")
+
+    # User-facing messages
+    message: str = Field(..., description="User-facing summary message")
+    reasoning: str = Field(..., description="Technical reasoning")
+
+    # Optional suggestions
+    model_switch_suggestion: Optional["ModelSwitchSuggestion"] = Field(
+        None,
+        description="Suggestion to switch progression models"
+    )
+    increment_adjustment_suggestion: Optional[float] = Field(
+        None,
+        description="Suggested new increment"
+    )
+
+    confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence in recommendation")
+
+
+class PlateauAnalysis(BaseModel):
+    """
+    Analysis of plateau detection.
+
+    Used in Rep Range progression to detect lack of progress.
+    """
+    plateau_detected: bool = Field(..., description="Whether plateau was detected")
+    duration_sessions: int = Field(0, description="Number of sessions without progress")
+    last_progressed_date: Optional[str] = Field(None, description="Last date of progression")
+
+
+class ModelSwitchSuggestion(BaseModel):
+    """
+    Suggestion to switch progression models.
+
+    Provided when increment becomes too large or failure rate too high.
+    """
+    from_model: Literal["linear", "rep_range"] = Field(..., description="Current model")
+    to_model: Literal["linear", "rep_range"] = Field(..., description="Suggested model")
+    reason: str = Field(..., description="Why switch is suggested")
+
+
+# ============================================================================
 # Utility Models
 # ============================================================================
 
@@ -305,6 +427,7 @@ class AnalysisInput(BaseModel):
 # ============================================================================
 
 __all__ = [
+    # Nutrition models
     "MacroSplit",
     "NutritionRecommendation",
     "WeightTrend",
@@ -315,4 +438,12 @@ __all__ = [
     "ActivePlanDocument",
     "UserProfile",
     "AnalysisInput",
+    # Training models
+    "Set",
+    "Session",
+    "ExerciseConfig",
+    "NextSession",
+    "NextSessionRecommendation",
+    "PlateauAnalysis",
+    "ModelSwitchSuggestion",
 ]
