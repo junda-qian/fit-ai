@@ -56,10 +56,12 @@ export default function WorkoutLogging() {
   const [workoutPlan, setWorkoutPlan] = useState<WorkoutPlan | null>(null);
   const [showPlan, setShowPlan] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [recommendations, setRecommendations] = useState<any[]>([]);
 
   useEffect(() => {
     fetchWorkoutPlan();
     fetchTodaysWorkouts();
+    fetchRecommendations();
   }, []);
 
   const fetchWorkoutPlan = async () => {
@@ -105,6 +107,23 @@ export default function WorkoutLogging() {
     }
   };
 
+  const fetchRecommendations = async () => {
+    try {
+      const userId = localStorage.getItem('fit_tracker_user_id');
+      if (!userId) return;
+
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/training/recommendations?user_id=${userId}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        setRecommendations(data.recommendations || []);
+      }
+    } catch (error) {
+      console.error('Error fetching recommendations:', error);
+    }
+  };
+
   const handleAddSet = () => {
     setCurrentSets([...currentSets, { reps: 10, weight: 0, rpe: 7 }]); // Default RPE 7 (not shown in UI)
   };
@@ -144,14 +163,25 @@ export default function WorkoutLogging() {
     // Initialize sets based on plan
     const numSets = exercise.sets || 3;
 
-    // Use calculated reps from intensity if available, otherwise use stored reps
-    const defaultReps = exercise.intensity
-      ? parseInt(calculateRepsFromIntensity(exercise.name, exercise.intensity))
-      : parseInt(exercise.reps.split('-')[0]) || 10;
+    // Check if there's a recommendation for this exercise
+    const recommendation = recommendations.find(
+      (rec) => rec.exercise_name.toLowerCase() === exercise.name.toLowerCase()
+    );
 
+    let defaultWeight;
+
+    if (recommendation) {
+      // Use Training Agent's recommended weight
+      defaultWeight = recommendation.next_weight;
+    } else {
+      // No recommendation yet - start with 0
+      defaultWeight = 0;
+    }
+
+    // Initialize sets with recommended weight but empty reps (user will fill in actual reps)
     const initialSets = Array(numSets).fill(null).map(() => ({
-      reps: defaultReps,
-      weight: 0,
+      reps: 10, // Default placeholder - users will enter actual reps
+      weight: defaultWeight,
       rpe: exercise.rpe || 7
     }));
     setCurrentSets(initialSets);
@@ -197,8 +227,9 @@ export default function WorkoutLogging() {
       setCurrentSets([]);
       setNotes('');
 
-      // Refresh today's workouts
+      // Refresh today's workouts and recommendations
       await fetchTodaysWorkouts();
+      await fetchRecommendations();
 
       alert('Workout logged successfully!');
     } catch (error) {
@@ -425,6 +456,21 @@ export default function WorkoutLogging() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
+
+              {/* Training Agent Target */}
+              {currentExercise && recommendations.find(
+                (rec) => rec.exercise_name.toLowerCase() === currentExercise.toLowerCase()
+              ) && (
+                <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-center text-sm">
+                    <span className="mr-2">🎯</span>
+                    <span className="font-medium text-blue-900">Target: </span>
+                    <span className="ml-1 text-blue-800">
+                      {recommendations.find((rec) => rec.exercise_name.toLowerCase() === currentExercise.toLowerCase())?.next_weight}kg × {recommendations.find((rec) => rec.exercise_name.toLowerCase() === currentExercise.toLowerCase())?.next_rep_target} reps
+                    </span>
+                  </div>
+                </div>
+              )}
 
               {/* Sets */}
               <div className="mb-4">

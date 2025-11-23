@@ -13,7 +13,7 @@ from ..shared.models import (
     WeightTrend,
     BodyCompositionTrend,
     NutritionSummary,
-    WorkoutSummary,
+    TrainingProgressSummary,
     AnalysisInput
 )
 from .tools import (
@@ -34,7 +34,7 @@ def apply_nutrition_algorithm(
     weight_trend: WeightTrend,
     body_comp_trend: BodyCompositionTrend,
     nutrition_summary: NutritionSummary,
-    workout_summary: WorkoutSummary
+    training_summary: TrainingProgressSummary
 ) -> NutritionRecommendation:
     """
     Apply evidence-based nutrition algorithm using pure Python.
@@ -47,7 +47,7 @@ def apply_nutrition_algorithm(
         weight_trend: Weight trend analysis
         body_comp_trend: Body composition trend analysis
         nutrition_summary: Nutrition log summary
-        workout_summary: Workout log summary
+        training_summary: Training progress summary published by Training Agent
 
     Returns:
         NutritionRecommendation with calorie/macro adjustments and reasoning
@@ -137,7 +137,7 @@ def apply_nutrition_algorithm(
             weight_trend,
             body_comp_trend,
             nutrition_summary,
-            workout_summary,
+            training_summary,
             maintenance,
             optimal_surplus_pct
         )
@@ -232,7 +232,7 @@ def apply_bulking_algorithm(
     weight_trend: WeightTrend,
     body_comp_trend: BodyCompositionTrend,
     nutrition_summary: NutritionSummary,
-    workout_summary: WorkoutSummary,
+    training_summary: TrainingProgressSummary,
     maintenance: float,
     optimal_surplus_pct: float
 ) -> NutritionRecommendation:
@@ -243,12 +243,14 @@ def apply_bulking_algorithm(
     Logic:
     1. Get target gain rate from Table 3
     2. Compare observed vs target gain rate
-    3. Consider body fat trend + strength progression
+    3. Consider body fat trend + strength progression from Training Agent
     4. Adjust calories accordingly
     """
     weekly_gain_pct = weight_trend.weekly_rate_pct  # Positive if gaining
     body_fat_trend_direction = body_comp_trend.trend
-    strength_progressing = workout_summary.strength_progressing
+
+    # Use Training Agent's expert assessment instead of calculating ourselves
+    strength_progressing = training_summary.overall_strength_trend == "improving"
 
     # Get target gain rate from Table 3
     surplus_info = calculate_optimal_surplus(user_profile.get("training_status", "novice"))

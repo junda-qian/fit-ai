@@ -405,6 +405,47 @@ class ModelSwitchSuggestion(BaseModel):
     reason: str = Field(..., description="Why switch is suggested")
 
 
+class TrainingProgressSummary(BaseModel):
+    """
+    Weekly aggregate strength trend summary published by Training Agent.
+
+    This data is consumed by:
+    - Nutrition Agent (for bulk effectiveness assessment)
+    - Dashboard (for user progress tracking)
+    - Communication Agent (for weekly summaries)
+    - Coach Orchestrator (for answering questions)
+
+    Published to training_progress_summaries DynamoDB table.
+    """
+    user_id: str = Field(..., description="User identifier")
+    week: str = Field(..., description="ISO week format (YYYY-Www)")
+
+    # Publication metadata
+    published_by: str = Field("training_agent", description="Agent that published this summary")
+    published_at: str = Field(..., description="ISO timestamp of publication")
+
+    # Overall strength trend (Training Agent's expert assessment)
+    overall_strength_trend: Literal["improving", "stable", "declining", "insufficient_data"] = Field(
+        ...,
+        description="Overall strength trend across all exercises"
+    )
+
+    # Exercise-level breakdown
+    exercises_analyzed: int = Field(..., ge=0, description="Number of exercises analyzed")
+    exercises_progressing: int = Field(..., ge=0, description="Number of exercises progressing (hit targets >=70%)")
+    exercises_plateaued: int = Field(..., ge=0, description="Number of exercises plateaued (no progress 2+ sessions)")
+    exercises_regressing: int = Field(..., ge=0, description="Number of exercises regressing (performance decreased)")
+
+    # Aggregate metrics
+    avg_weekly_volume_kg: float = Field(0.0, ge=0, description="Average weekly training volume (kg)")
+    trend_confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence in assessment (0-1)")
+
+    # Context
+    days_of_data: int = Field(..., ge=1, description="Days of data analyzed")
+    workouts_completed: int = Field(..., ge=0, description="Number of workouts completed")
+    data_quality: Literal["good", "fair", "poor"] = Field(..., description="Quality of data for analysis")
+
+
 # ============================================================================
 # Utility Models
 # ============================================================================
@@ -419,7 +460,7 @@ class AnalysisInput(BaseModel):
     weight_trend: WeightTrend = Field(..., description="Weight trend analysis")
     body_comp_trend: BodyCompositionTrend = Field(..., description="Body composition trend")
     nutrition_summary: NutritionSummary = Field(..., description="Nutrition summary")
-    workout_summary: WorkoutSummary = Field(..., description="Workout summary")
+    training_summary: TrainingProgressSummary = Field(..., description="Training progress summary from Training Agent")
 
 
 # ============================================================================
@@ -446,4 +487,5 @@ __all__ = [
     "NextSessionRecommendation",
     "PlateauAnalysis",
     "ModelSwitchSuggestion",
+    "TrainingProgressSummary",
 ]

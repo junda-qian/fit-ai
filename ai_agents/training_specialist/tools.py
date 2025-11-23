@@ -6,7 +6,37 @@ All functions are deterministic (no AI).
 """
 
 from typing import List, Optional
+from datetime import datetime
 from ai_agents.shared.models import Session, PlateauAnalysis, ModelSwitchSuggestion
+
+
+def get_iso_week(dt: Optional[datetime] = None) -> str:
+    """
+    Get ISO week format (YYYY-Www) for a given datetime.
+
+    ISO week format provides a standardized way to identify weeks:
+    - Weeks start on Monday
+    - Week 1 is the first week containing a Thursday
+    - Format: YYYY-Www (e.g., "2025-W47")
+
+    Args:
+        dt: Datetime object (defaults to UTC now)
+
+    Returns:
+        str: ISO week format (e.g., "2025-W47")
+
+    Example:
+        >>> get_iso_week(datetime(2025, 11, 22))
+        '2025-W47'
+    """
+    if dt is None:
+        dt = datetime.utcnow()
+
+    iso_calendar = dt.isocalendar()
+    year = iso_calendar[0]
+    week = iso_calendar[1]
+
+    return f"{year}-W{week:02d}"
 
 
 def detect_plateau(
@@ -117,7 +147,7 @@ def suggest_progression_model_switch(
     Suggest switching progression models if increment is causing issues.
 
     Trigger:
-    - Failure rate > 50% in Linear Progressive
+    - Failure rate >= 50% in Linear Progressive
     - Multiple consecutive failures
 
     Args:
@@ -127,8 +157,8 @@ def suggest_progression_model_switch(
     Returns:
         ModelSwitchSuggestion or None
     """
-    if failure_rate > 0.5:
-        # Failing more than 50% of sessions - increment too large
+    if failure_rate >= 0.5:
+        # Failing 50% or more of sessions - increment too large
         return ModelSwitchSuggestion(
             from_model="linear",
             to_model="rep_range",
@@ -188,3 +218,131 @@ def calculate_rep_max_percentage(
     # weight = 1RM / (1 + reps / 30)
     percentage = 1 / (1 + target_reps / 30.0)
     return one_rm * percentage
+
+
+def calculate_overall_strength_trend(
+    user_exercises: List[dict],
+    recent_recommendations: List[dict],
+    days: int = 14,
+) -> dict:
+    """
+    Analyze recent workouts to determine overall strength trend.
+
+    This is the Training Agent's expert assessment based on session-to-session
+    progression data collected from the event-driven flow.
+
+    Args:
+        user_exercises: List of user exercise configurations
+        recent_recommendations: Recent training recommendations from last N days
+        days: Number of days to analyze (default 14)
+
+    Returns:
+        dict with:
+            - overall_strength_trend: "improving" | "stable" | "declining" | "insufficient_data"
+            - exercises_analyzed: int
+            - exercises_progressing: int
+            - exercises_plateaued: int
+            - exercises_regressing: int
+            - trend_confidence: float (0-1)
+            - data_quality: "good" | "fair" | "poor"
+    """
+    if len(recent_recommendations) < 2:
+        return {
+            "overall_strength_trend": "insufficient_data",
+            "exercises_analyzed": 0,
+            "exercises_progressing": 0,
+            "exercises_plateaued": 0,
+            "exercises_regressing": 0,
+            "trend_confidence": 0.0,
+            "data_quality": "poor"
+        }
+
+    # Count exercises in each state
+    progressing_count = 0
+    plateaued_count = 0
+    regressing_count = 0
+
+    for exercise in user_exercises:
+        exercise_name = exercise.get("exercise_name")
+
+        # Get recent recommendations for this exercise
+        exercise_recs = [
+            r for r in recent_recommendations
+            if r.get("exercise_name") == exercise_name
+        ]
+
+        if not exercise_recs:
+            continue
+
+        # Check if exercise is progressing
+        # Count how many times rep target was hit
+        hit_target_count = sum(
+            1 for r in exercise_recs
+            if r.get("hit_rep_target", False)
+        )
+
+        # Check for plateau or regression flags
+        plateau_detected = any(
+            r.get("plateau_detected", False)
+            for r in exercise_recs
+        )
+        regression_detected = any(
+            r.get("regression_detected", False)
+            for r in exercise_recs
+        )
+
+        # Categorize exercise
+        if regression_detected:
+            regressing_count += 1
+        elif plateau_detected:
+            plateaued_count += 1
+        elif hit_target_count >= len(exercise_recs) * 0.7:  # Hit target in 70%+ of sessions
+            progressing_count += 1
+        else:
+            plateaued_count += 1
+
+    total = progressing_count + plateaued_count + regressing_count
+
+    if total == 0:
+        return {
+            "overall_strength_trend": "insufficient_data",
+            "exercises_analyzed": 0,
+            "exercises_progressing": 0,
+            "exercises_plateaued": 0,
+            "exercises_regressing": 0,
+            "trend_confidence": 0.0,
+            "data_quality": "poor"
+        }
+
+    # Determine overall trend
+    progressing_pct = progressing_count / total
+    regressing_pct = regressing_count / total
+
+    if regressing_pct > 0.3:  # >30% of exercises regressing
+        overall_trend = "declining"
+    elif progressing_pct >= 0.6:  # >=60% of exercises progressing
+        overall_trend = "improving"
+    else:
+        overall_trend = "stable"
+
+    # Calculate confidence based on number of exercises
+    # More exercises = higher confidence
+    trend_confidence = min(total / 5.0, 1.0)
+
+    # Determine data quality
+    if total >= 3:
+        data_quality = "good"
+    elif total >= 1:
+        data_quality = "fair"
+    else:
+        data_quality = "poor"
+
+    return {
+        "overall_strength_trend": overall_trend,
+        "exercises_analyzed": total,
+        "exercises_progressing": progressing_count,
+        "exercises_plateaued": plateaued_count,
+        "exercises_regressing": regressing_count,
+        "trend_confidence": trend_confidence,
+        "data_quality": data_quality
+    }

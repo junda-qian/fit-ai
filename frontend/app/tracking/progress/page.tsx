@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TrendingUp, Scale, Flame, Dumbbell, Calendar, ArrowLeft, Sparkles } from 'lucide-react';
+import { TrendingUp, Scale, Flame, Dumbbell, Calendar, ArrowLeft, Sparkles, Activity } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Link from 'next/link';
 
@@ -43,6 +43,19 @@ interface NutritionRecommendation {
   confidence: number;
 }
 
+interface TrainingSummary {
+  user_id: string;
+  week: string;
+  overall_strength_trend: 'improving' | 'stable' | 'declining' | 'insufficient_data';
+  exercises_analyzed: number;
+  exercises_progressing: number;
+  exercises_plateaued: number;
+  exercises_regressing: number;
+  avg_weekly_volume_kg: number;
+  data_quality: 'good' | 'fair' | 'poor';
+  trend_confidence: number;
+}
+
 export default function ProgressPage() {
   const [bodyLogs, setBodyLogs] = useState<BodyLog[]>([]);
   const [dailySummaries, setDailySummaries] = useState<DailySummary[]>([]);
@@ -50,6 +63,8 @@ export default function ProgressPage() {
   const [dateRange, setDateRange] = useState<'7' | '30' | '90'>('30');
   const [nutritionRecommendation, setNutritionRecommendation] = useState<NutritionRecommendation | null>(null);
   const [loadingRecommendation, setLoadingRecommendation] = useState(false);
+  const [trainingSummary, setTrainingSummary] = useState<TrainingSummary | null>(null);
+  const [loadingTrainingSummary, setLoadingTrainingSummary] = useState(false);
 
   const fetchProgressData = async () => {
     setLoading(true);
@@ -119,6 +134,30 @@ export default function ProgressPage() {
       console.error('Error fetching nutrition recommendation:', err);
     } finally {
       setLoadingRecommendation(false);
+    }
+  };
+
+  const fetchTrainingSummary = async () => {
+    setLoadingTrainingSummary(true);
+    try {
+      const userId = localStorage.getItem('fit_tracker_user_id');
+      if (!userId) return;
+
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/training/weekly-summary`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setTrainingSummary(data.summary);
+      }
+    } catch (err) {
+      console.error('Error fetching training summary:', err);
+    } finally {
+      setLoadingTrainingSummary(false);
     }
   };
 
@@ -406,6 +445,129 @@ export default function ProgressPage() {
             <div className="text-center py-8 text-gray-600">
               <p className="mb-2">Click the button above to get personalized nutrition recommendations based on your last 14 days of data.</p>
               <p className="text-sm text-gray-500">Uses a deterministic algorithm that analyzes your weight trend, body composition, nutrition compliance, and workout frequency to provide research-backed guidance.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Training Progress Analysis */}
+        <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl shadow-lg p-6 mb-8 border-2 border-green-200">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Activity className="w-6 h-6 text-green-600" />
+              <h2 className="text-xl font-bold text-gray-800">Training Progress Analysis</h2>
+            </div>
+            <button
+              onClick={fetchTrainingSummary}
+              disabled={loadingTrainingSummary}
+              className="bg-green-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-700 disabled:bg-green-300 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+            >
+              {loadingTrainingSummary ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                  Analyzing...
+                </>
+              ) : (
+                <>
+                  <Activity className="w-4 h-4" />
+                  Generate Weekly Summary
+                </>
+              )}
+            </button>
+          </div>
+
+          {trainingSummary ? (
+            <div className="space-y-4">
+              {/* Status Badge */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className={`px-4 py-2 rounded-full font-medium ${
+                  trainingSummary.overall_strength_trend === 'improving'
+                    ? 'bg-green-100 text-green-700'
+                    : trainingSummary.overall_strength_trend === 'declining'
+                    ? 'bg-red-100 text-red-700'
+                    : trainingSummary.overall_strength_trend === 'stable'
+                    ? 'bg-yellow-100 text-yellow-700'
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {trainingSummary.overall_strength_trend === 'improving' && '📈 Strength Improving'}
+                  {trainingSummary.overall_strength_trend === 'declining' && '📉 Strength Declining'}
+                  {trainingSummary.overall_strength_trend === 'stable' && '➡️ Strength Stable'}
+                  {trainingSummary.overall_strength_trend === 'insufficient_data' && 'ℹ️ Insufficient Data'}
+                </span>
+                <span className="px-4 py-2 rounded-full bg-teal-100 text-teal-700 font-medium">
+                  Week {trainingSummary.week}
+                </span>
+                <span className={`px-4 py-2 rounded-full font-medium ${
+                  trainingSummary.data_quality === 'good'
+                    ? 'bg-blue-100 text-blue-700'
+                    : trainingSummary.data_quality === 'fair'
+                    ? 'bg-yellow-100 text-yellow-700'
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  Data Quality: {trainingSummary.data_quality}
+                </span>
+              </div>
+
+              {/* Exercise Breakdown */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h3 className="font-bold text-gray-800 mb-3">Exercise Breakdown (Last 14 Days)</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Total Analyzed</div>
+                    <div className="text-2xl font-bold text-gray-800">{trainingSummary.exercises_analyzed}</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Progressing</div>
+                    <div className="text-2xl font-bold text-green-600">{trainingSummary.exercises_progressing}</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Plateaued</div>
+                    <div className="text-2xl font-bold text-yellow-600">{trainingSummary.exercises_plateaued}</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm text-gray-600 mb-1">Regressing</div>
+                    <div className="text-2xl font-bold text-red-600">{trainingSummary.exercises_regressing}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Volume Stats */}
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <h3 className="font-bold text-gray-800 mb-3">Training Volume</h3>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="text-sm text-gray-600">Weekly Volume</span>
+                    <div className="text-2xl font-bold text-blue-600">
+                      {trainingSummary.avg_weekly_volume_kg?.toFixed(0) || '0'} kg
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-sm text-gray-600">Confidence</span>
+                    <div className="text-2xl font-bold text-purple-600">
+                      {((trainingSummary.trend_confidence || 0) * 100).toFixed(0)}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interpretation */}
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <h3 className="font-bold text-green-900 mb-2">Analysis</h3>
+                <p className="text-green-800">
+                  {trainingSummary.overall_strength_trend === 'improving' &&
+                    `You're making great progress! ${trainingSummary.exercises_progressing} out of ${trainingSummary.exercises_analyzed} exercises are improving. Keep up the good work!`}
+                  {trainingSummary.overall_strength_trend === 'stable' &&
+                    `Your strength is maintaining. Consider adjusting your training program if you want to see more progress.`}
+                  {trainingSummary.overall_strength_trend === 'declining' &&
+                    `${trainingSummary.exercises_regressing} exercises are regressing. This could indicate overtraining, inadequate recovery, or nutrition issues. Consider a deload week.`}
+                  {trainingSummary.overall_strength_trend === 'insufficient_data' &&
+                    'Not enough training data to assess trends. Log at least 2 weeks of workouts for accurate analysis.'}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center py-8 text-gray-600">
+              <p className="mb-2">Click the button above to analyze your strength progress over the last 14 days.</p>
+              <p className="text-sm text-gray-500">Uses a deterministic algorithm that analyzes your workout performance to identify progressing, plateaued, and regressing exercises.</p>
             </div>
           )}
         </div>

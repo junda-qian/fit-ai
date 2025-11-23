@@ -1,1 +1,6032 @@
-[]
+[
+  {
+    "id": "a3adddaf-c284-4b05-ae21-7226d8758271",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 19,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 16,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 15,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 12,
+            "weight": 50.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 11:08:03.917804"
+  },
+  {
+    "id": "7805a301-dbd3-4464-b9a6-873423eb33e6",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Dumbbell overhead press",
+        "sets": [
+          {
+            "reps": 20,
+            "weight": 10.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 20,
+            "weight": 10.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 20,
+            "weight": 9.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 11:12:45.308735"
+  },
+  {
+    "id": "bcfdaede-1b0e-44a3-884f-886999d97276",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Lateral raises",
+        "sets": [
+          {
+            "reps": 20,
+            "weight": 10.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 20,
+            "weight": 10.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 20,
+            "weight": 9.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 11:15:25.904979"
+  },
+  {
+    "id": "b9f21af8-7f25-499b-9aca-9dbc1c1ab707",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 20,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 18,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 16,
+            "weight": 30.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 11:51:58.508558"
+  },
+  {
+    "id": "9acde5a7-2980-4c68-bbb0-01ebdbd31219",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 19,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 16,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 15,
+            "weight": 50.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 13,
+            "weight": 50.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 12:05:29.905628"
+  },
+  {
+    "id": "71a73118-1028-482c-b576-dc2ee6e42537",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Dumbbell overhead press",
+        "sets": [
+          {
+            "reps": 20,
+            "weight": 20.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 18,
+            "weight": 20.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 16,
+            "weight": 20.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 14:10:02.703113"
+  },
+  {
+    "id": "48d31e23-bfe8-4785-944e-dcab687ac7b3",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 15:18:23.395191"
+  },
+  {
+    "id": "36051768-c93e-4eb0-8448-f79850d856d1",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 15:23:33.077730"
+  },
+  {
+    "id": "9325bdab-e167-4542-a49b-740dbd33aa56",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 15:27:35.007862"
+  },
+  {
+    "id": "c807029d-f865-43d2-ba89-5907d9ed31ec",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:24:45.156419"
+  },
+  {
+    "id": "835b5c8d-74fa-4d52-a084-72ff894569b1",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:25:32.041754"
+  },
+  {
+    "id": "6df56945-688e-4cca-9ab9-1b5b5b21549e",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:26:21.302003"
+  },
+  {
+    "id": "39869ca7-f304-4131-a39d-d239071482e0",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 4,
+            "weight": 85.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:26:43.301516"
+  },
+  {
+    "id": "018bc8b1-c28d-4d53-951c-3f82e1a6ad58",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:35:22.719541"
+  },
+  {
+    "id": "7fd9d2d6-b6c3-4ab0-85fe-2287122e5d83",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 4,
+            "weight": 85.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:35:55.213997"
+  },
+  {
+    "id": "867770b4-846c-4c3e-a528-5ca458b7afaa",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 32.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:37:05.281882"
+  },
+  {
+    "id": "6b010c44-21ca-412a-8975-3b183abcc4a8",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 30.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:37:29.177236"
+  },
+  {
+    "id": "d5341760-4f4f-49bd-9742-693518ff4612",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 32.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:37:55.279585"
+  },
+  {
+    "id": "1af89c1b-e934-45f5-b46f-ac5eff430f75",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 30.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:41:52.504050"
+  },
+  {
+    "id": "4f09b885-b087-41e6-ab56-2520b91c4008",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 32.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:42:35.819688"
+  },
+  {
+    "id": "9ee4bf3f-28e7-4358-94e1-ecb612bd4b31",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 30.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 30.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:42:52.877096"
+  },
+  {
+    "id": "d7ac16a1-9aff-4cf1-b76d-aadf9c24fe76",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 32.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 32.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 16:43:08.463331"
+  },
+  {
+    "id": "1569aac0-5461-43a4-8d67-cb371dc26c98",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell squats",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 60.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 60.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 60.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 60.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:02:55.763944"
+  },
+  {
+    "id": "979f3c2c-8350-4973-a280-dc0e43f79e86",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell squats",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 62.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 62.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 62.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 62.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:03:55.723240"
+  },
+  {
+    "id": "2ac6603e-39bd-407a-8181-3348c349c78e",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Romanian deadlifts",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:17:20.684265"
+  },
+  {
+    "id": "ac039a7c-ee33-4c95-b904-3ed858cd5dc9",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:31:02.976061"
+  },
+  {
+    "id": "7827b0ff-9087-4f5c-9e7e-544abae3b232",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 5,
+            "weight": 87.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:31:40.399455"
+  },
+  {
+    "id": "9e70001b-fba0-4fa5-98b5-c227c716d193",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "workout_name": "5x/Week Training Plan",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 6.0
+          },
+          {
+            "reps": 6,
+            "weight": 87.5,
+            "rpe": 6.0
+          }
+        ]
+      }
+    ],
+    "duration_minutes": 60,
+    "notes": null,
+    "completed": true,
+    "created_at": "2025-11-16 21:32:05.817683"
+  },
+  {
+    "id": "workout_test_user_90day_20250827",
+    "user_id": "test_user_90day",
+    "date": "2025-08-27",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 60.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 60.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 60.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 35.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 35.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 35.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 35.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 45.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 45.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 45.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 45.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250829",
+    "user_id": "test_user_90day",
+    "date": "2025-08-29",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 62.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 62.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 62.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 62.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 52.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 52.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 52.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 52.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 37.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 37.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 37.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 37.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 45.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 45.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 45.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 45.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250901",
+    "user_id": "test_user_90day",
+    "date": "2025-09-01",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 55.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 55.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 55.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 55.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 90.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 90.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 90.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 90.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 40.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 40.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 40.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 40.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 47.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 47.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 47.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 47.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250903",
+    "user_id": "test_user_90day",
+    "date": "2025-09-03",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 57.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 57.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 57.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 57.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 42.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 42.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 42.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 42.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250905",
+    "user_id": "test_user_90day",
+    "date": "2025-09-05",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 67.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 67.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 67.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 67.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 60.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 45.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 45.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 45.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 45.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250908",
+    "user_id": "test_user_90day",
+    "date": "2025-09-08",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 60.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 60.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 60.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 105.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 105.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 105.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 105.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 47.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 47.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 47.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 47.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250910",
+    "user_id": "test_user_90day",
+    "date": "2025-09-10",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 62.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 62.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 62.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 62.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 110.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 110.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 110.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 110.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 52.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 52.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 52.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 52.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250912",
+    "user_id": "test_user_90day",
+    "date": "2025-09-12",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 50.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 50.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 50.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 50.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 55.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 55.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 55.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 55.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250915",
+    "user_id": "test_user_90day",
+    "date": "2025-09-15",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 3,
+            "weight": 120.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 2,
+            "weight": 120.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 2,
+            "weight": 120.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 120.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 52.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 52.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 52.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 52.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 57.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 57.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 57.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 57.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250917",
+    "user_id": "test_user_90day",
+    "date": "2025-09-17",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 75.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 75.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 75.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 67.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 67.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 67.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 67.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 120.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 120.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 120.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 120.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 55.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 55.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 55.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 55.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 60.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 60.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 60.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 60.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250919",
+    "user_id": "test_user_90day",
+    "date": "2025-09-19",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 77.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 77.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 77.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 77.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 125.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 125.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 125.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 125.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 57.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 57.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 57.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 57.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 62.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 62.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 62.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 62.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250922",
+    "user_id": "test_user_90day",
+    "date": "2025-09-22",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 130.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 130.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 130.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 130.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 60.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 60.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 60.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 60.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250924",
+    "user_id": "test_user_90day",
+    "date": "2025-09-24",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 75.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 75.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 75.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 135.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 135.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 135.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 135.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 62.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 62.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 62.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 62.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 67.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 67.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 67.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 67.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250926",
+    "user_id": "test_user_90day",
+    "date": "2025-09-26",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 77.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 77.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 77.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 77.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 140.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 140.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 140.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 140.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 65.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 65.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 65.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 65.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20250929",
+    "user_id": "test_user_90day",
+    "date": "2025-09-29",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 87.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 87.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 145.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 145.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 145.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 145.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 67.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 67.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 67.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 67.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251001",
+    "user_id": "test_user_90day",
+    "date": "2025-10-01",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 90.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 90.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 90.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 90.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 150.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 150.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 150.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 150.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 75.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 75.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 75.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 75.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251003",
+    "user_id": "test_user_90day",
+    "date": "2025-10-03",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 92.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 92.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 92.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 92.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 2,
+            "weight": 155.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 2,
+            "weight": 155.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 2,
+            "weight": 155.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 155.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 77.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 77.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 77.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 77.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251006",
+    "user_id": "test_user_90day",
+    "date": "2025-10-06",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 87.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 87.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 150.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 150.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 150.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 150.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251008",
+    "user_id": "test_user_90day",
+    "date": "2025-10-08",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 97.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 97.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 97.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 97.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 90.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 90.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 90.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 90.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 155.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 155.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 155.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 155.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251010",
+    "user_id": "test_user_90day",
+    "date": "2025-10-10",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 92.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 92.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 92.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 92.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 160.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 160.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 160.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 160.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 67.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 67.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 67.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 67.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251013",
+    "user_id": "test_user_90day",
+    "date": "2025-10-13",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 92.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 92.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 92.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 92.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 165.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 165.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 165.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 165.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 70.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 70.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 70.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 70.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251015",
+    "user_id": "test_user_90day",
+    "date": "2025-10-15",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 102.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 102.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 102.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 102.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 2,
+            "weight": 170.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 2,
+            "weight": 170.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 2,
+            "weight": 170.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 170.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 72.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 72.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 72.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 72.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251017",
+    "user_id": "test_user_90day",
+    "date": "2025-10-17",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 102.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 102.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 102.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 102.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 97.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 97.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 97.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 97.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 165.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 165.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 165.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 165.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 75.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 75.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 75.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251020",
+    "user_id": "test_user_90day",
+    "date": "2025-10-20",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 102.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 102.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 102.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 102.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 170.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 170.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 170.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 170.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 77.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 77.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 77.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 77.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 87.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 87.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251022",
+    "user_id": "test_user_90day",
+    "date": "2025-10-22",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 105.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 105.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 105.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 105.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 102.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 102.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 102.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 102.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 175.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 175.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 175.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 175.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 75.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 75.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 75.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 90.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 90.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 90.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 90.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251024",
+    "user_id": "test_user_90day",
+    "date": "2025-10-24",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 107.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 107.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 107.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 107.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 105.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 105.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 105.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 105.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 180.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 180.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 180.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 180.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 77.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 77.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 77.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 77.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 92.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 92.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 92.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 92.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251027",
+    "user_id": "test_user_90day",
+    "date": "2025-10-27",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 110.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 110.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 110.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 110.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 107.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 107.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 107.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 107.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 185.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 185.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 185.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 185.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 80.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 80.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 80.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 80.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251029",
+    "user_id": "test_user_90day",
+    "date": "2025-10-29",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 112.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 112.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 112.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 112.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 110.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 110.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 110.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 110.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 190.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 190.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 190.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 190.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251031",
+    "user_id": "test_user_90day",
+    "date": "2025-10-31",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 110.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 110.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 110.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 110.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 195.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 195.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 195.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 195.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 82.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 82.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 82.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 82.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 97.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 97.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 97.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 97.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251103",
+    "user_id": "test_user_90day",
+    "date": "2025-11-03",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 112.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 112.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 112.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 112.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 112.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 112.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 112.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 112.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 200.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 200.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 200.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 200.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251105",
+    "user_id": "test_user_90day",
+    "date": "2025-11-05",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 112.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 112.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 112.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 112.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 205.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 205.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 205.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 205.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 85.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 85.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 85.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 85.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 102.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 102.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 102.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 102.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251107",
+    "user_id": "test_user_90day",
+    "date": "2025-11-07",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 117.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 117.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 117.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 117.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 210.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 210.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 4,
+            "weight": 210.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 3,
+            "weight": 210.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 87.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 87.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 87.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 87.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 105.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 105.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 105.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 105.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251110",
+    "user_id": "test_user_90day",
+    "date": "2025-11-10",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 117.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 117.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 117.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 117.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 120.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 120.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 120.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 120.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight": 215.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 4,
+            "weight": 215.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 3,
+            "weight": 215.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 215.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 90.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 90.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 90.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 90.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 107.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 107.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 107.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 107.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251112",
+    "user_id": "test_user_90day",
+    "date": "2025-11-12",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 120.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 120.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 120.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 120.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 122.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 122.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 122.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 122.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 220.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 220.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 220.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 220.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 92.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 92.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 92.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 92.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 110.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 110.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 110.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 110.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251114",
+    "user_id": "test_user_90day",
+    "date": "2025-11-14",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 122.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 122.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 122.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 122.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 125.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 125.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 125.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 125.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 225.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 225.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 225.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 225.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 95.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 95.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 95.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 95.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 112.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 112.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 112.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 112.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251117",
+    "user_id": "test_user_90day",
+    "date": "2025-11-17",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 122.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 122.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 122.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 122.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 127.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 127.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 127.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 127.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 3,
+            "weight": 230.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 2,
+            "weight": 230.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 2,
+            "weight": 230.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 2,
+            "weight": 230.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 97.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 97.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 97.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 97.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251119",
+    "user_id": "test_user_90day",
+    "date": "2025-11-19",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 125.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 7,
+            "weight": 125.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 6,
+            "weight": 125.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 125.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 130.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 130.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 130.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 130.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 230.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 230.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 230.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 230.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 115.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 115.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 115.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 115.0,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "workout_test_user_90day_20251121",
+    "user_id": "test_user_90day",
+    "date": "2025-11-21",
+    "workout_name": "Full Body Workout",
+    "exercises": [
+      {
+        "name": "Barbell Squat",
+        "sets": [
+          {
+            "reps": 9,
+            "weight": 127.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 8,
+            "weight": 127.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 7,
+            "weight": 127.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 6,
+            "weight": 127.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 132.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 132.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 132.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 132.5,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight": 235.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 6,
+            "weight": 235.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 235.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 4,
+            "weight": 235.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 100.0,
+            "rpe": 7.0
+          },
+          {
+            "reps": 9,
+            "weight": 100.0,
+            "rpe": 7.5
+          },
+          {
+            "reps": 8,
+            "weight": 100.0,
+            "rpe": 8.0
+          },
+          {
+            "reps": 7,
+            "weight": 100.0,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight": 117.5,
+            "rpe": 7.0
+          },
+          {
+            "reps": 5,
+            "weight": 117.5,
+            "rpe": 7.5
+          },
+          {
+            "reps": 5,
+            "weight": 117.5,
+            "rpe": 8.0
+          },
+          {
+            "reps": 5,
+            "weight": 117.5,
+            "rpe": 8.5
+          }
+        ]
+      }
+    ]
+  }
+]

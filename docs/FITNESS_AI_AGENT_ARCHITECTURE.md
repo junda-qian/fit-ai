@@ -18,9 +18,11 @@ This document outlines a **hybrid multi-agent AI fitness coaching system** that 
 - **14-Day Trend Analysis**: Filters out daily noise (water retention, sleep variance)
 
 **Four Specialized Agents:**
-1. **Nutrition Specialist** (Deterministic - Pure Python) - Weekly scheduled
-2. **Training Specialist** (Deterministic - Pure Python) - Post-workout event-driven
-3. **Communication Specialist** (AI - Bedrock Claude) - Weekly scheduled
+1. **Nutrition Specialist** (Deterministic - Pure Python) - Weekly scheduled (Monday 6:00 AM)
+2. **Training Specialist** (Deterministic - Pure Python) - Dual mode:
+   - Post-workout event-driven (session-to-session progression)
+   - Weekly scheduled (Monday 5:55 AM, publishes strength summaries)
+3. **Communication Specialist** (AI - Bedrock Claude) - Weekly scheduled (Monday 6:05 AM)
 4. **Coach Orchestrator** (AI - OpenAI SDK) - On-demand conversational Q&A
 
 ### Key Paradigm Shift: Proactive vs Reactive
@@ -197,7 +199,7 @@ But NOT needed for routine plan adjustments - those happen automatically.
 
 
 ═══════════════════════════════════════════════════════════════════
- FLOW 2: Session-to-Session Training (Event-Driven - Post Workout)
+ FLOW 2A: Session-to-Session Training (Event-Driven - Post Workout)
 ═══════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────┐
@@ -212,7 +214,7 @@ But NOT needed for routine plan adjustments - those happen automatically.
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│       Training Specialist Agent                      │
+│       Training Specialist Agent (Post-Workout Mode)  │
 │  (Deterministic - Pure Python, NO AI)               │
 │  FOR EACH EXERCISE in workout:                      │
 │  1. Get exercise config (progression model, etc)    │
@@ -234,6 +236,38 @@ But NOT needed for routine plan adjustments - those happen automatically.
               │                      │
               │training_recommendations│
               └─────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════
+ FLOW 2B: Weekly Training Summary (Scheduled - EventBridge)
+═══════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────┐
+│   EventBridge Scheduler (Monday 5:55 AM)            │
+│   Runs BEFORE Nutrition Agent (6:00 AM)             │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│       Training Specialist Agent (Weekly Mode)        │
+│  (Deterministic - Pure Python, NO AI)               │
+│  FOR EACH ACTIVE USER:                              │
+│  1. Get recent training recommendations (14 days)   │
+│  2. Count exercises: progressing/plateaued/regressing│
+│  3. Calculate overall strength trend                │
+│      - "improving": ≥60% exercises progressing      │
+│      - "stable": Mixed progress                     │
+│      - "declining": >30% exercises regressing       │
+│  4. Calculate aggregate volume metrics              │
+│  5. Publish to training_progress_summaries table    │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+              ┌──────────────────────────┐
+              │training_progress_summaries│
+              │ (consumed by Nutrition    │
+              │  Agent at 6:00 AM)        │
+              └──────────────────────────┘
 
 
 ═══════════════════════════════════════════════════════════════════
@@ -309,9 +343,21 @@ But NOT needed for routine plan adjustments - those happen automatically.
 
 ## Agent Coordination and Conflict Resolution
 
-When both nutrition and training agents recommend changes, the system uses these principles:
+### Coordination via Published Data
+
+The architecture uses **published data tables** to enable agent coordination while maintaining loose coupling:
+
+- **Training Agent** (Monday 5:55 AM): Publishes strength trend summary to `training_progress_summaries` table
+- **Nutrition Agent** (Monday 6:00 AM): Reads strength summary from published table
+- **No direct coupling**: Training Agent doesn't know who consumes its data
+- **Single source of truth**: Training Agent owns all strength analysis
+- **Reusable data**: Dashboard, Communication Agent, Coach Orchestrator also read from same table
+
+This approach provides the benefits of coordination without tight coupling between agents.
 
 ### Conflict Scenarios
+
+When both nutrition and training agents recommend changes, the system uses these principles:
 
 **Scenario 1: Competing Energy Demands**
 - **Nutrition Agent**: "Reduce calories by 300 (plateau detected)"
@@ -546,11 +592,12 @@ variable "enable_weekly_schedule" {
 - Builds trust through transparency
 
 ### 6. Separation of Concerns
-- **Nutrition Specialist**: Makes nutrition decisions
-- **Training Specialist**: Makes training decisions
+- **Nutrition Specialist**: Makes nutrition decisions (reads strength trends from Training Agent)
+- **Training Specialist**: Makes training decisions and publishes strength metrics for others to consume
 - **Communication Specialist**: Explains decisions to users
 - **Coach Orchestrator**: Answers questions (read-only)
 - Each agent has one job, easier to test and improve
+- Agents communicate via published data tables (loose coupling, no direct dependencies)
 
 ### 7. Scalability
 - Lambda auto-scales, no infrastructure management
@@ -595,7 +642,7 @@ variable "enable_weekly_schedule" {
 ### Phase 1: Foundation (Week 1)
 - [ ] Set up `ai_agents/` directory structure
 - [ ] Create shared models and context wrappers
-- [ ] Add DynamoDB tables: `weekly_analyses`, `active_plans`, `weekly_communications`, `user_exercises`, `training_recommendations`
+- [ ] Add DynamoDB tables: `weekly_analyses`, `active_plans`, `weekly_communications`, `user_exercises`, `training_recommendations`, `training_progress_summaries`
 - [ ] Update `body_logs` table schema to support skinfolds, circumferences, and body fat tracking
 
 ### Phase 2: Nutrition Specialist Agent (Week 2-3)
@@ -606,13 +653,16 @@ See [Nutrition Agent Spec](./agents/NUTRITION_AGENT_SPEC.md) for complete implem
 - [ ] Add EventBridge cron rule for Monday 6:00 AM
 - [ ] Test with sample users (unit tests for deterministic logic)
 
-### Phase 3: Training Specialist (Event-Driven) (Week 4)
+### Phase 3: Training Specialist (Week 4)
 See [Training Agent Spec](./agents/TRAINING_AGENT_SPEC.md) for complete implementation details
 - [ ] Create exercise configuration UI
-- [ ] Implement Training Specialist agent (event-driven, post-workout)
+- [ ] Implement Training Specialist agent (dual mode):
+  - [ ] Event-driven mode (post-workout): Session-to-session progression
+  - [ ] Weekly scheduled mode (Monday 5:55 AM): Publish strength summaries
 - [ ] Create training function tools
 - [ ] Update `/api/workouts/log` endpoint to invoke Training Agent asynchronously
-- [ ] Test session-to-session progression rules
+- [ ] Add EventBridge cron rule for Monday 5:55 AM
+- [ ] Test session-to-session progression rules and weekly summary publication
 
 ### Phase 4: Communication Specialist Agent (Week 5)
 See [Communication Agent Spec](./agents/COMMUNICATION_AGENT_SPEC.md) for complete implementation details

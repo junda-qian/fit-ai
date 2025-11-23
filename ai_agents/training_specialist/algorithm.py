@@ -75,6 +75,39 @@ def analyze_exercise_session(
             current_weight=current_weight,
         )
 
+    # Check if model switching should be suggested (Linear Progressive only)
+    model_switch_suggestion = None
+    if config.progression_model == "linear" and len(session_history) >= 3:
+        # Calculate failure rate over recent sessions
+        failures = 0
+        total_sessions = min(len(session_history), 4)  # Look at last 4 sessions
+
+        for session in session_history[-total_sessions:]:
+            if session.first_set.reps < config.rep_target:
+                failures += 1
+
+        failure_rate = failures / total_sessions
+
+        # Debug logging
+        print(f"🔍 Model Switch Check: {exercise_name}")
+        print(f"   Session history: {len(session_history)} sessions")
+        print(f"   Recent sessions analyzed: {total_sessions}")
+        print(f"   Failures: {failures}")
+        print(f"   Failure rate: {failure_rate:.1%}")
+        print(f"   Rep target: {config.rep_target}")
+
+        # Call suggestion function
+        model_switch_suggestion = suggest_progression_model_switch(
+            failure_rate=failure_rate,
+            increment=config.selected_increment,
+        )
+
+        if model_switch_suggestion:
+            print(f"   ✅ SUGGESTING SWITCH: {model_switch_suggestion.from_model} → {model_switch_suggestion.to_model}")
+            print(f"   Reason: {model_switch_suggestion.reason}")
+        else:
+            print(f"   ❌ No switch suggested (failure rate not high enough)")
+
     # Build complete recommendation
     recommendation = NextSessionRecommendation(
         exercise_name=exercise_name,
@@ -89,6 +122,7 @@ def analyze_exercise_session(
         action_type=next_session.action,
         message=next_session.message,
         reasoning=next_session.reasoning,
+        model_switch_suggestion=model_switch_suggestion,
         confidence=1.0,  # Deterministic algorithm = 100% confidence
     )
 
