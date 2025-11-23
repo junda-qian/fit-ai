@@ -39,12 +39,12 @@ load_dotenv()
 app = FastAPI()
 
 # Configure CORS
-origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -608,7 +608,8 @@ async def create_workout_log(log: WorkoutLogCreate):
     1. User finishes workout
     2. Logs all exercises, sets, reps, weights
     3. Save to workout_logs collection
-    4. Update daily summary
+    4. TRAINING AGENT: Analyze each exercise and generate next session recommendations
+    5. Update daily summary
 
     Example:
     "Upper Body A - Bench Press 3x8 @ 185lbs, Rows 3x10 @ 135lbs..."
@@ -618,6 +619,57 @@ async def create_workout_log(log: WorkoutLogCreate):
         log_dict = log_obj.dict()
         log_dict = json.loads(json.dumps(log_dict, default=str))
         db.insert("workout_logs", log_dict)
+
+        # TRAINING AGENT: Analyze each exercise and generate recommendations
+        try:
+            from pathlib import Path
+            import sys
+            sys.path.insert(0, str(Path(__file__).parent.parent))
+
+            from ai_agents.training_specialist.algorithm import analyze_exercise_session
+            from ai_agents.shared.models import Set, Session, ExerciseConfig
+
+            for exercise in log.exercises:
+                # Get or create exercise config
+                exercise_name = exercise['name'] if isinstance(exercise, dict) else exercise.name
+                config_data = _get_or_create_exercise_config(log.user_id, exercise_name)
+                config = ExerciseConfig(**config_data)
+
+                # Get session history (last 8 sessions)
+                session_history = _get_exercise_session_history(log.user_id, exercise_name, limit=8)
+
+                # Convert sets to Set models
+                exercise_sets = exercise['sets'] if isinstance(exercise, dict) else exercise.sets
+                sets = [Set(weight=s['weight'], reps=s['reps']) if isinstance(s, dict) else Set(weight=s.weight, reps=s.reps) for s in exercise_sets]
+
+                if sets:  # Only analyze if there are sets
+                    # Get current and last successful weights
+                    current_weight = sets[0].weight
+                    last_successful_weight = config_data.get('last_successful_weight', 0) or current_weight
+
+                    # Analyze session
+                    recommendation = analyze_exercise_session(
+                        exercise_name=exercise_name,
+                        sets_logged=sets,
+                        config=config,
+                        session_history=session_history,
+                        current_weight=current_weight,
+                        last_successful_weight=last_successful_weight,
+                    )
+
+                    # Store recommendation
+                    _store_training_recommendation(log.user_id, recommendation, log.date)
+
+                    # Update exercise config
+                    _update_exercise_config(log.user_id, exercise_name, recommendation, current_weight)
+
+                    # Check for training status progression
+                    _check_and_update_training_status(log.user_id, exercise_name, sets)
+        except Exception as e:
+            # Don't fail the whole request if training agent fails
+            print(f"Training agent error: {e}")
+            import traceback
+            traceback.print_exc()
 
         # Update daily summary
         await _update_daily_summary(log.user_id, log.date)
@@ -972,6 +1024,425 @@ async def _update_daily_summary(user_id: str, target_date: date):
 
 
 # ============================================================================
+# ============================================================================
+# Training Agent Helper Functions
+# ============================================================================
+
+def _calculate_reps_from_intensity(exercise_name: str, intensity: int) -> int:
+    """
+    Convert intensity (% of 1RM) to rep target using the same matrix as frontend.
+    This ensures consistency between what users see in UI and what Training Agent uses.
+
+    Based on frontend's calculateRepsFromIntensity function.
+    """
+    # Intensity-Rep relationship table (matches frontend exactly)
+    rep_table = {
+        95: {"bench_press": 3, "leg_press": 7, "other": 3},
+        90: {"bench_press": 4, "leg_press": 9, "other": 5},
+        85: {"bench_press": 6, "leg_press": 11, "other": 7},
+        80: {"bench_press": 9, "leg_press": 13, "other": 10},
+        75: {"bench_press": 12, "leg_press": 16, "other": 12},
+        70: {"bench_press": 14, "leg_press": 19, "other": 15},
+        65: {"bench_press": 17, "leg_press": 23, "other": 17},
+        60: {"bench_press": 19, "leg_press": 27, "other": 20},
+    }
+
+    # Determine exercise type
+    lower_name = exercise_name.lower()
+    if "bench press" in lower_name or "bench" in lower_name:
+        exercise_type = "bench_press"
+    elif "leg press" in lower_name:
+        exercise_type = "leg_press"
+    else:
+        exercise_type = "other"
+
+    # Find closest intensity in table (round to nearest 5%)
+    intensity_levels = sorted(rep_table.keys(), reverse=True)
+    closest_intensity = intensity_levels[0]
+    min_diff = abs(intensity - closest_intensity)
+
+    for level in intensity_levels:
+        diff = abs(intensity - level)
+        if diff < min_diff:
+            min_diff = diff
+            closest_intensity = level
+
+    return rep_table[closest_intensity][exercise_type]
+
+
+def _parse_rep_range(rep_range_str: str) -> int:
+    """
+    Parse rep range string and return the upper bound as target.
+    Examples: "4 - 8" -> 8, "6-8" -> 8, "5" -> 5
+
+    NOTE: This is a fallback for old workout plans without intensity.
+    New plans use intensity-to-reps conversion.
+    """
+    try:
+        # Remove spaces and split by dash
+        parts = rep_range_str.replace(" ", "").split("-")
+        if len(parts) == 2:
+            # Return upper bound of range
+            return int(parts[1])
+        else:
+            # Single number
+            return int(parts[0])
+    except:
+        return 5  # Fallback default
+
+
+def _get_or_create_exercise_config(user_id: str, exercise_name: str) -> dict:
+    """Get or create exercise configuration for progression tracking"""
+    try:
+        # Try to find existing config
+        configs = db.find("user_exercises", {
+            "user_id": user_id,
+            "exercise_name": exercise_name
+        })
+
+        if configs:
+            return configs[0]
+
+        # Get rep target from user's active workout plan
+        rep_target = 5  # Default fallback
+        num_sets = 3
+
+        # Find user's active workout plan
+        active_plans = db.find("workout_plans", {
+            "user_id": user_id,
+            "active": True
+        })
+
+        if active_plans:
+            plan = active_plans[0]
+            # Find this exercise in the plan
+            for exercise in plan.get('exercises', []):
+                if exercise.get('name', '').lower() == exercise_name.lower():
+                    # Prefer intensity-based reps (matches frontend logic)
+                    if exercise.get('intensity'):
+                        rep_target = _calculate_reps_from_intensity(
+                            exercise_name,
+                            exercise.get('intensity')
+                        )
+                    else:
+                        # Fallback: parse rep range (e.g., "4 - 8" -> 8)
+                        rep_range = exercise.get('reps', '5')
+                        rep_target = _parse_rep_range(rep_range)
+
+                    num_sets = exercise.get('sets', 3)
+                    break
+
+        # Create default config with plan-based rep target
+        default_config = {
+            "user_id": user_id,
+            "exercise_name": exercise_name,
+            "progression_model": "linear",  # Default to linear progressive
+            "rep_target": rep_target,  # From workout plan
+            "num_sets": num_sets,  # From workout plan
+            "available_increments": [1.25, 2.5, 5.0],
+            "selected_increment": 2.5,  # Default 2.5kg
+            "last_successful_weight": 0,
+            "current_weight": 0,
+            "created_at": datetime.now().isoformat(),
+        }
+
+        db.insert("user_exercises", default_config)
+        return default_config
+    except Exception as e:
+        print(f"Error getting/creating exercise config: {e}")
+        import traceback
+        traceback.print_exc()
+        # Return minimal default
+        return {
+            "progression_model": "linear",
+            "rep_target": 5,
+            "num_sets": 3,
+            "available_increments": [2.5],
+            "selected_increment": 2.5,
+            "last_successful_weight": 0,
+        }
+
+
+def _get_exercise_session_history(user_id: str, exercise_name: str, limit: int = 8):
+    """Get recent session history for an exercise"""
+    from ai_agents.shared.models import Session, Set
+
+    try:
+        # Find all workout logs for this user
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+
+        # Extract sessions for this specific exercise
+        sessions = []
+        for log in all_logs:
+            for exercise in log.get('exercises', []):
+                if exercise.get('name') == exercise_name:
+                    sets = exercise.get('sets', [])
+                    if sets:
+                        # Use first set as progression benchmark
+                        first_set = sets[0]
+                        sessions.append(Session(
+                            date=log.get('date', ''),
+                            first_set=Set(
+                                weight=first_set.get('weight', 0),
+                                reps=first_set.get('reps', 0)
+                            )
+                        ))
+
+        # Sort by date (oldest to newest) and limit
+        sessions = sorted(sessions, key=lambda s: s.date)[-limit:]
+        return sessions
+    except Exception as e:
+        print(f"Error getting session history: {e}")
+        return []
+
+
+def _store_training_recommendation(user_id: str, recommendation, workout_date: str):
+    """Store training recommendation in database"""
+    try:
+        rec_dict = {
+            "user_id": user_id,
+            "exercise_name": recommendation.exercise_name,
+            "date": workout_date,
+            "progression_model": recommendation.progression_model,
+            "today_first_set": {
+                "weight": recommendation.today_first_set.weight,
+                "reps": recommendation.today_first_set.reps,
+            },
+            "hit_rep_target": recommendation.hit_rep_target,
+            "plateau_detected": recommendation.plateau_detected,
+            "regression_detected": recommendation.regression_detected,
+            "reactive_deload_implemented": recommendation.reactive_deload_implemented,
+            "next_weight": recommendation.next_weight,
+            "next_rep_target": recommendation.next_rep_target,
+            "action_type": recommendation.action_type,
+            "message": recommendation.message,
+            "reasoning": recommendation.reasoning,
+            "confidence": recommendation.confidence,
+            "created_at": datetime.now().isoformat(),
+        }
+
+        # Add model switch suggestion if present
+        if recommendation.model_switch_suggestion:
+            rec_dict["model_switch_suggestion"] = {
+                "from_model": recommendation.model_switch_suggestion.from_model,
+                "to_model": recommendation.model_switch_suggestion.to_model,
+                "reason": recommendation.model_switch_suggestion.reason,
+            }
+
+        db.insert("training_recommendations", rec_dict)
+    except Exception as e:
+        print(f"Error storing training recommendation: {e}")
+
+
+def _update_exercise_config(user_id: str, exercise_name: str, recommendation, current_weight: float):
+    """Update exercise configuration after session"""
+    try:
+        update_data = {
+            "current_weight": current_weight,
+            "last_updated": datetime.now().isoformat(),
+        }
+
+        # Update last successful weight if rep target was hit
+        if recommendation.hit_rep_target:
+            update_data["last_successful_weight"] = current_weight
+
+        # Update in database
+        db.update(
+            "user_exercises",
+            {"user_id": user_id, "exercise_name": exercise_name},
+            update_data
+        )
+    except Exception as e:
+        print(f"Error updating exercise config: {e}")
+
+
+def _check_and_update_training_status(user_id: str, exercise_name: str, sets_logged: list):
+    """
+    Check if user's performance indicates training status upgrade.
+    If so, update user profile and workout plan intensities.
+
+    This implements automatic progression from Novice → Intermediate → Advanced → Elite
+    based on ExRx.net strength standards.
+    """
+    try:
+        # Get user profile
+        user_profile = db.find_one("user_profiles", {"user_id": user_id})
+        if not user_profile:
+            return
+
+        bodyweight = user_profile.get("weight", 75)  # Default to 75kg if not set
+        sex = user_profile.get("sex", "male")
+        current_status = user_profile.get("training_status", "Novice")
+
+        # Key exercises that determine training status
+        key_exercises = {
+            "Bench Press": ["bench press", "barbell bench press"],
+            "Press": ["overhead press", "press", "barbell overhead press", "dumbbell overhead press"],
+            "Deadlift": ["deadlift", "powerlifting deadlift", "romanian deadlift"],
+            "Squat": ["squat", "barbell squat", "back squat"]
+        }
+
+        # Check if this exercise is a key exercise
+        exercise_name_lower = exercise_name.lower()
+        standard_name = None
+        for name, variations in key_exercises.items():
+            if any(variation in exercise_name_lower for variation in variations):
+                standard_name = name
+                break
+
+        if not standard_name:
+            # Not a key exercise, skip status check
+            return
+
+        # Find heaviest set and calculate 1RM
+        best_1rm = 0
+        for s in sets_logged:
+            weight = s.weight if hasattr(s, 'weight') else s.get('weight', 0)
+            reps = s.reps if hasattr(s, 'reps') else s.get('reps', 0)
+
+            if weight > 0 and reps > 0:
+                estimated_1rm = calculate_1rm(weight, reps)
+                if estimated_1rm > best_1rm:
+                    best_1rm = estimated_1rm
+
+        if best_1rm == 0:
+            return
+
+        # Determine status for this exercise
+        exercise_status = determine_training_status(
+            standard_name, best_1rm, bodyweight, sex
+        )
+
+        print(f"Training Status Check: {exercise_name} -> 1RM: {best_1rm:.1f}kg -> Status: {exercise_status}")
+
+        # Get all workout logs to calculate overall status
+        workout_logs = db.find("workout_logs", {"user_id": user_id})
+
+        # Calculate best 1RM for all key exercises
+        all_exercise_statuses = []
+        for key_name, variations in key_exercises.items():
+            best_1rm_for_exercise = 0
+
+            for log in workout_logs:
+                for exercise in log.get('exercises', []):
+                    ex_name_lower = exercise['name'].lower()
+
+                    # Special handling to avoid matching "bench press" as "press"
+                    # Skip if this is a bench press exercise but we're checking for overhead press
+                    if key_name == "Press" and "bench" in ex_name_lower:
+                        continue
+
+                    if any(variation in ex_name_lower for variation in variations):
+                        for set_data in exercise['sets']:
+                            weight = set_data.get('weight', 0)
+                            reps = set_data.get('reps', 0)
+
+                            if weight > 0 and reps > 0:
+                                estimated_1rm = calculate_1rm(weight, reps)
+                                if estimated_1rm > best_1rm_for_exercise:
+                                    best_1rm_for_exercise = estimated_1rm
+
+            # Add status for this exercise if user has performed it
+            if best_1rm_for_exercise > 0:
+                status = determine_training_status(
+                    key_name, best_1rm_for_exercise, bodyweight, sex
+                )
+                all_exercise_statuses.append(status)
+
+        # Calculate overall status (median of all exercises)
+        if all_exercise_statuses:
+            new_overall_status = calculate_overall_status(all_exercise_statuses)
+        else:
+            new_overall_status = "Novice"
+
+        # Check if status has changed (ONLY UPGRADE, never downgrade)
+        status_order = ["Untrained", "Novice", "Intermediate", "Advanced", "Elite"]
+        current_idx = status_order.index(current_status) if current_status in status_order else 0
+        new_idx = status_order.index(new_overall_status) if new_overall_status in status_order else 0
+
+        if new_idx > current_idx:
+            # Only proceed if this is an upgrade
+            print(f"🎉 Training Status Upgrade Detected: {current_status} → {new_overall_status}")
+
+            # Update user profile
+            db.update(
+                "user_profiles",
+                {"user_id": user_id},
+                {"training_status": new_overall_status}
+            )
+
+            # Update workout plan intensities
+            intensity_map = {
+                "Untrained": {"compound": 60, "isolation": 60},
+                "Novice": {"compound": 60, "isolation": 60},
+                "Intermediate": {"compound": 80, "isolation": 65},
+                "Advanced": {"compound": 85, "isolation": 70},
+                "Elite": {"compound": 85, "isolation": 70}
+            }
+
+            new_intensities = intensity_map.get(new_overall_status, {"compound": 60, "isolation": 60})
+
+            # Find active workout plans
+            active_plans = db.find("workout_plans", {"user_id": user_id, "active": True})
+
+            for plan in active_plans:
+                # Update intensity for each exercise in the plan
+                updated_exercises = []
+                for exercise in plan.get('exercises', []):
+                    # Determine if compound or isolation
+                    # Compound: Bench Press, Squat, Deadlift, Overhead Press, Rows, Pull-ups
+                    # Isolation: Everything else
+                    exercise_name_lower = exercise.get('name', '').lower()
+                    is_compound = any(compound in exercise_name_lower for compound in [
+                        'bench press', 'squat', 'deadlift', 'overhead press',
+                        'press', 'row', 'pull-up', 'pull up', 'chin-up', 'chin up'
+                    ])
+
+                    new_intensity = new_intensities['compound'] if is_compound else new_intensities['isolation']
+
+                    # Update intensity and recalculate reps
+                    exercise['intensity'] = new_intensity
+                    exercise['reps'] = _calculate_reps_from_intensity(exercise.get('name', ''), new_intensity)
+
+                    updated_exercises.append(exercise)
+
+                # Update the plan in database
+                db.update(
+                    "workout_plans",
+                    {"user_id": user_id, "plan_name": plan.get('plan_name')},
+                    {"exercises": updated_exercises}
+                )
+
+            # Update user_exercises table with new rep targets
+            # This ensures training agent uses correct targets for new intensity level
+            all_user_exercises = db.find("user_exercises", {"user_id": user_id})
+            for user_ex in all_user_exercises:
+                ex_name = user_ex.get('exercise_name')
+                # Find matching exercise in updated plan
+                for plan_ex in updated_exercises:
+                    if plan_ex.get('name', '').lower() == ex_name.lower():
+                        new_rep_target = plan_ex.get('reps')
+                        if isinstance(new_rep_target, int):
+                            # Update rep target in user_exercises
+                            db.update(
+                                "user_exercises",
+                                {"user_id": user_id, "exercise_name": ex_name},
+                                {"rep_target": new_rep_target}
+                            )
+                            print(f"  ↳ Updated {ex_name}: rep_target → {new_rep_target}")
+                        break
+
+            print(f"✅ Updated workout plan intensities: Compound={new_intensities['compound']}%, Isolation={new_intensities['isolation']}%")
+        else:
+            print(f"⏸️  Training status change detected ({current_status} → {new_overall_status}) but not upgrading (only upgrades are automatic)")
+
+    except Exception as e:
+        print(f"Error checking training status: {e}")
+        import traceback
+        traceback.print_exc()
+
+
+# ============================================================================
 # Nutrition Agent Endpoint
 # ============================================================================
 
@@ -1009,7 +1480,8 @@ async def analyze_nutrition(request: Dict):
         analyze_weight_trend,
         analyze_body_composition_trend
     )
-    from ai_agents.shared.models import NutritionSummary, WorkoutSummary
+    from ai_agents.shared.models import NutritionSummary, TrainingProgressSummary
+    from ai_agents.training_specialist.tools import get_iso_week
 
     user_id = request.get("user_id")
     if not user_id:
@@ -1082,18 +1554,44 @@ async def analyze_nutrition(request: Dict):
         sufficient_data=len(nutrition_logged_days) >= 10
     )
 
-    # 6. Summarize workouts (from daily summaries)
-    workout_days = [
-        summary for summary in daily_summaries_14d
-        if summary.get('workouts_completed', 0) > 0
-    ]
+    # 6. Fetch latest training progress summary from Training Agent
+    # Training Agent publishes weekly summaries to training_progress_summaries table
+    user_training_summaries = db.find('training_progress_summaries', {"user_id": user_id})
 
-    workout_summary = WorkoutSummary(
-        days_analyzed=14,
-        sessions=len(workout_days),
-        strength_progressing=True,  # Simplified for now
-        sufficient_data=len(workout_days) >= 2
-    )
+    # Get the most recent summary
+    if user_training_summaries:
+        # Sort by published_at descending
+        user_training_summaries.sort(
+            key=lambda x: x.get('published_at', ''),
+            reverse=True
+        )
+        latest_summary_dict = user_training_summaries[0]
+
+        # Convert to TrainingProgressSummary model
+        training_summary = TrainingProgressSummary(**latest_summary_dict)
+    else:
+        # No training summary available - create placeholder with "insufficient_data"
+        current_week = get_iso_week()
+        workout_days = [
+            summary for summary in daily_summaries_14d
+            if summary.get('workouts_completed', 0) > 0
+        ]
+        training_summary = TrainingProgressSummary(
+            user_id=user_id,
+            week=current_week,
+            published_by="nutrition_agent_fallback",
+            published_at=datetime.utcnow().isoformat(),
+            overall_strength_trend="insufficient_data",
+            exercises_analyzed=0,
+            exercises_progressing=0,
+            exercises_plateaued=0,
+            exercises_regressing=0,
+            avg_weekly_volume_kg=0.0,
+            trend_confidence=0.0,
+            days_of_data=14,
+            workouts_completed=len(workout_days),
+            data_quality="poor"
+        )
 
     # 7. Run nutrition algorithm
     recommendation = apply_nutrition_algorithm(
@@ -1101,7 +1599,7 @@ async def analyze_nutrition(request: Dict):
         weight_trend,
         body_comp_trend,
         nutrition_summary,
-        workout_summary
+        training_summary
     )
 
     # 8. Return recommendation
@@ -1112,7 +1610,7 @@ async def analyze_nutrition(request: Dict):
             "weight_logs": len(weight_logs_for_analysis),
             "body_comp_logs": len([l for l in body_comp_logs_for_analysis if l.get('skinfold_sum')]),
             "nutrition_days": len(nutrition_logged_days),
-            "workout_days": len(workout_days)
+            "training_summary_available": training_summary.overall_strength_trend != "insufficient_data"
         },
         "trends": {
             "weight": {
@@ -1127,6 +1625,15 @@ async def analyze_nutrition(request: Dict):
                 "confidence": body_comp_trend.confidence,
                 "trend": body_comp_trend.trend,
                 "interpretation": body_comp_trend.interpretation
+            },
+            "training": {
+                "overall_strength_trend": training_summary.overall_strength_trend,
+                "exercises_analyzed": training_summary.exercises_analyzed,
+                "exercises_progressing": training_summary.exercises_progressing,
+                "exercises_plateaued": training_summary.exercises_plateaued,
+                "exercises_regressing": training_summary.exercises_regressing,
+                "data_quality": training_summary.data_quality,
+                "trend_confidence": training_summary.trend_confidence
             }
         },
         "recommendation": {
@@ -1142,6 +1649,182 @@ async def analyze_nutrition(request: Dict):
             "body_composition_status": recommendation.body_composition_status,
             "confidence": recommendation.confidence
         }
+    }
+
+
+# ============================================================================
+# Training Agent Endpoints
+# ============================================================================
+
+@app.get("/api/training/recommendations")
+async def get_training_recommendations(user_id: str, exercise_name: Optional[str] = None):
+    """
+    Get next session recommendations from Training Specialist Agent.
+
+    Returns the most recent recommendations for user's exercises.
+
+    Query params:
+        - user_id: User identifier (required)
+        - exercise_name: Optional - filter by specific exercise
+
+    Returns:
+        List of recommendations with next session prescriptions
+    """
+    try:
+        query = {"user_id": user_id}
+        if exercise_name:
+            query["exercise_name"] = exercise_name
+
+        # Get all recommendations
+        recommendations = db.find("training_recommendations", query)
+
+        if not recommendations:
+            return {"user_id": user_id, "recommendations": []}
+
+        # Group by exercise and get most recent for each
+        from collections import defaultdict
+        by_exercise = defaultdict(list)
+
+        for rec in recommendations:
+            exercise = rec.get('exercise_name')
+            by_exercise[exercise].append(rec)
+
+        # Get most recent for each exercise
+        latest_recommendations = []
+        for exercise, recs in by_exercise.items():
+            # Sort by created_at and get most recent
+            latest = sorted(
+                recs,
+                key=lambda r: r.get('created_at', ''),
+                reverse=True
+            )[0]
+            latest_recommendations.append(latest)
+
+        return {
+            "user_id": user_id,
+            "recommendations": latest_recommendations
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/training/exercise-config")
+async def get_exercise_config(user_id: str, exercise_name: str):
+    """
+    Get exercise configuration (progression model, rep target, etc.)
+
+    Query params:
+        - user_id: User identifier
+        - exercise_name: Exercise name
+
+    Returns:
+        Exercise configuration or 404 if not found
+    """
+    try:
+        configs = db.find("user_exercises", {
+            "user_id": user_id,
+            "exercise_name": exercise_name
+        })
+
+        if not configs:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No configuration found for {exercise_name}"
+            )
+
+        return configs[0]
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/training/weekly-summary")
+async def generate_weekly_training_summary(request: Dict):
+    """
+    Generate weekly strength trend summary using Training Specialist Agent (weekly mode).
+
+    Analyzes last 14 days of training data and publishes strength trend summary.
+    This summary is consumed by Nutrition Agent for bulk assessment.
+
+    Request body:
+    {
+        "user_id": "test_user_90day"
+    }
+
+    Returns:
+    {
+        "summary": {
+            "user_id": "test_user_90day",
+            "week": "2025-W47",
+            "overall_strength_trend": "improving",
+            "exercises_analyzed": 5,
+            "exercises_progressing": 4,
+            ...
+        }
+    }
+    """
+    # Import training agent (lazy import to avoid circular dependencies)
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+
+    from ai_agents.training_specialist.weekly_summary import publish_weekly_strength_summary
+    from datetime import datetime, timedelta
+
+    user_id = request.get("user_id")
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user_id is required")
+
+    # 1. Fetch user profile (to verify user exists)
+    user_profile = db.find_one("user_profiles", {"user_id": user_id})
+    if not user_profile:
+        raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+
+    # 2. Fetch user exercises
+    user_exercises = db.find("user_exercises", {"user_id": user_id})
+    if not user_exercises:
+        return {
+            "summary": {
+                "user_id": user_id,
+                "overall_strength_trend": "insufficient_data",
+                "message": "No exercises configured. Add exercises to start tracking strength progress."
+            }
+        }
+
+    # 3. Fetch recent training recommendations (last 14 days)
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=13)  # 14 days total
+
+    all_recommendations = db.find("training_recommendations", {"user_id": user_id})
+    recent_recommendations = [
+        rec for rec in all_recommendations
+        if datetime.fromisoformat(rec.get('analyzed_at', rec.get('created_at', ''))) >= start_date
+    ]
+
+    # 4. Fetch recent workout logs (for volume calculation)
+    all_workouts = db.find("workout_logs", {"user_id": user_id})
+    recent_workouts = [
+        workout for workout in all_workouts
+        if datetime.fromisoformat(workout.get('timestamp', workout.get('date', ''))) >= start_date
+    ]
+
+    # 5. Generate weekly strength summary
+    summary = publish_weekly_strength_summary(
+        user_id=user_id,
+        user_exercises=user_exercises,
+        recent_recommendations=recent_recommendations,
+        recent_workouts=recent_workouts,
+        days=14,
+    )
+
+    # 6. Save to database (training_progress_summaries table)
+    summary_dict = summary.model_dump()
+    db.insert("training_progress_summaries", summary_dict)
+
+    return {
+        "summary": summary_dict,
+        "message": f"Weekly strength summary generated: {summary.overall_strength_trend}"
     }
 
 

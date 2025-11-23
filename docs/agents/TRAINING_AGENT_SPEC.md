@@ -25,7 +25,14 @@ Users do NOT follow pre-planned programs. Instead, they:
 
 ---
 
-## Event-Driven Flow
+## Two Invocation Modes
+
+The Training Specialist Agent runs in two modes:
+
+### Mode 1: Event-Driven (Post-Workout)
+
+**Trigger**: After each workout log
+**Purpose**: Session-to-session progression analysis
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -59,6 +66,38 @@ Users do NOT follow pre-planned programs. Instead, they:
               │training_recommendations│
               └─────────────────────┘
 ```
+
+### Mode 2: Weekly Scheduled (Aggregate Analysis)
+
+**Trigger**: EventBridge cron (Monday 5:55 AM UTC)
+**Purpose**: Publish weekly strength trend summary for other agents/features
+
+```
+┌─────────────────────────────────────────────────────┐
+│   EventBridge Scheduler (Monday 5:55 AM)            │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────┐
+│       Training Specialist Agent (Weekly Mode)        │
+│  FOR EACH ACTIVE USER:                              │
+│  1. Get recent training recommendations (14 days)   │
+│  2. Count exercises: progressing/plateaued/regressing│
+│  3. Calculate overall strength trend                │
+│  4. Calculate aggregate volume metrics              │
+│  5. Publish to training_progress_summaries table    │
+└────────────────────┬────────────────────────────────┘
+                     │
+                     ▼
+              ┌──────────────────────────┐
+              │training_progress_summaries│
+              │  (consumed by Nutrition   │
+              │   Agent, Dashboard, etc)  │
+              └──────────────────────────┘
+```
+
+**Why 5:55 AM?**
+Runs 5 minutes before Nutrition Agent (6:00 AM) to ensure fresh strength data is available.
 
 ---
 
@@ -478,6 +517,238 @@ async def log_workout(workout: WorkoutLog):
 
 ---
 
+## Weekly Strength Summary Publication
+
+### Purpose
+
+The Training Agent publishes aggregate strength trend metrics that:
+- **Nutrition Agent** uses to assess bulk effectiveness
+- **Dashboard** displays for user progress tracking
+- **Communication Agent** includes in weekly summaries
+- **Coach Orchestrator** references when answering questions
+
+### Published Data Structure
+
+Training Agent writes to `training_progress_summaries` table:
+
+```python
+{
+    "user_id": "user_123",
+    "week": "2025-W47",  # ISO week format (YYYY-Www)
+    "published_by": "training_agent",
+    "published_at": "2025-11-22T05:55:00Z",
+
+    # Overall strength trend (Training Agent's expert assessment)
+    "overall_strength_trend": "improving",  # "improving" | "stable" | "declining" | "insufficient_data"
+
+    # Exercise-level breakdown
+    "exercises_analyzed": 5,
+    "exercises_progressing": 4,  # Hit rep targets consistently
+    "exercises_plateaued": 1,     # No progress for 2+ sessions
+    "exercises_regressing": 0,    # Performance decreased
+
+    # Optional aggregate metrics
+    "avg_weekly_volume_kg": 12500,  # Total kg lifted
+    "trend_confidence": 0.85,  # 0.0-1.0 (based on data quality)
+
+    # Context for the assessment
+    "days_of_data": 14,
+    "workouts_completed": 3,
+    "data_quality": "good"  # "good" | "fair" | "poor"
+}
+```
+
+### Algorithm: Calculate Overall Strength Trend
+
+```python
+def calculate_overall_strength_trend(user_id: str, days: int = 14) -> dict:
+    """
+    Analyze recent workouts to determine overall strength trend.
+
+    This is the Training Agent's expert assessment based on session-to-session
+    progression data collected from the event-driven flow.
+    """
+    # Get all user exercises
+    exercises = db.user_exercises.find_by_user_id(user_id)
+
+    # Get recent training recommendations (last 14 days)
+    recent_recommendations = db.training_recommendations.find_recent(
+        user_id=user_id,
+        days=days
+    )
+
+    if len(recent_recommendations) < 2:
+        return {
+            "overall_strength_trend": "insufficient_data",
+            "exercises_analyzed": 0,
+            "exercises_progressing": 0,
+            "exercises_plateaued": 0,
+            "exercises_regressing": 0,
+            "data_quality": "poor"
+        }
+
+    # Count exercises in each state
+    progressing_count = 0
+    plateaued_count = 0
+    regressing_count = 0
+
+    for exercise in exercises:
+        recent_recs = [
+            r for r in recent_recommendations
+            if r["exercise_name"] == exercise["exercise_name"]
+        ]
+
+        if not recent_recs:
+            continue
+
+        # Check if exercise is progressing
+        hit_target_count = sum(
+            1 for r in recent_recs
+            if r["today_analysis"]["hit_rep_target"]
+        )
+        plateau_detected = any(
+            r["today_analysis"]["plateau_detected"]
+            for r in recent_recs
+        )
+        regression_detected = any(
+            r["today_analysis"]["regression_detected"]
+            for r in recent_recs
+        )
+
+        if regression_detected:
+            regressing_count += 1
+        elif plateau_detected:
+            plateaued_count += 1
+        elif hit_target_count >= len(recent_recs) * 0.7:  # Hit target in 70%+ of sessions
+            progressing_count += 1
+        else:
+            plateaued_count += 1
+
+    total = progressing_count + plateaued_count + regressing_count
+
+    if total == 0:
+        return {
+            "overall_strength_trend": "insufficient_data",
+            "exercises_analyzed": 0,
+            "exercises_progressing": 0,
+            "exercises_plateaued": 0,
+            "exercises_regressing": 0,
+            "data_quality": "poor"
+        }
+
+    # Determine overall trend
+    progressing_pct = progressing_count / total
+    regressing_pct = regressing_count / total
+
+    if regressing_pct > 0.3:  # >30% of exercises regressing
+        overall_trend = "declining"
+    elif progressing_pct >= 0.6:  # >=60% of exercises progressing
+        overall_trend = "improving"
+    else:
+        overall_trend = "stable"
+
+    return {
+        "overall_strength_trend": overall_trend,
+        "exercises_analyzed": total,
+        "exercises_progressing": progressing_count,
+        "exercises_plateaued": plateaued_count,
+        "exercises_regressing": regressing_count,
+        "trend_confidence": min(total / 5.0, 1.0),  # More exercises = higher confidence
+        "data_quality": "good" if total >= 3 else "fair"
+    }
+```
+
+### Lambda Handler (Weekly Mode)
+
+```python
+# ai_agents/training_specialist/lambda_handler.py
+
+def lambda_handler(event, context):
+    """
+    Training Specialist Agent entry point.
+
+    Handles both:
+    1. Event-driven (post-workout): Session-to-session progression
+    2. Weekly scheduled: Aggregate strength trend publication
+    """
+
+    # Determine invocation mode
+    if "source" in event and event["source"] == "aws.events":
+        # Weekly scheduled invocation from EventBridge
+        return handle_weekly_summary(event, context)
+    else:
+        # Event-driven invocation from workout log
+        return handle_post_workout_analysis(event, context)
+
+
+def handle_weekly_summary(event, context):
+    """
+    Weekly scheduled run: Publish strength trend summaries for all active users.
+    Runs Monday 5:55 AM UTC (before Nutrition Agent at 6:00 AM).
+    """
+    users = db.user_profiles.find_all_active()
+
+    summaries_published = 0
+
+    for user in users:
+        # Calculate overall strength trend
+        trend_data = calculate_overall_strength_trend(user["user_id"], days=14)
+
+        # Calculate aggregate volume
+        recent_workouts = db.workout_logs.find_recent(user["user_id"], days=7)
+        total_volume = sum(
+            set["weight"] * set["reps"]
+            for workout in recent_workouts
+            for exercise in workout["exercises"]
+            for set in exercise["sets"]
+        )
+
+        # Publish to training_progress_summaries table
+        db.training_progress_summaries.create({
+            "user_id": user["user_id"],
+            "week": get_iso_week(),  # "2025-W47"
+            "published_by": "training_agent",
+            "published_at": datetime.utcnow().isoformat(),
+            "overall_strength_trend": trend_data["overall_strength_trend"],
+            "exercises_analyzed": trend_data["exercises_analyzed"],
+            "exercises_progressing": trend_data["exercises_progressing"],
+            "exercises_plateaued": trend_data["exercises_plateaued"],
+            "exercises_regressing": trend_data["exercises_regressing"],
+            "avg_weekly_volume_kg": total_volume,
+            "trend_confidence": trend_data["trend_confidence"],
+            "days_of_data": 14,
+            "workouts_completed": len(recent_workouts),
+            "data_quality": trend_data["data_quality"]
+        })
+
+        summaries_published += 1
+
+    return {
+        "statusCode": 200,
+        "mode": "weekly_summary",
+        "summaries_published": summaries_published
+    }
+
+
+def handle_post_workout_analysis(event, context):
+    """
+    Event-driven run: Analyze workout and prescribe next session.
+    (Existing implementation - already documented above)
+    """
+    # ... existing post-workout logic ...
+```
+
+### Benefits of This Approach
+
+✅ **Training Agent owns all strength analysis** - Clear domain ownership
+✅ **Loose coupling** - Other agents read published data, not raw workout logs
+✅ **Single source of truth** - Training Agent is the expert on strength trends
+✅ **Reusable** - Dashboard, reports, Communication Agent all consume same data
+✅ **Simple scheduling** - One EventBridge cron rule
+✅ **Aligned timing** - Nutrition Agent always has fresh strength data
+
+---
+
 ## DynamoDB Schema
 
 ### New Table: `user_exercises`
@@ -512,6 +783,40 @@ Stores exercise configuration and next session prescription (updated by Training
 
     "created_at": "2025-01-15",
     "updated_at": "2025-11-08"
+}
+```
+
+### New Table: `training_progress_summaries`
+
+Stores weekly aggregate strength trend summaries published by Training Agent.
+This data is consumed by Nutrition Agent, Dashboard, Communication Agent, etc.
+
+```python
+{
+    "user_id": "string",  # Partition key
+    "week": "2025-W47",  # Sort key (ISO week format YYYY-Www)
+
+    # Publication metadata
+    "published_by": "training_agent",
+    "published_at": "2025-11-22T05:55:00Z",
+
+    # Overall strength trend (Training Agent's expert assessment)
+    "overall_strength_trend": "improving",  # "improving" | "stable" | "declining" | "insufficient_data"
+
+    # Exercise-level breakdown
+    "exercises_analyzed": 5,
+    "exercises_progressing": 4,  # Hit rep targets consistently (>=70% success rate)
+    "exercises_plateaued": 1,     # No progress for 2+ sessions
+    "exercises_regressing": 0,    # Performance decreased
+
+    # Aggregate metrics
+    "avg_weekly_volume_kg": 12500,  # Total kg lifted per week
+    "trend_confidence": 0.85,  # 0.0-1.0 (based on data quality and # exercises)
+
+    # Context
+    "days_of_data": 14,
+    "workouts_completed": 3,
+    "data_quality": "good"  # "good" | "fair" | "poor"
 }
 ```
 

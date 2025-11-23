@@ -47,7 +47,7 @@
     "height_cm": 180,
     "body_weight_kg": 85.0,
     "body_fat_pct": 20.0,
-    "goal": "lose_weight",
+    "goal": "build_muscle",
     "training_status": "intermediate",
     "target_calories": 2200,
     "target_protein": 170.0,
@@ -62,5 +62,23 @@
     "timezone": "UTC",
     "created_at": "2025-08-17",
     "updated_at": "2025-11-15T09:57:56.898489"
+  },
+  {
+    "id": "1b323a1e-da66-43d9-baeb-76323d6ecd94",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "target_calories": 2303,
+    "target_protein": 96.0,
+    "target_carbs": 307.0,
+    "target_fats": 76.8,
+    "bmr": 1471.6,
+    "tdee": 2093.37,
+    "activity_level": 1.2,
+    "goal": "bulk",
+    "body_weight_kg": 60.0,
+    "body_fat_pct": 15.0,
+    "sex": "male",
+    "created_at": "2025-11-16 11:06:03.903749",
+    "updated_at": "2025-11-16T21:02:55.791762",
+    "training_status": "Untrained"
   }
 ]

@@ -1220,5 +1220,711 @@
     "weight": 80.0,
     "created_at": "2025-11-15T09:57:56.901481",
     "updated_at": "2025-11-15T09:57:56.901482"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_0",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-24",
+    "total_calories": 1070,
+    "total_protein": 95,
+    "total_carbs": 110,
+    "total_fats": 27,
+    "workouts_completed": 0,
+    "weight": 75.0,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-24T00:00:00",
+    "updated_at": "2025-10-24T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_1",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-25",
+    "total_calories": 650,
+    "total_protein": 60,
+    "total_carbs": 75,
+    "total_fats": 12,
+    "workouts_completed": 0,
+    "weight": 75.1,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-25T00:00:00",
+    "updated_at": "2025-10-25T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_2",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-26",
+    "total_calories": 600,
+    "total_protein": 42,
+    "total_carbs": 80,
+    "total_fats": 13,
+    "workouts_completed": 0,
+    "weight": 75.2,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-26T00:00:00",
+    "updated_at": "2025-10-26T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_3",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-27",
+    "total_calories": 970,
+    "total_protein": 83,
+    "total_carbs": 85,
+    "total_fats": 32,
+    "workouts_completed": 0,
+    "weight": 74.7,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-27T00:00:00",
+    "updated_at": "2025-10-27T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_4",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-28",
+    "total_calories": 550,
+    "total_protein": 48,
+    "total_carbs": 50,
+    "total_fats": 17,
+    "workouts_completed": 0,
+    "weight": 74.8,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-28T00:00:00",
+    "updated_at": "2025-10-28T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_5",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-29",
+    "total_calories": 900,
+    "total_protein": 90,
+    "total_carbs": 95,
+    "total_fats": 17,
+    "workouts_completed": 0,
+    "weight": 74.9,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-29T00:00:00",
+    "updated_at": "2025-10-29T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_6",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-30",
+    "total_calories": 450,
+    "total_protein": 50,
+    "total_carbs": 45,
+    "total_fats": 9,
+    "workouts_completed": 0,
+    "weight": 74.4,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-30T00:00:00",
+    "updated_at": "2025-10-30T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_7",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-10-31",
+    "total_calories": 1220,
+    "total_protein": 87,
+    "total_carbs": 145,
+    "total_fats": 31,
+    "workouts_completed": 0,
+    "weight": 74.5,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-10-31T00:00:00",
+    "updated_at": "2025-10-31T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_8",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-01",
+    "total_calories": 1170,
+    "total_protein": 93,
+    "total_carbs": 115,
+    "total_fats": 35,
+    "workouts_completed": 0,
+    "weight": 74.6,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-01T00:00:00",
+    "updated_at": "2025-11-01T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_9",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-02",
+    "total_calories": 750,
+    "total_protein": 90,
+    "total_carbs": 60,
+    "total_fats": 15,
+    "workouts_completed": 0,
+    "weight": 74.1,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-02T00:00:00",
+    "updated_at": "2025-11-02T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_10",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-03",
+    "total_calories": 1020,
+    "total_protein": 77,
+    "total_carbs": 115,
+    "total_fats": 28,
+    "workouts_completed": 0,
+    "weight": 74.2,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-03T00:00:00",
+    "updated_at": "2025-11-03T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_11",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-04",
+    "total_calories": 800,
+    "total_protein": 52,
+    "total_carbs": 110,
+    "total_fats": 16,
+    "workouts_completed": 0,
+    "weight": 74.3,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-04T00:00:00",
+    "updated_at": "2025-11-04T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_12",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-05",
+    "total_calories": 1200,
+    "total_protein": 98,
+    "total_carbs": 130,
+    "total_fats": 28,
+    "workouts_completed": 0,
+    "weight": 73.8,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-05T00:00:00",
+    "updated_at": "2025-11-05T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_13",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-06",
+    "total_calories": 750,
+    "total_protein": 58,
+    "total_carbs": 80,
+    "total_fats": 20,
+    "workouts_completed": 0,
+    "weight": 73.9,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-06T00:00:00",
+    "updated_at": "2025-11-06T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_14",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-07",
+    "total_calories": 600,
+    "total_protein": 36,
+    "total_carbs": 60,
+    "total_fats": 24,
+    "workouts_completed": 0,
+    "weight": 74.0,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-07T00:00:00",
+    "updated_at": "2025-11-07T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_15",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-08",
+    "total_calories": 550,
+    "total_protein": 32,
+    "total_carbs": 85,
+    "total_fats": 12,
+    "workouts_completed": 0,
+    "weight": 73.5,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-08T00:00:00",
+    "updated_at": "2025-11-08T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_16",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-09",
+    "total_calories": 550,
+    "total_protein": 32,
+    "total_carbs": 85,
+    "total_fats": 12,
+    "workouts_completed": 0,
+    "weight": 73.6,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-09T00:00:00",
+    "updated_at": "2025-11-09T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_17",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-10",
+    "total_calories": 1050,
+    "total_protein": 82,
+    "total_carbs": 130,
+    "total_fats": 21,
+    "workouts_completed": 0,
+    "weight": 73.7,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-10T00:00:00",
+    "updated_at": "2025-11-10T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_18",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-11",
+    "total_calories": 900,
+    "total_protein": 80,
+    "total_carbs": 100,
+    "total_fats": 16,
+    "workouts_completed": 0,
+    "weight": 73.2,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-11T00:00:00",
+    "updated_at": "2025-11-11T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_19",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-12",
+    "total_calories": 600,
+    "total_protein": 42,
+    "total_carbs": 80,
+    "total_fats": 13,
+    "workouts_completed": 0,
+    "weight": 73.3,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-12T00:00:00",
+    "updated_at": "2025-11-12T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_20",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-13",
+    "total_calories": 920,
+    "total_protein": 73,
+    "total_carbs": 90,
+    "total_fats": 31,
+    "workouts_completed": 0,
+    "weight": 73.4,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-13T00:00:00",
+    "updated_at": "2025-11-13T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_21",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-14",
+    "total_calories": 770,
+    "total_protein": 47,
+    "total_carbs": 95,
+    "total_fats": 23,
+    "workouts_completed": 0,
+    "weight": 72.9,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-14T00:00:00",
+    "updated_at": "2025-11-14T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_22",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-15",
+    "total_calories": 600,
+    "total_protein": 42,
+    "total_carbs": 80,
+    "total_fats": 13,
+    "workouts_completed": 0,
+    "weight": 73.0,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-15T00:00:00",
+    "updated_at": "2025-11-15T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_23",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-16",
+    "total_calories": 720,
+    "total_protein": 53,
+    "total_carbs": 65,
+    "total_fats": 27,
+    "workouts_completed": 1,
+    "weight": 73.1,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-16T00:00:00",
+    "updated_at": "2025-11-16T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_24",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-17",
+    "total_calories": 670,
+    "total_protein": 65,
+    "total_carbs": 55,
+    "total_fats": 20,
+    "workouts_completed": 0,
+    "weight": 72.6,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-17T00:00:00",
+    "updated_at": "2025-11-17T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_25",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-18",
+    "total_calories": 800,
+    "total_protein": 78,
+    "total_carbs": 70,
+    "total_fats": 22,
+    "workouts_completed": 0,
+    "weight": 72.7,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-18T00:00:00",
+    "updated_at": "2025-11-18T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_26",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-19",
+    "total_calories": 820,
+    "total_protein": 75,
+    "total_carbs": 85,
+    "total_fats": 23,
+    "workouts_completed": 0,
+    "weight": 72.8,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-19T00:00:00",
+    "updated_at": "2025-11-19T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_27",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-20",
+    "total_calories": 800,
+    "total_protein": 52,
+    "total_carbs": 110,
+    "total_fats": 16,
+    "workouts_completed": 0,
+    "weight": 72.3,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-20T00:00:00",
+    "updated_at": "2025-11-20T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_28",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-21",
+    "total_calories": 950,
+    "total_protein": 100,
+    "total_carbs": 90,
+    "total_fats": 18,
+    "workouts_completed": 0,
+    "weight": 72.4,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-21T00:00:00",
+    "updated_at": "2025-11-21T00:00:00"
+  },
+  {
+    "id": "summary_user_1763258763896_o74k19kaj_29",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "date": "2025-11-22",
+    "total_calories": 1190,
+    "total_protein": 82,
+    "total_carbs": 130,
+    "total_fats": 38,
+    "workouts_completed": 0,
+    "weight": 72.5,
+    "targets": {
+      "calories": 2200,
+      "protein": 150,
+      "carbs": 220,
+      "fats": 60
+    },
+    "created_at": "2025-11-22T00:00:00",
+    "updated_at": "2025-11-22T00:00:00"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-16",
+    "total_calories": 2180,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 1,
+    "weight": 80.0,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-16T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-17",
+    "total_calories": 2190,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 0,
+    "weight": 80.1,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-17T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-18",
+    "total_calories": 2200,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 1,
+    "weight": 80.2,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-18T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-19",
+    "total_calories": 2210,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 0,
+    "weight": 80.3,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-19T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-20",
+    "total_calories": 2220,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 1,
+    "weight": 80.4,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-20T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-21",
+    "total_calories": 2230,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 0,
+    "weight": 80.5,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-21T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-22",
+    "total_calories": 2240,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 1,
+    "weight": 80.6,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-22T23:59:59Z"
+  },
+  {
+    "user_id": "test_user_90day",
+    "date": "2025-11-23",
+    "total_calories": 2250,
+    "total_protein": 170,
+    "total_carbs": 220,
+    "total_fats": 73,
+    "workouts_completed": 0,
+    "weight": 80.7,
+    "targets": {
+      "calories": 2200,
+      "protein": 170,
+      "carbs": 220,
+      "fats": 73
+    },
+    "created_at": "2025-11-23T23:59:59Z"
   }
 ]

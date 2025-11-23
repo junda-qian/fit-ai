@@ -410,5 +410,100 @@
     "active": true,
     "generated_at": "2025-11-03 09:25:23.386407",
     "deactivated_at": null
+  },
+  {
+    "id": "0c65ca99-8371-45ff-b844-5102324267bb",
+    "user_id": "user_1763258763896_o74k19kaj",
+    "plan_name": "5x/Week Training Plan",
+    "description": "Personalized Novice program with B dedication level",
+    "frequency": "5x/week",
+    "exercises": [
+      {
+        "name": "Barbell bench press",
+        "sets": 4,
+        "reps": 19,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Pecs",
+        "day": "Day A - Upper Body Push"
+      },
+      {
+        "name": "Dumbbell overhead press",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Pecs",
+        "day": "Day A - Upper Body Push"
+      },
+      {
+        "name": "Lateral raises",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Pecs",
+        "day": "Day A - Upper Body Push"
+      },
+      {
+        "name": "Pull-ups & wide pulldowns",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Pecs",
+        "day": "Day B - Upper Body Pull"
+      },
+      {
+        "name": "Cable rows with spinal flexion",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Delt",
+        "day": "Day B - Upper Body Pull"
+      },
+      {
+        "name": "Biceps curls",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Biceps",
+        "day": "Day B - Upper Body Pull"
+      },
+      {
+        "name": "Barbell squats",
+        "sets": 4,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Erector Spine",
+        "day": "Day C - Lower Body"
+      },
+      {
+        "name": "Romanian deadlifts",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Traps",
+        "day": "Day C - Lower Body"
+      },
+      {
+        "name": "Calf raises/jumps",
+        "sets": 3,
+        "reps": 20,
+        "intensity": 60,
+        "rpe": 6.0,
+        "muscle_group": "Calves",
+        "day": "Day C - Lower Body"
+      }
+    ],
+    "duration_weeks": 8,
+    "active": true,
+    "generated_at": "2025-11-16 11:07:09.821578",
+    "deactivated_at": null,
+    "updated_at": "2025-11-16T21:02:55.792206"
   }
 ]

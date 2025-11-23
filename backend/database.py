@@ -59,6 +59,9 @@ class JSONDatabase:
             "workout_logs": self.data_dir / "workout_logs.json",
             "body_logs": self.data_dir / "body_logs.json",
             "daily_summaries": self.data_dir / "daily_summaries.json",
+            "user_exercises": self.data_dir / "user_exercises.json",
+            "training_recommendations": self.data_dir / "training_recommendations.json",
+            "training_progress_summaries": self.data_dir / "training_progress_summaries.json",
         }
 
         # Initialize empty collections if they don't exist

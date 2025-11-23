@@ -37,7 +37,7 @@ The Nutrition Specialist Agent is a **proactive, weekly-scheduled AI agent** tha
 │      - Weight logs                                  │
 │      - Body composition logs (skinfolds/waist/BF%)  │
 │      - Nutrition logs                               │
-│      - Workout logs (for bulk assessment)           │
+│      - Strength trend summary (from Training Agent) │
 │  2. Calculate trends (deterministic - no AI)        │
 │      - Weight trend (weekly rate %)                 │
 │      - Body composition trend                       │
@@ -107,9 +107,12 @@ Required fields:
         "days_logged": 12,
         "compliance_pct": 86
     },
-    "workout_summary": {
-        "sessions": 4,
-        "strength_trends": {...}
+    "strength_summary": {
+        # Published by Training Agent (from training_progress_summaries table)
+        "overall_strength_trend": "improving",  # "improving" | "stable" | "declining" | "insufficient_data"
+        "exercises_progressing": 4,
+        "exercises_plateaued": 1,
+        "data_quality": "good"
     }
 }
 ```
@@ -266,7 +269,10 @@ def apply_bulking_algorithm(
     """
     weekly_gain_pct = data["weight_trend"]["weekly_rate_pct"]  # Positive if gaining
     body_fat_trend = data["body_comp_trend"]["trend"]  # "increasing", "stable", "decreasing"
-    strength_progressing = data.get("workout_summary", {}).get("strength_progressing", True)
+
+    # Read strength trend from Training Agent's published summary
+    strength_trend = data["strength_summary"]["overall_strength_trend"]
+    strength_progressing = strength_trend in ["improving", "stable"]  # Not declining
 
     # Get target gain rate from Table 3
     surplus_info = calculate_optimal_surplus(data["user_profile"]["training_status"])
@@ -386,7 +392,7 @@ def test_bulking_algorithm_plateau():
         "weight_trend": {"weekly_rate_pct": 0.05, "is_plateau": True},
         "nutrition_summary": {"avg_calories": 2500},
         "body_comp_trend": {"trend": "stable"},
-        "workout_summary": {"strength_progressing": True}
+        "strength_summary": {"overall_strength_trend": "improving"}
     }
 
     recommendation = apply_nutrition_algorithm(user, data)
@@ -404,7 +410,7 @@ def test_bulking_algorithm_gaining_too_fast():
         "weight_trend": {"weekly_rate_pct": 0.8, "is_plateau": False},  # Too fast (>0.5% for intermediate)
         "nutrition_summary": {"avg_calories": 3000},
         "body_comp_trend": {"trend": "increasing", "total_change_mm": 8},  # Fat increasing
-        "workout_summary": {"strength_progressing": True}
+        "strength_summary": {"overall_strength_trend": "improving"}
     }
 
     recommendation = apply_nutrition_algorithm(user, data)
@@ -422,7 +428,7 @@ def test_bulking_algorithm_optimal_rate():
         "weight_trend": {"weekly_rate_pct": 0.3, "is_plateau": False},  # Within 0.2-0.5% for intermediate
         "nutrition_summary": {"avg_calories": 2800},
         "body_comp_trend": {"trend": "stable"},
-        "workout_summary": {"strength_progressing": True}
+        "strength_summary": {"overall_strength_trend": "improving"}
     }
 
     recommendation = apply_nutrition_algorithm(user, data)
@@ -942,7 +948,10 @@ def gather_14_day_data(user_id: str) -> dict:
     weight_logs = db.body_logs.find_recent(user_id, days=14)
     body_comp_logs = db.body_logs.find_recent(user_id, days=14)
     nutrition_logs = db.nutrition_logs.find_recent(user_id, days=14)
-    workout_logs = db.workout_logs.find_recent(user_id, days=14)
+
+    # Read strength trend from Training Agent's published summary
+    # Training Agent runs at 5:55 AM, Nutrition Agent runs at 6:00 AM
+    strength_summary = db.training_progress_summaries.get_latest(user_id)
 
     return {
         "user_profile": {
@@ -957,7 +966,17 @@ def gather_14_day_data(user_id: str) -> dict:
             "avg_calories": calculate_avg_calories(nutrition_logs),
             "days_logged": len(nutrition_logs)
         },
-        "workout_summary": analyze_strength_trends(workout_logs)
+        "strength_summary": {
+            "overall_strength_trend": strength_summary.get("overall_strength_trend", "insufficient_data"),
+            "exercises_progressing": strength_summary.get("exercises_progressing", 0),
+            "exercises_plateaued": strength_summary.get("exercises_plateaued", 0),
+            "data_quality": strength_summary.get("data_quality", "poor")
+        } if strength_summary else {
+            "overall_strength_trend": "insufficient_data",
+            "exercises_progressing": 0,
+            "exercises_plateaued": 0,
+            "data_quality": "poor"
+        }
     }
 
 
