@@ -32,6 +32,9 @@ class DynamoDBAdapter:
             "workout_logs": os.getenv('DYNAMODB_WORKOUT_LOGS'),
             "body_logs": os.getenv('DYNAMODB_BODY_LOGS'),
             "daily_summaries": os.getenv('DYNAMODB_DAILY_SUMMARIES'),
+            "user_exercises": os.getenv('DYNAMODB_USER_EXERCISES'),
+            "training_recommendations": os.getenv('DYNAMODB_TRAINING_RECOMMENDATIONS'),
+            "training_progress_summaries": os.getenv('DYNAMODB_TRAINING_PROGRESS_SUMMARIES'),
         }
 
     def _get_table(self, collection: str):
@@ -86,14 +89,21 @@ class DynamoDBAdapter:
         # Otherwise, use query with GSI if user_id is provided
         if "user_id" in query and collection != "user_profiles":
             try:
-                if collection == "workout_plans":
-                    # Simple user_id query
+                # Determine which index to use based on collection
+                if collection in ["workout_plans", "user_exercises"]:
+                    # These tables only have UserIdIndex (no date component)
                     response = table.query(
                         IndexName="UserIdIndex",
                         KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
                     )
+                elif collection == "training_recommendations":
+                    # This table has UserIdCreatedAtIndex
+                    response = table.query(
+                        IndexName="UserIdCreatedAtIndex",
+                        KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
+                    )
                 else:
-                    # user_id + date range query
+                    # workout_logs, nutrition_logs, body_logs, daily_summaries use UserIdDateIndex
                     if "date" in query:
                         response = table.query(
                             IndexName="UserIdDateIndex",
@@ -125,14 +135,21 @@ class DynamoDBAdapter:
         # Use GSI if querying by user_id
         if "user_id" in query and collection != "user_profiles":
             try:
-                if collection == "workout_plans":
-                    # Simple user_id query
+                # Determine which index to use based on collection
+                if collection in ["workout_plans", "user_exercises"]:
+                    # These tables only have UserIdIndex (no date component)
                     response = table.query(
                         IndexName="UserIdIndex",
                         KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
                     )
+                elif collection == "training_recommendations":
+                    # This table has UserIdCreatedAtIndex
+                    response = table.query(
+                        IndexName="UserIdCreatedAtIndex",
+                        KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
+                    )
                 else:
-                    # user_id + date range query
+                    # workout_logs, nutrition_logs, body_logs, daily_summaries use UserIdDateIndex
                     if "date" in query:
                         response = table.query(
                             IndexName="UserIdDateIndex",
