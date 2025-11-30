@@ -235,14 +235,17 @@ resource "aws_lambda_function" "api" {
       DEFAULT_AWS_REGION  = data.aws_region.current.id
 
       # Tracking System Environment Variables
-      USE_DYNAMODB             = "true"
-      USDA_API_KEY             = var.usda_api_key
-      DYNAMODB_USER_PROFILES   = aws_dynamodb_table.tracking_tables["user_profiles"].name
-      DYNAMODB_WORKOUT_PLANS   = aws_dynamodb_table.tracking_tables["workout_plans"].name
-      DYNAMODB_NUTRITION_LOGS  = aws_dynamodb_table.tracking_tables["nutrition_logs"].name
-      DYNAMODB_WORKOUT_LOGS    = aws_dynamodb_table.tracking_tables["workout_logs"].name
-      DYNAMODB_BODY_LOGS       = aws_dynamodb_table.tracking_tables["body_logs"].name
-      DYNAMODB_DAILY_SUMMARIES = aws_dynamodb_table.tracking_tables["daily_summaries"].name
+      USE_DYNAMODB                        = "true"
+      USDA_API_KEY                        = var.usda_api_key
+      DYNAMODB_USER_PROFILES              = aws_dynamodb_table.tracking_tables["user_profiles"].name
+      DYNAMODB_WORKOUT_PLANS              = aws_dynamodb_table.tracking_tables["workout_plans"].name
+      DYNAMODB_NUTRITION_LOGS             = aws_dynamodb_table.tracking_tables["nutrition_logs"].name
+      DYNAMODB_WORKOUT_LOGS               = aws_dynamodb_table.tracking_tables["workout_logs"].name
+      DYNAMODB_BODY_LOGS                  = aws_dynamodb_table.tracking_tables["body_logs"].name
+      DYNAMODB_DAILY_SUMMARIES            = aws_dynamodb_table.tracking_tables["daily_summaries"].name
+      DYNAMODB_USER_EXERCISES             = aws_dynamodb_table.tracking_tables["user_exercises"].name
+      DYNAMODB_TRAINING_RECOMMENDATIONS   = aws_dynamodb_table.tracking_tables["training_recommendations"].name
+      DYNAMODB_TRAINING_PROGRESS_SUMMARIES = aws_dynamodb_table.tracking_tables["training_progress_summaries"].name
     }
   }
 
@@ -416,6 +419,34 @@ resource "aws_apigatewayv2_route" "get_summary_range" {
 resource "aws_apigatewayv2_route" "get_food_search" {
   api_id    = aws_apigatewayv2_api.main.id
   route_key = "GET /api/food/search"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# ==================== AI Agent Routes ====================
+
+# Nutrition Agent Routes
+resource "aws_apigatewayv2_route" "post_nutrition_analyze" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/nutrition/analyze"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Training Agent Routes
+resource "aws_apigatewayv2_route" "get_training_recommendations" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/training/recommendations"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "get_training_exercise_config" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "GET /api/training/exercise-config"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "post_training_weekly_summary" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/training/weekly-summary"
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 

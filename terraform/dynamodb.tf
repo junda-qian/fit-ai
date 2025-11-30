@@ -87,6 +87,52 @@ locals {
         }
       ]
     }
+    user_exercises = {
+      hash_key = "id"
+      attributes = [
+        { name = "id", type = "S" },
+        { name = "user_id", type = "S" },
+      ]
+      gsi = [
+        {
+          name            = "UserIdIndex"
+          hash_key        = "user_id"
+          projection_type = "ALL"
+        }
+      ]
+    }
+    training_recommendations = {
+      hash_key = "id"
+      attributes = [
+        { name = "id", type = "S" },
+        { name = "user_id", type = "S" },
+        { name = "created_at", type = "S" },
+      ]
+      gsi = [
+        {
+          name            = "UserIdCreatedAtIndex"
+          hash_key        = "user_id"
+          range_key       = "created_at"
+          projection_type = "ALL"
+        }
+      ]
+    }
+    training_progress_summaries = {
+      hash_key = "id"
+      attributes = [
+        { name = "id", type = "S" },
+        { name = "user_id", type = "S" },
+        { name = "week", type = "S" },
+      ]
+      gsi = [
+        {
+          name            = "UserIdWeekIndex"
+          hash_key        = "user_id"
+          range_key       = "week"
+          projection_type = "ALL"
+        }
+      ]
+    }
   }
 }
 

@@ -42,13 +42,17 @@ def main():
 
     # Copy application files
     print("Copying application files...")
-    for file in ["server.py", "lambda_handler.py", "context.py", "resources.py", "retrieval.py", "embeddings.py", "vector_store.py", "energy_calculator.py", "document_processor.py", "workout_planner.py", "models.py", "database.py", "dynamodb_adapter.py", "food_database.py"]:
+    for file in ["server.py", "lambda_handler.py", "context.py", "resources.py", "retrieval.py", "embeddings.py", "vector_store.py", "energy_calculator.py", "document_processor.py", "workout_planner.py", "models.py", "database.py", "dynamodb_adapter.py", "food_database.py", "strength_standards.py"]:
         if os.path.exists(file):
             shutil.copy2(file, "lambda-package/")
-    
+
     # Copy data directory
     if os.path.exists("data"):
         shutil.copytree("data", "lambda-package/data")
+
+    # Copy ai_agents directory (Training and Nutrition agents)
+    if os.path.exists("../ai_agents"):
+        shutil.copytree("../ai_agents", "lambda-package/ai_agents")
 
     # Create zip
     print("Creating zip file...")

@@ -12,3 +12,4 @@ faiss-cpu
 opensearch-py
 requests-aws4auth
 requests
+pydantic
