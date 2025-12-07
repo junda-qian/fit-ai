@@ -28,15 +28,16 @@ output "lambda_function_name" {
   value       = aws_lambda_function.api.function_name
 }
 
-output "opensearch_endpoint" {
-  description = "OpenSearch Serverless collection endpoint"
-  value       = aws_opensearchserverless_collection.health_docs.collection_endpoint
-}
-
-output "opensearch_dashboard_endpoint" {
-  description = "OpenSearch Serverless dashboard endpoint"
-  value       = aws_opensearchserverless_collection.health_docs.dashboard_endpoint
-}
+# OpenSearch outputs disabled - resource is commented out in opensearch.tf
+# output "opensearch_endpoint" {
+#   description = "OpenSearch Serverless collection endpoint"
+#   value       = aws_opensearchserverless_collection.health_docs.collection_endpoint
+# }
+#
+# output "opensearch_dashboard_endpoint" {
+#   description = "OpenSearch Serverless dashboard endpoint"
+#   value       = aws_opensearchserverless_collection.health_docs.dashboard_endpoint
+# }
 
 output "custom_domain_url" {
   description = "Root URL of the production site"

@@ -66,9 +66,16 @@ MEMORY_DIR = os.getenv("MEMORY_DIR", "../memory")
 if USE_S3:
     s3_client = boto3.client("s3")
 
-# Initialize RAG system
+# RAG system initialization - lazy load to avoid import errors when RAG dependencies are not available
 USE_OPENSEARCH = os.getenv("USE_OPENSEARCH", "false").lower() == "true"
-rag_system = HealthRAG(use_opensearch=USE_OPENSEARCH)
+rag_system = None  # Will be initialized on first use
+
+def get_rag_system():
+    """Lazy initialization of RAG system"""
+    global rag_system
+    if rag_system is None:
+        rag_system = HealthRAG(use_opensearch=USE_OPENSEARCH)
+    return rag_system
 
 # Initialize Workout Planner
 workout_planner = WorkoutPlanner(bedrock_client=bedrock_client, model_id=BEDROCK_MODEL_ID)
@@ -180,7 +187,12 @@ def call_bedrock_with_context(user_message: str, context: str) -> str:
 
 @app.get("/")
 async def root():
-    stats = rag_system.get_stats()
+    # Try to get RAG stats, but don't fail if RAG dependencies are not available
+    try:
+        stats = get_rag_system().get_stats()
+    except (ImportError, ModuleNotFoundError):
+        stats = {"status": "RAG dependencies not available (faiss/opensearch not installed)"}
+
     return {
         "message": "Evidence-Based Health Chatbot API",
         "memory_enabled": True,
@@ -192,7 +204,12 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    stats = rag_system.get_stats()
+    # Try to get RAG stats, but don't fail if RAG dependencies are not available
+    try:
+        stats = get_rag_system().get_stats()
+    except (ImportError, ModuleNotFoundError):
+        stats = {"status": "RAG dependencies not available"}
+
     return {
         "status": "healthy",
         "use_s3": USE_S3,
@@ -211,7 +228,7 @@ async def chat(request: ChatRequest):
         conversation = load_conversation(session_id)
 
         # Retrieve relevant context from medical documents
-        context, sources = rag_system.retrieve_context(request.message, top_k=5)
+        context, sources = get_rag_system().retrieve_context(request.message, top_k=5)
 
         # Call Bedrock with context for response
         assistant_response = call_bedrock_with_context(request.message, context)
@@ -254,7 +271,7 @@ async def get_conversation(session_id: str):
 async def get_stats():
     """Get RAG system statistics"""
     try:
-        stats = rag_system.get_stats()
+        stats = get_rag_system().get_stats()
         return stats
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -1133,7 +1150,9 @@ def _get_or_create_exercise_config(user_id: str, exercise_name: str) -> dict:
                     break
 
         # Create default config with plan-based rep target
+        import uuid
         default_config = {
+            "id": str(uuid.uuid4()),  # Required primary key
             "user_id": user_id,
             "exercise_name": exercise_name,
             "progression_model": "linear",  # Default to linear progressive
@@ -1199,7 +1218,9 @@ def _get_exercise_session_history(user_id: str, exercise_name: str, limit: int =
 def _store_training_recommendation(user_id: str, recommendation, workout_date: str):
     """Store training recommendation in database"""
     try:
+        import uuid
         rec_dict = {
+            "id": str(uuid.uuid4()),  # Required primary key
             "user_id": user_id,
             "exercise_name": recommendation.exercise_name,
             "date": workout_date,
@@ -1819,7 +1840,9 @@ async def generate_weekly_training_summary(request: Dict):
     )
 
     # 6. Save to database (training_progress_summaries table)
+    import uuid
     summary_dict = summary.model_dump()
+    summary_dict['id'] = str(uuid.uuid4())  # Add required id field
     db.insert("training_progress_summaries", summary_dict)
 
     return {

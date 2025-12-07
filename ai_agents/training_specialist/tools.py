@@ -224,6 +224,7 @@ def calculate_overall_strength_trend(
     user_exercises: List[dict],
     recent_recommendations: List[dict],
     days: int = 14,
+    recent_workouts: List[dict] = None,
 ) -> dict:
     """
     Analyze recent workouts to determine overall strength trend.
@@ -235,6 +236,7 @@ def calculate_overall_strength_trend(
         user_exercises: List of user exercise configurations
         recent_recommendations: Recent training recommendations from last N days
         days: Number of days to analyze (default 14)
+        recent_workouts: Recent workout logs (used as fallback if no recommendations)
 
     Returns:
         dict with:
@@ -246,17 +248,31 @@ def calculate_overall_strength_trend(
             - trend_confidence: float (0-1)
             - data_quality: "good" | "fair" | "poor"
     """
-    if len(recent_recommendations) < 2:
-        return {
-            "overall_strength_trend": "insufficient_data",
-            "exercises_analyzed": 0,
-            "exercises_progressing": 0,
-            "exercises_plateaued": 0,
-            "exercises_regressing": 0,
-            "trend_confidence": 0.0,
-            "data_quality": "poor"
-        }
+    # If we have recommendations, use them (preferred method)
+    if len(recent_recommendations) >= 2:
+        return _analyze_from_recommendations(user_exercises, recent_recommendations)
 
+    # Fallback: Analyze directly from workout logs
+    if recent_workouts and len(recent_workouts) >= 2:
+        return _analyze_from_workouts(user_exercises, recent_workouts)
+
+    # Insufficient data
+    return {
+        "overall_strength_trend": "insufficient_data",
+        "exercises_analyzed": 0,
+        "exercises_progressing": 0,
+        "exercises_plateaued": 0,
+        "exercises_regressing": 0,
+        "trend_confidence": 0.0,
+        "data_quality": "poor"
+    }
+
+
+def _analyze_from_recommendations(
+    user_exercises: List[dict],
+    recent_recommendations: List[dict],
+) -> dict:
+    """Analyze strength trend from training recommendations (preferred method)"""
     # Count exercises in each state
     progressing_count = 0
     plateaued_count = 0
@@ -275,19 +291,18 @@ def calculate_overall_strength_trend(
             continue
 
         # Check if exercise is progressing
-        # Count how many times rep target was hit
         hit_target_count = sum(
             1 for r in exercise_recs
-            if r.get("hit_rep_target", False)
+            if r.get("today_analysis", {}).get("hit_rep_target", False) or r.get("hit_rep_target", False)
         )
 
         # Check for plateau or regression flags
         plateau_detected = any(
-            r.get("plateau_detected", False)
+            r.get("today_analysis", {}).get("plateau_detected", False) or r.get("plateau_detected", False)
             for r in exercise_recs
         )
         regression_detected = any(
-            r.get("regression_detected", False)
+            r.get("today_analysis", {}).get("regression_detected", False) or r.get("regression_detected", False)
             for r in exercise_recs
         )
 
@@ -296,40 +311,124 @@ def calculate_overall_strength_trend(
             regressing_count += 1
         elif plateau_detected:
             plateaued_count += 1
-        elif hit_target_count >= len(exercise_recs) * 0.7:  # Hit target in 70%+ of sessions
+        elif hit_target_count >= len(exercise_recs) * 0.7:
             progressing_count += 1
         else:
             plateaued_count += 1
 
     total = progressing_count + plateaued_count + regressing_count
-
     if total == 0:
-        return {
-            "overall_strength_trend": "insufficient_data",
-            "exercises_analyzed": 0,
-            "exercises_progressing": 0,
-            "exercises_plateaued": 0,
-            "exercises_regressing": 0,
-            "trend_confidence": 0.0,
-            "data_quality": "poor"
-        }
+        return _build_insufficient_data_response()
 
-    # Determine overall trend
+    return _build_trend_response(progressing_count, plateaued_count, regressing_count)
+
+
+def _analyze_from_workouts(
+    user_exercises: List[dict],
+    recent_workouts: List[dict],
+) -> dict:
+    """Analyze strength trend directly from workout logs (fallback method)"""
+    # Build exercise history from workouts
+    exercise_history = {}
+
+    for workout in sorted(recent_workouts, key=lambda x: x.get('date', x.get('timestamp', ''))):
+        for exercise_data in workout.get('exercises', []):
+            exercise_name = exercise_data.get('name')
+            sets = exercise_data.get('sets', [])
+
+            if not sets or exercise_name not in [e.get('exercise_name') for e in user_exercises]:
+                continue
+
+            # Track first set performance
+            first_set = sets[0]
+            if exercise_name not in exercise_history:
+                exercise_history[exercise_name] = []
+
+            exercise_history[exercise_name].append({
+                'date': workout.get('date', workout.get('timestamp')),
+                'weight': first_set.get('weight', 0),
+                'reps': first_set.get('reps', 0)
+            })
+
+    # Analyze each exercise
+    progressing_count = 0
+    plateaued_count = 0
+    regressing_count = 0
+
+    for exercise in user_exercises:
+        exercise_name = exercise.get('exercise_name')
+        rep_target = exercise.get('rep_target', 10)
+
+        history = exercise_history.get(exercise_name, [])
+        if len(history) < 2:
+            continue
+
+        # Compare recent sessions
+        recent_sessions = history[-4:]  # Last 4 sessions
+        hit_count = sum(1 for s in recent_sessions if s['reps'] >= rep_target)
+
+        # Check for regression (performance declined)
+        if len(recent_sessions) >= 2:
+            last_two = recent_sessions[-2:]
+            if (last_two[1]['weight'] == last_two[0]['weight'] and
+                last_two[1]['reps'] < last_two[0]['reps']):
+                regressing_count += 1
+                continue
+
+        # Check for plateau (no progress in last 2 sessions)
+        if len(recent_sessions) >= 2:
+            last_two = recent_sessions[-2:]
+            if (last_two[1]['weight'] == last_two[0]['weight'] and
+                last_two[1]['reps'] == last_two[0]['reps']):
+                plateaued_count += 1
+                continue
+
+        # Check if progressing (hitting rep targets consistently)
+        if hit_count >= len(recent_sessions) * 0.7:
+            progressing_count += 1
+        else:
+            plateaued_count += 1
+
+    total = progressing_count + plateaued_count + regressing_count
+    if total == 0:
+        return _build_insufficient_data_response()
+
+    return _build_trend_response(progressing_count, plateaued_count, regressing_count)
+
+
+def _build_insufficient_data_response() -> dict:
+    """Build response for insufficient data"""
+    return {
+        "overall_strength_trend": "insufficient_data",
+        "exercises_analyzed": 0,
+        "exercises_progressing": 0,
+        "exercises_plateaued": 0,
+        "exercises_regressing": 0,
+        "trend_confidence": 0.0,
+        "data_quality": "poor"
+    }
+
+
+def _build_trend_response(
+    progressing_count: int,
+    plateaued_count: int,
+    regressing_count: int,
+) -> dict:
+    """Build trend response from counts"""
+    total = progressing_count + plateaued_count + regressing_count
+
     progressing_pct = progressing_count / total
     regressing_pct = regressing_count / total
 
-    if regressing_pct > 0.3:  # >30% of exercises regressing
+    if regressing_pct > 0.3:
         overall_trend = "declining"
-    elif progressing_pct >= 0.6:  # >=60% of exercises progressing
+    elif progressing_pct >= 0.6:
         overall_trend = "improving"
     else:
         overall_trend = "stable"
 
-    # Calculate confidence based on number of exercises
-    # More exercises = higher confidence
     trend_confidence = min(total / 5.0, 1.0)
 
-    # Determine data quality
     if total >= 3:
         data_quality = "good"
     elif total >= 1:

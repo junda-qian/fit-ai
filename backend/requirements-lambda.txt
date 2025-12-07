@@ -2,7 +2,12 @@ fastapi
 mangum
 python-dotenv
 boto3
-opensearch-py
-requests-aws4auth
 requests
-numpy
+pydantic
+# Heavy dependencies removed to stay under Lambda 250MB limit:
+# - langchain, langchain-aws, langchain-community (only needed for RAG chatbot)
+# - faiss-cpu (only needed for vector search)
+# - pypdf (only needed for document processing)
+# - opensearch-py (only needed if using OpenSearch)
+# - numpy (only needed for faiss)
+# AI agents work without these - they only need pydantic for models

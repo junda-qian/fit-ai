@@ -3,8 +3,9 @@ import json
 import pickle
 from typing import List, Dict, Optional
 import boto3
-from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
-import numpy as np
+# Heavy dependencies moved to methods where they're actually used
+# from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
+# import numpy as np
 
 
 class VectorStore:
@@ -39,6 +40,9 @@ class VectorStore:
 
     def _init_opensearch(self):
         """Initialize OpenSearch Serverless"""
+        # Import opensearch only when needed
+        from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth
+
         self.region = os.getenv("DEFAULT_AWS_REGION", "us-east-1")
         self.collection_endpoint = os.getenv("OPENSEARCH_ENDPOINT")
         self.index_name = "health-docs"
@@ -107,6 +111,7 @@ class VectorStore:
     def _add_to_faiss(self, texts: List[str], embeddings: List[List[float]], metadatas: List[Dict]):
         """Add to FAISS index"""
         import faiss
+        import numpy as np
 
         embeddings_array = np.array(embeddings).astype('float32')
 
@@ -155,6 +160,8 @@ class VectorStore:
 
     def _search_faiss(self, query_embedding: List[float], k: int) -> List[Dict]:
         """Search FAISS index"""
+        import numpy as np
+
         if self.index.ntotal == 0:
             return []
 
