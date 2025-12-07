@@ -2,7 +2,7 @@
 set -e
 
 ENVIRONMENT=${1:-dev}          # dev | test | prod
-PROJECT_NAME=${2:-fitness-chatbot}
+PROJECT_NAME=${2:-health-chatbot}
 
 echo "🚀 Deploying ${PROJECT_NAME} to ${ENVIRONMENT}..."
 

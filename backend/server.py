@@ -1840,7 +1840,9 @@ async def generate_weekly_training_summary(request: Dict):
     )
 
     # 6. Save to database (training_progress_summaries table)
+    import uuid
     summary_dict = summary.model_dump()
+    summary_dict['id'] = str(uuid.uuid4())  # Add required id field
     db.insert("training_progress_summaries", summary_dict)
 
     return {

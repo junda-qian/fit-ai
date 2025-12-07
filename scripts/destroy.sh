@@ -11,7 +11,7 @@ if [ $# -eq 0 ]; then
 fi
 
 ENVIRONMENT=$1
-PROJECT_NAME=${2:-fitness-chatbot}
+PROJECT_NAME=${2:-health-chatbot}
 
 echo "🗑️ Preparing to destroy ${PROJECT_NAME}-${ENVIRONMENT} infrastructure..."
 
@@ -37,22 +37,26 @@ AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 # Get bucket names with account ID
 FRONTEND_BUCKET="${PROJECT_NAME}-${ENVIRONMENT}-frontend-${AWS_ACCOUNT_ID}"
 MEMORY_BUCKET="${PROJECT_NAME}-${ENVIRONMENT}-memory-${AWS_ACCOUNT_ID}"
+DOCUMENTS_BUCKET="${PROJECT_NAME}-${ENVIRONMENT}-documents-${AWS_ACCOUNT_ID}"
 
-# Empty frontend bucket if it exists
-if aws s3 ls "s3://$FRONTEND_BUCKET" 2>/dev/null; then
-    echo "  Emptying $FRONTEND_BUCKET..."
-    aws s3 rm "s3://$FRONTEND_BUCKET" --recursive
-else
-    echo "  Frontend bucket not found or already empty"
-fi
+# Function to empty bucket
+empty_bucket() {
+    local bucket_name=$1
+    local bucket_label=$2
 
-# Empty memory bucket if it exists
-if aws s3 ls "s3://$MEMORY_BUCKET" 2>/dev/null; then
-    echo "  Emptying $MEMORY_BUCKET..."
-    aws s3 rm "s3://$MEMORY_BUCKET" --recursive
-else
-    echo "  Memory bucket not found or already empty"
-fi
+    if aws s3 ls "s3://$bucket_name" 2>/dev/null; then
+        echo "  Emptying $bucket_label ($bucket_name)..."
+        aws s3 rm "s3://$bucket_name" --recursive 2>&1 | grep -v "^delete:" || true
+        echo "  ✓ $bucket_label emptied"
+    else
+        echo "  ℹ️  $bucket_label not found (may already be deleted)"
+    fi
+}
+
+# Empty all buckets
+empty_bucket "$FRONTEND_BUCKET" "Frontend bucket"
+empty_bucket "$MEMORY_BUCKET" "Memory bucket"
+empty_bucket "$DOCUMENTS_BUCKET" "Documents bucket"
 
 echo "🔥 Running terraform destroy..."
 

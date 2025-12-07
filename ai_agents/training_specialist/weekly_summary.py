@@ -60,6 +60,7 @@ def publish_weekly_strength_summary(
         user_exercises=user_exercises,
         recent_recommendations=recent_recommendations,
         days=days,
+        recent_workouts=recent_workouts,
     )
 
     # Calculate aggregate weekly volume
