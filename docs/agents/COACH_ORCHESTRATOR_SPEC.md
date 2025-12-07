@@ -396,6 +396,48 @@ User Question → Coach Orchestrator → AI Reasoning → Function Calls → Res
 >
 > Both get you close! The chicken option hits protein target better. Want more options?"
 
+### 7. Blending Personal Data + Knowledge Base (RAG)
+
+**User Question:**
+> "My weight isn't changing. Is body recomposition real or just a myth?"
+
+**Coach Actions:**
+1. Calls `get_body_logs(days=14)` → Personal weight/skinfold data
+2. Calls `get_weekly_analysis(latest)` → Current status
+3. Calls `search_knowledge_base("body recomposition science evidence")` → RAG research
+
+**Coach Response:**
+> "Great question! Let me check YOUR data first, then explain the science.
+>
+> **Your Data (last 14 days):**
+> - Weight: 80kg → 80.1kg (stable)
+> - Skinfolds: 52mm → 48mm (-4mm) 📉
+> - Bench press: 75kg → 77.5kg (+2.5kg) 📈
+>
+> **What this means:**
+> You ARE in body recomposition right now! Your weight is stable but you're losing fat (skinfolds down) and gaining strength (bench up).
+>
+> **The Science (from research):**
+> Body recomposition is absolutely real, not a myth. According to sports science research, it's most effective for:
+>
+> 1. **Beginners** - New training stimulus triggers rapid muscle growth
+> 2. **Returning trainees** - "Muscle memory" effect accelerates regrowth
+> 3. **Higher body fat** - More energy available from fat stores
+> 4. **Optimized nutrition** - Sufficient protein + small deficit
+>
+> **Why it works:**
+> - Fat loss requires energy deficit (calories out > calories in)
+> - Muscle gain requires training stimulus + protein
+> - Your body can use stored fat as energy for muscle building
+> - This simultaneous process is slower than pure cutting or bulking
+>
+> **Your situation:**
+> You're a textbook case! Intermediate lifter with good body fat level (18%), hitting protein targets, training consistently. This is exactly when body recomp happens.
+>
+> **Bottom line:** Don't let the scale discourage you. Your skinfolds and strength gains prove you're making excellent progress. Keep doing exactly what you're doing! 💪
+>
+> Want to know more about optimizing body recomposition?"
+
 ---
 
 ## Function Tools
@@ -642,6 +684,52 @@ def get_macro_breakdown(user_id: str, date: str = "today") -> dict:
                 "fats_g": 27
             }
         }
+    """
+```
+
+### Knowledge Base Tools (RAG)
+
+```python
+@function_tool
+def search_knowledge_base(query: str, top_k: int = 5) -> dict:
+    """
+    Search evidence-based fitness/health knowledge base using RAG.
+
+    This tool provides access to scientific research, training principles,
+    nutrition science, and evidence-based fitness information.
+
+    Use this when users ask:
+    - General fitness/health questions (not about their personal data)
+    - "What is..." or "How does..." questions
+    - Questions about training principles, nutrition science, sleep optimization
+    - Questions about specific exercises, techniques, or methods
+    - Requests to debunk myths or explain scientific concepts
+
+    Args:
+        query: User's question or search query
+        top_k: Number of relevant documents to retrieve (default 5)
+
+    Returns:
+        {
+            "context": str,  # Formatted context from retrieved documents
+            "sources": [
+                {
+                    "source": "Renaissance Periodization - Training Volume Landmarks",
+                    "page": 12,
+                    "text": "Optimal training volume for hypertrophy...",
+                    "urls": ["https://..."]
+                },
+                ...
+            ],
+            "answer": str  # AI-generated answer based on retrieved context
+        }
+
+    Examples:
+        - "What's the optimal training volume for muscle growth?"
+        - "How should I structure my macronutrients for fat loss?"
+        - "What are evidence-based sleep optimization strategies?"
+        - "Is intermittent fasting effective?"
+        - "What's the best rep range for strength?"
     """
 ```
 
