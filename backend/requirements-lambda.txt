@@ -11,3 +11,4 @@ pydantic
 # - opensearch-py (only needed if using OpenSearch)
 # - numpy (only needed for faiss)
 # AI agents work without these - they only need pydantic for models
+openai>=1.0.0
