@@ -180,7 +180,63 @@ def get_available_tools() -> List[Dict[str, Any]]:
                 }
             }
         },
-        # Phase 4: Will add get_nutrition_recommendation, get_training_status
+
+        # Phase 4: Specialist Agent Tools
+        {
+            "type": "function",
+            "function": {
+                "name": "get_nutrition_recommendation",
+                "description": """Get personalized nutrition recommendation from the Nutrition Specialist Agent.
+
+                Use this when users ask for:
+                - Nutrition advice or recommendations
+                - Should they adjust calories or macros
+                - If their current diet is appropriate for their goals
+                - Calorie or macro targets
+
+                This analyzes their recent data (weight, nutrition logs, training) and provides
+                evidence-based recommendations for calorie and macro adjustments.
+
+                Examples:
+                - "Should I adjust my calories?"
+                - "What should my macros be?"
+                - "Am I eating enough for muscle gain?"
+                - "How should I adjust my diet based on my progress?"
+                """,
+                "parameters": {
+                    "type": "object",
+                    "properties": {},
+                    "required": []
+                }
+            }
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "get_training_summary",
+                "description": """Get training progress summary from the Training Specialist Agent.
+
+                Use this when users ask about:
+                - Their training progress or strength gains
+                - How their lifts are progressing
+                - Which exercises are improving or plateauing
+                - Overall training trends
+
+                This provides analysis of strength trends, progression, and plateaus across all exercises.
+
+                Examples:
+                - "How is my training going?"
+                - "Am I getting stronger?"
+                - "Which exercises are plateauing?"
+                - "What's my overall training progress?"
+                """,
+                "parameters": {
+                    "type": "object",
+                    "properties": {},
+                    "required": []
+                }
+            }
+        },
     ]
 
     return tools
@@ -220,7 +276,12 @@ def execute_tool(tool_name: str, arguments: Dict[str, Any], user_id: str) -> Dic
     elif tool_name == "get_body_logs":
         return get_body_logs(**arguments)
 
-    # Phase 4: Add specialist agent tool routing
+    # Phase 4: Specialist agent tools
+    elif tool_name == "get_nutrition_recommendation":
+        return get_nutrition_recommendation(**arguments)
+    elif tool_name == "get_training_summary":
+        return get_training_summary(**arguments)
+
     else:
         return {
             "error": f"Unknown tool: {tool_name}",
@@ -236,7 +297,8 @@ def get_tool_signature(tool_name: str) -> List[str]:
         "get_nutrition_logs": ["user_id", "days"],
         "get_workout_logs": ["user_id", "days", "exercise"],
         "get_body_logs": ["user_id", "days"],
-        # Phase 4: Will add specialist agent tools
+        "get_nutrition_recommendation": ["user_id"],
+        "get_training_summary": ["user_id"],
     }
     return tool_params.get(tool_name, [])
 
@@ -455,7 +517,239 @@ def get_body_logs(user_id: str, days: int = 14) -> Dict[str, Any]:
 # Phase 4: Specialist Agent Tools
 # ============================================================================
 
-# TODO: Implement in Phase 4
-# - get_nutrition_recommendation(user_id)
-# - get_training_status(user_id, exercise)
-# - analyze_progress(user_id, metric, timeframe)
+def get_nutrition_recommendation(user_id: str) -> Dict[str, Any]:
+    """
+    Get personalized nutrition recommendation from Nutrition Specialist Agent.
+
+    Analyzes last 14 days of data (weight, body composition, nutrition, training)
+    and provides calorie/macro recommendations.
+
+    Args:
+        user_id: User ID
+
+    Returns:
+        Nutrition recommendation with calories, macros, and reasoning
+    """
+    try:
+        import sys
+        import os
+        from datetime import datetime, timedelta
+
+        # Add paths for imports
+        backend_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            "backend"
+        )
+        sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+        sys.path.insert(0, backend_path)
+
+        from ai_agents.nutrition_specialist import (
+            apply_nutrition_algorithm,
+            analyze_weight_trend,
+            analyze_body_composition_trend
+        )
+        from ai_agents.shared.models import NutritionSummary, TrainingProgressSummary
+        from ai_agents.training_specialist.tools import get_iso_week
+        from database import JSONDatabase
+
+        db = JSONDatabase()
+
+        # 1. Fetch user profile
+        user_profile = db.find_one("user_profiles", {"user_id": user_id})
+        if not user_profile:
+            return {"error": f"User profile not found for {user_id}"}
+
+        # 2. Fetch last 14 days of data
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=13)  # 14 days total
+
+        # Get body logs for weight trend
+        all_body_logs = db.find("body_logs", {"user_id": user_id})
+        body_logs_14d = [
+            log for log in all_body_logs
+            if datetime.fromisoformat(log['date']) >= start_date
+        ]
+
+        # Get daily summaries
+        all_daily_summaries = db.find("daily_summaries", {"user_id": user_id})
+        daily_summaries_14d = [
+            log for log in all_daily_summaries
+            if datetime.fromisoformat(log['date']) >= start_date
+        ]
+
+        # 3. Analyze weight trend
+        weight_logs = [
+            {"date": log['date'], "weight": log.get('weight')}
+            for log in body_logs_14d
+            if log.get('weight')
+        ]
+        weight_trend = analyze_weight_trend(weight_logs, days=14)
+
+        # 4. Analyze body composition trend
+        body_comp_logs = [
+            {
+                "date": log['date'],
+                "skinfold_sum": log.get('skinfold_sum'),
+                "skinfolds": log.get('skinfolds'),
+                "waist_cm": log.get('waist_cm'),
+                "body_fat_pct": log.get('body_fat_pct')
+            }
+            for log in body_logs_14d
+        ]
+        body_comp_trend = analyze_body_composition_trend(body_comp_logs, days=14)
+
+        # 5. Summarize nutrition
+        nutrition_logged_days = [
+            s for s in daily_summaries_14d
+            if s.get('total_calories', 0) > 0
+        ]
+
+        if nutrition_logged_days:
+            avg_calories = sum(log.get('total_calories', 0) for log in nutrition_logged_days) / len(nutrition_logged_days)
+            avg_protein = sum(log.get('total_protein', 0) for log in nutrition_logged_days) / len(nutrition_logged_days)
+        else:
+            avg_calories = user_profile.get('target_calories', 2000)
+            avg_protein = user_profile.get('target_protein', 160)
+
+        nutrition_summary = NutritionSummary(
+            days_analyzed=14,
+            days_logged=len(nutrition_logged_days),
+            avg_calories=avg_calories,
+            avg_protein_g=avg_protein,
+            compliance_pct=(len(nutrition_logged_days) / 14) * 100,
+            sufficient_data=len(nutrition_logged_days) >= 10
+        )
+
+        # 6. Get training progress summary
+        user_training_summaries = db.find('training_progress_summaries', {"user_id": user_id})
+
+        if user_training_summaries:
+            user_training_summaries.sort(
+                key=lambda x: x.get('published_at', ''),
+                reverse=True
+            )
+            training_summary = TrainingProgressSummary(**user_training_summaries[0])
+        else:
+            # No training summary - create placeholder
+            current_week = get_iso_week()
+            workout_days = [
+                s for s in daily_summaries_14d
+                if s.get('workouts_completed', 0) > 0
+            ]
+            training_summary = TrainingProgressSummary(
+                user_id=user_id,
+                week=current_week,
+                published_by="coach_orchestrator_fallback",
+                published_at=datetime.utcnow().isoformat(),
+                overall_strength_trend="insufficient_data",
+                exercises_analyzed=0,
+                exercises_progressing=0,
+                exercises_plateaued=0,
+                exercises_regressing=0,
+                avg_weekly_volume_kg=0.0,
+                trend_confidence=0.0,
+                days_of_data=14,
+                workouts_completed=len(workout_days),
+                data_quality="poor"
+            )
+
+        # 7. Run nutrition algorithm
+        recommendation = apply_nutrition_algorithm(
+            user_profile,
+            weight_trend,
+            body_comp_trend,
+            nutrition_summary,
+            training_summary
+        )
+
+        # 8. Format response
+        return {
+            "recommended_calories": recommendation.recommended_calories,
+            "recommended_macros": {
+                "protein_g": recommendation.recommended_macros.get("protein_g"),
+                "carbs_g": recommendation.recommended_macros.get("carbs_g"),
+                "fats_g": recommendation.recommended_macros.get("fats_g")
+            },
+            "current_avg_calories": int(nutrition_summary.avg_calories),
+            "adjustment_category": recommendation.adjustment_category,
+            "reasoning": recommendation.reasoning,
+            "body_composition_status": recommendation.body_composition_status,
+            "data_quality": {
+                "weight_logs": len(weight_logs),
+                "nutrition_days_logged": len(nutrition_logged_days),
+                "sufficient_data": nutrition_summary.sufficient_data
+            }
+        }
+
+    except Exception as e:
+        return {
+            "error": str(e),
+            "message": f"Failed to get nutrition recommendation: {str(e)}"
+        }
+
+
+def get_training_summary(user_id: str) -> Dict[str, Any]:
+    """
+    Get weekly training progress summary from Training Specialist Agent.
+
+    Analyzes strength trends, progression, plateaus across all exercises.
+
+    Args:
+        user_id: User ID
+
+    Returns:
+        Training summary with strength trends and exercise analysis
+    """
+    try:
+        import sys
+        import os
+
+        # Add paths for imports
+        sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+        backend_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            "backend"
+        )
+        sys.path.insert(0, backend_path)
+
+        from database import JSONDatabase
+
+        db = JSONDatabase()
+
+        # Fetch latest training progress summary
+        user_training_summaries = db.find('training_progress_summaries', {"user_id": user_id})
+
+        if not user_training_summaries:
+            return {
+                "error": "No training data available",
+                "message": "User has not completed enough workouts for analysis",
+                "overall_strength_trend": "insufficient_data",
+                "workouts_completed": 0
+            }
+
+        # Get most recent summary
+        user_training_summaries.sort(
+            key=lambda x: x.get('published_at', ''),
+            reverse=True
+        )
+        latest_summary = user_training_summaries[0]
+
+        return {
+            "overall_strength_trend": latest_summary.get('overall_strength_trend'),
+            "exercises_analyzed": latest_summary.get('exercises_analyzed', 0),
+            "exercises_progressing": latest_summary.get('exercises_progressing', 0),
+            "exercises_plateaued": latest_summary.get('exercises_plateaued', 0),
+            "exercises_regressing": latest_summary.get('exercises_regressing', 0),
+            "workouts_completed": latest_summary.get('workouts_completed', 0),
+            "avg_weekly_volume_kg": latest_summary.get('avg_weekly_volume_kg', 0.0),
+            "trend_confidence": latest_summary.get('trend_confidence', 0.0),
+            "data_quality": latest_summary.get('data_quality', 'unknown'),
+            "week": latest_summary.get('week'),
+            "summary": f"Overall trend: {latest_summary.get('overall_strength_trend')}. {latest_summary.get('exercises_progressing', 0)} exercises progressing, {latest_summary.get('exercises_plateaued', 0)} plateaued, {latest_summary.get('exercises_regressing', 0)} regressing."
+        }
+
+    except Exception as e:
+        return {
+            "error": str(e),
+            "message": f"Failed to get training summary: {str(e)}"
+        }
