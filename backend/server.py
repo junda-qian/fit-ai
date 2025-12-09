@@ -1851,6 +1851,83 @@ async def generate_weekly_training_summary(request: Dict):
     }
 
 
+# ============================================================================
+# Coach Orchestrator Endpoint
+# ============================================================================
+
+@app.post("/api/coach/ask")
+async def ask_coach(request: Dict):
+    """
+    Ask the AI Coach a question and get personalized advice.
+
+    The coach can:
+    - Answer evidence-based fitness questions (RAG)
+    - Analyze your personal data (nutrition, workouts, body composition)
+    - Provide nutrition recommendations (Nutrition Agent)
+    - Analyze training progress (Training Agent)
+
+    Request body:
+    {
+        "user_id": "test_user_90day",
+        "message": "How is my training going?",
+        "thread_id": "optional_thread_id"  # For conversation continuity
+    }
+
+    Returns:
+    {
+        "message": "AI coach response...",
+        "thread_id": "thread_123",
+        "tool_calls": [...],  # Tools that were called
+        "sources": [...]  # RAG sources if knowledge base was used
+    }
+    """
+    # Import coach agent (lazy import to avoid circular dependencies)
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+
+    from ai_agents.coach_orchestrator import CoachAgent
+
+    # Get request parameters
+    user_id = request.get("user_id")
+    message = request.get("message")
+    thread_id = request.get("thread_id")
+
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user_id is required")
+    if not message:
+        raise HTTPException(status_code=400, detail="message is required")
+
+    # Get OpenAI API key from environment
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    if not openai_api_key:
+        raise HTTPException(status_code=500, detail="OPENAI_API_KEY not configured")
+
+    try:
+        # Initialize coach agent
+        coach = CoachAgent(
+            openai_api_key=openai_api_key,
+            user_id=user_id,
+            model="gpt-4-turbo-preview"  # Use GPT-4 for production
+        )
+
+        # Handle question
+        response = coach.handle_question(
+            question=message,
+            thread_id=thread_id
+        )
+
+        return response
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error processing coach request: {str(e)}"
+        )
+
+
 if __name__ == "__main__":
     import uvicorn
 
