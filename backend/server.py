@@ -1827,7 +1827,7 @@ async def generate_weekly_training_summary(request: Dict):
     all_workouts = db.find("workout_logs", {"user_id": user_id})
     recent_workouts = [
         workout for workout in all_workouts
-        if datetime.fromisoformat(workout.get('timestamp', workout.get('date', ''))) >= start_date
+        if datetime.fromisoformat(workout.get('timestamp', workout.get('date', '')).replace('Z', '+00:00')).replace(tzinfo=None) >= start_date
     ]
 
     # 5. Generate weekly strength summary

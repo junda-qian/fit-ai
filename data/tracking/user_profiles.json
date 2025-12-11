@@ -1,27 +1,17 @@
 [
   {
-    "id": "824a57f6-9204-43fc-b4b2-6ec4a5f09787",
+    "id": "ed24463d-3edf-4f1a-a0f0-c977ae7419d8",
     "user_id": "test_user_90day",
-    "name": "Alex",
-    "age": 30,
-    "sex": "male",
-    "height_cm": 180,
-    "body_weight_kg": 85.0,
-    "body_fat_pct": 20.0,
-    "goal": "lose_weight",
-    "training_status": "intermediate",
+    "age": 28,
+    "gender": "male",
+    "height_cm": 178,
+    "weight_kg": 85.0,
+    "goal": "build_muscle",
+    "activity_level": "moderate",
     "target_calories": 2200,
-    "target_protein": 170.0,
-    "target_carbs": 220.0,
-    "target_fats": 73.0,
-    "bmr": 1850.0,
-    "tdee": 2640.0,
-    "activity_level": 1.4,
-    "is_active": true,
-    "communication_style": "encouraging",
-    "language": "en",
-    "timezone": "UTC",
-    "created_at": "2025-08-17",
-    "updated_at": "2025-11-15T09:45:39.644297"
+    "target_protein": 170,
+    "target_carbs": 220,
+    "target_fats": 73,
+    "created_at": "2025-09-12"
   }
 ]

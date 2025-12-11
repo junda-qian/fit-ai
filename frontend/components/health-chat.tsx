@@ -1,13 +1,27 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, Dumbbell, User, AlertCircle } from 'lucide-react';
+import { Send, Dumbbell, User, AlertCircle, BookOpen } from 'lucide-react';
 
 interface Message {
     id: string;
     role: 'user' | 'assistant';
     content: string;
     timestamp: Date;
+    sources?: Source[];
+    toolCalls?: ToolCall[];
+}
+
+interface Source {
+    source: string;
+    page?: number;
+    text: string;
+}
+
+interface ToolCall {
+    tool: string;
+    arguments: any;
+    success: boolean;
 }
 
 export default function HealthChat() {
@@ -41,14 +55,19 @@ export default function HealthChat() {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/chat`, {
+            // Get user_id from localStorage (same as progress page) with fallback to test_user_90day
+            const userId = localStorage.getItem('fit_tracker_user_id') || 'test_user_90day';
+
+            // Call the new Coach API endpoint
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/coach/ask`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    user_id: userId,
                     message: userMessage.content,
-                    session_id: sessionId || undefined,
+                    thread_id: sessionId || undefined,
                 }),
             });
 
@@ -56,15 +75,18 @@ export default function HealthChat() {
 
             const data = await response.json();
 
-            if (!sessionId) {
-                setSessionId(data.session_id);
+            // Update session ID (now called thread_id)
+            if (!sessionId && data.thread_id) {
+                setSessionId(data.thread_id);
             }
 
             const assistantMessage: Message = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
-                content: data.response,
+                content: data.message,
                 timestamp: new Date(),
+                sources: data.sources || [],
+                toolCalls: data.tool_calls || [],
             };
 
             setMessages(prev => [...prev, assistantMessage]);
@@ -118,19 +140,19 @@ export default function HealthChat() {
                         <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Dumbbell className="w-8 h-8 text-emerald-600" />
                         </div>
-                        <p className="font-medium text-gray-700">Hello! I&apos;m your Evidence-Based Fitness Coach.</p>
+                        <p className="font-medium text-gray-700">Hello! I&apos;m your AI Fitness Coach.</p>
                         <p className="text-sm mt-2 max-w-md mx-auto">
-                            I can help you with training strategies, nutrition, sleep optimization, stress management,
-                            and achieving your fitness goals through science-backed approaches.
+                            I can analyze your personal data, provide evidence-based nutrition and training recommendations,
+                            and answer general fitness questions backed by scientific research.
                         </p>
                         <div className="mt-4 text-xs text-gray-500 max-w-lg mx-auto">
                             <p>Example questions:</p>
                             <ul className="mt-2 space-y-1 text-left">
-                                <li>• What&apos;s the optimal training volume for muscle hypertrophy?</li>
-                                <li>• How should I structure my macronutrient intake?</li>
-                                <li>• What are the best strategies for sleep optimization?</li>
-                                <li>• How can I calculate my daily calorie needs?</li>
-                                <li>• What training frequency is best for strength gains?</li>
+                                <li>• What are my current nutrition targets?</li>
+                                <li>• How is my training progressing?</li>
+                                <li>• Should I adjust my calories based on my progress?</li>
+                                <li>• What&apos;s the optimal training volume for muscle growth? (RAG)</li>
+                                <li>• How should I structure my macronutrients? (RAG)</li>
                             </ul>
                         </div>
                     </div>
@@ -159,6 +181,32 @@ export default function HealthChat() {
                             }`}
                         >
                             <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+
+                            {/* Display sources if available */}
+                            {message.sources && message.sources.length > 0 && (
+                                <div className="mt-3 pt-3 border-t border-gray-200">
+                                    <div className="flex items-center gap-1 text-xs text-gray-600 font-medium mb-2">
+                                        <BookOpen className="w-3 h-3" />
+                                        Sources ({message.sources.length})
+                                    </div>
+                                    <div className="space-y-1">
+                                        {message.sources.slice(0, 3).map((source, idx) => (
+                                            <div key={idx} className="text-xs text-gray-600">
+                                                <span className="font-medium">{source.source}</span>
+                                                {source.page && <span className="text-gray-500"> (p. {source.page})</span>}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Display tool calls if available (for debugging) */}
+                            {message.toolCalls && message.toolCalls.length > 0 && (
+                                <div className="mt-2 text-xs text-gray-500">
+                                    <span className="font-medium">Tools used:</span> {message.toolCalls.map(tc => tc.tool).join(', ')}
+                                </div>
+                            )}
+
                             <p
                                 className={`text-xs mt-1 ${
                                     message.role === 'user' ? 'text-emerald-100' : 'text-gray-500'

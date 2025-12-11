@@ -1,0 +1,5641 @@
+[
+  {
+    "id": "369889e7-eef5-477d-822c-d659128b668a",
+    "user_id": "test_user_90day",
+    "date": "2025-09-12",
+    "workout_type": "strength",
+    "duration_minutes": 74,
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 70.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 8.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 8.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 5.6
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 25.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 25.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 22.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 25.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-12T18:00:00Z",
+    "created_at": "2025-09-12T18:00:00Z"
+  },
+  {
+    "id": "0a1eb380-4c95-48f6-a07e-bb05201fb889",
+    "user_id": "test_user_90day",
+    "date": "2025-09-15",
+    "workout_type": "strength",
+    "duration_minutes": 81,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 50.0
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 100.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 97.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 95.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 100.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 62.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 57.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 65.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-09-15T18:00:00Z",
+    "created_at": "2025-09-15T18:00:00Z"
+  },
+  {
+    "id": "01e8b962-ea03-42b7-8e75-ef3f585e872f",
+    "user_id": "test_user_90day",
+    "date": "2025-09-16",
+    "workout_type": "strength",
+    "duration_minutes": 89,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 35.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 35.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 32.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 35.0
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 77.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 80.0
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 62.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 70.0
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 120.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 118.8
+          },
+          {
+            "reps": 10,
+            "weight_kg": 117.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 120.0
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-09-16T18:00:00Z",
+    "created_at": "2025-09-16T18:00:00Z"
+  },
+  {
+    "id": "064844d2-ff4b-4df9-b066-c7ebdc728993",
+    "user_id": "test_user_90day",
+    "date": "2025-09-17",
+    "workout_type": "strength",
+    "duration_minutes": 80,
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 70.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 25.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 23.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 25.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 21.2
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 45.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 45.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 40.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 37.5
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 20.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 20.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 17.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 8.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 8.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 8.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 8.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-17T18:00:00Z",
+    "created_at": "2025-09-17T18:00:00Z"
+  },
+  {
+    "id": "10937b0d-fdad-4378-a195-51a44a2518e6",
+    "user_id": "test_user_90day",
+    "date": "2025-09-19",
+    "workout_type": "strength",
+    "duration_minutes": 76,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 43.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 38.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 20.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 20.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 20.4
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 8.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 8.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 5.7
+          },
+          {
+            "reps": 9,
+            "weight_kg": 5.6
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 66.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 71.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 25.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 24.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 23.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 25.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-19T18:00:00Z",
+    "created_at": "2025-09-19T18:00:00Z"
+  },
+  {
+    "id": "97e80189-d26f-4c85-b637-82121e580c04",
+    "user_id": "test_user_90day",
+    "date": "2025-09-22",
+    "workout_type": "strength",
+    "duration_minutes": 62,
+    "exercises": [
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 102.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 99.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 102.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 94.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 102.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 66.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 63.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 66.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 66.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 45.7
+          },
+          {
+            "reps": 12,
+            "weight_kg": 44.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 43.2
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 12.3
+          },
+          {
+            "reps": 9,
+            "weight_kg": 12.3
+          },
+          {
+            "reps": 8,
+            "weight_kg": 9.8
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-09-22T18:00:00Z",
+    "created_at": "2025-09-22T18:00:00Z"
+  },
+  {
+    "id": "217dae71-8d65-4abe-9368-6723a966a6ac",
+    "user_id": "test_user_90day",
+    "date": "2025-09-23",
+    "workout_type": "strength",
+    "duration_minutes": 82,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 35.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 34.4
+          },
+          {
+            "reps": 12,
+            "weight_kg": 33.1
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 122.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 121.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 122.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 122.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 71.2
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.7
+          },
+          {
+            "reps": 6,
+            "weight_kg": 66.2
+          },
+          {
+            "reps": 6,
+            "weight_kg": 63.7
+          },
+          {
+            "reps": 7,
+            "weight_kg": 71.2
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 81.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 79.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 76.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 74.0
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-09-23T18:00:00Z",
+    "created_at": "2025-09-23T18:00:00Z"
+  },
+  {
+    "id": "6d08fd1f-ab5c-4045-943d-232c82262ea2",
+    "user_id": "test_user_90day",
+    "date": "2025-09-24",
+    "workout_type": "strength",
+    "duration_minutes": 83,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 38.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 35.5
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 25.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 25.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 25.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 8.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 6.9
+          },
+          {
+            "reps": 11,
+            "weight_kg": 8.2
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 66.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 61.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-24T18:00:00Z",
+    "created_at": "2025-09-24T18:00:00Z"
+  },
+  {
+    "id": "46ab6706-8a3a-4e18-a447-afdaef7fbdd6",
+    "user_id": "test_user_90day",
+    "date": "2025-09-26",
+    "workout_type": "strength",
+    "duration_minutes": 60,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 46.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 43.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 46.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 46.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 26.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 26.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 23.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 26.0
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 69.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 64.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 62.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 20.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 20.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 18.3
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-26T18:00:00Z",
+    "created_at": "2025-09-26T18:00:00Z"
+  },
+  {
+    "id": "62e669c6-caf3-42e2-8f34-36c0499c07f8",
+    "user_id": "test_user_90day",
+    "date": "2025-09-27",
+    "workout_type": "strength",
+    "duration_minutes": 70,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 51.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 50.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 49.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 47.9
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 46.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 46.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 46.4
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 104.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 101.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 99.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 104.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 67.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 64.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 67.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 59.5
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-09-27T18:00:00Z",
+    "created_at": "2025-09-27T18:00:00Z"
+  },
+  {
+    "id": "5818688c-27fc-4f27-8961-b04120dd53bb",
+    "user_id": "test_user_90day",
+    "date": "2025-09-29",
+    "workout_type": "strength",
+    "duration_minutes": 72,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 36.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 35.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 33.7
+          },
+          {
+            "reps": 12,
+            "weight_kg": 32.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 72.4
+          },
+          {
+            "reps": 6,
+            "weight_kg": 69.9
+          },
+          {
+            "reps": 6,
+            "weight_kg": 72.4
+          },
+          {
+            "reps": 5,
+            "weight_kg": 72.4
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 83.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 80.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 78.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 75.5
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 125.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 125.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 125.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 121.2
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-09-29T18:00:00Z",
+    "created_at": "2025-09-29T18:00:00Z"
+  },
+  {
+    "id": "ec7351ef-61d9-4044-b8fa-399c9001b28f",
+    "user_id": "test_user_90day",
+    "date": "2025-09-30",
+    "workout_type": "strength",
+    "duration_minutes": 89,
+    "exercises": [
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 8.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 8.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 5.9
+          },
+          {
+            "reps": 11,
+            "weight_kg": 5.6
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 69.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 67.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 64.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 46.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 43.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 41.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 46.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 20.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 19.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 18.3
+          },
+          {
+            "reps": 12,
+            "weight_kg": 17.1
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 26.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 26.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 23.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 26.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-09-30T18:00:00Z",
+    "created_at": "2025-09-30T18:00:00Z"
+  },
+  {
+    "id": "3fcf060a-8f92-4b96-aa11-d6a0c817e4ba",
+    "user_id": "test_user_90day",
+    "date": "2025-10-01",
+    "workout_type": "strength",
+    "duration_minutes": 81,
+    "exercises": [
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 104.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 104.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 104.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 104.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 46.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 45.1
+          },
+          {
+            "reps": 9,
+            "weight_kg": 46.4
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 67.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 64.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 62.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 59.5
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-01T18:00:00Z",
+    "created_at": "2025-10-01T18:00:00Z"
+  },
+  {
+    "id": "63a1061b-7c84-46af-8508-2cbe76d1c150",
+    "user_id": "test_user_90day",
+    "date": "2025-10-03",
+    "workout_type": "strength",
+    "duration_minutes": 66,
+    "exercises": [
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 21.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 21.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 21.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 17.4
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 22.8
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 44.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 36.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 8.6
+          },
+          {
+            "reps": 9,
+            "weight_kg": 7.3
+          },
+          {
+            "reps": 9,
+            "weight_kg": 6.1
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 73.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 70.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 68.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 65.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-03T18:00:00Z",
+    "created_at": "2025-10-03T18:00:00Z"
+  },
+  {
+    "id": "577cd319-6563-408f-9703-5d173219f22e",
+    "user_id": "test_user_90day",
+    "date": "2025-10-04",
+    "workout_type": "strength",
+    "duration_minutes": 69,
+    "exercises": [
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 12.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 12.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 12.9
+          },
+          {
+            "reps": 12,
+            "weight_kg": 12.9
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 106.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 103.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 101.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 106.0
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 52.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 51.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 52.4
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-04T18:00:00Z",
+    "created_at": "2025-10-04T18:00:00Z"
+  },
+  {
+    "id": "eb1115a8-4de1-47c5-93df-445cdd0a89c4",
+    "user_id": "test_user_90day",
+    "date": "2025-10-06",
+    "workout_type": "strength",
+    "duration_minutes": 71,
+    "exercises": [
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 73.6
+          },
+          {
+            "reps": 5,
+            "weight_kg": 71.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 73.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 73.6
+          },
+          {
+            "reps": 5,
+            "weight_kg": 63.6
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 127.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 127.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 125.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 123.8
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 36.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 36.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 34.3
+          },
+          {
+            "reps": 8,
+            "weight_kg": 36.8
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 84.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 84.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 84.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 77.0
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-10-06T18:00:00Z",
+    "created_at": "2025-10-06T18:00:00Z"
+  },
+  {
+    "id": "eb4402eb-b23c-461d-b9e2-3e0e46494360",
+    "user_id": "test_user_90day",
+    "date": "2025-10-07",
+    "workout_type": "strength",
+    "duration_minutes": 88,
+    "exercises": [
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 26.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 44.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 36.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 8.6
+          },
+          {
+            "reps": 10,
+            "weight_kg": 8.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 8.6
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 21.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 19.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 21.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 17.4
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-07T18:00:00Z",
+    "created_at": "2025-10-07T18:00:00Z"
+  },
+  {
+    "id": "f043e322-e0ff-436d-8dbf-06b165c96238",
+    "user_id": "test_user_90day",
+    "date": "2025-10-08",
+    "workout_type": "strength",
+    "duration_minutes": 80,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 47.1
+          },
+          {
+            "reps": 12,
+            "weight_kg": 47.1
+          },
+          {
+            "reps": 12,
+            "weight_kg": 47.1
+          },
+          {
+            "reps": 12,
+            "weight_kg": 47.1
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 52.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 51.1
+          },
+          {
+            "reps": 11,
+            "weight_kg": 49.9
+          },
+          {
+            "reps": 9,
+            "weight_kg": 52.4
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 68.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 65.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 63.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 68.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-08T18:00:00Z",
+    "created_at": "2025-10-08T18:00:00Z"
+  },
+  {
+    "id": "b88361e3-e9bc-40b1-9d14-7026254ecd7a",
+    "user_id": "test_user_90day",
+    "date": "2025-10-10",
+    "workout_type": "strength",
+    "duration_minutes": 83,
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 69.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 74.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 19.1
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 27.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 27.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 24.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 23.2
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-10T18:00:00Z",
+    "created_at": "2025-10-10T18:00:00Z"
+  },
+  {
+    "id": "6e3b975b-1ece-4933-be2c-d9f6284e56d5",
+    "user_id": "test_user_90day",
+    "date": "2025-10-11",
+    "workout_type": "strength",
+    "duration_minutes": 77,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 47.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 47.8
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 53.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 53.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 50.7
+          },
+          {
+            "reps": 10,
+            "weight_kg": 49.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 108.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 105.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 103.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 100.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 69.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 66.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 64.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 69.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 13.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 11.9
+          },
+          {
+            "reps": 9,
+            "weight_kg": 10.7
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-11T18:00:00Z",
+    "created_at": "2025-10-11T18:00:00Z"
+  },
+  {
+    "id": "eabae231-1dbf-4655-9989-e8d85a4a2944",
+    "user_id": "test_user_90day",
+    "date": "2025-10-13",
+    "workout_type": "strength",
+    "duration_minutes": 81,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 37.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 37.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 34.9
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 74.8
+          },
+          {
+            "reps": 5,
+            "weight_kg": 74.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 74.8
+          },
+          {
+            "reps": 6,
+            "weight_kg": 67.3
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 86.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 86.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 86.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 78.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 76.0
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 130.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 130.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 130.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 126.2
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-10-13T18:00:00Z",
+    "created_at": "2025-10-13T18:00:00Z"
+  },
+  {
+    "id": "7767acde-1249-49a3-ac3a-85483b5a86b6",
+    "user_id": "test_user_90day",
+    "date": "2025-10-14",
+    "workout_type": "strength",
+    "duration_minutes": 79,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 47.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 47.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 42.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 47.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 37.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 27.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 27.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 24.5
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 9,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 10,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 9,
+            "weight_kg": 21.6
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 74.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-14T18:00:00Z",
+    "created_at": "2025-10-14T18:00:00Z"
+  },
+  {
+    "id": "da93d55f-f827-45fe-981e-8088b564562f",
+    "user_id": "test_user_90day",
+    "date": "2025-10-15",
+    "workout_type": "strength",
+    "duration_minutes": 90,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 53.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 52.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 53.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 53.2
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 69.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 66.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 64.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 61.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 69.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 47.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 45.3
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 108.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 105.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 108.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 108.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 98.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 13.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 11.9
+          },
+          {
+            "reps": 8,
+            "weight_kg": 13.2
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-15T18:00:00Z",
+    "created_at": "2025-10-15T18:00:00Z"
+  },
+  {
+    "id": "60c31f92-4ead-44ee-8990-1ba428064b74",
+    "user_id": "test_user_90day",
+    "date": "2025-10-17",
+    "workout_type": "strength",
+    "duration_minutes": 82,
+    "exercises": [
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 22.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 20.8
+          },
+          {
+            "reps": 10,
+            "weight_kg": 22.0
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 45.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 42.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 40.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 9.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 9.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 6.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-17T18:00:00Z",
+    "created_at": "2025-10-17T18:00:00Z"
+  },
+  {
+    "id": "fc98ff1c-249d-474f-9278-469286610004",
+    "user_id": "test_user_90day",
+    "date": "2025-10-18",
+    "workout_type": "strength",
+    "duration_minutes": 80,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 44.8
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 110.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 107.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 105.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 110.0
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 54.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 54.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 51.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 50.2
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 13.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 12.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 11.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 65.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 62.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 70.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-18T18:00:00Z",
+    "created_at": "2025-10-18T18:00:00Z"
+  },
+  {
+    "id": "e5113738-2fc2-4105-8b77-f555bc9ba062",
+    "user_id": "test_user_90day",
+    "date": "2025-10-20",
+    "workout_type": "strength",
+    "duration_minutes": 77,
+    "exercises": [
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 132.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 132.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 130.0
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 38.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 38.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 35.5
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 87.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 85.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 87.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 87.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 76.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 73.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 76.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.5
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-10-20T18:00:00Z",
+    "created_at": "2025-10-20T18:00:00Z"
+  },
+  {
+    "id": "0ebf5ac8-7bb5-472d-96d6-fbf52b4db26b",
+    "user_id": "test_user_90day",
+    "date": "2025-10-21",
+    "workout_type": "strength",
+    "duration_minutes": 88,
+    "exercises": [
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 22.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 20.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 22.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 18.2
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 42.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 40.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 27.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 27.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 25.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 9.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 7.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 9.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 5.6
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-21T18:00:00Z",
+    "created_at": "2025-10-21T18:00:00Z"
+  },
+  {
+    "id": "c5d73026-1f4b-44e7-8886-5b3f8aa8194a",
+    "user_id": "test_user_90day",
+    "date": "2025-10-22",
+    "workout_type": "strength",
+    "duration_minutes": 67,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 47.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 44.8
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 13.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 13.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 13.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 9.8
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 110.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 110.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 105.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 102.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 110.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-22T18:00:00Z",
+    "created_at": "2025-10-22T18:00:00Z"
+  },
+  {
+    "id": "5f74b3f4-cf4e-426a-8be3-4f4fdddea80a",
+    "user_id": "test_user_90day",
+    "date": "2025-10-24",
+    "workout_type": "strength",
+    "duration_minutes": 73,
+    "exercises": [
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 9.2
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 22.4
+          },
+          {
+            "reps": 12,
+            "weight_kg": 21.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 19.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 18.6
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 76.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 73.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 40.5
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 28.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 28.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 28.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-24T18:00:00Z",
+    "created_at": "2025-10-24T18:00:00Z"
+  },
+  {
+    "id": "1dc67f12-aae0-44c2-9b9a-23ccd265211f",
+    "user_id": "test_user_90day",
+    "date": "2025-10-25",
+    "workout_type": "strength",
+    "duration_minutes": 61,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 54.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 54.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 52.3
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 49.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 49.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 45.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 71.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 66.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 63.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 71.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 13.8
+          },
+          {
+            "reps": 10,
+            "weight_kg": 12.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 11.3
+          },
+          {
+            "reps": 11,
+            "weight_kg": 13.8
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 112.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 112.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 107.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 104.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 102.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-10-25T18:00:00Z",
+    "created_at": "2025-10-25T18:00:00Z"
+  },
+  {
+    "id": "80bc435d-e7b4-41b6-8473-3413d3561d32",
+    "user_id": "test_user_90day",
+    "date": "2025-10-27",
+    "workout_type": "strength",
+    "duration_minutes": 89,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 38.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 38.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 36.1
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 135.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 135.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 132.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 135.0
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 89.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 89.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 89.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 81.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 77.2
+          },
+          {
+            "reps": 5,
+            "weight_kg": 77.2
+          },
+          {
+            "reps": 6,
+            "weight_kg": 77.2
+          },
+          {
+            "reps": 6,
+            "weight_kg": 69.7
+          },
+          {
+            "reps": 8,
+            "weight_kg": 77.2
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-10-27T18:00:00Z",
+    "created_at": "2025-10-27T18:00:00Z"
+  },
+  {
+    "id": "943741c2-a564-479f-a51f-8a1570bf99c9",
+    "user_id": "test_user_90day",
+    "date": "2025-10-29",
+    "workout_type": "strength",
+    "duration_minutes": 84,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 43.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 48.0
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 28.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 28.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 28.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 9.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 9.2
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-29T18:00:00Z",
+    "created_at": "2025-10-29T18:00:00Z"
+  },
+  {
+    "id": "35a9ffa4-103f-488b-a3aa-a7fe7c2ef419",
+    "user_id": "test_user_90day",
+    "date": "2025-10-31",
+    "workout_type": "strength",
+    "duration_minutes": 85,
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 69.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 67.0
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 46.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 43.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 48.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 9.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 9.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 6.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 5.7
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 28.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 28.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 26.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 22.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 21.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 22.8
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-10-31T18:00:00Z",
+    "created_at": "2025-10-31T18:00:00Z"
+  },
+  {
+    "id": "4002f008-5dc4-4764-80f7-76fbde13410e",
+    "user_id": "test_user_90day",
+    "date": "2025-11-01",
+    "workout_type": "strength",
+    "duration_minutes": 63,
+    "exercises": [
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 14.1
+          },
+          {
+            "reps": 12,
+            "weight_kg": 14.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 14.1
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 114.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 111.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 109.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 114.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 114.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 67.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 64.5
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 49.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 48.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 49.9
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-01T18:00:00Z",
+    "created_at": "2025-11-01T18:00:00Z"
+  },
+  {
+    "id": "c8d132df-45fa-495c-a417-4053dfb1aac7",
+    "user_id": "test_user_90day",
+    "date": "2025-11-03",
+    "workout_type": "strength",
+    "duration_minutes": 79,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 39.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 38.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 39.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 35.5
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 137.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 136.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 137.5
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 90.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 90.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 85.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 90.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 78.4
+          },
+          {
+            "reps": 6,
+            "weight_kg": 78.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 78.4
+          },
+          {
+            "reps": 5,
+            "weight_kg": 70.9
+          },
+          {
+            "reps": 5,
+            "weight_kg": 78.4
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-11-03T18:00:00Z",
+    "created_at": "2025-11-03T18:00:00Z"
+  },
+  {
+    "id": "1857dba3-3f5b-412a-87ee-6e8aea5e87ff",
+    "user_id": "test_user_90day",
+    "date": "2025-11-04",
+    "workout_type": "strength",
+    "duration_minutes": 89,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 48.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 48.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 9.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 8.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 6.9
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 69.5
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 28.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 28.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 26.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 22.8
+          },
+          {
+            "reps": 10,
+            "weight_kg": 22.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 20.3
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-04T18:00:00Z",
+    "created_at": "2025-11-04T18:00:00Z"
+  },
+  {
+    "id": "ba7396cd-5eb3-49a0-87ff-f8bb65b75076",
+    "user_id": "test_user_90day",
+    "date": "2025-11-05",
+    "workout_type": "strength",
+    "duration_minutes": 75,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 49.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 49.9
+          },
+          {
+            "reps": 8,
+            "weight_kg": 49.9
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 14.1
+          },
+          {
+            "reps": 9,
+            "weight_kg": 12.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 11.6
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 64.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 72.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-05T18:00:00Z",
+    "created_at": "2025-11-05T18:00:00Z"
+  },
+  {
+    "id": "a4cc6491-5d5c-417c-9aa2-3f915d14c32f",
+    "user_id": "test_user_90day",
+    "date": "2025-11-07",
+    "workout_type": "strength",
+    "duration_minutes": 64,
+    "exercises": [
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 78.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 78.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 73.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 70.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 68.0
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 49.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 44.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 41.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 9.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 9.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 9.6
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 29.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 27.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 26.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 29.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 23.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 23.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 23.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 23.2
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-07T18:00:00Z",
+    "created_at": "2025-11-07T18:00:00Z"
+  },
+  {
+    "id": "b58aa24c-0c60-4d2f-a1bc-735782aea33b",
+    "user_id": "test_user_90day",
+    "date": "2025-11-08",
+    "workout_type": "strength",
+    "duration_minutes": 83,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 56.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 55.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 56.4
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 14.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 14.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 11.9
+          },
+          {
+            "reps": 10,
+            "weight_kg": 14.4
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 73.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 70.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 73.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 65.5
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-08T18:00:00Z",
+    "created_at": "2025-11-08T18:00:00Z"
+  },
+  {
+    "id": "f7a698a8-9306-451c-92b4-dc5d72e53a46",
+    "user_id": "test_user_90day",
+    "date": "2025-11-10",
+    "workout_type": "strength",
+    "duration_minutes": 77,
+    "exercises": [
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 140.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 138.8
+          },
+          {
+            "reps": 10,
+            "weight_kg": 140.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 136.2
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 39.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 39.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 37.3
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 92.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 92.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 87.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 84.5
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 79.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 77.1
+          },
+          {
+            "reps": 8,
+            "weight_kg": 79.6
+          },
+          {
+            "reps": 5,
+            "weight_kg": 72.1
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-11-10T18:00:00Z",
+    "created_at": "2025-11-10T18:00:00Z"
+  },
+  {
+    "id": "3d5536a1-b7fa-4393-8ad1-f40d3b87d901",
+    "user_id": "test_user_90day",
+    "date": "2025-11-11",
+    "workout_type": "strength",
+    "duration_minutes": 81,
+    "exercises": [
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 49.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 46.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 49.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 49.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 23.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 23.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 23.2
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 29.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 27.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 26.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-11T18:00:00Z",
+    "created_at": "2025-11-11T18:00:00Z"
+  },
+  {
+    "id": "4c90c38d-01a1-4c91-9446-f03b8441b09a",
+    "user_id": "test_user_90day",
+    "date": "2025-11-12",
+    "workout_type": "strength",
+    "duration_minutes": 66,
+    "exercises": [
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 116.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 113.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 116.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 108.5
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 56.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 56.4
+          },
+          {
+            "reps": 12,
+            "weight_kg": 56.4
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 50.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 49.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 50.6
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 14.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 14.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 11.9
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-12T18:00:00Z",
+    "created_at": "2025-11-12T18:00:00Z"
+  },
+  {
+    "id": "102a5e23-44db-4afe-ae32-4a463310b204",
+    "user_id": "test_user_90day",
+    "date": "2025-11-14",
+    "workout_type": "strength",
+    "duration_minutes": 88,
+    "exercises": [
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 9.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 8.6
+          },
+          {
+            "reps": 10,
+            "weight_kg": 7.3
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 29.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 29.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 29.5
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 23.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 23.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 23.6
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 47.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 42.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 49.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-14T18:00:00Z",
+    "created_at": "2025-11-14T18:00:00Z"
+  },
+  {
+    "id": "9774e5ea-613e-4cda-b4da-089cd5a9f153",
+    "user_id": "test_user_90day",
+    "date": "2025-11-15",
+    "workout_type": "strength",
+    "duration_minutes": 65,
+    "exercises": [
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 66.5
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 57.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 57.2
+          },
+          {
+            "reps": 12,
+            "weight_kg": 54.7
+          },
+          {
+            "reps": 10,
+            "weight_kg": 53.5
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 118.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 118.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 113.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 110.5
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-15T18:00:00Z",
+    "created_at": "2025-11-15T18:00:00Z"
+  },
+  {
+    "id": "11a19957-321f-4506-96eb-bc6ea0cde9e6",
+    "user_id": "test_user_90day",
+    "date": "2025-11-17",
+    "workout_type": "strength",
+    "duration_minutes": 88,
+    "exercises": [
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 142.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 142.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 142.5
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 40.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 39.1
+          },
+          {
+            "reps": 12,
+            "weight_kg": 40.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 40.4
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 80.8
+          },
+          {
+            "reps": 6,
+            "weight_kg": 78.3
+          },
+          {
+            "reps": 7,
+            "weight_kg": 80.8
+          },
+          {
+            "reps": 7,
+            "weight_kg": 80.8
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-11-17T18:00:00Z",
+    "created_at": "2025-11-17T18:00:00Z"
+  },
+  {
+    "id": "24068af9-93af-4c6c-989d-c6be70a7bf0e",
+    "user_id": "test_user_90day",
+    "date": "2025-11-18",
+    "workout_type": "strength",
+    "duration_minutes": 85,
+    "exercises": [
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 23.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 23.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 23.6
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 49.5
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 29.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 29.5
+          },
+          {
+            "reps": 10,
+            "weight_kg": 29.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 29.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-18T18:00:00Z",
+    "created_at": "2025-11-18T18:00:00Z"
+  },
+  {
+    "id": "cf094b7b-2dd1-4517-8959-15f925563cbf",
+    "user_id": "test_user_90day",
+    "date": "2025-11-19",
+    "workout_type": "strength",
+    "duration_minutes": 82,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 57.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 57.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 57.2
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 118.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 115.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 113.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 110.5
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 66.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 51.3
+          },
+          {
+            "reps": 8,
+            "weight_kg": 51.3
+          },
+          {
+            "reps": 12,
+            "weight_kg": 51.3
+          },
+          {
+            "reps": 11,
+            "weight_kg": 51.3
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 14.7
+          },
+          {
+            "reps": 10,
+            "weight_kg": 13.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 14.7
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-19T18:00:00Z",
+    "created_at": "2025-11-19T18:00:00Z"
+  },
+  {
+    "id": "ea5e08e0-f17b-4bb6-8c43-5c160366f86f",
+    "user_id": "test_user_90day",
+    "date": "2025-11-21",
+    "workout_type": "strength",
+    "duration_minutes": 65,
+    "exercises": [
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 10.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 8.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 7.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 77.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 75.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 80.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 80.0
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 50.0
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-21T18:00:00Z",
+    "created_at": "2025-11-21T18:00:00Z"
+  },
+  {
+    "id": "824a12a1-71ee-4adf-aae9-e00e81129940",
+    "user_id": "test_user_90day",
+    "date": "2025-11-22",
+    "workout_type": "strength",
+    "duration_minutes": 62,
+    "exercises": [
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 120.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 117.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 115.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 120.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 52.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 52.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 49.5
+          },
+          {
+            "reps": 12,
+            "weight_kg": 48.2
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 75.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 72.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 75.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 75.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 65.0
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 58.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 58.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 58.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 54.2
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-22T18:00:00Z",
+    "created_at": "2025-11-22T18:00:00Z"
+  },
+  {
+    "id": "d18a81ec-72be-4dce-8726-edfcb8536695",
+    "user_id": "test_user_90day",
+    "date": "2025-11-24",
+    "workout_type": "strength",
+    "duration_minutes": 86,
+    "exercises": [
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 95.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 95.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 95.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 95.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 95.0
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 41.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 39.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 41.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 41.0
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 72.0
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 145.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 145.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 145.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 141.2
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-11-24T18:00:00Z",
+    "created_at": "2025-11-24T18:00:00Z"
+  },
+  {
+    "id": "572a437a-9237-4cc8-9b02-cf9610877f91",
+    "user_id": "test_user_90day",
+    "date": "2025-11-25",
+    "workout_type": "strength",
+    "duration_minutes": 66,
+    "exercises": [
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 30.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 30.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 30.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 24.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 22.8
+          },
+          {
+            "reps": 9,
+            "weight_kg": 21.5
+          },
+          {
+            "reps": 9,
+            "weight_kg": 20.2
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 47.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 50.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 42.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 50.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 10.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 8.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 7.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-25T18:00:00Z",
+    "created_at": "2025-11-25T18:00:00Z"
+  },
+  {
+    "id": "73aca3e2-e6f9-4fef-9846-e68fe32e3822",
+    "user_id": "test_user_90day",
+    "date": "2025-11-26",
+    "workout_type": "strength",
+    "duration_minutes": 85,
+    "exercises": [
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 75.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 72.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 70.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 67.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 75.0
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 58.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 56.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 58.0
+          },
+          {
+            "reps": 12,
+            "weight_kg": 58.0
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 120.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 120.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 115.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 120.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-26T18:00:00Z",
+    "created_at": "2025-11-26T18:00:00Z"
+  },
+  {
+    "id": "66c0e83c-829a-4f7a-90b4-02ec22e8cb32",
+    "user_id": "test_user_90day",
+    "date": "2025-11-28",
+    "workout_type": "strength",
+    "duration_minutes": 73,
+    "exercises": [
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 30.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 29.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 30.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 30.5
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 50.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 48.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 45.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 43.0
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 81.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 78.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 76.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 81.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 81.0
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 10.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 8.9
+          },
+          {
+            "reps": 9,
+            "weight_kg": 7.7
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 24.4
+          },
+          {
+            "reps": 10,
+            "weight_kg": 23.1
+          },
+          {
+            "reps": 10,
+            "weight_kg": 24.4
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-11-28T18:00:00Z",
+    "created_at": "2025-11-28T18:00:00Z"
+  },
+  {
+    "id": "77698bdc-18ef-4bf4-9f1f-4d8fd071663b",
+    "user_id": "test_user_90day",
+    "date": "2025-11-29",
+    "workout_type": "strength",
+    "duration_minutes": 84,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 58.8
+          },
+          {
+            "reps": 12,
+            "weight_kg": 57.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 58.8
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 122.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 119.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 122.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 122.0
+          }
+        ]
+      },
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 52.7
+          },
+          {
+            "reps": 11,
+            "weight_kg": 52.7
+          },
+          {
+            "reps": 9,
+            "weight_kg": 52.7
+          },
+          {
+            "reps": 11,
+            "weight_kg": 49.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-11-29T18:00:00Z",
+    "created_at": "2025-11-29T18:00:00Z"
+  },
+  {
+    "id": "7d6ad962-594c-42d3-be69-2aca90d309a8",
+    "user_id": "test_user_90day",
+    "date": "2025-12-02",
+    "workout_type": "strength",
+    "duration_minutes": 74,
+    "exercises": [
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 11,
+            "weight_kg": 41.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 41.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 39.1
+          }
+        ]
+      },
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 83.2
+          },
+          {
+            "reps": 5,
+            "weight_kg": 83.2
+          },
+          {
+            "reps": 7,
+            "weight_kg": 83.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 83.2
+          },
+          {
+            "reps": 5,
+            "weight_kg": 73.2
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 96.5
+          },
+          {
+            "reps": 8,
+            "weight_kg": 94.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 96.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 96.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 86.5
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-12-02T18:00:00Z",
+    "created_at": "2025-12-02T18:00:00Z"
+  },
+  {
+    "id": "b18d1017-0dce-41f5-bb36-5e76af931642",
+    "user_id": "test_user_90day",
+    "date": "2025-12-03",
+    "workout_type": "strength",
+    "duration_minutes": 82,
+    "exercises": [
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 24.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 24.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 24.4
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 30.5
+          },
+          {
+            "reps": 11,
+            "weight_kg": 29.2
+          },
+          {
+            "reps": 10,
+            "weight_kg": 28.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 30.5
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 81.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 78.5
+          },
+          {
+            "reps": 6,
+            "weight_kg": 81.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 73.5
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 10.2
+          },
+          {
+            "reps": 11,
+            "weight_kg": 8.9
+          },
+          {
+            "reps": 9,
+            "weight_kg": 10.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 10.2
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-12-03T18:00:00Z",
+    "created_at": "2025-12-03T18:00:00Z"
+  },
+  {
+    "id": "9dafc15a-8da1-4691-9cde-e505fbb20343",
+    "user_id": "test_user_90day",
+    "date": "2025-12-05",
+    "workout_type": "strength",
+    "duration_minutes": 80,
+    "exercises": [
+      {
+        "name": "Dumbbell Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 31.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 29.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 31.0
+          },
+          {
+            "reps": 10,
+            "weight_kg": 27.2
+          }
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 10.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 10.4
+          },
+          {
+            "reps": 12,
+            "weight_kg": 10.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 6.7
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 82.0
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 43.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-12-05T18:00:00Z",
+    "created_at": "2025-12-05T18:00:00Z"
+  },
+  {
+    "id": "060c9d54-1c5b-4931-9d25-43e2c8a9c471",
+    "user_id": "test_user_90day",
+    "date": "2025-12-06",
+    "workout_type": "strength",
+    "duration_minutes": 64,
+    "exercises": [
+      {
+        "name": "Cable Row",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 53.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 53.4
+          },
+          {
+            "reps": 12,
+            "weight_kg": 50.9
+          },
+          {
+            "reps": 9,
+            "weight_kg": 49.6
+          }
+        ]
+      },
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 59.6
+          },
+          {
+            "reps": 11,
+            "weight_kg": 59.6
+          },
+          {
+            "reps": 9,
+            "weight_kg": 59.6
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 114.0
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 7,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 72.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 69.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 77.0
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-12-06T18:00:00Z",
+    "created_at": "2025-12-06T18:00:00Z"
+  },
+  {
+    "id": "73f814c9-271b-4db0-abae-e69847926fb1",
+    "user_id": "test_user_90day",
+    "date": "2025-12-08",
+    "workout_type": "strength",
+    "duration_minutes": 63,
+    "exercises": [
+      {
+        "name": "Romanian Deadlift",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 84.4
+          },
+          {
+            "reps": 5,
+            "weight_kg": 84.4
+          },
+          {
+            "reps": 5,
+            "weight_kg": 79.4
+          },
+          {
+            "reps": 6,
+            "weight_kg": 76.9
+          },
+          {
+            "reps": 7,
+            "weight_kg": 74.4
+          }
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "sets": [
+          {
+            "reps": 10,
+            "weight_kg": 42.2
+          },
+          {
+            "reps": 9,
+            "weight_kg": 42.2
+          },
+          {
+            "reps": 8,
+            "weight_kg": 39.7
+          },
+          {
+            "reps": 12,
+            "weight_kg": 42.2
+          }
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 150.0
+          },
+          {
+            "reps": 9,
+            "weight_kg": 148.8
+          },
+          {
+            "reps": 11,
+            "weight_kg": 150.0
+          },
+          {
+            "reps": 11,
+            "weight_kg": 150.0
+          }
+        ]
+      },
+      {
+        "name": "Squat",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 98.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 98.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 98.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 98.0
+          }
+        ]
+      }
+    ],
+    "notes": "Legs day",
+    "timestamp": "2025-12-08T18:00:00Z",
+    "created_at": "2025-12-08T18:00:00Z"
+  },
+  {
+    "id": "74e75ff9-f470-44da-81dc-7ea6574a395a",
+    "user_id": "test_user_90day",
+    "date": "2025-12-09",
+    "workout_type": "strength",
+    "duration_minutes": 85,
+    "exercises": [
+      {
+        "name": "Lateral Raise",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 10.4
+          },
+          {
+            "reps": 9,
+            "weight_kg": 10.4
+          },
+          {
+            "reps": 8,
+            "weight_kg": 7.9
+          }
+        ]
+      },
+      {
+        "name": "Overhead Press",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 51.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 51.0
+          }
+        ]
+      },
+      {
+        "name": "Tricep Extension",
+        "sets": [
+          {
+            "reps": 8,
+            "weight_kg": 24.8
+          },
+          {
+            "reps": 8,
+            "weight_kg": 23.6
+          },
+          {
+            "reps": 9,
+            "weight_kg": 24.8
+          }
+        ]
+      },
+      {
+        "name": "Bench Press",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 82.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 79.5
+          },
+          {
+            "reps": 7,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 74.5
+          }
+        ]
+      }
+    ],
+    "notes": "Push day",
+    "timestamp": "2025-12-09T18:00:00Z",
+    "created_at": "2025-12-09T18:00:00Z"
+  },
+  {
+    "id": "acbc73eb-0986-4095-8ab5-c1a8d5c5bec3",
+    "user_id": "test_user_90day",
+    "date": "2025-12-10",
+    "workout_type": "strength",
+    "duration_minutes": 84,
+    "exercises": [
+      {
+        "name": "Lat Pulldown",
+        "sets": [
+          {
+            "reps": 9,
+            "weight_kg": 59.6
+          },
+          {
+            "reps": 8,
+            "weight_kg": 58.4
+          },
+          {
+            "reps": 11,
+            "weight_kg": 57.1
+          }
+        ]
+      },
+      {
+        "name": "Barbell Row",
+        "sets": [
+          {
+            "reps": 6,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 6,
+            "weight_kg": 74.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 77.0
+          },
+          {
+            "reps": 7,
+            "weight_kg": 69.5
+          },
+          {
+            "reps": 5,
+            "weight_kg": 67.0
+          }
+        ]
+      },
+      {
+        "name": "Deadlift",
+        "sets": [
+          {
+            "reps": 5,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 124.0
+          },
+          {
+            "reps": 8,
+            "weight_kg": 119.0
+          },
+          {
+            "reps": 5,
+            "weight_kg": 116.5
+          }
+        ]
+      },
+      {
+        "name": "Dumbbell Curl",
+        "sets": [
+          {
+            "reps": 12,
+            "weight_kg": 15.6
+          },
+          {
+            "reps": 10,
+            "weight_kg": 15.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 15.6
+          },
+          {
+            "reps": 12,
+            "weight_kg": 11.8
+          }
+        ]
+      }
+    ],
+    "notes": "Pull day",
+    "timestamp": "2025-12-10T18:00:00Z",
+    "created_at": "2025-12-10T18:00:00Z"
+  }
+]

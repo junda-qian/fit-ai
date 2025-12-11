@@ -1,0 +1,240 @@
+[
+  {
+    "id": "8d367e1c-3618-41a4-81c1-8980736d8cdb",
+    "user_id": "test_user_90day",
+    "exercise_name": "Bench Press",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "1ca88c1f-4631-4bfe-a7f0-99bc084847b3",
+    "user_id": "test_user_90day",
+    "exercise_name": "Lateral Raise",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 3,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "7a15a8cc-bbbb-4070-8c18-4589eefdbbc2",
+    "user_id": "test_user_90day",
+    "exercise_name": "Dumbbell Press",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "6e589284-4ece-43bd-8aa7-5f272eff3b74",
+    "user_id": "test_user_90day",
+    "exercise_name": "Lat Pulldown",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "0b529eec-bf02-4365-a8e8-db2a3d402064",
+    "user_id": "test_user_90day",
+    "exercise_name": "Deadlift",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "737e5492-1b04-48c8-8204-96406b4b4dd1",
+    "user_id": "test_user_90day",
+    "exercise_name": "Barbell Row",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 5,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "85ba384e-0ffe-4c70-9f80-684b9c86978d",
+    "user_id": "test_user_90day",
+    "exercise_name": "Leg Curl",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "74ebc302-7fdf-4e6d-9636-572c266de40f",
+    "user_id": "test_user_90day",
+    "exercise_name": "Squat",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 5,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "82f8da87-eaee-4f6f-ba0a-07ab3272d09a",
+    "user_id": "test_user_90day",
+    "exercise_name": "Romanian Deadlift",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 5,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "0bfc2353-01cc-44d1-8e53-683bd88ae618",
+    "user_id": "test_user_90day",
+    "exercise_name": "Leg Press",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "bb4a153a-c1ea-437c-afe8-c7ce0c69b1ba",
+    "user_id": "test_user_90day",
+    "exercise_name": "Overhead Press",
+    "progression_model": "linear",
+    "rep_target": 6,
+    "num_sets": 4,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 2.5,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "6cbe06f8-a7c5-4d2e-ad6d-ae3132edafc0",
+    "user_id": "test_user_90day",
+    "exercise_name": "Tricep Extension",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 3,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "ac5c9ad5-878b-44d1-b4db-47c0ca597a53",
+    "user_id": "test_user_90day",
+    "exercise_name": "Cable Row",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 3,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  },
+  {
+    "id": "abefd12a-b281-4377-aa24-ae2887ddde41",
+    "user_id": "test_user_90day",
+    "exercise_name": "Dumbbell Curl",
+    "progression_model": "linear",
+    "rep_target": 10,
+    "num_sets": 3,
+    "available_increments": [
+      1.25,
+      2.5,
+      5.0
+    ],
+    "selected_increment": 1.25,
+    "last_successful_weight": 0,
+    "current_weight": 0,
+    "created_at": "2025-09-12"
+  }
+]

@@ -193,15 +193,25 @@ def get_available_tools() -> List[Dict[str, Any]]:
                 - Should they adjust calories or macros
                 - If their current diet is appropriate for their goals
                 - Calorie or macro targets
+                - WHY a recommendation was made or the REASONING/RATIONALE behind it
+                - EXPLANATION of the algorithm or analysis behind nutrition recommendations
+                - Details about how recommendations are calculated
 
-                This analyzes their recent data (weight, nutrition logs, training) and provides
-                evidence-based recommendations for calorie and macro adjustments.
+                This runs a DETERMINISTIC ALGORITHM that analyzes their last 14 days of data
+                (weight trends, body composition, nutrition logs, training progress) and returns:
+                - Recommended calories and macros
+                - Detailed ALGORITHMIC REASONING explaining the calculations
+                - Specific metrics (e.g., "weight gain 0.1%/week vs target 0.5%/week")
+                - The exact logic behind the recommendation (e.g., "increase to 10% surplus")
 
                 Examples:
                 - "Should I adjust my calories?"
                 - "What should my macros be?"
                 - "Am I eating enough for muscle gain?"
                 - "How should I adjust my diet based on my progress?"
+                - "Why is the recommended intake 2043 calories?"
+                - "Can you explain the rationale for the nutrition recommendation?"
+                - "How was the calorie recommendation calculated?"
                 """,
                 "parameters": {
                     "type": "object",
@@ -221,14 +231,22 @@ def get_available_tools() -> List[Dict[str, Any]]:
                 - How their lifts are progressing
                 - Which exercises are improving or plateauing
                 - Overall training trends
+                - Training volume or workout statistics
 
-                This provides analysis of strength trends, progression, and plateaus across all exercises.
+                This runs a DETERMINISTIC ALGORITHM that analyzes their workout data and returns:
+                - Overall strength trend (improving/plateaued/regressing)
+                - Exercise-by-exercise breakdown (progressing/plateaued/regressing counts)
+                - Weekly training volume (total kg lifted)
+                - Data quality and confidence metrics
+                - Specific analysis of each exercise's progression
 
                 Examples:
                 - "How is my training going?"
                 - "Am I getting stronger?"
                 - "Which exercises are plateauing?"
                 - "What's my overall training progress?"
+                - "What's my weekly training volume?"
+                - "How many exercises are progressing?"
                 """,
                 "parameters": {
                     "type": "object",
@@ -380,13 +398,14 @@ def _get_database():
     """Get database instance"""
     import sys
     import os
-    backend_path = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-        "backend"
-    )
+    # Get project root directory (3 levels up from this file)
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    backend_path = os.path.join(project_root, "backend")
+    data_path = os.path.join(project_root, "data", "tracking")
+
     sys.path.insert(0, backend_path)
     from database import JSONDatabase
-    return JSONDatabase()
+    return JSONDatabase(data_dir=data_path)
 
 
 def get_user_profile(user_id: str) -> Dict[str, Any]:
@@ -417,16 +436,27 @@ def get_nutrition_logs(user_id: str, days: int = 7) -> Dict[str, Any]:
         ]
         filtered_logs.sort(key=lambda x: x.get('date', ''), reverse=True)
 
-        if filtered_logs:
-            avg_calories = round(sum(log.get("calories", 0) for log in filtered_logs) / len(filtered_logs), 1)
-            avg_protein = round(sum(log.get("protein_g", 0) for log in filtered_logs) / len(filtered_logs), 1)
+        # Group by date and calculate daily totals (meals are logged individually)
+        from collections import defaultdict
+        daily_totals = defaultdict(lambda: {"calories": 0, "protein_g": 0})
+        for log in filtered_logs:
+            log_date = log['date']
+            daily_totals[log_date]["calories"] += log.get("calories", 0)
+            daily_totals[log_date]["protein_g"] += log.get("protein_g", 0)
+
+        # Calculate averages from daily totals (not individual meals)
+        if daily_totals:
+            avg_calories = round(sum(day["calories"] for day in daily_totals.values()) / len(daily_totals), 1)
+            avg_protein = round(sum(day["protein_g"] for day in daily_totals.values()) / len(daily_totals), 1)
+            days_logged = len(daily_totals)
         else:
             avg_calories = avg_protein = 0
+            days_logged = 0
 
         return {
             "logs": filtered_logs[:10],
             "summary": {
-                "days_logged": len(filtered_logs),
+                "days_logged": days_logged,
                 "avg_calories": avg_calories,
                 "avg_protein": avg_protein
             }
@@ -552,7 +582,10 @@ def get_nutrition_recommendation(user_id: str) -> Dict[str, Any]:
         from ai_agents.training_specialist.tools import get_iso_week
         from database import JSONDatabase
 
-        db = JSONDatabase()
+        # Use absolute path to project root data directory
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        data_path = os.path.join(project_root, "data", "tracking")
+        db = JSONDatabase(data_dir=data_path)
 
         # 1. Fetch user profile
         user_profile = db.find_one("user_profiles", {"user_id": user_id})
@@ -666,9 +699,9 @@ def get_nutrition_recommendation(user_id: str) -> Dict[str, Any]:
         return {
             "recommended_calories": recommendation.recommended_calories,
             "recommended_macros": {
-                "protein_g": recommendation.recommended_macros.get("protein_g"),
-                "carbs_g": recommendation.recommended_macros.get("carbs_g"),
-                "fats_g": recommendation.recommended_macros.get("fats_g")
+                "protein_g": recommendation.recommended_macros.protein_g,
+                "carbs_g": recommendation.recommended_macros.carbs_g,
+                "fat_g": recommendation.recommended_macros.fat_g
             },
             "current_avg_calories": int(nutrition_summary.avg_calories),
             "adjustment_category": recommendation.adjustment_category,
@@ -682,9 +715,13 @@ def get_nutrition_recommendation(user_id: str) -> Dict[str, Any]:
         }
 
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"ERROR in get_nutrition_recommendation: {error_details}")
         return {
             "error": str(e),
-            "message": f"Failed to get nutrition recommendation: {str(e)}"
+            "message": f"Failed to get nutrition recommendation: {str(e)}",
+            "traceback": error_details
         }
 
 
@@ -714,7 +751,10 @@ def get_training_summary(user_id: str) -> Dict[str, Any]:
 
         from database import JSONDatabase
 
-        db = JSONDatabase()
+        # Use absolute path to project root data directory
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        data_path = os.path.join(project_root, "data", "tracking")
+        db = JSONDatabase(data_dir=data_path)
 
         # Fetch latest training progress summary
         user_training_summaries = db.find('training_progress_summaries', {"user_id": user_id})
