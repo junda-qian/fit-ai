@@ -27,7 +27,7 @@ class DemoDataGenerator:
 
     def __init__(self):
         self.db = JSONDatabase()
-        self.user_id = "test_user_90day"
+        self.user_id = "demo_user_90day"
         self.today = date.today()
         self.start_date = self.today - timedelta(days=89)  # 90 days total
 

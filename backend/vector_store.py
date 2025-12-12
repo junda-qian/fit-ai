@@ -24,19 +24,38 @@ class VectorStore:
         """Initialize FAISS for local development"""
         import faiss
 
-        self.index_path = "./faiss_index.pkl"
+        self.index_path = "./faiss_index.bin"  # Use .bin for FAISS native format
         self.metadata_path = "./faiss_metadata.json"
 
         if os.path.exists(self.index_path):
-            with open(self.index_path, 'rb') as f:
-                self.index = pickle.load(f)
-            with open(self.metadata_path, 'r') as f:
-                self.metadata = json.load(f)
-            print(f"Loaded FAISS index with {self.index.ntotal} vectors")
+            try:
+                # Use FAISS native serialization instead of pickle
+                self.index = faiss.read_index(self.index_path)
+                with open(self.metadata_path, 'r') as f:
+                    self.metadata = json.load(f)
+                print(f"Loaded FAISS index with {self.index.ntotal} vectors")
+            except Exception as e:
+                print(f"Failed to load FAISS index: {e}, creating new index")
+                self.index = faiss.IndexFlatL2(self.dimension)
+                self.metadata = []
         else:
-            self.index = faiss.IndexFlatL2(self.dimension)
-            self.metadata = []
-            print("Created new FAISS index")
+            # Also check for old pickle format for backward compatibility
+            old_pkl_path = "./faiss_index.pkl"
+            if os.path.exists(old_pkl_path):
+                try:
+                    with open(old_pkl_path, 'rb') as f:
+                        self.index = pickle.load(f)
+                    with open(self.metadata_path, 'r') as f:
+                        self.metadata = json.load(f)
+                    print(f"Loaded FAISS index from pickle with {self.index.ntotal} vectors")
+                except Exception as e:
+                    print(f"Failed to load pickle FAISS index: {e}, creating new index")
+                    self.index = faiss.IndexFlatL2(self.dimension)
+                    self.metadata = []
+            else:
+                self.index = faiss.IndexFlatL2(self.dimension)
+                self.metadata = []
+                print("Created new FAISS index")
 
     def _init_opensearch(self):
         """Initialize OpenSearch Serverless"""
@@ -131,9 +150,9 @@ class VectorStore:
                 "id": len(self.metadata)
             })
 
-        # Save index and metadata
-        with open(self.index_path, 'wb') as f:
-            pickle.dump(self.index, f)
+        # Save index and metadata using FAISS native format
+        import faiss
+        faiss.write_index(self.index, self.index_path)
         with open(self.metadata_path, 'w') as f:
             json.dump(self.metadata, f)
 

@@ -102,6 +102,12 @@ class DynamoDBAdapter:
                         IndexName="UserIdCreatedAtIndex",
                         KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
                     )
+                elif collection == "training_progress_summaries":
+                    # This table has UserIdWeekIndex
+                    response = table.query(
+                        IndexName="UserIdWeekIndex",
+                        KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
+                    )
                 else:
                     # workout_logs, nutrition_logs, body_logs, daily_summaries use UserIdDateIndex
                     if "date" in query:
@@ -146,6 +152,12 @@ class DynamoDBAdapter:
                     # This table has UserIdCreatedAtIndex
                     response = table.query(
                         IndexName="UserIdCreatedAtIndex",
+                        KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
+                    )
+                elif collection == "training_progress_summaries":
+                    # This table has UserIdWeekIndex
+                    response = table.query(
+                        IndexName="UserIdWeekIndex",
                         KeyConditionExpression=boto3.dynamodb.conditions.Key('user_id').eq(query['user_id'])
                     )
                 else:
