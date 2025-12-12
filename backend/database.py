@@ -252,5 +252,9 @@ if USE_DYNAMODB:
     db = DynamoDBAdapter()
     print("✅ Using DynamoDB for tracking data")
 else:
-    db = JSONDatabase()
+    # Use absolute path to project root data directory
+    # This ensures the path works regardless of where the server is run from
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_path = os.path.join(project_root, "data", "tracking")
+    db = JSONDatabase(data_dir=data_path)
     print("✅ Using JSON files for tracking data (local development)")

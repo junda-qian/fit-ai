@@ -68,7 +68,7 @@ def publish_weekly_strength_summary(
     for workout in recent_workouts:
         for exercise in workout.get("exercises", []):
             for set_data in exercise.get("sets", []):
-                weight = set_data.get("weight", 0)
+                weight = set_data.get("weight_kg", set_data.get("weight", 0))
                 reps = set_data.get("reps", 0)
                 total_volume += weight * reps
 
