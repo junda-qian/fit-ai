@@ -12,6 +12,7 @@ tfplan
 # Lambda packages
 lambda-deployment.zip
 lambda-package/
+backend/deployed-extract/
 
 # Environment files
 .env
