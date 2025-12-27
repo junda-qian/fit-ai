@@ -464,6 +464,59 @@ class AnalysisInput(BaseModel):
 
 
 # ============================================================================
+# Motivator Agent Models
+# ============================================================================
+
+class StreakData(BaseModel):
+    """
+    Nutrition and workout streak calculations.
+
+    Tracks consecutive days of nutrition logging and consecutive weeks
+    of meeting workout plan targets.
+    """
+    # Nutrition streak
+    nutrition_current_streak: int = Field(..., ge=0, description="Current consecutive days with nutrition logs")
+    nutrition_longest_streak: int = Field(..., ge=0, description="Longest nutrition logging streak ever")
+    nutrition_last_logged_date: Optional[str] = Field(None, description="Last date with nutrition log (ISO)")
+
+    # Workout adherence streak
+    workout_current_streak: int = Field(..., ge=0, description="Current consecutive weeks meeting workout plan")
+    workout_longest_streak: int = Field(..., ge=0, description="Longest workout adherence streak (weeks)")
+    workout_target_per_week: int = Field(..., ge=1, description="Target workouts per week from plan")
+    workout_this_week_count: int = Field(..., ge=0, description="Workouts completed this week (incomplete)")
+
+    # Data quality
+    sufficient_data: bool = Field(..., description="Whether enough data for reliable streaks")
+    days_analyzed: int = Field(..., description="Days of data analyzed")
+
+
+class MotivationalMessage(BaseModel):
+    """
+    AI-generated motivational message from Motivator Agent.
+
+    Personalized based on user's streaks, progress, and communication style.
+    """
+    message: str = Field(..., min_length=50, max_length=500, description="Generated message (2-3 sentences)")
+    tone: Literal["encouraging", "direct", "scientific"] = Field(..., description="Tone used")
+    highlights: list[str] = Field(default_factory=list, description="Key achievements mentioned")
+    generated_at: str = Field(..., description="ISO timestamp")
+    model_used: str = Field(..., description="Bedrock model ID")
+
+
+class MotivatorResponse(BaseModel):
+    """
+    Complete output from Motivator Agent.
+
+    Combines streak calculations with AI-generated motivational message.
+    """
+    user_id: str = Field(..., description="User identifier")
+    streaks: StreakData = Field(..., description="Calculated streak data")
+    motivation: MotivationalMessage = Field(..., description="AI-generated message")
+    achievements: list[dict] = Field(default_factory=list, description="Recent achievements")
+    data_quality: Literal["excellent", "good", "fair", "poor"] = Field(..., description="Data quality assessment")
+
+
+# ============================================================================
 # Export all models
 # ============================================================================
 
@@ -488,4 +541,8 @@ __all__ = [
     "PlateauAnalysis",
     "ModelSwitchSuggestion",
     "TrainingProgressSummary",
+    # Motivator models
+    "StreakData",
+    "MotivationalMessage",
+    "MotivatorResponse",
 ]
