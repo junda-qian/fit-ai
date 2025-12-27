@@ -60,11 +60,20 @@ def calculate_nutrition_streak(db, user_id: str) -> Dict:
     end_date = date.today()
     start_date = end_date - timedelta(days=30)
 
-    nutrition_logs = db.get_nutrition_logs_by_date_range(
-        user_id=user_id,
-        start_date=start_date.isoformat(),
-        end_date=end_date.isoformat()
-    )
+    # Handle both JSON database (find) and DynamoDB (get_nutrition_logs_by_date_range)
+    try:
+        nutrition_logs = db.get_nutrition_logs_by_date_range(
+            user_id=user_id,
+            start_date=start_date.isoformat(),
+            end_date=end_date.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("nutrition_logs", {"user_id": user_id})
+        nutrition_logs = [
+            log for log in all_logs
+            if log.get("date") and start_date.isoformat() <= log["date"] <= end_date.isoformat()
+        ]
 
     if not nutrition_logs:
         return {
@@ -168,11 +177,20 @@ def calculate_workout_adherence_week(
     """
     week_end = week_start + timedelta(days=7)
 
-    workout_logs = db.get_workout_logs_by_date_range(
-        user_id=user_id,
-        start_date=week_start.isoformat(),
-        end_date=week_end.isoformat()
-    )
+    # Handle both JSON database and DynamoDB
+    try:
+        workout_logs = db.get_workout_logs_by_date_range(
+            user_id=user_id,
+            start_date=week_start.isoformat(),
+            end_date=week_end.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+        workout_logs = [
+            log for log in all_logs
+            if log.get("date") and week_start.isoformat() <= log["date"] < week_end.isoformat()
+        ]
 
     # Count completed workouts
     actual = len([log for log in workout_logs if log.get("completed", True)])
@@ -196,7 +214,12 @@ def calculate_workout_streak(db, user_id: str) -> Dict:
         Dict with current_streak, longest_streak, target, this_week_count
     """
     # Get active workout plan
-    plan = db.get_active_workout_plan(user_id)
+    try:
+        plan = db.get_active_workout_plan(user_id)
+    except AttributeError:
+        # JSON database - find active plan
+        plans = db.find("workout_plans", {"user_id": user_id, "active": True})
+        plan = plans[0] if plans else None
 
     if not plan:
         # No active plan - count this week's workouts anyway
@@ -204,11 +227,20 @@ def calculate_workout_streak(db, user_id: str) -> Dict:
         week_start = today - timedelta(days=today.weekday())
         week_end = today
 
-        this_week_logs = db.get_workout_logs_by_date_range(
-            user_id=user_id,
-            start_date=week_start.isoformat(),
-            end_date=week_end.isoformat()
-        )
+        # Handle both JSON database and DynamoDB
+        try:
+            this_week_logs = db.get_workout_logs_by_date_range(
+                user_id=user_id,
+                start_date=week_start.isoformat(),
+                end_date=week_end.isoformat()
+            )
+        except AttributeError:
+            # JSON database - use find and filter by date
+            all_logs = db.find("workout_logs", {"user_id": user_id})
+            this_week_logs = [
+                log for log in all_logs
+                if log.get("date") and week_start.isoformat() <= log["date"] <= week_end.isoformat()
+            ]
         this_week_count = len([log for log in this_week_logs if log.get("completed", True)])
 
         return {
@@ -226,11 +258,20 @@ def calculate_workout_streak(db, user_id: str) -> Dict:
     current_week_monday = today - timedelta(days=today.weekday())
 
     # Count this week's workouts (incomplete week)
-    this_week_logs = db.get_workout_logs_by_date_range(
-        user_id=user_id,
-        start_date=current_week_monday.isoformat(),
-        end_date=today.isoformat()
-    )
+    # Handle both JSON database and DynamoDB
+    try:
+        this_week_logs = db.get_workout_logs_by_date_range(
+            user_id=user_id,
+            start_date=current_week_monday.isoformat(),
+            end_date=today.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+        this_week_logs = [
+            log for log in all_logs
+            if log.get("date") and current_week_monday.isoformat() <= log["date"] <= today.isoformat()
+        ]
     this_week_count = len([log for log in this_week_logs if log.get("completed", True)])
 
     # Start from last complete week (last Monday)

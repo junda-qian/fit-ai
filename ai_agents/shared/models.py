@@ -482,7 +482,7 @@ class StreakData(BaseModel):
     # Workout adherence streak
     workout_current_streak: int = Field(..., ge=0, description="Current consecutive weeks meeting workout plan")
     workout_longest_streak: int = Field(..., ge=0, description="Longest workout adherence streak (weeks)")
-    workout_target_per_week: int = Field(..., ge=1, description="Target workouts per week from plan")
+    workout_target_per_week: int = Field(..., ge=0, description="Target workouts per week from plan (0 if no plan)")
     workout_this_week_count: int = Field(..., ge=0, description="Workouts completed this week (incomplete)")
 
     # Data quality

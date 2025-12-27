@@ -679,6 +679,265 @@ export default function ProgressPage() {
                 </div>
               </div>
 
+              {/* Activity Calendars Side-by-Side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                {/* Nutrition Logging Calendar */}
+                <div className="bg-white rounded-lg p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl">🔥</span>
+                    <h3 className="text-sm font-medium text-gray-700">Nutrition Logging</h3>
+                  </div>
+
+                {(() => {
+                  // Calculate weeks to show (last 12 weeks)
+                  const weeks: Date[][] = [];
+                  const today = new Date();
+                  const startDate = new Date(today);
+                  startDate.setDate(today.getDate() - 83); // ~12 weeks back
+
+                  // Find the Sunday before startDate
+                  const dayOfWeek = startDate.getDay();
+                  startDate.setDate(startDate.getDate() - dayOfWeek);
+
+                  // Build weeks array
+                  let currentDate = new Date(startDate);
+                  while (currentDate <= today) {
+                    const week: Date[] = [];
+                    for (let i = 0; i < 7; i++) {
+                      week.push(new Date(currentDate));
+                      currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    weeks.push(week);
+                  }
+
+                  // Get month labels
+                  const monthLabels: { month: string; weekIndex: number }[] = [];
+                  weeks.forEach((week, weekIndex) => {
+                    const firstDay = week[0];
+                    if (weekIndex === 0 || firstDay.getDate() <= 7) {
+                      monthLabels.push({
+                        month: firstDay.toLocaleDateString('en-US', { month: 'short' }),
+                        weekIndex
+                      });
+                    }
+                  });
+
+                  return (
+                    <div className="overflow-x-auto">
+                      <div className="inline-block min-w-full">
+                        {/* Month labels */}
+                        <div className="flex mb-1" style={{ marginLeft: '28px' }}>
+                          {monthLabels.map((label, idx) => (
+                            <div
+                              key={idx}
+                              className="text-xs text-gray-500 font-medium"
+                              style={{
+                                marginLeft: idx === 0 ? 0 : `${(label.weekIndex - (monthLabels[idx - 1]?.weekIndex || 0)) * 14}px`,
+                              }}
+                            >
+                              {label.month}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar grid */}
+                        <div className="flex gap-1">
+                          {/* Day labels */}
+                          <div className="flex flex-col gap-1 pr-2">
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sun</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Mon</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Tue</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Wed</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Thu</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Fri</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sat</div>
+                          </div>
+
+                          {/* Weeks (columns) */}
+                          {weeks.map((week, weekIdx) => (
+                            <div key={weekIdx} className="flex flex-col gap-1">
+                              {week.map((day, dayIdx) => {
+                                const dateStr = day.toISOString().split('T')[0];
+                                const isFuture = day > today;
+
+                                // Check if this date has nutrition log
+                                const hasNutritionLog = dailySummaries.some(s => s.date === dateStr && s.total_calories > 0);
+
+                                let bgColor = 'bg-gray-100';
+                                let title = 'No nutrition logged';
+
+                                if (isFuture) {
+                                  bgColor = 'bg-gray-50 border border-gray-200';
+                                  title = 'Future date';
+                                } else if (hasNutritionLog) {
+                                  bgColor = 'bg-orange-500';
+                                  title = 'Nutrition logged';
+                                }
+
+                                return (
+                                  <div
+                                    key={dayIdx}
+                                    className={`w-3 h-3 rounded-sm ${bgColor} hover:ring-2 hover:ring-orange-400 transition-all cursor-pointer`}
+                                    title={`${day.toLocaleDateString('en-US', {
+                                      month: 'short',
+                                      day: 'numeric',
+                                      year: 'numeric'
+                                    })}: ${title}`}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                  {/* Legend */}
+                  <div className="flex items-center gap-3 mt-4 text-xs text-gray-500">
+                    <span className="text-gray-600 font-medium">Less</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-gray-100"></div>
+                      <span>None</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-orange-500"></div>
+                      <span>Logged</span>
+                    </div>
+                    <span className="text-gray-600 font-medium">More</span>
+                  </div>
+                </div>
+
+                {/* Workout Consistency Calendar */}
+                <div className="bg-white rounded-lg p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl">💪</span>
+                    <h3 className="text-sm font-medium text-gray-700">Workout Consistency</h3>
+                  </div>
+
+                {(() => {
+                  // Calculate weeks to show (last 12 weeks)
+                  const weeks: Date[][] = [];
+                  const today = new Date();
+                  const startDate = new Date(today);
+                  startDate.setDate(today.getDate() - 83); // ~12 weeks back
+
+                  // Find the Sunday before startDate
+                  const dayOfWeek = startDate.getDay();
+                  startDate.setDate(startDate.getDate() - dayOfWeek);
+
+                  // Build weeks array
+                  let currentDate = new Date(startDate);
+                  while (currentDate <= today) {
+                    const week: Date[] = [];
+                    for (let i = 0; i < 7; i++) {
+                      week.push(new Date(currentDate));
+                      currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    weeks.push(week);
+                  }
+
+                  // Get month labels
+                  const monthLabels: { month: string; weekIndex: number }[] = [];
+                  weeks.forEach((week, weekIndex) => {
+                    const firstDay = week[0];
+                    if (weekIndex === 0 || firstDay.getDate() <= 7) {
+                      monthLabels.push({
+                        month: firstDay.toLocaleDateString('en-US', { month: 'short' }),
+                        weekIndex
+                      });
+                    }
+                  });
+
+                  return (
+                    <div className="overflow-x-auto">
+                      <div className="inline-block min-w-full">
+                        {/* Month labels */}
+                        <div className="flex mb-1" style={{ marginLeft: '28px' }}>
+                          {monthLabels.map((label, idx) => (
+                            <div
+                              key={idx}
+                              className="text-xs text-gray-500 font-medium"
+                              style={{
+                                marginLeft: idx === 0 ? 0 : `${(label.weekIndex - (monthLabels[idx - 1]?.weekIndex || 0)) * 14}px`,
+                              }}
+                            >
+                              {label.month}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar grid */}
+                        <div className="flex gap-1">
+                          {/* Day labels */}
+                          <div className="flex flex-col gap-1 pr-2">
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sun</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Mon</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Tue</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Wed</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Thu</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Fri</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sat</div>
+                          </div>
+
+                          {/* Weeks (columns) */}
+                          {weeks.map((week, weekIdx) => (
+                            <div key={weekIdx} className="flex flex-col gap-1">
+                              {week.map((day, dayIdx) => {
+                                const dateStr = day.toISOString().split('T')[0];
+                                const isFuture = day > today;
+
+                                // Check if this date has workout log
+                                const hasWorkoutLog = dailySummaries.some(s => s.date === dateStr && s.workouts_completed > 0);
+
+                                let bgColor = 'bg-gray-100';
+                                let title = 'No workout';
+
+                                if (isFuture) {
+                                  bgColor = 'bg-gray-50 border border-gray-200';
+                                  title = 'Future date';
+                                } else if (hasWorkoutLog) {
+                                  bgColor = 'bg-blue-500';
+                                  title = 'Workout completed';
+                                }
+
+                                return (
+                                  <div
+                                    key={dayIdx}
+                                    className={`w-3 h-3 rounded-sm ${bgColor} hover:ring-2 hover:ring-blue-400 transition-all cursor-pointer`}
+                                    title={`${day.toLocaleDateString('en-US', {
+                                      month: 'short',
+                                      day: 'numeric',
+                                      year: 'numeric'
+                                    })}: ${title}`}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                  {/* Legend */}
+                  <div className="flex items-center gap-3 mt-4 text-xs text-gray-500">
+                    <span className="text-gray-600 font-medium">Less</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-gray-100"></div>
+                      <span>None</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-blue-500"></div>
+                      <span>Completed</span>
+                    </div>
+                    <span className="text-gray-600 font-medium">More</span>
+                  </div>
+                </div>
+              </div>
+
               {/* AI Motivational Message */}
               <div className="bg-white rounded-lg p-5 shadow-sm mb-4">
                 <div className="flex items-start gap-4">

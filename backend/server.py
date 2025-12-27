@@ -1799,11 +1799,20 @@ def get_recent_weight_change(user_id: str, days: int = 7) -> float:
     end_date = date.today()
     start_date = end_date - timedelta(days=days)
 
-    body_logs = db.get_body_logs_by_date_range(
-        user_id=user_id,
-        start_date=start_date.isoformat(),
-        end_date=end_date.isoformat()
-    )
+    # Handle both JSON database and DynamoDB
+    try:
+        body_logs = db.get_body_logs_by_date_range(
+            user_id=user_id,
+            start_date=start_date.isoformat(),
+            end_date=end_date.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("body_logs", {"user_id": user_id})
+        body_logs = [
+            log for log in all_logs
+            if log.get("date") and start_date.isoformat() <= log["date"] <= end_date.isoformat()
+        ]
 
     if len(body_logs) < 2:
         return 0.0
@@ -1831,11 +1840,20 @@ def count_total_workouts(user_id: str) -> int:
     end_date = date.today()
     start_date = end_date - timedelta(days=365)
 
-    workout_logs = db.get_workout_logs_by_date_range(
-        user_id=user_id,
-        start_date=start_date.isoformat(),
-        end_date=end_date.isoformat()
-    )
+    # Handle both JSON database and DynamoDB
+    try:
+        workout_logs = db.get_workout_logs_by_date_range(
+            user_id=user_id,
+            start_date=start_date.isoformat(),
+            end_date=end_date.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+        workout_logs = [
+            log for log in all_logs
+            if log.get("date") and start_date.isoformat() <= log["date"] <= end_date.isoformat()
+        ]
 
     return len([log for log in workout_logs if log.get("completed", True)])
 
@@ -1869,7 +1887,12 @@ async def get_motivator_status(user_id: str):
         streaks = calculate_streaks(db, user_id)
 
         # 2. Get user profile for personalization
-        user_profile = db.get_user_profile(user_id)
+        try:
+            user_profile = db.get_user_profile(user_id)
+        except AttributeError:
+            # JSON database - use find_one
+            user_profile = db.find_one("user_profiles", {"user_id": user_id})
+
         if not user_profile:
             raise HTTPException(status_code=404, detail="User not found")
 
