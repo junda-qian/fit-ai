@@ -168,6 +168,84 @@ EXERCISE_DATABASE = {
         "type": "Isolation",
         "activation": {"Abs": 1}
     },
+    # ===== ADDED ISOLATION EXERCISES FOR BETTER ALGORITHM CONTROL =====
+    # Lats (previously had ZERO isolation exercises!)
+    "Straight-arm pulldowns": {
+        "type": "Isolation",
+        "activation": {"Lats": 1}
+    },
+    "Dumbbell pullovers": {
+        "type": "Isolation",
+        "activation": {"Lats": 1, "Pecs": 0.25}
+    },
+    # Biceps (more options for fine-tuning)
+    "Hammer curls": {
+        "type": "Isolation",
+        "activation": {"Biceps": 1}
+    },
+    "Preacher curls": {
+        "type": "Isolation",
+        "activation": {"Biceps": 1}
+    },
+    # Triceps (more options)
+    "Overhead triceps extensions": {
+        "type": "Isolation",
+        "activation": {"Triceps": 1}
+    },
+    "Triceps pushdowns": {
+        "type": "Isolation",
+        "activation": {"Triceps": 1}
+    },
+    # Pecs (additional isolation)
+    "Cable crossovers": {
+        "type": "Isolation",
+        "activation": {"Pecs": 1}
+    },
+    "Incline flys": {
+        "type": "Isolation",
+        "activation": {"Pecs": 1}
+    },
+    # Delts (more specific targeting)
+    "Front raises": {
+        "type": "Isolation",
+        "activation": {"Delt": 1}
+    },
+    "Rear delt flys": {
+        "type": "Isolation",
+        "activation": {"Delt": 1}
+    },
+    # Abs (more options for volume control)
+    "Hanging leg raises": {
+        "type": "Isolation",
+        "activation": {"Abs": 1}
+    },
+    "Cable crunches": {
+        "type": "Isolation",
+        "activation": {"Abs": 1}
+    },
+    "Planks": {
+        "type": "Isolation",
+        "activation": {"Abs": 1}
+    },
+    # Quads (more precise control)
+    "Sissy squats": {
+        "type": "Isolation",
+        "activation": {"Quadriceps": 1}
+    },
+    # Hamstrings (additional isolation)
+    "Lying leg curls": {
+        "type": "Isolation",
+        "activation": {"Hamstrings": 1}
+    },
+    "Seated leg curls": {
+        "type": "Isolation",
+        "activation": {"Hamstrings": 1}
+    },
+    # Glutes (more targeted options)
+    "Cable kickbacks": {
+        "type": "Isolation",
+        "activation": {"Glutes": 1}
+    },
 }
 
 MUSCLE_GROUPS = ["Pecs", "Delt", "Traps", "Lats", "Biceps", "Triceps", "Erector Spine", "Quadriceps", "Hamstrings", "Glutes", "Calves", "Abs"]

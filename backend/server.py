@@ -148,9 +148,12 @@ async def calculate_energy(input_data: EnergyCalculatorInput):
 
 
 @app.post("/generate-workout-plan", response_model=WorkoutPlanOutput)
-async def generate_workout_plan(input_data: WorkoutPlannerInput):
+async def generate_workout_plan(
+    input_data: WorkoutPlannerInput,
+    method: str = "llm"  # "llm" or "deterministic"
+):
     """
-    Generate a personalized workout plan using AI
+    Generate a personalized workout plan
 
     Accepts user's training profile (training status, age, sex, recovery factor, etc.)
     and generates a customized workout plan that:
@@ -159,14 +162,23 @@ async def generate_workout_plan(input_data: WorkoutPlannerInput):
     - Distributes volume across training days
     - Sets appropriate intensities based on training level
 
-    The workout plan is generated using AWS Bedrock LLM to create flexible,
-    personalized programs that meet all specified constraints.
+    Methods:
+    - llm: Uses AWS Bedrock LLM (default) - slower but more flexible
+    - deterministic: Uses pure algorithm - faster but experimental
     """
     try:
-        result = workout_planner.generate_workout_plan(input_data)
+        if method == "deterministic":
+            # Use deterministic algorithm
+            from workout_planner_deterministic import DeterministicWorkoutPlanner
+            planner = DeterministicWorkoutPlanner()
+            result = planner.generate_workout_plan(input_data)
+        else:
+            # Use LLM-based planner (default)
+            result = workout_planner.generate_workout_plan(input_data)
+
         return result
     except Exception as e:
-        print(f"Error in workout plan generation: {str(e)}")
+        print(f"Error in workout plan generation ({method}): {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

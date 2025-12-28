@@ -13,5 +13,20 @@
     "target_carbs": 220,
     "target_fats": 73,
     "created_at": "2025-09-12"
+  },
+  {
+    "id": "7503cc36-54c2-41c6-855d-6c632f0dc19e",
+    "user_id": "demo_user_90day",
+    "age": 28,
+    "gender": "male",
+    "height_cm": 178,
+    "weight_kg": 85.0,
+    "goal": "build_muscle",
+    "activity_level": "moderate",
+    "target_calories": 2200,
+    "target_protein": 170,
+    "target_carbs": 220,
+    "target_fats": 73,
+    "created_at": "2025-09-29"
   }
 ]

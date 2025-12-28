@@ -1708,5 +1708,1715 @@
     },
     "logged_at": "2025-12-10T07:00:00Z",
     "created_at": "2025-12-10T07:00:00Z"
+  },
+  {
+    "id": "fdeedc16-6a72-44d1-ae9c-370894bb9780",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-29",
+    "weight": 85.0,
+    "body_fat_pct": 20.0,
+    "skinfold_sum": 120.0,
+    "skinfolds": {
+      "chest": 15.0,
+      "abdomen": 25.0,
+      "thigh": 20.0,
+      "tricep": 12.0,
+      "subscapular": 18.0,
+      "suprailiac": 20.0,
+      "midaxillary": 15.0
+    },
+    "logged_at": "2025-09-29T07:00:00Z",
+    "created_at": "2025-09-29T07:00:00Z"
+  },
+  {
+    "id": "5b767a92-e689-45b8-b01b-6e8472c4e045",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-30",
+    "weight": 85.1,
+    "body_fat_pct": 20.0,
+    "skinfold_sum": 119.8,
+    "skinfolds": {
+      "chest": 15.0,
+      "abdomen": 25.0,
+      "thigh": 20.0,
+      "tricep": 12.0,
+      "subscapular": 18.0,
+      "suprailiac": 20.0,
+      "midaxillary": 15.0
+    },
+    "logged_at": "2025-09-30T07:00:00Z",
+    "created_at": "2025-09-30T07:00:00Z"
+  },
+  {
+    "id": "d754595f-8bb0-4560-b8fa-0e794c069c20",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-01",
+    "weight": 85.1,
+    "body_fat_pct": 20.0,
+    "skinfold_sum": 119.7,
+    "skinfolds": {
+      "chest": 14.9,
+      "abdomen": 24.9,
+      "thigh": 19.9,
+      "tricep": 12.0,
+      "subscapular": 17.9,
+      "suprailiac": 19.9,
+      "midaxillary": 14.9
+    },
+    "logged_at": "2025-10-01T07:00:00Z",
+    "created_at": "2025-10-01T07:00:00Z"
+  },
+  {
+    "id": "4871ed6f-cd35-4e4a-85ae-dfed296301bf",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-02",
+    "weight": 85.2,
+    "body_fat_pct": 20.0,
+    "skinfold_sum": 119.5,
+    "skinfolds": {
+      "chest": 14.9,
+      "abdomen": 24.9,
+      "thigh": 19.9,
+      "tricep": 11.9,
+      "subscapular": 17.9,
+      "suprailiac": 19.9,
+      "midaxillary": 14.9
+    },
+    "logged_at": "2025-10-02T07:00:00Z",
+    "created_at": "2025-10-02T07:00:00Z"
+  },
+  {
+    "id": "282774d7-caf0-4fe8-81ca-601eed8d1638",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-03",
+    "weight": 85.0,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 119.3,
+    "skinfolds": {
+      "chest": 14.9,
+      "abdomen": 24.8,
+      "thigh": 19.9,
+      "tricep": 11.9,
+      "subscapular": 17.9,
+      "suprailiac": 19.9,
+      "midaxillary": 14.9
+    },
+    "logged_at": "2025-10-03T07:00:00Z",
+    "created_at": "2025-10-03T07:00:00Z"
+  },
+  {
+    "id": "f4606ec1-754a-42a4-8911-4f4a51dce688",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-04",
+    "weight": 85.3,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 119.2,
+    "skinfolds": {
+      "chest": 14.8,
+      "abdomen": 24.8,
+      "thigh": 19.9,
+      "tricep": 11.9,
+      "subscapular": 17.9,
+      "suprailiac": 19.8,
+      "midaxillary": 14.8
+    },
+    "logged_at": "2025-10-04T07:00:00Z",
+    "created_at": "2025-10-04T07:00:00Z"
+  },
+  {
+    "id": "d69751f9-00c5-4596-a6b6-4d64ea41cb90",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-05",
+    "weight": 85.3,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 119.0,
+    "skinfolds": {
+      "chest": 14.8,
+      "abdomen": 24.8,
+      "thigh": 19.8,
+      "tricep": 11.9,
+      "subscapular": 17.8,
+      "suprailiac": 19.8,
+      "midaxillary": 14.8
+    },
+    "logged_at": "2025-10-05T07:00:00Z",
+    "created_at": "2025-10-05T07:00:00Z"
+  },
+  {
+    "id": "c68554f4-ddfc-4ab6-bba9-9a7766273f7f",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-06",
+    "weight": 85.0,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 118.8,
+    "skinfolds": {
+      "chest": 14.8,
+      "abdomen": 24.7,
+      "thigh": 19.8,
+      "tricep": 11.9,
+      "subscapular": 17.8,
+      "suprailiac": 19.8,
+      "midaxillary": 14.8
+    },
+    "logged_at": "2025-10-06T07:00:00Z",
+    "created_at": "2025-10-06T07:00:00Z"
+  },
+  {
+    "id": "4eff1c8e-2793-4cfa-9c99-a5910b8354b2",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-07",
+    "weight": 85.4,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 118.6,
+    "skinfolds": {
+      "chest": 14.8,
+      "abdomen": 24.7,
+      "thigh": 19.8,
+      "tricep": 11.8,
+      "subscapular": 17.8,
+      "suprailiac": 19.7,
+      "midaxillary": 14.8
+    },
+    "logged_at": "2025-10-07T07:00:00Z",
+    "created_at": "2025-10-07T07:00:00Z"
+  },
+  {
+    "id": "41484752-9a68-4381-9ebf-a7c13ba57f20",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-08",
+    "weight": 85.1,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 118.5,
+    "skinfolds": {
+      "chest": 14.7,
+      "abdomen": 24.6,
+      "thigh": 19.7,
+      "tricep": 11.8,
+      "subscapular": 17.7,
+      "suprailiac": 19.7,
+      "midaxillary": 14.7
+    },
+    "logged_at": "2025-10-08T07:00:00Z",
+    "created_at": "2025-10-08T07:00:00Z"
+  },
+  {
+    "id": "303364eb-3d55-44a0-99aa-f745c4301a6b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-09",
+    "weight": 85.5,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 118.3,
+    "skinfolds": {
+      "chest": 14.7,
+      "abdomen": 24.6,
+      "thigh": 19.7,
+      "tricep": 11.8,
+      "subscapular": 17.7,
+      "suprailiac": 19.6,
+      "midaxillary": 14.7
+    },
+    "logged_at": "2025-10-09T07:00:00Z",
+    "created_at": "2025-10-09T07:00:00Z"
+  },
+  {
+    "id": "368d5100-df4f-43d5-a932-a537956ebea3",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-10",
+    "weight": 85.3,
+    "body_fat_pct": 19.9,
+    "skinfold_sum": 118.1,
+    "skinfolds": {
+      "chest": 14.7,
+      "abdomen": 24.6,
+      "thigh": 19.7,
+      "tricep": 11.8,
+      "subscapular": 17.7,
+      "suprailiac": 19.6,
+      "midaxillary": 14.7
+    },
+    "logged_at": "2025-10-10T07:00:00Z",
+    "created_at": "2025-10-10T07:00:00Z"
+  },
+  {
+    "id": "46029d1b-e25a-43e0-9aba-0c1b146192d7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-11",
+    "weight": 85.4,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 118.0,
+    "skinfolds": {
+      "chest": 14.6,
+      "abdomen": 24.5,
+      "thigh": 19.6,
+      "tricep": 11.8,
+      "subscapular": 17.6,
+      "suprailiac": 19.6,
+      "midaxillary": 14.6
+    },
+    "logged_at": "2025-10-11T07:00:00Z",
+    "created_at": "2025-10-11T07:00:00Z"
+  },
+  {
+    "id": "096ec75f-2b61-4bd6-b2ad-8bee11e3eef4",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-12",
+    "weight": 85.4,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 117.8,
+    "skinfolds": {
+      "chest": 14.6,
+      "abdomen": 24.5,
+      "thigh": 19.6,
+      "tricep": 11.7,
+      "subscapular": 17.6,
+      "suprailiac": 19.5,
+      "midaxillary": 14.6
+    },
+    "logged_at": "2025-10-12T07:00:00Z",
+    "created_at": "2025-10-12T07:00:00Z"
+  },
+  {
+    "id": "2ff4606a-3fa4-45be-889d-278867aac205",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-13",
+    "weight": 85.4,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 117.6,
+    "skinfolds": {
+      "chest": 14.6,
+      "abdomen": 24.4,
+      "thigh": 19.6,
+      "tricep": 11.7,
+      "subscapular": 17.6,
+      "suprailiac": 19.5,
+      "midaxillary": 14.6
+    },
+    "logged_at": "2025-10-13T07:00:00Z",
+    "created_at": "2025-10-13T07:00:00Z"
+  },
+  {
+    "id": "fef1d8ec-e4c9-476d-b59c-ceae856a0fc5",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-14",
+    "weight": 85.3,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 117.5,
+    "skinfolds": {
+      "chest": 14.6,
+      "abdomen": 24.4,
+      "thigh": 19.6,
+      "tricep": 11.7,
+      "subscapular": 17.6,
+      "suprailiac": 19.5,
+      "midaxillary": 14.6
+    },
+    "logged_at": "2025-10-14T07:00:00Z",
+    "created_at": "2025-10-14T07:00:00Z"
+  },
+  {
+    "id": "1d98c61f-019b-49d6-a2e4-3e34789494f1",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-15",
+    "weight": 85.5,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 117.3,
+    "skinfolds": {
+      "chest": 14.5,
+      "abdomen": 24.4,
+      "thigh": 19.5,
+      "tricep": 11.7,
+      "subscapular": 17.5,
+      "suprailiac": 19.4,
+      "midaxillary": 14.5
+    },
+    "logged_at": "2025-10-15T07:00:00Z",
+    "created_at": "2025-10-15T07:00:00Z"
+  },
+  {
+    "id": "8e336bd8-f42c-4f3a-9171-45e960c542dd",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-16",
+    "weight": 85.5,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 117.1,
+    "skinfolds": {
+      "chest": 14.5,
+      "abdomen": 24.3,
+      "thigh": 19.5,
+      "tricep": 11.7,
+      "subscapular": 17.5,
+      "suprailiac": 19.4,
+      "midaxillary": 14.5
+    },
+    "logged_at": "2025-10-16T07:00:00Z",
+    "created_at": "2025-10-16T07:00:00Z"
+  },
+  {
+    "id": "30f0d026-43b0-4dae-8163-09622a98576e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-17",
+    "weight": 85.6,
+    "body_fat_pct": 19.8,
+    "skinfold_sum": 116.9,
+    "skinfolds": {
+      "chest": 14.5,
+      "abdomen": 24.3,
+      "thigh": 19.5,
+      "tricep": 11.6,
+      "subscapular": 17.5,
+      "suprailiac": 19.4,
+      "midaxillary": 14.5
+    },
+    "logged_at": "2025-10-17T07:00:00Z",
+    "created_at": "2025-10-17T07:00:00Z"
+  },
+  {
+    "id": "b06f1ab3-88c3-4885-a878-abcc12c6484e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-18",
+    "weight": 85.5,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 116.8,
+    "skinfolds": {
+      "chest": 14.4,
+      "abdomen": 24.2,
+      "thigh": 19.4,
+      "tricep": 11.6,
+      "subscapular": 17.4,
+      "suprailiac": 19.3,
+      "midaxillary": 14.4
+    },
+    "logged_at": "2025-10-18T07:00:00Z",
+    "created_at": "2025-10-18T07:00:00Z"
+  },
+  {
+    "id": "e844d895-e942-44f6-9931-27fbec528633",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-19",
+    "weight": 85.3,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 116.6,
+    "skinfolds": {
+      "chest": 14.4,
+      "abdomen": 24.2,
+      "thigh": 19.4,
+      "tricep": 11.6,
+      "subscapular": 17.4,
+      "suprailiac": 19.3,
+      "midaxillary": 14.4
+    },
+    "logged_at": "2025-10-19T07:00:00Z",
+    "created_at": "2025-10-19T07:00:00Z"
+  },
+  {
+    "id": "83d045f3-9a00-4b45-96e4-06a77668dcd4",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-20",
+    "weight": 85.4,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 116.4,
+    "skinfolds": {
+      "chest": 14.4,
+      "abdomen": 24.2,
+      "thigh": 19.4,
+      "tricep": 11.6,
+      "subscapular": 17.4,
+      "suprailiac": 19.3,
+      "midaxillary": 14.4
+    },
+    "logged_at": "2025-10-20T07:00:00Z",
+    "created_at": "2025-10-20T07:00:00Z"
+  },
+  {
+    "id": "62721200-e395-4d65-aea0-221d754d5211",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-21",
+    "weight": 85.5,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 116.3,
+    "skinfolds": {
+      "chest": 14.3,
+      "abdomen": 24.1,
+      "thigh": 19.3,
+      "tricep": 11.6,
+      "subscapular": 17.3,
+      "suprailiac": 19.2,
+      "midaxillary": 14.3
+    },
+    "logged_at": "2025-10-21T07:00:00Z",
+    "created_at": "2025-10-21T07:00:00Z"
+  },
+  {
+    "id": "36840a74-a182-4e9f-ae80-d1c8b205a770",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-22",
+    "weight": 85.7,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 116.1,
+    "skinfolds": {
+      "chest": 14.3,
+      "abdomen": 24.1,
+      "thigh": 19.3,
+      "tricep": 11.5,
+      "subscapular": 17.3,
+      "suprailiac": 19.2,
+      "midaxillary": 14.3
+    },
+    "logged_at": "2025-10-22T07:00:00Z",
+    "created_at": "2025-10-22T07:00:00Z"
+  },
+  {
+    "id": "9e0591de-4fab-4b18-bfd2-07331a42fb5a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-23",
+    "weight": 85.6,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 115.9,
+    "skinfolds": {
+      "chest": 14.3,
+      "abdomen": 24.0,
+      "thigh": 19.3,
+      "tricep": 11.5,
+      "subscapular": 17.3,
+      "suprailiac": 19.2,
+      "midaxillary": 14.3
+    },
+    "logged_at": "2025-10-23T07:00:00Z",
+    "created_at": "2025-10-23T07:00:00Z"
+  },
+  {
+    "id": "c5e78f79-7c7f-45f8-94db-a70f969056ee",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-24",
+    "weight": 85.3,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 115.8,
+    "skinfolds": {
+      "chest": 14.2,
+      "abdomen": 24.0,
+      "thigh": 19.2,
+      "tricep": 11.5,
+      "subscapular": 17.2,
+      "suprailiac": 19.1,
+      "midaxillary": 14.2
+    },
+    "logged_at": "2025-10-24T07:00:00Z",
+    "created_at": "2025-10-24T07:00:00Z"
+  },
+  {
+    "id": "18650e33-b477-4311-91e5-e730c5d587c7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-25",
+    "weight": 85.6,
+    "body_fat_pct": 19.7,
+    "skinfold_sum": 115.6,
+    "skinfolds": {
+      "chest": 14.2,
+      "abdomen": 24.0,
+      "thigh": 19.2,
+      "tricep": 11.5,
+      "subscapular": 17.2,
+      "suprailiac": 19.1,
+      "midaxillary": 14.2
+    },
+    "logged_at": "2025-10-25T07:00:00Z",
+    "created_at": "2025-10-25T07:00:00Z"
+  },
+  {
+    "id": "f9ab6847-12ea-4d38-a384-d70bb1e15245",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-26",
+    "weight": 85.8,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 115.4,
+    "skinfolds": {
+      "chest": 14.2,
+      "abdomen": 23.9,
+      "thigh": 19.2,
+      "tricep": 11.5,
+      "subscapular": 17.2,
+      "suprailiac": 19.1,
+      "midaxillary": 14.2
+    },
+    "logged_at": "2025-10-26T07:00:00Z",
+    "created_at": "2025-10-26T07:00:00Z"
+  },
+  {
+    "id": "8abeb7fb-0220-4097-ac88-41b2db60c757",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-27",
+    "weight": 85.6,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 115.2,
+    "skinfolds": {
+      "chest": 14.2,
+      "abdomen": 23.9,
+      "thigh": 19.2,
+      "tricep": 11.4,
+      "subscapular": 17.2,
+      "suprailiac": 19.0,
+      "midaxillary": 14.2
+    },
+    "logged_at": "2025-10-27T07:00:00Z",
+    "created_at": "2025-10-27T07:00:00Z"
+  },
+  {
+    "id": "69dab9fa-ca47-4f76-a89b-d5075ab510c6",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-28",
+    "weight": 85.7,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 115.1,
+    "skinfolds": {
+      "chest": 14.1,
+      "abdomen": 23.8,
+      "thigh": 19.1,
+      "tricep": 11.4,
+      "subscapular": 17.1,
+      "suprailiac": 19.0,
+      "midaxillary": 14.1
+    },
+    "logged_at": "2025-10-28T07:00:00Z",
+    "created_at": "2025-10-28T07:00:00Z"
+  },
+  {
+    "id": "4b408bb5-8717-405e-aaf7-f01041bc804b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-29",
+    "weight": 85.4,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 114.9,
+    "skinfolds": {
+      "chest": 14.1,
+      "abdomen": 23.8,
+      "thigh": 19.1,
+      "tricep": 11.4,
+      "subscapular": 17.1,
+      "suprailiac": 18.9,
+      "midaxillary": 14.1
+    },
+    "logged_at": "2025-10-29T07:00:00Z",
+    "created_at": "2025-10-29T07:00:00Z"
+  },
+  {
+    "id": "307972c0-2023-4476-8999-8d24f33608ec",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-30",
+    "weight": 85.9,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 114.7,
+    "skinfolds": {
+      "chest": 14.1,
+      "abdomen": 23.8,
+      "thigh": 19.1,
+      "tricep": 11.4,
+      "subscapular": 17.1,
+      "suprailiac": 18.9,
+      "midaxillary": 14.1
+    },
+    "logged_at": "2025-10-30T07:00:00Z",
+    "created_at": "2025-10-30T07:00:00Z"
+  },
+  {
+    "id": "94cd8c5c-e10e-48a7-8c36-514b0b8968c2",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-31",
+    "weight": 85.7,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 114.6,
+    "skinfolds": {
+      "chest": 14.0,
+      "abdomen": 23.7,
+      "thigh": 19.0,
+      "tricep": 11.4,
+      "subscapular": 17.0,
+      "suprailiac": 18.9,
+      "midaxillary": 14.0
+    },
+    "logged_at": "2025-10-31T07:00:00Z",
+    "created_at": "2025-10-31T07:00:00Z"
+  },
+  {
+    "id": "1bfd5329-fad5-409a-b11d-74265e898f97",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-01",
+    "weight": 85.5,
+    "body_fat_pct": 19.6,
+    "skinfold_sum": 114.4,
+    "skinfolds": {
+      "chest": 14.0,
+      "abdomen": 23.7,
+      "thigh": 19.0,
+      "tricep": 11.3,
+      "subscapular": 17.0,
+      "suprailiac": 18.8,
+      "midaxillary": 14.0
+    },
+    "logged_at": "2025-11-01T07:00:00Z",
+    "created_at": "2025-11-01T07:00:00Z"
+  },
+  {
+    "id": "9447b9c3-744b-4481-894a-316771c97ea6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-02",
+    "weight": 85.8,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 114.2,
+    "skinfolds": {
+      "chest": 14.0,
+      "abdomen": 23.6,
+      "thigh": 19.0,
+      "tricep": 11.3,
+      "subscapular": 17.0,
+      "suprailiac": 18.8,
+      "midaxillary": 14.0
+    },
+    "logged_at": "2025-11-02T07:00:00Z",
+    "created_at": "2025-11-02T07:00:00Z"
+  },
+  {
+    "id": "3b1623b6-e42c-46b5-8400-d22cd22d6ba4",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-03",
+    "weight": 85.5,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 114.0,
+    "skinfolds": {
+      "chest": 13.9,
+      "abdomen": 23.6,
+      "thigh": 18.9,
+      "tricep": 11.3,
+      "subscapular": 16.9,
+      "suprailiac": 18.8,
+      "midaxillary": 13.9
+    },
+    "logged_at": "2025-11-03T07:00:00Z",
+    "created_at": "2025-11-03T07:00:00Z"
+  },
+  {
+    "id": "6ae392a2-c912-4812-9254-91b7a63208a1",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-04",
+    "weight": 85.8,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.9,
+    "skinfolds": {
+      "chest": 13.9,
+      "abdomen": 23.6,
+      "thigh": 18.9,
+      "tricep": 11.3,
+      "subscapular": 16.9,
+      "suprailiac": 18.7,
+      "midaxillary": 13.9
+    },
+    "logged_at": "2025-11-04T07:00:00Z",
+    "created_at": "2025-11-04T07:00:00Z"
+  },
+  {
+    "id": "968a231a-ba8e-4d7d-8dc2-c30511f35ff9",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-05",
+    "weight": 85.7,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.7,
+    "skinfolds": {
+      "chest": 13.9,
+      "abdomen": 23.5,
+      "thigh": 18.9,
+      "tricep": 11.3,
+      "subscapular": 16.9,
+      "suprailiac": 18.7,
+      "midaxillary": 13.9
+    },
+    "logged_at": "2025-11-05T07:00:00Z",
+    "created_at": "2025-11-05T07:00:00Z"
+  },
+  {
+    "id": "7a47f047-a676-4f78-a591-c0aa6198b895",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-06",
+    "weight": 85.9,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.5,
+    "skinfolds": {
+      "chest": 13.9,
+      "abdomen": 23.5,
+      "thigh": 18.9,
+      "tricep": 11.2,
+      "subscapular": 16.9,
+      "suprailiac": 18.7,
+      "midaxillary": 13.9
+    },
+    "logged_at": "2025-11-06T07:00:00Z",
+    "created_at": "2025-11-06T07:00:00Z"
+  },
+  {
+    "id": "9efd2f17-8bab-4e94-808b-3678c571906b",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-07",
+    "weight": 85.6,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.4,
+    "skinfolds": {
+      "chest": 13.8,
+      "abdomen": 23.4,
+      "thigh": 18.8,
+      "tricep": 11.2,
+      "subscapular": 16.8,
+      "suprailiac": 18.6,
+      "midaxillary": 13.8
+    },
+    "logged_at": "2025-11-07T07:00:00Z",
+    "created_at": "2025-11-07T07:00:00Z"
+  },
+  {
+    "id": "11d63ac1-46c3-400f-b09a-8bd04c0561c3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-08",
+    "weight": 85.7,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.2,
+    "skinfolds": {
+      "chest": 13.8,
+      "abdomen": 23.4,
+      "thigh": 18.8,
+      "tricep": 11.2,
+      "subscapular": 16.8,
+      "suprailiac": 18.6,
+      "midaxillary": 13.8
+    },
+    "logged_at": "2025-11-08T07:00:00Z",
+    "created_at": "2025-11-08T07:00:00Z"
+  },
+  {
+    "id": "40a1af22-8fe6-4d5c-9e88-6a448512f8bf",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-09",
+    "weight": 86.0,
+    "body_fat_pct": 19.5,
+    "skinfold_sum": 113.0,
+    "skinfolds": {
+      "chest": 13.8,
+      "abdomen": 23.4,
+      "thigh": 18.8,
+      "tricep": 11.2,
+      "subscapular": 16.8,
+      "suprailiac": 18.6,
+      "midaxillary": 13.8
+    },
+    "logged_at": "2025-11-09T07:00:00Z",
+    "created_at": "2025-11-09T07:00:00Z"
+  },
+  {
+    "id": "c27d47e1-e559-4afd-a3a9-886d6cce7c4e",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-10",
+    "weight": 86.0,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.9,
+    "skinfolds": {
+      "chest": 13.7,
+      "abdomen": 23.3,
+      "thigh": 18.7,
+      "tricep": 11.2,
+      "subscapular": 16.7,
+      "suprailiac": 18.5,
+      "midaxillary": 13.7
+    },
+    "logged_at": "2025-11-10T07:00:00Z",
+    "created_at": "2025-11-10T07:00:00Z"
+  },
+  {
+    "id": "7ce71678-4c22-4d9b-b353-231d1f572bd3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-11",
+    "weight": 85.9,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.7,
+    "skinfolds": {
+      "chest": 13.7,
+      "abdomen": 23.3,
+      "thigh": 18.7,
+      "tricep": 11.1,
+      "subscapular": 16.7,
+      "suprailiac": 18.5,
+      "midaxillary": 13.7
+    },
+    "logged_at": "2025-11-11T07:00:00Z",
+    "created_at": "2025-11-11T07:00:00Z"
+  },
+  {
+    "id": "e370893f-40af-4d99-9a72-7eca163f16c3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-12",
+    "weight": 85.8,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.5,
+    "skinfolds": {
+      "chest": 13.7,
+      "abdomen": 23.2,
+      "thigh": 18.7,
+      "tricep": 11.1,
+      "subscapular": 16.7,
+      "suprailiac": 18.5,
+      "midaxillary": 13.7
+    },
+    "logged_at": "2025-11-12T07:00:00Z",
+    "created_at": "2025-11-12T07:00:00Z"
+  },
+  {
+    "id": "4f6193bd-770d-42df-9e90-a3600387f25f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-13",
+    "weight": 85.9,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.3,
+    "skinfolds": {
+      "chest": 13.7,
+      "abdomen": 23.2,
+      "thigh": 18.6,
+      "tricep": 11.1,
+      "subscapular": 16.6,
+      "suprailiac": 18.4,
+      "midaxillary": 13.7
+    },
+    "logged_at": "2025-11-13T07:00:00Z",
+    "created_at": "2025-11-13T07:00:00Z"
+  },
+  {
+    "id": "f0e1b31f-5a83-4a36-9bd2-764ddcb939bc",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-14",
+    "weight": 86.2,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.2,
+    "skinfolds": {
+      "chest": 13.6,
+      "abdomen": 23.2,
+      "thigh": 18.6,
+      "tricep": 11.1,
+      "subscapular": 16.6,
+      "suprailiac": 18.4,
+      "midaxillary": 13.6
+    },
+    "logged_at": "2025-11-14T07:00:00Z",
+    "created_at": "2025-11-14T07:00:00Z"
+  },
+  {
+    "id": "d07e1ddb-8fc1-4a4f-bd28-5b265ac3321a",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-15",
+    "weight": 86.2,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 112.0,
+    "skinfolds": {
+      "chest": 13.6,
+      "abdomen": 23.1,
+      "thigh": 18.6,
+      "tricep": 11.1,
+      "subscapular": 16.6,
+      "suprailiac": 18.4,
+      "midaxillary": 13.6
+    },
+    "logged_at": "2025-11-15T07:00:00Z",
+    "created_at": "2025-11-15T07:00:00Z"
+  },
+  {
+    "id": "f2b5254b-242b-4d5d-8380-02b97ef61f92",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-16",
+    "weight": 86.2,
+    "body_fat_pct": 19.4,
+    "skinfold_sum": 111.8,
+    "skinfolds": {
+      "chest": 13.6,
+      "abdomen": 23.1,
+      "thigh": 18.6,
+      "tricep": 11.0,
+      "subscapular": 16.6,
+      "suprailiac": 18.3,
+      "midaxillary": 13.6
+    },
+    "logged_at": "2025-11-16T07:00:00Z",
+    "created_at": "2025-11-16T07:00:00Z"
+  },
+  {
+    "id": "197368eb-2984-4b2b-9737-f39ebaf77932",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-17",
+    "weight": 85.9,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 111.7,
+    "skinfolds": {
+      "chest": 13.5,
+      "abdomen": 23.0,
+      "thigh": 18.5,
+      "tricep": 11.0,
+      "subscapular": 16.5,
+      "suprailiac": 18.3,
+      "midaxillary": 13.5
+    },
+    "logged_at": "2025-11-17T07:00:00Z",
+    "created_at": "2025-11-17T07:00:00Z"
+  },
+  {
+    "id": "f5bc52c3-b999-4b8b-8604-643ee18f87a6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-18",
+    "weight": 86.2,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 111.5,
+    "skinfolds": {
+      "chest": 13.5,
+      "abdomen": 23.0,
+      "thigh": 18.5,
+      "tricep": 11.0,
+      "subscapular": 16.5,
+      "suprailiac": 18.2,
+      "midaxillary": 13.5
+    },
+    "logged_at": "2025-11-18T07:00:00Z",
+    "created_at": "2025-11-18T07:00:00Z"
+  },
+  {
+    "id": "3923fc70-6117-4197-814b-b5ea1e91dc88",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-19",
+    "weight": 86.2,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 111.3,
+    "skinfolds": {
+      "chest": 13.5,
+      "abdomen": 23.0,
+      "thigh": 18.5,
+      "tricep": 11.0,
+      "subscapular": 16.5,
+      "suprailiac": 18.2,
+      "midaxillary": 13.5
+    },
+    "logged_at": "2025-11-19T07:00:00Z",
+    "created_at": "2025-11-19T07:00:00Z"
+  },
+  {
+    "id": "145e0972-bd55-4c73-8645-fd2113b6c196",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-20",
+    "weight": 86.3,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 111.2,
+    "skinfolds": {
+      "chest": 13.4,
+      "abdomen": 22.9,
+      "thigh": 18.4,
+      "tricep": 11.0,
+      "subscapular": 16.4,
+      "suprailiac": 18.2,
+      "midaxillary": 13.4
+    },
+    "logged_at": "2025-11-20T07:00:00Z",
+    "created_at": "2025-11-20T07:00:00Z"
+  },
+  {
+    "id": "51fbffdd-47a0-4960-b32e-ec28d8266a07",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-21",
+    "weight": 86.2,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 111.0,
+    "skinfolds": {
+      "chest": 13.4,
+      "abdomen": 22.9,
+      "thigh": 18.4,
+      "tricep": 10.9,
+      "subscapular": 16.4,
+      "suprailiac": 18.1,
+      "midaxillary": 13.4
+    },
+    "logged_at": "2025-11-21T07:00:00Z",
+    "created_at": "2025-11-21T07:00:00Z"
+  },
+  {
+    "id": "000e1903-1dc7-40d3-a859-11d18bb3ccef",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-22",
+    "weight": 86.1,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 110.8,
+    "skinfolds": {
+      "chest": 13.4,
+      "abdomen": 22.8,
+      "thigh": 18.4,
+      "tricep": 10.9,
+      "subscapular": 16.4,
+      "suprailiac": 18.1,
+      "midaxillary": 13.4
+    },
+    "logged_at": "2025-11-22T07:00:00Z",
+    "created_at": "2025-11-22T07:00:00Z"
+  },
+  {
+    "id": "8fbc0774-c33c-494e-9163-54bd7c3c3205",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-23",
+    "weight": 86.4,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 110.7,
+    "skinfolds": {
+      "chest": 13.3,
+      "abdomen": 22.8,
+      "thigh": 18.4,
+      "tricep": 10.9,
+      "subscapular": 16.4,
+      "suprailiac": 18.1,
+      "midaxillary": 13.3
+    },
+    "logged_at": "2025-11-23T07:00:00Z",
+    "created_at": "2025-11-23T07:00:00Z"
+  },
+  {
+    "id": "b76233da-b91b-4e47-b255-144c1989a975",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-24",
+    "weight": 86.1,
+    "body_fat_pct": 19.3,
+    "skinfold_sum": 110.5,
+    "skinfolds": {
+      "chest": 13.3,
+      "abdomen": 22.8,
+      "thigh": 18.3,
+      "tricep": 10.9,
+      "subscapular": 16.3,
+      "suprailiac": 18.0,
+      "midaxillary": 13.3
+    },
+    "logged_at": "2025-11-24T07:00:00Z",
+    "created_at": "2025-11-24T07:00:00Z"
+  },
+  {
+    "id": "97c5f7aa-e144-4163-8fb1-9d09a4333fac",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-25",
+    "weight": 86.1,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 110.3,
+    "skinfolds": {
+      "chest": 13.3,
+      "abdomen": 22.7,
+      "thigh": 18.3,
+      "tricep": 10.9,
+      "subscapular": 16.3,
+      "suprailiac": 18.0,
+      "midaxillary": 13.3
+    },
+    "logged_at": "2025-11-25T07:00:00Z",
+    "created_at": "2025-11-25T07:00:00Z"
+  },
+  {
+    "id": "dbbd2b07-9a1f-4451-943d-5dbf3ab1f4fa",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-26",
+    "weight": 86.3,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 110.1,
+    "skinfolds": {
+      "chest": 13.3,
+      "abdomen": 22.7,
+      "thigh": 18.3,
+      "tricep": 10.8,
+      "subscapular": 16.3,
+      "suprailiac": 18.0,
+      "midaxillary": 13.3
+    },
+    "logged_at": "2025-11-26T07:00:00Z",
+    "created_at": "2025-11-26T07:00:00Z"
+  },
+  {
+    "id": "66a278aa-28cc-4df5-b00b-32c167a37a21",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-27",
+    "weight": 86.4,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 110.0,
+    "skinfolds": {
+      "chest": 13.2,
+      "abdomen": 22.6,
+      "thigh": 18.2,
+      "tricep": 10.8,
+      "subscapular": 16.2,
+      "suprailiac": 17.9,
+      "midaxillary": 13.2
+    },
+    "logged_at": "2025-11-27T07:00:00Z",
+    "created_at": "2025-11-27T07:00:00Z"
+  },
+  {
+    "id": "ab38f39e-cc53-4ec6-8f33-8894477cef9c",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-28",
+    "weight": 86.2,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 109.8,
+    "skinfolds": {
+      "chest": 13.2,
+      "abdomen": 22.6,
+      "thigh": 18.2,
+      "tricep": 10.8,
+      "subscapular": 16.2,
+      "suprailiac": 17.9,
+      "midaxillary": 13.2
+    },
+    "logged_at": "2025-11-28T07:00:00Z",
+    "created_at": "2025-11-28T07:00:00Z"
+  },
+  {
+    "id": "9ec81714-51c5-430f-a8aa-f58cf7c32922",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-29",
+    "weight": 86.2,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 109.6,
+    "skinfolds": {
+      "chest": 13.2,
+      "abdomen": 22.6,
+      "thigh": 18.2,
+      "tricep": 10.8,
+      "subscapular": 16.2,
+      "suprailiac": 17.9,
+      "midaxillary": 13.2
+    },
+    "logged_at": "2025-11-29T07:00:00Z",
+    "created_at": "2025-11-29T07:00:00Z"
+  },
+  {
+    "id": "81916255-987f-4c11-9130-8bcb4c7ec7d4",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-30",
+    "weight": 86.1,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 109.5,
+    "skinfolds": {
+      "chest": 13.1,
+      "abdomen": 22.5,
+      "thigh": 18.1,
+      "tricep": 10.8,
+      "subscapular": 16.1,
+      "suprailiac": 17.8,
+      "midaxillary": 13.1
+    },
+    "logged_at": "2025-11-30T07:00:00Z",
+    "created_at": "2025-11-30T07:00:00Z"
+  },
+  {
+    "id": "be1a9d8a-1687-4998-a2da-91177d06bf1d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-01",
+    "weight": 86.4,
+    "body_fat_pct": 19.2,
+    "skinfold_sum": 109.3,
+    "skinfolds": {
+      "chest": 13.1,
+      "abdomen": 22.5,
+      "thigh": 18.1,
+      "tricep": 10.7,
+      "subscapular": 16.1,
+      "suprailiac": 17.8,
+      "midaxillary": 13.1
+    },
+    "logged_at": "2025-12-01T07:00:00Z",
+    "created_at": "2025-12-01T07:00:00Z"
+  },
+  {
+    "id": "40b26b0e-de8f-4243-92e4-90abc34e50e7",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-02",
+    "weight": 86.5,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 109.1,
+    "skinfolds": {
+      "chest": 13.1,
+      "abdomen": 22.4,
+      "thigh": 18.1,
+      "tricep": 10.7,
+      "subscapular": 16.1,
+      "suprailiac": 17.8,
+      "midaxillary": 13.1
+    },
+    "logged_at": "2025-12-02T07:00:00Z",
+    "created_at": "2025-12-02T07:00:00Z"
+  },
+  {
+    "id": "f95d16f7-9548-472e-9e92-77fd9fbbbdc4",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-03",
+    "weight": 86.3,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 109.0,
+    "skinfolds": {
+      "chest": 13.1,
+      "abdomen": 22.4,
+      "thigh": 18.1,
+      "tricep": 10.7,
+      "subscapular": 16.1,
+      "suprailiac": 17.7,
+      "midaxillary": 13.1
+    },
+    "logged_at": "2025-12-03T07:00:00Z",
+    "created_at": "2025-12-03T07:00:00Z"
+  },
+  {
+    "id": "5476388a-ae0e-42db-99fb-097f0b7182fc",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-04",
+    "weight": 86.3,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 108.8,
+    "skinfolds": {
+      "chest": 13.0,
+      "abdomen": 22.4,
+      "thigh": 18.0,
+      "tricep": 10.7,
+      "subscapular": 16.0,
+      "suprailiac": 17.7,
+      "midaxillary": 13.0
+    },
+    "logged_at": "2025-12-04T07:00:00Z",
+    "created_at": "2025-12-04T07:00:00Z"
+  },
+  {
+    "id": "7735413a-121c-49f7-92f4-e26d616ed51a",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-05",
+    "weight": 86.3,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 108.6,
+    "skinfolds": {
+      "chest": 13.0,
+      "abdomen": 22.3,
+      "thigh": 18.0,
+      "tricep": 10.7,
+      "subscapular": 16.0,
+      "suprailiac": 17.7,
+      "midaxillary": 13.0
+    },
+    "logged_at": "2025-12-05T07:00:00Z",
+    "created_at": "2025-12-05T07:00:00Z"
+  },
+  {
+    "id": "1a30bfd9-0a58-41ad-9f52-459fccfd4f6d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-06",
+    "weight": 86.4,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 108.4,
+    "skinfolds": {
+      "chest": 13.0,
+      "abdomen": 22.3,
+      "thigh": 18.0,
+      "tricep": 10.6,
+      "subscapular": 16.0,
+      "suprailiac": 17.6,
+      "midaxillary": 13.0
+    },
+    "logged_at": "2025-12-06T07:00:00Z",
+    "created_at": "2025-12-06T07:00:00Z"
+  },
+  {
+    "id": "1c8d6ccd-7a95-4425-bec0-288d23e529f0",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-07",
+    "weight": 86.2,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 108.3,
+    "skinfolds": {
+      "chest": 12.9,
+      "abdomen": 22.2,
+      "thigh": 17.9,
+      "tricep": 10.6,
+      "subscapular": 15.9,
+      "suprailiac": 17.6,
+      "midaxillary": 12.9
+    },
+    "logged_at": "2025-12-07T07:00:00Z",
+    "created_at": "2025-12-07T07:00:00Z"
+  },
+  {
+    "id": "bc8461e4-45c1-4fc3-b9e3-aea1fb10e83c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-08",
+    "weight": 86.2,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 108.1,
+    "skinfolds": {
+      "chest": 12.9,
+      "abdomen": 22.2,
+      "thigh": 17.9,
+      "tricep": 10.6,
+      "subscapular": 15.9,
+      "suprailiac": 17.6,
+      "midaxillary": 12.9
+    },
+    "logged_at": "2025-12-08T07:00:00Z",
+    "created_at": "2025-12-08T07:00:00Z"
+  },
+  {
+    "id": "c5355bb5-cba2-410f-b562-085bc1089560",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-09",
+    "weight": 86.2,
+    "body_fat_pct": 19.1,
+    "skinfold_sum": 107.9,
+    "skinfolds": {
+      "chest": 12.9,
+      "abdomen": 22.2,
+      "thigh": 17.9,
+      "tricep": 10.6,
+      "subscapular": 15.9,
+      "suprailiac": 17.5,
+      "midaxillary": 12.9
+    },
+    "logged_at": "2025-12-09T07:00:00Z",
+    "created_at": "2025-12-09T07:00:00Z"
+  },
+  {
+    "id": "596dc060-ffe8-48b9-b273-031099c8b0e3",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-10",
+    "weight": 86.5,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 107.8,
+    "skinfolds": {
+      "chest": 12.8,
+      "abdomen": 22.1,
+      "thigh": 17.8,
+      "tricep": 10.6,
+      "subscapular": 15.8,
+      "suprailiac": 17.5,
+      "midaxillary": 12.8
+    },
+    "logged_at": "2025-12-10T07:00:00Z",
+    "created_at": "2025-12-10T07:00:00Z"
+  },
+  {
+    "id": "623280e5-0f81-4f14-a4b6-f573be0bf606",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-11",
+    "weight": 86.4,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 107.6,
+    "skinfolds": {
+      "chest": 12.8,
+      "abdomen": 22.1,
+      "thigh": 17.8,
+      "tricep": 10.5,
+      "subscapular": 15.8,
+      "suprailiac": 17.4,
+      "midaxillary": 12.8
+    },
+    "logged_at": "2025-12-11T07:00:00Z",
+    "created_at": "2025-12-11T07:00:00Z"
+  },
+  {
+    "id": "f1a73fdc-0ca6-4d30-a9a1-db04e235a6a3",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-12",
+    "weight": 86.7,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 107.4,
+    "skinfolds": {
+      "chest": 12.8,
+      "abdomen": 22.0,
+      "thigh": 17.8,
+      "tricep": 10.5,
+      "subscapular": 15.8,
+      "suprailiac": 17.4,
+      "midaxillary": 12.8
+    },
+    "logged_at": "2025-12-12T07:00:00Z",
+    "created_at": "2025-12-12T07:00:00Z"
+  },
+  {
+    "id": "1f65a0c6-bf48-4d32-9fc3-16ed8379e635",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-13",
+    "weight": 86.4,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 107.2,
+    "skinfolds": {
+      "chest": 12.8,
+      "abdomen": 22.0,
+      "thigh": 17.8,
+      "tricep": 10.5,
+      "subscapular": 15.8,
+      "suprailiac": 17.4,
+      "midaxillary": 12.8
+    },
+    "logged_at": "2025-12-13T07:00:00Z",
+    "created_at": "2025-12-13T07:00:00Z"
+  },
+  {
+    "id": "19c7d8a2-9d44-4431-a1eb-a87125b73566",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-14",
+    "weight": 86.4,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 107.1,
+    "skinfolds": {
+      "chest": 12.7,
+      "abdomen": 22.0,
+      "thigh": 17.7,
+      "tricep": 10.5,
+      "subscapular": 15.7,
+      "suprailiac": 17.3,
+      "midaxillary": 12.7
+    },
+    "logged_at": "2025-12-14T07:00:00Z",
+    "created_at": "2025-12-14T07:00:00Z"
+  },
+  {
+    "id": "ed9c4b1d-4245-4e20-b109-fb51cf3cbca7",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-15",
+    "weight": 86.6,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 106.9,
+    "skinfolds": {
+      "chest": 12.7,
+      "abdomen": 21.9,
+      "thigh": 17.7,
+      "tricep": 10.5,
+      "subscapular": 15.7,
+      "suprailiac": 17.3,
+      "midaxillary": 12.7
+    },
+    "logged_at": "2025-12-15T07:00:00Z",
+    "created_at": "2025-12-15T07:00:00Z"
+  },
+  {
+    "id": "78dd721c-f8e7-4c2b-a12e-d7c3e8897ca9",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-16",
+    "weight": 86.8,
+    "body_fat_pct": 19.0,
+    "skinfold_sum": 106.7,
+    "skinfolds": {
+      "chest": 12.7,
+      "abdomen": 21.9,
+      "thigh": 17.7,
+      "tricep": 10.4,
+      "subscapular": 15.7,
+      "suprailiac": 17.3,
+      "midaxillary": 12.7
+    },
+    "logged_at": "2025-12-16T07:00:00Z",
+    "created_at": "2025-12-16T07:00:00Z"
+  },
+  {
+    "id": "935580df-673b-41ff-89e9-24862a630fd1",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-17",
+    "weight": 86.6,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 106.6,
+    "skinfolds": {
+      "chest": 12.6,
+      "abdomen": 21.8,
+      "thigh": 17.6,
+      "tricep": 10.4,
+      "subscapular": 15.6,
+      "suprailiac": 17.2,
+      "midaxillary": 12.6
+    },
+    "logged_at": "2025-12-17T07:00:00Z",
+    "created_at": "2025-12-17T07:00:00Z"
+  },
+  {
+    "id": "a575777d-89d4-45d0-b116-4f23013688b1",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-18",
+    "weight": 86.4,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 106.4,
+    "skinfolds": {
+      "chest": 12.6,
+      "abdomen": 21.8,
+      "thigh": 17.6,
+      "tricep": 10.4,
+      "subscapular": 15.6,
+      "suprailiac": 17.2,
+      "midaxillary": 12.6
+    },
+    "logged_at": "2025-12-18T07:00:00Z",
+    "created_at": "2025-12-18T07:00:00Z"
+  },
+  {
+    "id": "8a78ff4e-6458-4cb8-bf64-c7f3815414d3",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-19",
+    "weight": 86.5,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 106.2,
+    "skinfolds": {
+      "chest": 12.6,
+      "abdomen": 21.8,
+      "thigh": 17.6,
+      "tricep": 10.4,
+      "subscapular": 15.6,
+      "suprailiac": 17.2,
+      "midaxillary": 12.6
+    },
+    "logged_at": "2025-12-19T07:00:00Z",
+    "created_at": "2025-12-19T07:00:00Z"
+  },
+  {
+    "id": "db932922-f4e1-4501-962c-cf8d5e9c74be",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-20",
+    "weight": 86.6,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 106.1,
+    "skinfolds": {
+      "chest": 12.5,
+      "abdomen": 21.7,
+      "thigh": 17.5,
+      "tricep": 10.4,
+      "subscapular": 15.5,
+      "suprailiac": 17.1,
+      "midaxillary": 12.5
+    },
+    "logged_at": "2025-12-20T07:00:00Z",
+    "created_at": "2025-12-20T07:00:00Z"
+  },
+  {
+    "id": "b115439c-ce6e-438e-bca9-81320b9b3159",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-21",
+    "weight": 86.5,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 105.9,
+    "skinfolds": {
+      "chest": 12.5,
+      "abdomen": 21.7,
+      "thigh": 17.5,
+      "tricep": 10.3,
+      "subscapular": 15.5,
+      "suprailiac": 17.1,
+      "midaxillary": 12.5
+    },
+    "logged_at": "2025-12-21T07:00:00Z",
+    "created_at": "2025-12-21T07:00:00Z"
+  },
+  {
+    "id": "b6d6229e-4c29-4331-a08e-73e7c1f58d8f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-22",
+    "weight": 86.6,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 105.7,
+    "skinfolds": {
+      "chest": 12.5,
+      "abdomen": 21.6,
+      "thigh": 17.5,
+      "tricep": 10.3,
+      "subscapular": 15.5,
+      "suprailiac": 17.1,
+      "midaxillary": 12.5
+    },
+    "logged_at": "2025-12-22T07:00:00Z",
+    "created_at": "2025-12-22T07:00:00Z"
+  },
+  {
+    "id": "c978f4c3-e6bd-4399-b746-4ce89c7e60eb",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-23",
+    "weight": 86.6,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 105.5,
+    "skinfolds": {
+      "chest": 12.4,
+      "abdomen": 21.6,
+      "thigh": 17.4,
+      "tricep": 10.3,
+      "subscapular": 15.4,
+      "suprailiac": 17.0,
+      "midaxillary": 12.4
+    },
+    "logged_at": "2025-12-23T07:00:00Z",
+    "created_at": "2025-12-23T07:00:00Z"
+  },
+  {
+    "id": "32f995a3-4614-4ab0-a7d2-e05fb5c69b36",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-24",
+    "weight": 86.9,
+    "body_fat_pct": 18.9,
+    "skinfold_sum": 105.4,
+    "skinfolds": {
+      "chest": 12.4,
+      "abdomen": 21.6,
+      "thigh": 17.4,
+      "tricep": 10.3,
+      "subscapular": 15.4,
+      "suprailiac": 17.0,
+      "midaxillary": 12.4
+    },
+    "logged_at": "2025-12-24T07:00:00Z",
+    "created_at": "2025-12-24T07:00:00Z"
+  },
+  {
+    "id": "87f93711-6da1-4f54-9132-fc881762ca78",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-25",
+    "weight": 87.0,
+    "body_fat_pct": 18.8,
+    "skinfold_sum": 105.2,
+    "skinfolds": {
+      "chest": 12.4,
+      "abdomen": 21.5,
+      "thigh": 17.4,
+      "tricep": 10.3,
+      "subscapular": 15.4,
+      "suprailiac": 17.0,
+      "midaxillary": 12.4
+    },
+    "logged_at": "2025-12-25T07:00:00Z",
+    "created_at": "2025-12-25T07:00:00Z"
+  },
+  {
+    "id": "ef8399eb-6481-42f3-bb41-1b12373d9f09",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-26",
+    "weight": 86.6,
+    "body_fat_pct": 18.8,
+    "skinfold_sum": 105.0,
+    "skinfolds": {
+      "chest": 12.4,
+      "abdomen": 21.5,
+      "thigh": 17.4,
+      "tricep": 10.2,
+      "subscapular": 15.4,
+      "suprailiac": 16.9,
+      "midaxillary": 12.4
+    },
+    "logged_at": "2025-12-26T07:00:00Z",
+    "created_at": "2025-12-26T07:00:00Z"
+  },
+  {
+    "id": "eb2b6abd-8c81-4a9a-a0e8-a176024b40f3",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-27",
+    "weight": 86.7,
+    "body_fat_pct": 18.8,
+    "skinfold_sum": 104.9,
+    "skinfolds": {
+      "chest": 12.3,
+      "abdomen": 21.4,
+      "thigh": 17.3,
+      "tricep": 10.2,
+      "subscapular": 15.3,
+      "suprailiac": 16.9,
+      "midaxillary": 12.3
+    },
+    "logged_at": "2025-12-27T07:00:00Z",
+    "created_at": "2025-12-27T07:00:00Z"
   }
 ]
