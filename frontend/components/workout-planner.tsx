@@ -57,6 +57,7 @@ export default function WorkoutPlanner() {
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [planSaved, setPlanSaved] = useState(false);
+  const [method, setMethod] = useState<'llm' | 'deterministic'>('llm');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setInputs({
@@ -82,7 +83,7 @@ export default function WorkoutPlanner() {
       };
 
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-      const response = await fetch(`${apiUrl}/generate-workout-plan`, {
+      const response = await fetch(`${apiUrl}/generate-workout-plan?method=${method}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,6 +115,40 @@ export default function WorkoutPlanner() {
   };
 
   // Save workout plan to backend and navigate to tracking dashboard
+  // Helper function to determine volume status color
+  const getVolumeStatusColor = (actualSets: number, minTarget: number, maxTarget: number) => {
+    // Green: Within exact target range
+    if (actualSets >= minTarget && actualSets <= maxTarget) {
+      return {
+        bg: 'bg-green-50',
+        border: 'border-green-200',
+        text: 'text-green-700',
+        status: 'Perfect'
+      };
+    }
+
+    // Yellow: Close enough (within 50% tolerance - increased from 30%)
+    const lowerBound = minTarget * 0.5;
+    const upperBound = maxTarget * 1.5;
+
+    if (actualSets >= lowerBound && actualSets <= upperBound) {
+      return {
+        bg: 'bg-yellow-50',
+        border: 'border-yellow-200',
+        text: 'text-yellow-700',
+        status: 'Close'
+      };
+    }
+
+    // Red: Outlier (beyond 50% tolerance)
+    return {
+      bg: 'bg-red-50',
+      border: 'border-red-200',
+      text: 'text-red-700',
+      status: 'Outlier'
+    };
+  };
+
   const handleStartPlan = async () => {
     if (!results) return;
 
@@ -319,6 +354,25 @@ export default function WorkoutPlanner() {
             </p>
           </div>
 
+          {/* Plan Generation Method */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Plan Generation Method
+            </label>
+            <select
+              value={method}
+              onChange={(e) => setMethod(e.target.value as 'llm' | 'deterministic')}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            >
+              <option value="llm">AI-Powered (LLM) - Flexible & Adaptive</option>
+              <option value="deterministic">Algorithm-Based - Fast & Deterministic</option>
+            </select>
+            <p className="text-xs text-gray-500 mt-1">
+              {method === 'llm' && '🤖 Uses AWS Bedrock AI for flexible workout planning (3-10s, ~$0.01-0.05)'}
+              {method === 'deterministic' && '⚡ Pure algorithm-based generation (1-2ms, $0.00, experimental)'}
+            </p>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
@@ -433,25 +487,46 @@ export default function WorkoutPlanner() {
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Weekly Volume Summary</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {results.weekly_volume_summary.map((volume, index) => (
-                <div
-                  key={index}
-                  className={`p-3 rounded-lg ${
-                    volume.weekly_sets >= results.target_volume_range.min &&
-                    volume.weekly_sets <= results.target_volume_range.max
-                      ? 'bg-green-50 border border-green-200'
-                      : 'bg-yellow-50 border border-yellow-200'
-                  }`}
-                >
-                  <p className="text-sm font-medium text-gray-700">{volume.muscle_group}</p>
-                  <p className="text-2xl font-bold text-gray-900">{volume.weekly_sets}</p>
-                  <p className="text-xs text-gray-500">sets/week</p>
-                </div>
-              ))}
+              {results.weekly_volume_summary.map((volume, index) => {
+                const colorStatus = getVolumeStatusColor(
+                  volume.weekly_sets,
+                  results.target_volume_range.min,
+                  results.target_volume_range.max
+                );
+
+                return (
+                  <div
+                    key={index}
+                    className={`p-3 rounded-lg border ${colorStatus.bg} ${colorStatus.border}`}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-sm font-medium text-gray-700">{volume.muscle_group}</p>
+                      <span className={`text-xs font-semibold ${colorStatus.text}`}>
+                        {colorStatus.status}
+                      </span>
+                    </div>
+                    <p className="text-2xl font-bold text-gray-900">{volume.weekly_sets}</p>
+                    <p className="text-xs text-gray-500">sets/week</p>
+                  </div>
+                );
+              })}
             </div>
-            <p className="text-xs text-gray-500 mt-4">
-              Green = within target range ({results.target_volume_range.min}-{results.target_volume_range.max} sets)
-            </p>
+
+            {/* Legend */}
+            <div className="mt-4 flex flex-wrap gap-4 text-xs text-gray-600">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-green-50 border border-green-200 rounded"></div>
+                <span>Perfect: {results.target_volume_range.min}-{results.target_volume_range.max} sets</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-yellow-50 border border-yellow-200 rounded"></div>
+                <span>Close: Within 50% tolerance</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-red-50 border border-red-200 rounded"></div>
+                <span>Outlier: Beyond 50% tolerance (extreme cases)</span>
+              </div>
+            </div>
           </div>
 
           {/* Start Plan Button */}

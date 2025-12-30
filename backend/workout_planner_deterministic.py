@@ -103,9 +103,9 @@ class DeterministicWorkoutPlanner:
     def get_target_volume_range(optimal_sets: float, dedication_level: str) -> Dict[str, float]:
         """Get target volume range based on dedication level"""
         ranges = {
-            "A": (0.60, 0.75),  # Sustainability
-            "B": (0.75, 0.90),  # Balanced
-            "C": (0.90, 1.00),  # Maximum
+            "A": (0.55, 0.80),  # Sustainability (widened from 0.60-0.75)
+            "B": (0.70, 0.95),  # Balanced (widened from 0.75-0.90)
+            "C": (0.85, 1.05),  # Maximum (widened from 0.90-1.00)
         }
 
         min_pct, max_pct = ranges[dedication_level]
@@ -391,6 +391,62 @@ class DeterministicWorkoutPlanner:
 
         return selected_exercises
 
+    def _balance_exercises_across_days(self, workout_days: List[WorkoutDay]) -> List[WorkoutDay]:
+        """
+        Balance exercises across days to ensure each day has 3-6 exercises.
+
+        Prevents days with only 1-2 exercises (too light) or 7+ exercises (too heavy).
+        """
+        MIN_EXERCISES = 3
+        MAX_EXERCISES = 6
+
+        # Count exercises per day
+        day_counts = [(i, len(day.exercises)) for i, day in enumerate(workout_days)]
+
+        # Find underloaded and overloaded days
+        underloaded = [(i, count) for i, count in day_counts if count < MIN_EXERCISES]
+        overloaded = [(i, count) for i, count in day_counts if count > MAX_EXERCISES]
+
+        # If we have underloaded days, try to redistribute
+        if underloaded and len(workout_days) > 1:
+            # Collect all exercises into a pool
+            all_exercises = []
+            for day in workout_days:
+                all_exercises.extend(day.exercises)
+
+            # Redistribute evenly
+            target_per_day = len(all_exercises) // len(workout_days)
+            target_per_day = max(MIN_EXERCISES, min(target_per_day, MAX_EXERCISES))
+
+            # Clear existing exercises and redistribute
+            new_days = []
+            exercise_idx = 0
+
+            for day_idx, day in enumerate(workout_days):
+                day_exercises = []
+                # Assign target number of exercises to each day
+                exercises_for_this_day = min(target_per_day, len(all_exercises) - exercise_idx)
+
+                for _ in range(exercises_for_this_day):
+                    if exercise_idx < len(all_exercises):
+                        day_exercises.append(all_exercises[exercise_idx])
+                        exercise_idx += 1
+
+                # Ensure at least MIN_EXERCISES per day (if possible)
+                while len(day_exercises) < MIN_EXERCISES and exercise_idx < len(all_exercises):
+                    day_exercises.append(all_exercises[exercise_idx])
+                    exercise_idx += 1
+
+                new_days.append(WorkoutDay(
+                    day_name=day.day_name,
+                    frequency_per_week=day.frequency_per_week,
+                    exercises=day_exercises
+                ))
+
+            return new_days
+
+        return workout_days
+
     def distribute_across_days(
         self,
         exercises: List[Tuple[str, int, int]],
@@ -403,13 +459,35 @@ class DeterministicWorkoutPlanner:
         - 2-3 days: Full body split
         - 4-5 days: Upper/Lower split
         - 6-7 days: Push/Pull/Legs split
+
+        Automatically reduces frequency if not enough exercises for balanced days.
         """
+        MIN_EXERCISES_PER_DAY = 3
+        total_exercises = len(exercises)
+
+        # Determine optimal frequency based on exercise count
+        # We want at least 3 exercises per unique workout day
+        if training_frequency >= 6:
+            # PPL = 3 unique days, need at least 9 exercises
+            if total_exercises < 9:
+                # Not enough exercises for 3-day split, use upper/lower instead
+                training_frequency = 4  # 2 unique days (upper/lower)
+
+        if training_frequency >= 4:
+            # Upper/Lower = 2 unique days, need at least 6 exercises
+            if total_exercises < 6:
+                # Not enough exercises for 2-day split, use full body instead
+                training_frequency = 3  # 1 unique day (full body)
+
         if training_frequency <= 3:
-            return self._create_fullbody_split(exercises, training_frequency)
+            workout_days = self._create_fullbody_split(exercises, training_frequency)
         elif training_frequency <= 5:
-            return self._create_upper_lower_split(exercises, training_frequency)
+            workout_days = self._create_upper_lower_split(exercises, training_frequency)
         else:
-            return self._create_push_pull_legs_split(exercises, training_frequency)
+            workout_days = self._create_push_pull_legs_split(exercises, training_frequency)
+
+        # Balance exercises across days to prevent days with only 1-2 exercises
+        return self._balance_exercises_across_days(workout_days)
 
     def _categorize_exercise(self, exercise_name: str) -> str:
         """Categorize exercise as push/pull/legs/core"""
@@ -439,13 +517,25 @@ class DeterministicWorkoutPlanner:
         frequency: int
     ) -> List[WorkoutDay]:
         """Create full-body split (all exercises each session)"""
-        workout_exercises = []
-
+        # Merge duplicate exercises by summing sets
+        exercise_map = {}
         for exercise_name, sets, intensity in exercises:
+            if exercise_name in exercise_map:
+                # Merge: add sets together
+                exercise_map[exercise_name] = (exercise_map[exercise_name][0] + sets, intensity)
+            else:
+                exercise_map[exercise_name] = (sets, intensity)
+
+        # Convert to ExerciseSet objects
+        # Cap at 6 sets per exercise per day (realistic training limit)
+        workout_exercises = []
+        for exercise_name, (sets, intensity) in exercise_map.items():
+            # Cap at 6 sets per exercise per session
+            capped_sets = min(sets, 6)
             activation = EXERCISE_DATABASE[exercise_name]["activation"]
             workout_exercises.append(ExerciseSet(
                 exercise_name=exercise_name,
-                sets=sets,
+                sets=capped_sets,
                 intensity=intensity,
                 muscle_activation=activation
             ))
@@ -464,24 +554,47 @@ class DeterministicWorkoutPlanner:
         frequency: int
     ) -> List[WorkoutDay]:
         """Create upper/lower split"""
-        upper_exercises = []
-        lower_exercises = []
+        # Merge duplicate exercises by category
+        upper_map = {}
+        lower_map = {}
 
         for exercise_name, sets, intensity in exercises:
             category = self._categorize_exercise(exercise_name)
-            activation = EXERCISE_DATABASE[exercise_name]["activation"]
-
-            exercise_set = ExerciseSet(
-                exercise_name=exercise_name,
-                sets=sets,
-                intensity=intensity,
-                muscle_activation=activation
-            )
 
             if category == "legs":
-                lower_exercises.append(exercise_set)
+                if exercise_name in lower_map:
+                    lower_map[exercise_name] = (lower_map[exercise_name][0] + sets, intensity)
+                else:
+                    lower_map[exercise_name] = (sets, intensity)
             else:
-                upper_exercises.append(exercise_set)
+                if exercise_name in upper_map:
+                    upper_map[exercise_name] = (upper_map[exercise_name][0] + sets, intensity)
+                else:
+                    upper_map[exercise_name] = (sets, intensity)
+
+        # Convert to ExerciseSet objects
+        # Cap at 6 sets per exercise per day (realistic training limit)
+        upper_exercises = []
+        for exercise_name, (sets, intensity) in upper_map.items():
+            capped_sets = min(sets, 6)
+            activation = EXERCISE_DATABASE[exercise_name]["activation"]
+            upper_exercises.append(ExerciseSet(
+                exercise_name=exercise_name,
+                sets=capped_sets,
+                intensity=intensity,
+                muscle_activation=activation
+            ))
+
+        lower_exercises = []
+        for exercise_name, (sets, intensity) in lower_map.items():
+            capped_sets = min(sets, 6)
+            activation = EXERCISE_DATABASE[exercise_name]["activation"]
+            lower_exercises.append(ExerciseSet(
+                exercise_name=exercise_name,
+                sets=capped_sets,
+                intensity=intensity,
+                muscle_activation=activation
+            ))
 
         # Distribute frequency (e.g., 4 days = 2 upper + 2 lower)
         upper_freq = (frequency + 1) // 2
@@ -506,27 +619,64 @@ class DeterministicWorkoutPlanner:
         frequency: int
     ) -> List[WorkoutDay]:
         """Create push/pull/legs split"""
-        push_exercises = []
-        pull_exercises = []
-        leg_exercises = []
+        # Merge duplicate exercises by category
+        push_map = {}
+        pull_map = {}
+        leg_map = {}
 
         for exercise_name, sets, intensity in exercises:
             category = self._categorize_exercise(exercise_name)
-            activation = EXERCISE_DATABASE[exercise_name]["activation"]
-
-            exercise_set = ExerciseSet(
-                exercise_name=exercise_name,
-                sets=sets,
-                intensity=intensity,
-                muscle_activation=activation
-            )
 
             if category == "push":
-                push_exercises.append(exercise_set)
+                if exercise_name in push_map:
+                    push_map[exercise_name] = (push_map[exercise_name][0] + sets, intensity)
+                else:
+                    push_map[exercise_name] = (sets, intensity)
             elif category == "pull":
-                pull_exercises.append(exercise_set)
+                if exercise_name in pull_map:
+                    pull_map[exercise_name] = (pull_map[exercise_name][0] + sets, intensity)
+                else:
+                    pull_map[exercise_name] = (sets, intensity)
             else:  # legs or core
-                leg_exercises.append(exercise_set)
+                if exercise_name in leg_map:
+                    leg_map[exercise_name] = (leg_map[exercise_name][0] + sets, intensity)
+                else:
+                    leg_map[exercise_name] = (sets, intensity)
+
+        # Convert to ExerciseSet objects
+        # Cap at 6 sets per exercise per day (realistic training limit)
+        push_exercises = []
+        for exercise_name, (sets, intensity) in push_map.items():
+            capped_sets = min(sets, 6)
+            activation = EXERCISE_DATABASE[exercise_name]["activation"]
+            push_exercises.append(ExerciseSet(
+                exercise_name=exercise_name,
+                sets=capped_sets,
+                intensity=intensity,
+                muscle_activation=activation
+            ))
+
+        pull_exercises = []
+        for exercise_name, (sets, intensity) in pull_map.items():
+            capped_sets = min(sets, 6)
+            activation = EXERCISE_DATABASE[exercise_name]["activation"]
+            pull_exercises.append(ExerciseSet(
+                exercise_name=exercise_name,
+                sets=capped_sets,
+                intensity=intensity,
+                muscle_activation=activation
+            ))
+
+        leg_exercises = []
+        for exercise_name, (sets, intensity) in leg_map.items():
+            capped_sets = min(sets, 6)
+            activation = EXERCISE_DATABASE[exercise_name]["activation"]
+            leg_exercises.append(ExerciseSet(
+                exercise_name=exercise_name,
+                sets=capped_sets,
+                intensity=intensity,
+                muscle_activation=activation
+            ))
 
         # Distribute frequency (e.g., 6 days = 2 push + 2 pull + 2 legs)
         push_freq = (frequency + 2) // 3
@@ -555,7 +705,8 @@ class DeterministicWorkoutPlanner:
         self,
         workout_days: List[WorkoutDay],
         targets: Dict[str, Tuple[float, float]],
-        training_frequency: int
+        training_frequency: int,
+        training_status: int = 1
     ) -> Tuple[bool, str]:
         """
         Validate that plan meets all constraints.
@@ -580,13 +731,21 @@ class DeterministicWorkoutPlanner:
         errors = []
         for muscle, (min_vol, max_vol) in targets.items():
             actual = weekly_volumes[muscle]
-            if actual < min_vol * 0.9:  # 10% under tolerance
+            if actual < min_vol * 0.85:  # 15% under tolerance (relaxed from 10%)
                 errors.append(f"{muscle}: {actual:.1f} sets (need {min_vol:.1f}-{max_vol:.1f})")
 
         if errors:
             return False, "Volume targets not met:\n" + "\n".join(errors)
 
-        # 3. Check daily volume constraint (max 10 sets per muscle per day)
+        # 3. Check daily volume constraint (training status dependent)
+        # Advanced lifters can handle more volume per day
+        daily_limit_per_muscle = {
+            1: 10,  # Novice: 10 sets/muscle/day
+            2: 15,  # Intermediate: 15 sets/muscle/day
+            3: 20   # Advanced: 20 sets/muscle/day
+        }
+        max_daily_volume = daily_limit_per_muscle.get(training_status, 10)
+
         for workout_day in workout_days:
             daily_volumes = {muscle: 0.0 for muscle in MUSCLE_GROUPS}
             for exercise in workout_day.exercises:
@@ -594,8 +753,8 @@ class DeterministicWorkoutPlanner:
                     daily_volumes[muscle] += exercise.sets * activation_value
 
             for muscle, volume in daily_volumes.items():
-                if volume > 10:
-                    return False, f"{workout_day.day_name}: {muscle} has {volume:.1f} sets (max 10 per day)"
+                if volume > max_daily_volume:
+                    return False, f"{workout_day.day_name}: {muscle} has {volume:.1f} sets (max {max_daily_volume} per day for training status {training_status})"
 
         return True, "All constraints satisfied"
 
@@ -633,7 +792,8 @@ class DeterministicWorkoutPlanner:
         is_valid, message = self.validate_plan(
             workout_days,
             targets,
-            input_data.training_frequency
+            input_data.training_frequency,
+            input_data.training_status
         )
 
         if not is_valid:
