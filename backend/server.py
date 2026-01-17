@@ -9,7 +9,6 @@ import uuid
 from datetime import datetime
 import boto3
 from botocore.exceptions import ClientError
-from context import get_health_prompt
 from retrieval import HealthRAG
 from energy_calculator import EnergyCalculator, EnergyCalculatorInput, EnergyCalculatorOutput
 from workout_planner import WorkoutPlanner, WorkoutPlannerInput, WorkoutPlanOutput
@@ -82,107 +81,10 @@ workout_planner = WorkoutPlanner(bedrock_client=bedrock_client, model_id=BEDROCK
 
 
 # Request/Response models
-class ChatRequest(BaseModel):
-    message: str
-    session_id: Optional[str] = None
-
-
-class ChatResponse(BaseModel):
-    response: str
-    session_id: str
-
-
 class Message(BaseModel):
     role: str
     content: str
     timestamp: str
-
-
-# Memory management functions
-def get_memory_path(session_id: str) -> str:
-    return f"{session_id}.json"
-
-
-def load_conversation(session_id: str) -> List[Dict]:
-    """Load conversation history from storage"""
-    if USE_S3:
-        try:
-            response = s3_client.get_object(Bucket=S3_BUCKET, Key=get_memory_path(session_id))
-            return json.loads(response["Body"].read().decode("utf-8"))
-        except ClientError as e:
-            if e.response["Error"]["Code"] == "NoSuchKey":
-                return []
-            raise
-    else:
-        # Local file storage
-        file_path = os.path.join(MEMORY_DIR, get_memory_path(session_id))
-        if os.path.exists(file_path):
-            with open(file_path, "r") as f:
-                return json.load(f)
-        return []
-
-
-def save_conversation(session_id: str, messages: List[Dict]):
-    """Save conversation history to storage"""
-    if USE_S3:
-        s3_client.put_object(
-            Bucket=S3_BUCKET,
-            Key=get_memory_path(session_id),
-            Body=json.dumps(messages, indent=2),
-            ContentType="application/json",
-        )
-    else:
-        # Local file storage
-        os.makedirs(MEMORY_DIR, exist_ok=True)
-        file_path = os.path.join(MEMORY_DIR, get_memory_path(session_id))
-        with open(file_path, "w") as f:
-            json.dump(messages, f, indent=2)
-
-
-def call_bedrock_with_context(user_message: str, context: str) -> str:
-    """Call AWS Bedrock with retrieved context"""
-
-    # Generate system prompt with context
-    system_prompt = get_health_prompt(context)
-
-    # Build messages in Bedrock format
-    messages = [
-        {
-            "role": "user",
-            "content": [{"text": f"System: {system_prompt}"}]
-        },
-        {
-            "role": "user",
-            "content": [{"text": user_message}]
-        }
-    ]
-
-    try:
-        # Call Bedrock using the converse API
-        response = bedrock_client.converse(
-            modelId=BEDROCK_MODEL_ID,
-            messages=messages,
-            inferenceConfig={
-                "maxTokens": 2000,
-                "temperature": 0.3,  # Lower temperature for more factual responses
-                "topP": 0.9
-            }
-        )
-
-        # Extract the response text
-        return response["output"]["message"]["content"][0]["text"]
-
-    except ClientError as e:
-        error_code = e.response['Error']['Code']
-        if error_code == 'ValidationException':
-            print(f"Bedrock validation error: {e}")
-            raise HTTPException(status_code=400, detail="Invalid message format for Bedrock")
-        elif error_code == 'AccessDeniedException':
-            print(f"Bedrock access denied: {e}")
-            raise HTTPException(status_code=403, detail="Access denied to Bedrock model")
-        else:
-            print(f"Bedrock error: {e}")
-            raise HTTPException(status_code=500, detail=f"Bedrock error: {str(e)}")
 
 
 @app.get("/")
@@ -218,55 +120,6 @@ async def health_check():
     }
 
 
-@app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    try:
-        # Generate session ID if not provided
-        session_id = request.session_id or str(uuid.uuid4())
-
-        # Load conversation history
-        conversation = load_conversation(session_id)
-
-        # Retrieve relevant context from medical documents
-        context, sources = get_rag_system().retrieve_context(request.message, top_k=5)
-
-        # Call Bedrock with context for response
-        assistant_response = call_bedrock_with_context(request.message, context)
-
-        # Update conversation history
-        conversation.append(
-            {"role": "user", "content": request.message, "timestamp": datetime.now().isoformat()}
-        )
-        conversation.append(
-            {
-                "role": "assistant",
-                "content": assistant_response,
-                "timestamp": datetime.now().isoformat(),
-            }
-        )
-
-        # Save conversation
-        save_conversation(session_id, conversation)
-
-        return ChatResponse(response=assistant_response, session_id=session_id)
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"Error in chat endpoint: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.get("/conversation/{session_id}")
-async def get_conversation(session_id: str):
-    """Retrieve conversation history"""
-    try:
-        conversation = load_conversation(session_id)
-        return {"session_id": session_id, "messages": conversation}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
 @app.get("/stats")
 async def get_stats():
     """Get RAG system statistics"""
@@ -295,9 +148,12 @@ async def calculate_energy(input_data: EnergyCalculatorInput):
 
 
 @app.post("/generate-workout-plan", response_model=WorkoutPlanOutput)
-async def generate_workout_plan(input_data: WorkoutPlannerInput):
+async def generate_workout_plan(
+    input_data: WorkoutPlannerInput,
+    method: str = "llm"  # "llm" or "deterministic"
+):
     """
-    Generate a personalized workout plan using AI
+    Generate a personalized workout plan
 
     Accepts user's training profile (training status, age, sex, recovery factor, etc.)
     and generates a customized workout plan that:
@@ -306,14 +162,23 @@ async def generate_workout_plan(input_data: WorkoutPlannerInput):
     - Distributes volume across training days
     - Sets appropriate intensities based on training level
 
-    The workout plan is generated using AWS Bedrock LLM to create flexible,
-    personalized programs that meet all specified constraints.
+    Methods:
+    - llm: Uses AWS Bedrock LLM (default) - slower but more flexible
+    - deterministic: Uses pure algorithm - faster but experimental
     """
     try:
-        result = workout_planner.generate_workout_plan(input_data)
+        if method == "deterministic":
+            # Use deterministic algorithm
+            from workout_planner_deterministic import DeterministicWorkoutPlanner
+            planner = DeterministicWorkoutPlanner()
+            result = planner.generate_workout_plan(input_data)
+        else:
+            # Use LLM-based planner (default)
+            result = workout_planner.generate_workout_plan(input_data)
+
         return result
     except Exception as e:
-        print(f"Error in workout plan generation: {str(e)}")
+        print(f"Error in workout plan generation ({method}): {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -1925,6 +1790,180 @@ async def ask_coach(request: Dict):
         raise HTTPException(
             status_code=500,
             detail=f"Error processing coach request: {str(e)}"
+        )
+
+
+# ============================================================================
+# Motivator Agent Endpoint
+# ============================================================================
+
+def get_recent_weight_change(user_id: str, days: int = 7) -> float:
+    """
+    Calculate weight change over recent period.
+
+    Args:
+        user_id: User identifier
+        days: Number of days to look back
+
+    Returns:
+        Weight change in kg (negative = weight loss)
+    """
+    end_date = date.today()
+    start_date = end_date - timedelta(days=days)
+
+    # Handle both JSON database and DynamoDB
+    try:
+        body_logs = db.get_body_logs_by_date_range(
+            user_id=user_id,
+            start_date=start_date.isoformat(),
+            end_date=end_date.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("body_logs", {"user_id": user_id})
+        body_logs = [
+            log for log in all_logs
+            if log.get("date") and start_date.isoformat() <= log["date"] <= end_date.isoformat()
+        ]
+
+    if len(body_logs) < 2:
+        return 0.0
+
+    # Sort by date
+    sorted_logs = sorted(body_logs, key=lambda x: x.get("date", ""))
+
+    first_weight = sorted_logs[0].get("weight", 0)
+    last_weight = sorted_logs[-1].get("weight", 0)
+
+    return round(last_weight - first_weight, 2)
+
+
+def count_total_workouts(user_id: str) -> int:
+    """
+    Count total workout sessions ever completed by user.
+
+    Args:
+        user_id: User identifier
+
+    Returns:
+        Total number of completed workouts
+    """
+    # Query last 365 days (should cover most users)
+    end_date = date.today()
+    start_date = end_date - timedelta(days=365)
+
+    # Handle both JSON database and DynamoDB
+    try:
+        workout_logs = db.get_workout_logs_by_date_range(
+            user_id=user_id,
+            start_date=start_date.isoformat(),
+            end_date=end_date.isoformat()
+        )
+    except AttributeError:
+        # JSON database - use find and filter by date
+        all_logs = db.find("workout_logs", {"user_id": user_id})
+        workout_logs = [
+            log for log in all_logs
+            if log.get("date") and start_date.isoformat() <= log["date"] <= end_date.isoformat()
+        ]
+
+    return len([log for log in workout_logs if log.get("completed", True)])
+
+
+@app.get("/api/motivator/status")
+async def get_motivator_status(user_id: str):
+    """
+    Get streak data and personalized motivational message.
+
+    Calculates:
+    - Nutrition logging streak (consecutive days)
+    - Workout plan adherence streak (consecutive weeks)
+    - AI-generated motivational message
+
+    Query params:
+        user_id: User identifier
+
+    Returns:
+        MotivatorResponse with streaks, motivation, achievements
+    """
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+
+    from ai_agents.motivator_specialist.algorithm import calculate_streaks
+    from ai_agents.motivator_specialist.message_generator import generate_motivational_message
+    from ai_agents.shared.models import MotivatorResponse
+
+    try:
+        # 1. Calculate streaks (deterministic)
+        streaks = calculate_streaks(db, user_id)
+
+        # 2. Get user profile for personalization
+        try:
+            user_profile = db.get_user_profile(user_id)
+        except AttributeError:
+            # JSON database - use find_one
+            user_profile = db.find_one("user_profiles", {"user_id": user_id})
+
+        if not user_profile:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        # 3. Gather recent progress
+        recent_progress = {
+            "weight_change": get_recent_weight_change(user_id, days=7),
+            "total_workouts": count_total_workouts(user_id)
+        }
+
+        # 4. Generate AI motivational message
+        motivation = await generate_motivational_message(
+            bedrock_client=bedrock_client,
+            user_id=user_id,
+            streaks=streaks,
+            user_profile=user_profile,
+            recent_progress=recent_progress
+        )
+
+        # 5. Identify achievements
+        achievements = []
+        if streaks.nutrition_current_streak >= 7:
+            achievements.append({
+                "type": "nutrition",
+                "description": f"{streaks.nutrition_current_streak}-day logging streak"
+            })
+        if streaks.workout_current_streak >= 4:
+            achievements.append({
+                "type": "workout",
+                "description": f"{streaks.workout_current_streak} weeks consistent"
+            })
+
+        # 6. Assess data quality
+        nutrition_days = streaks.nutrition_current_streak
+        workout_weeks = streaks.workout_current_streak
+
+        if nutrition_days >= 14 and workout_weeks >= 4:
+            data_quality = "excellent"
+        elif nutrition_days >= 7 and workout_weeks >= 2:
+            data_quality = "good"
+        elif nutrition_days >= 3 or workout_weeks >= 1:
+            data_quality = "fair"
+        else:
+            data_quality = "poor"
+
+        # 7. Return response
+        return MotivatorResponse(
+            user_id=user_id,
+            streaks=streaks,
+            motivation=motivation,
+            achievements=achievements,
+            data_quality=data_quality
+        )
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Motivator agent error: {str(e)}"
         )
 
 

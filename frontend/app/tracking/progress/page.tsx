@@ -56,6 +56,34 @@ interface TrainingSummary {
   trend_confidence: number;
 }
 
+interface StreakData {
+  nutrition_current_streak: number;
+  nutrition_longest_streak: number;
+  nutrition_last_logged_date: string | null;
+  workout_current_streak: number;
+  workout_longest_streak: number;
+  workout_target_per_week: number;
+  workout_this_week_count: number;
+  sufficient_data: boolean;
+  days_analyzed: number;
+}
+
+interface MotivationalMessage {
+  message: string;
+  tone: string;
+  highlights: string[];
+  generated_at: string;
+  model_used: string;
+}
+
+interface MotivatorResponse {
+  user_id: string;
+  streaks: StreakData;
+  motivation: MotivationalMessage;
+  achievements: Array<{ type: string; description: string }>;
+  data_quality: 'excellent' | 'good' | 'fair' | 'poor';
+}
+
 export default function ProgressPage() {
   const [bodyLogs, setBodyLogs] = useState<BodyLog[]>([]);
   const [dailySummaries, setDailySummaries] = useState<DailySummary[]>([]);
@@ -65,6 +93,8 @@ export default function ProgressPage() {
   const [loadingRecommendation, setLoadingRecommendation] = useState(false);
   const [trainingSummary, setTrainingSummary] = useState<TrainingSummary | null>(null);
   const [loadingTrainingSummary, setLoadingTrainingSummary] = useState(false);
+  const [motivatorData, setMotivatorData] = useState<MotivatorResponse | null>(null);
+  const [loadingMotivator, setLoadingMotivator] = useState(false);
 
   const fetchProgressData = async () => {
     setLoading(true);
@@ -113,6 +143,14 @@ export default function ProgressPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateRange]);
 
+  useEffect(() => {
+    const userId = localStorage.getItem('fit_tracker_user_id');
+    if (userId) {
+      fetchMotivatorData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const fetchNutritionRecommendation = async () => {
     setLoadingRecommendation(true);
     try {
@@ -158,6 +196,26 @@ export default function ProgressPage() {
       console.error('Error fetching training summary:', err);
     } finally {
       setLoadingTrainingSummary(false);
+    }
+  };
+
+  const fetchMotivatorData = async () => {
+    setLoadingMotivator(true);
+    try {
+      const userId = localStorage.getItem('fit_tracker_user_id');
+      if (!userId) return;
+
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/motivator/status?user_id=${userId}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        setMotivatorData(data);
+      }
+    } catch (err) {
+      console.error('Error fetching motivator data:', err);
+    } finally {
+      setLoadingMotivator(false);
     }
   };
 
@@ -568,6 +626,357 @@ export default function ProgressPage() {
             <div className="text-center py-8 text-gray-600">
               <p className="mb-2">Click the button above to analyze your strength progress over the last 14 days.</p>
               <p className="text-sm text-gray-500">Uses a deterministic algorithm that analyzes your workout performance to identify progressing, plateaued, and regressing exercises.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Motivation & Streaks Section */}
+        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 mb-8 border border-purple-200">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <Sparkles className="w-6 h-6 text-purple-600" />
+              Your Momentum
+            </h2>
+            <button
+              onClick={fetchMotivatorData}
+              disabled={loadingMotivator}
+              className="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {loadingMotivator ? 'Loading...' : 'Refresh'}
+            </button>
+          </div>
+
+          {motivatorData ? (
+            <>
+              {/* Streaks Display */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {/* Nutrition Streak */}
+                <div className="bg-white rounded-lg p-5 shadow-sm border border-orange-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl">🔥</span>
+                    <span className="text-sm font-medium text-gray-600">Nutrition Logging</span>
+                  </div>
+                  <div className="text-4xl font-bold text-orange-600 mb-1">
+                    {motivatorData.streaks.nutrition_current_streak}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    day streak • Best: {motivatorData.streaks.nutrition_longest_streak}
+                  </div>
+                </div>
+
+                {/* Workout Streak */}
+                <div className="bg-white rounded-lg p-5 shadow-sm border border-blue-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl">💪</span>
+                    <span className="text-sm font-medium text-gray-600">Workout Consistency</span>
+                  </div>
+                  <div className="text-4xl font-bold text-blue-600 mb-1">
+                    {motivatorData.streaks.workout_current_streak}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    week streak • This week: {motivatorData.streaks.workout_this_week_count}/{motivatorData.streaks.workout_target_per_week || 0}
+                  </div>
+                </div>
+              </div>
+
+              {/* Activity Calendars Side-by-Side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+                {/* Nutrition Logging Calendar */}
+                <div className="bg-white rounded-lg p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl">🔥</span>
+                    <h3 className="text-sm font-medium text-gray-700">Nutrition Logging</h3>
+                  </div>
+
+                {(() => {
+                  // Calculate weeks to show (last 12 weeks)
+                  const weeks: Date[][] = [];
+                  const today = new Date();
+                  const startDate = new Date(today);
+                  startDate.setDate(today.getDate() - 83); // ~12 weeks back
+
+                  // Find the Sunday before startDate
+                  const dayOfWeek = startDate.getDay();
+                  startDate.setDate(startDate.getDate() - dayOfWeek);
+
+                  // Build weeks array
+                  let currentDate = new Date(startDate);
+                  while (currentDate <= today) {
+                    const week: Date[] = [];
+                    for (let i = 0; i < 7; i++) {
+                      week.push(new Date(currentDate));
+                      currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    weeks.push(week);
+                  }
+
+                  // Get month labels
+                  const monthLabels: { month: string; weekIndex: number }[] = [];
+                  weeks.forEach((week, weekIndex) => {
+                    const firstDay = week[0];
+                    if (weekIndex === 0 || firstDay.getDate() <= 7) {
+                      monthLabels.push({
+                        month: firstDay.toLocaleDateString('en-US', { month: 'short' }),
+                        weekIndex
+                      });
+                    }
+                  });
+
+                  return (
+                    <div className="overflow-x-auto">
+                      <div className="inline-block min-w-full">
+                        {/* Month labels */}
+                        <div className="flex mb-1" style={{ marginLeft: '28px' }}>
+                          {monthLabels.map((label, idx) => (
+                            <div
+                              key={idx}
+                              className="text-xs text-gray-500 font-medium"
+                              style={{
+                                marginLeft: idx === 0 ? 0 : `${(label.weekIndex - (monthLabels[idx - 1]?.weekIndex || 0)) * 14}px`,
+                              }}
+                            >
+                              {label.month}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar grid */}
+                        <div className="flex gap-1">
+                          {/* Day labels */}
+                          <div className="flex flex-col gap-1 pr-2">
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sun</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Mon</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Tue</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Wed</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Thu</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Fri</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sat</div>
+                          </div>
+
+                          {/* Weeks (columns) */}
+                          {weeks.map((week, weekIdx) => (
+                            <div key={weekIdx} className="flex flex-col gap-1">
+                              {week.map((day, dayIdx) => {
+                                const dateStr = day.toISOString().split('T')[0];
+                                const isFuture = day > today;
+
+                                // Check if this date has nutrition log
+                                const hasNutritionLog = dailySummaries.some(s => s.date === dateStr && s.total_calories > 0);
+
+                                let bgColor = 'bg-gray-100';
+                                let title = 'No nutrition logged';
+
+                                if (isFuture) {
+                                  bgColor = 'bg-gray-50 border border-gray-200';
+                                  title = 'Future date';
+                                } else if (hasNutritionLog) {
+                                  bgColor = 'bg-orange-500';
+                                  title = 'Nutrition logged';
+                                }
+
+                                return (
+                                  <div
+                                    key={dayIdx}
+                                    className={`w-3 h-3 rounded-sm ${bgColor} hover:ring-2 hover:ring-orange-400 transition-all cursor-pointer`}
+                                    title={`${day.toLocaleDateString('en-US', {
+                                      month: 'short',
+                                      day: 'numeric',
+                                      year: 'numeric'
+                                    })}: ${title}`}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                  {/* Legend */}
+                  <div className="flex items-center gap-3 mt-4 text-xs text-gray-500">
+                    <span className="text-gray-600 font-medium">Less</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-gray-100"></div>
+                      <span>None</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-orange-500"></div>
+                      <span>Logged</span>
+                    </div>
+                    <span className="text-gray-600 font-medium">More</span>
+                  </div>
+                </div>
+
+                {/* Workout Consistency Calendar */}
+                <div className="bg-white rounded-lg p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl">💪</span>
+                    <h3 className="text-sm font-medium text-gray-700">Workout Consistency</h3>
+                  </div>
+
+                {(() => {
+                  // Calculate weeks to show (last 12 weeks)
+                  const weeks: Date[][] = [];
+                  const today = new Date();
+                  const startDate = new Date(today);
+                  startDate.setDate(today.getDate() - 83); // ~12 weeks back
+
+                  // Find the Sunday before startDate
+                  const dayOfWeek = startDate.getDay();
+                  startDate.setDate(startDate.getDate() - dayOfWeek);
+
+                  // Build weeks array
+                  let currentDate = new Date(startDate);
+                  while (currentDate <= today) {
+                    const week: Date[] = [];
+                    for (let i = 0; i < 7; i++) {
+                      week.push(new Date(currentDate));
+                      currentDate.setDate(currentDate.getDate() + 1);
+                    }
+                    weeks.push(week);
+                  }
+
+                  // Get month labels
+                  const monthLabels: { month: string; weekIndex: number }[] = [];
+                  weeks.forEach((week, weekIndex) => {
+                    const firstDay = week[0];
+                    if (weekIndex === 0 || firstDay.getDate() <= 7) {
+                      monthLabels.push({
+                        month: firstDay.toLocaleDateString('en-US', { month: 'short' }),
+                        weekIndex
+                      });
+                    }
+                  });
+
+                  return (
+                    <div className="overflow-x-auto">
+                      <div className="inline-block min-w-full">
+                        {/* Month labels */}
+                        <div className="flex mb-1" style={{ marginLeft: '28px' }}>
+                          {monthLabels.map((label, idx) => (
+                            <div
+                              key={idx}
+                              className="text-xs text-gray-500 font-medium"
+                              style={{
+                                marginLeft: idx === 0 ? 0 : `${(label.weekIndex - (monthLabels[idx - 1]?.weekIndex || 0)) * 14}px`,
+                              }}
+                            >
+                              {label.month}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar grid */}
+                        <div className="flex gap-1">
+                          {/* Day labels */}
+                          <div className="flex flex-col gap-1 pr-2">
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sun</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Mon</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Tue</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Wed</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Thu</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Fri</div>
+                            <div className="h-3 text-xs text-gray-400" style={{ lineHeight: '12px' }}>Sat</div>
+                          </div>
+
+                          {/* Weeks (columns) */}
+                          {weeks.map((week, weekIdx) => (
+                            <div key={weekIdx} className="flex flex-col gap-1">
+                              {week.map((day, dayIdx) => {
+                                const dateStr = day.toISOString().split('T')[0];
+                                const isFuture = day > today;
+
+                                // Check if this date has workout log
+                                const hasWorkoutLog = dailySummaries.some(s => s.date === dateStr && s.workouts_completed > 0);
+
+                                let bgColor = 'bg-gray-100';
+                                let title = 'No workout';
+
+                                if (isFuture) {
+                                  bgColor = 'bg-gray-50 border border-gray-200';
+                                  title = 'Future date';
+                                } else if (hasWorkoutLog) {
+                                  bgColor = 'bg-blue-500';
+                                  title = 'Workout completed';
+                                }
+
+                                return (
+                                  <div
+                                    key={dayIdx}
+                                    className={`w-3 h-3 rounded-sm ${bgColor} hover:ring-2 hover:ring-blue-400 transition-all cursor-pointer`}
+                                    title={`${day.toLocaleDateString('en-US', {
+                                      month: 'short',
+                                      day: 'numeric',
+                                      year: 'numeric'
+                                    })}: ${title}`}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                  {/* Legend */}
+                  <div className="flex items-center gap-3 mt-4 text-xs text-gray-500">
+                    <span className="text-gray-600 font-medium">Less</span>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-gray-100"></div>
+                      <span>None</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-3 h-3 rounded-sm bg-blue-500"></div>
+                      <span>Completed</span>
+                    </div>
+                    <span className="text-gray-600 font-medium">More</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI Motivational Message */}
+              <div className="bg-white rounded-lg p-5 shadow-sm mb-4">
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl flex-shrink-0">🤖</div>
+                  <div className="flex-1">
+                    <p className="text-gray-800 leading-relaxed text-base">
+                      {motivatorData.motivation.message}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-3">
+                      Generated {new Date(motivatorData.motivation.generated_at).toLocaleTimeString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievements */}
+              {motivatorData.achievements && motivatorData.achievements.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {motivatorData.achievements.map((achievement, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1.5 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full border border-yellow-200"
+                    >
+                      ✨ {achievement.description}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Data Quality Indicator */}
+              <div className="mt-4 text-xs text-gray-500 text-center">
+                Data quality: {motivatorData.data_quality}
+                {motivatorData.data_quality === 'poor' && ' - Log more days for better insights'}
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-8 text-gray-600">
+              <p className="mb-2">Track your consistency and stay motivated!</p>
+              <p className="text-sm text-gray-500">Start logging nutrition and workouts to build your streaks.</p>
             </div>
           )}
         </div>

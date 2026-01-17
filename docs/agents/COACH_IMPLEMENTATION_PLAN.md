@@ -25,7 +25,7 @@ This plan outlines how to implement the Coach Orchestrator agent that combines:
 **Existing Chatbot (`frontend/`):**
 - `app/chatbot/page.tsx` - Chat interface
 - `components/health-chat.tsx` - Chat UI component
-- API endpoint: `POST /chat` (currently not implemented in backend)
+- API endpoint: `POST /api/coach/ask` (✅ IMPLEMENTED - uses OpenAI GPT-4)
 
 **Agent Infrastructure:**
 - `ai_agents/nutrition_specialist/` - Nutrition analysis algorithms
@@ -261,8 +261,8 @@ This plan outlines how to implement the Coach Orchestrator agent that combines:
    ```
 
 2. Handle backward compatibility
-   - Keep existing `/chat` endpoint for now (or migrate it)
-   - Or update frontend to use `/api/coach/ask` instead
+   - ✅ COMPLETE: Frontend now uses `/api/coach/ask`
+   - Legacy `/chat` endpoint has been removed
 
 **Deliverable:** Working API endpoint that routes between personal/general questions
 

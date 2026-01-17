@@ -6548,5 +6548,7230 @@
     "notes": null,
     "created_at": "2025-12-10T12:30:00Z",
     "logged_at": "2025-12-10T12:30:00Z"
+  },
+  {
+    "id": "c5abc17f-b871-49b4-b541-432e18d58565",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-29",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 597,
+    "protein": 44,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 597,
+        "protein": 44,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-29T08:00:00Z",
+    "logged_at": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "93574b9d-8bef-482c-b8d1-e25e260124bf",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-29",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 663,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 663,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-29T12:30:00Z",
+    "logged_at": "2025-09-29T12:30:00Z"
+  },
+  {
+    "id": "cb2733c5-5def-488e-9a20-b12cdab814a7",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-29",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 654,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 654,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-29T18:30:00Z",
+    "logged_at": "2025-09-29T18:30:00Z"
+  },
+  {
+    "id": "e8de9dc6-9cbc-4272-ba83-9b5ae8361af3",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-29",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 579,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 579,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-29T15:00:00Z",
+    "logged_at": "2025-09-29T15:00:00Z"
+  },
+  {
+    "id": "817ab2bd-48fd-42a7-b6ff-7786fe60d285",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-30",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 589,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 589,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-30T18:30:00Z",
+    "logged_at": "2025-09-30T18:30:00Z"
+  },
+  {
+    "id": "ff1e1693-1958-47b7-a644-4c6381001cad",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-30",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 656,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 656,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-30T12:30:00Z",
+    "logged_at": "2025-09-30T12:30:00Z"
+  },
+  {
+    "id": "3417456c-7944-41d2-bf0d-5ed8fef85088",
+    "user_id": "demo_user_90day",
+    "date": "2025-09-30",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 670,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 670,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-09-30T15:00:00Z",
+    "logged_at": "2025-09-30T15:00:00Z"
+  },
+  {
+    "id": "ea51f619-4d0d-4ba5-b5fe-b0e94da6d156",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-01",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 554,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 554,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-01T08:00:00Z",
+    "logged_at": "2025-10-01T08:00:00Z"
+  },
+  {
+    "id": "973b0ceb-aaa2-4764-8540-f7115f5dd829",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-01",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 549,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 549,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-01T12:30:00Z",
+    "logged_at": "2025-10-01T12:30:00Z"
+  },
+  {
+    "id": "bf540762-1c11-4a2f-b0f6-28e764308664",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-01",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 591,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 591,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-01T18:30:00Z",
+    "logged_at": "2025-10-01T18:30:00Z"
+  },
+  {
+    "id": "0afff95f-9ebd-4dd7-8d2b-167b00a94541",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-02",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 617,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 617,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-02T18:30:00Z",
+    "logged_at": "2025-10-02T18:30:00Z"
+  },
+  {
+    "id": "f70cd7e4-0904-4005-95c5-f5843ec52bfa",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-02",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 635,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 635,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-02T15:00:00Z",
+    "logged_at": "2025-10-02T15:00:00Z"
+  },
+  {
+    "id": "c5a7f71d-3c4e-4a03-a000-b3dcb34b0fee",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-02",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 709,
+    "protein": 53,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 709,
+        "protein": 53,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-02T08:00:00Z",
+    "logged_at": "2025-10-02T08:00:00Z"
+  },
+  {
+    "id": "e1809b0d-9716-450c-bea4-aff43d2ca679",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-03",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 541,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 541,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-03T12:30:00Z",
+    "logged_at": "2025-10-03T12:30:00Z"
+  },
+  {
+    "id": "0173462d-d2a9-40ac-8772-66c49873c478",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-03",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 670,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 670,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-03T18:30:00Z",
+    "logged_at": "2025-10-03T18:30:00Z"
+  },
+  {
+    "id": "436c5d67-4ddb-4f71-88a2-8d56220e54c9",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-03",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 695,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 695,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-03T15:00:00Z",
+    "logged_at": "2025-10-03T15:00:00Z"
+  },
+  {
+    "id": "c426c193-8f2d-4333-b483-20a4e079825a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-03",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 550,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 550,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-03T08:00:00Z",
+    "logged_at": "2025-10-03T08:00:00Z"
+  },
+  {
+    "id": "2d271db7-e30a-4a9d-8af5-4b88d7c4cbed",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-04",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 563,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 563,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-04T15:00:00Z",
+    "logged_at": "2025-10-04T15:00:00Z"
+  },
+  {
+    "id": "bdbdfd34-1293-4cb9-9433-8017dedb4a9a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-04",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 581,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 581,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-04T08:00:00Z",
+    "logged_at": "2025-10-04T08:00:00Z"
+  },
+  {
+    "id": "476fbca0-c796-4210-8ce2-5dfdfe4bdf87",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-04",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 702,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 702,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-04T12:30:00Z",
+    "logged_at": "2025-10-04T12:30:00Z"
+  },
+  {
+    "id": "6ec6d911-f577-4cbd-b1ed-82f599cfdea3",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-05",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 581,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 581,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-05T15:00:00Z",
+    "logged_at": "2025-10-05T15:00:00Z"
+  },
+  {
+    "id": "82b3660d-767f-495a-8eaa-1c0e4658dcc2",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-05",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 461,
+    "protein": 34,
+    "carbs": 51,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 461,
+        "protein": 34,
+        "carbs": 51,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-05T12:30:00Z",
+    "logged_at": "2025-10-05T12:30:00Z"
+  },
+  {
+    "id": "c5250b91-d124-460c-9364-dca9151c859f",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-05",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 634,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 634,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-05T08:00:00Z",
+    "logged_at": "2025-10-05T08:00:00Z"
+  },
+  {
+    "id": "73e82e5d-5252-41c9-af42-1469e8a39330",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-06",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 693,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 693,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-06T08:00:00Z",
+    "logged_at": "2025-10-06T08:00:00Z"
+  },
+  {
+    "id": "efd2b20a-9782-476e-a246-680cdaecee8c",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-06",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 716,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 716,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-06T18:30:00Z",
+    "logged_at": "2025-10-06T18:30:00Z"
+  },
+  {
+    "id": "785212c4-6528-423a-af1b-d0bbc4894647",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-06",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 564,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 564,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-06T12:30:00Z",
+    "logged_at": "2025-10-06T12:30:00Z"
+  },
+  {
+    "id": "98eb4425-bc42-470f-9252-39992149d207",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-07",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 550,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 550,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-07T12:30:00Z",
+    "logged_at": "2025-10-07T12:30:00Z"
+  },
+  {
+    "id": "faa5de37-8af5-49fb-8114-0fb0c13b4b86",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-07",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 567,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 567,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-07T08:00:00Z",
+    "logged_at": "2025-10-07T08:00:00Z"
+  },
+  {
+    "id": "ca725410-5897-46bc-9e7b-4e63e280db8b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-07",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 653,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 653,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-07T18:30:00Z",
+    "logged_at": "2025-10-07T18:30:00Z"
+  },
+  {
+    "id": "211735e5-abf6-499b-bc00-8a0639da5fe6",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-08",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 536,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 536,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-08T12:30:00Z",
+    "logged_at": "2025-10-08T12:30:00Z"
+  },
+  {
+    "id": "28bf6526-b1c7-4fb9-a0c0-f67bfb34ba12",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-08",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 541,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 541,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-08T18:30:00Z",
+    "logged_at": "2025-10-08T18:30:00Z"
+  },
+  {
+    "id": "c5b67fcc-c2ef-4397-b6a5-59ce8ff8f372",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-08",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 557,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 557,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-08T15:00:00Z",
+    "logged_at": "2025-10-08T15:00:00Z"
+  },
+  {
+    "id": "c20c732d-129b-4e2d-aac3-24dab72d6e88",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-09",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 618,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 618,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-09T12:30:00Z",
+    "logged_at": "2025-10-09T12:30:00Z"
+  },
+  {
+    "id": "541bdbae-362f-4d06-ad84-a38b52f66752",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-09",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 625,
+    "protein": 46,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 625,
+        "protein": 46,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-09T18:30:00Z",
+    "logged_at": "2025-10-09T18:30:00Z"
+  },
+  {
+    "id": "3836832a-6345-4ba3-9250-b207c93801e7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-09",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 562,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 562,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-09T08:00:00Z",
+    "logged_at": "2025-10-09T08:00:00Z"
+  },
+  {
+    "id": "7a3b86e0-750b-48a2-90a8-e458087a8856",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-09",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 575,
+    "protein": 43,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 575,
+        "protein": 43,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-09T15:00:00Z",
+    "logged_at": "2025-10-09T15:00:00Z"
+  },
+  {
+    "id": "7331f28e-e748-48cf-80df-0bc9738e461a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-10",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 660,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 660,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-10T15:00:00Z",
+    "logged_at": "2025-10-10T15:00:00Z"
+  },
+  {
+    "id": "c9828cbe-6da2-425f-b2c7-4e3ca38e7319",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-10",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 696,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 696,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-10T18:30:00Z",
+    "logged_at": "2025-10-10T18:30:00Z"
+  },
+  {
+    "id": "291b7863-886a-4cc9-865d-7dad8ed9455d",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-10",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 569,
+    "protein": 42,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 569,
+        "protein": 42,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-10T12:30:00Z",
+    "logged_at": "2025-10-10T12:30:00Z"
+  },
+  {
+    "id": "42cc2902-5ea5-46c5-8ab6-aa9b8a68e7b4",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-11",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 678,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 678,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-11T15:00:00Z",
+    "logged_at": "2025-10-11T15:00:00Z"
+  },
+  {
+    "id": "7dc70e58-a21d-4d2e-8055-fe0253fe116a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-11",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 694,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 694,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-11T12:30:00Z",
+    "logged_at": "2025-10-11T12:30:00Z"
+  },
+  {
+    "id": "3bc97077-01f1-4bef-83f5-ec412c0952df",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-11",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 559,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 559,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-11T08:00:00Z",
+    "logged_at": "2025-10-11T08:00:00Z"
+  },
+  {
+    "id": "13c1afc7-d848-44d0-8777-7cea92679c86",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-12",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 787,
+    "protein": 59,
+    "carbs": 88,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 787,
+        "protein": 59,
+        "carbs": 88,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-12T08:00:00Z",
+    "logged_at": "2025-10-12T08:00:00Z"
+  },
+  {
+    "id": "eb858210-6884-4893-8ee5-9ff1a2dace70",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-12",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 494,
+    "protein": 37,
+    "carbs": 55,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 494,
+        "protein": 37,
+        "carbs": 55,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-12T18:30:00Z",
+    "logged_at": "2025-10-12T18:30:00Z"
+  },
+  {
+    "id": "8a0e0854-b1cb-4bd7-ad1a-fec5bf5101ad",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-12",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 660,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 660,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-12T12:30:00Z",
+    "logged_at": "2025-10-12T12:30:00Z"
+  },
+  {
+    "id": "8f4bd5e9-4f89-4ea3-8e54-066afa5ef360",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-13",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 672,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 672,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-13T08:00:00Z",
+    "logged_at": "2025-10-13T08:00:00Z"
+  },
+  {
+    "id": "e52df4af-1a30-4823-8ef7-545cd655f764",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-13",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 634,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 634,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-13T12:30:00Z",
+    "logged_at": "2025-10-13T12:30:00Z"
+  },
+  {
+    "id": "40f70840-580f-4cc7-a452-7f8852c5cfdf",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-13",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 678,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 678,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-13T18:30:00Z",
+    "logged_at": "2025-10-13T18:30:00Z"
+  },
+  {
+    "id": "11cf5f93-2cc3-4e79-b7cc-a6770f4acfe6",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-14",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 542,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 542,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-14T18:30:00Z",
+    "logged_at": "2025-10-14T18:30:00Z"
+  },
+  {
+    "id": "15528685-24aa-4405-809c-b8ced5f8a154",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-14",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 701,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 701,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-14T15:00:00Z",
+    "logged_at": "2025-10-14T15:00:00Z"
+  },
+  {
+    "id": "7a9ca569-3b8a-4251-9aae-53a98d696846",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-14",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 722,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 722,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-14T12:30:00Z",
+    "logged_at": "2025-10-14T12:30:00Z"
+  },
+  {
+    "id": "4ff4bab6-98c9-4431-a020-b073acb502ae",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-14",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 631,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 631,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-14T08:00:00Z",
+    "logged_at": "2025-10-14T08:00:00Z"
+  },
+  {
+    "id": "67677b58-4bb1-4ab8-9b80-84d8deee4f91",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-15",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 574,
+    "protein": 43,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 574,
+        "protein": 43,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-15T12:30:00Z",
+    "logged_at": "2025-10-15T12:30:00Z"
+  },
+  {
+    "id": "b99a496f-6607-4dd3-ae98-5f93f988481d",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-15",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 669,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 669,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-15T18:30:00Z",
+    "logged_at": "2025-10-15T18:30:00Z"
+  },
+  {
+    "id": "af331dfa-b825-4dcb-8463-69121be6d370",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-15",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 551,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 551,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-15T15:00:00Z",
+    "logged_at": "2025-10-15T15:00:00Z"
+  },
+  {
+    "id": "64991cbb-32f7-43ec-98bd-feb0f07b72b6",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-15",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 561,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 561,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-15T08:00:00Z",
+    "logged_at": "2025-10-15T08:00:00Z"
+  },
+  {
+    "id": "a28a0688-37f0-44e7-bbea-1241fb4ebc76",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-16",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 541,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 541,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-16T08:00:00Z",
+    "logged_at": "2025-10-16T08:00:00Z"
+  },
+  {
+    "id": "d92c1f8b-32f6-48d8-892f-494e5242a0a4",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-16",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 606,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 606,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-16T12:30:00Z",
+    "logged_at": "2025-10-16T12:30:00Z"
+  },
+  {
+    "id": "5d2bb6d5-959f-4ce0-8931-05069a9bc759",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-16",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 720,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 720,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-16T15:00:00Z",
+    "logged_at": "2025-10-16T15:00:00Z"
+  },
+  {
+    "id": "a9bd3cb2-b59b-41e5-a84e-0803db8d002e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-16",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 642,
+    "protein": 48,
+    "carbs": 72,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 642,
+        "protein": 48,
+        "carbs": 72,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-16T18:30:00Z",
+    "logged_at": "2025-10-16T18:30:00Z"
+  },
+  {
+    "id": "2e4261b3-7205-48a2-91fb-b9ab9151119f",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-17",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 546,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 546,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-17T12:30:00Z",
+    "logged_at": "2025-10-17T12:30:00Z"
+  },
+  {
+    "id": "5da23fb3-f77a-4581-888d-0c664d32ed0c",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-17",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 705,
+    "protein": 52,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 705,
+        "protein": 52,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-17T15:00:00Z",
+    "logged_at": "2025-10-17T15:00:00Z"
+  },
+  {
+    "id": "e467dd6c-60cc-43cb-9b2e-89bab9299b72",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-17",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 702,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 702,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-17T08:00:00Z",
+    "logged_at": "2025-10-17T08:00:00Z"
+  },
+  {
+    "id": "b6506924-2e1a-4248-98e3-abd0f83270cb",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-18",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 598,
+    "protein": 44,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 598,
+        "protein": 44,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18T18:30:00Z",
+    "logged_at": "2025-10-18T18:30:00Z"
+  },
+  {
+    "id": "b408ce14-53c6-4864-90dc-21405946f044",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-18",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 649,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 649,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18T15:00:00Z",
+    "logged_at": "2025-10-18T15:00:00Z"
+  },
+  {
+    "id": "06109731-7fec-43b8-ac15-30e2b5481a1e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-18",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 560,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 560,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18T08:00:00Z",
+    "logged_at": "2025-10-18T08:00:00Z"
+  },
+  {
+    "id": "1e22270a-b518-48b9-86d3-057f373050ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-18",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 666,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 666,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-18T12:30:00Z",
+    "logged_at": "2025-10-18T12:30:00Z"
+  },
+  {
+    "id": "fb5f5240-377a-449f-bc70-04d3e8e2483a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-19",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 468,
+    "protein": 35,
+    "carbs": 52,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 468,
+        "protein": 35,
+        "carbs": 52,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-19T18:30:00Z",
+    "logged_at": "2025-10-19T18:30:00Z"
+  },
+  {
+    "id": "102bd356-1570-4312-8584-c5d81c4172dc",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-19",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 484,
+    "protein": 36,
+    "carbs": 54,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 484,
+        "protein": 36,
+        "carbs": 54,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-19T08:00:00Z",
+    "logged_at": "2025-10-19T08:00:00Z"
+  },
+  {
+    "id": "ff9e2f98-b485-492f-8b1b-3693ce065e4d",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-19",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 614,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 614,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-19T15:00:00Z",
+    "logged_at": "2025-10-19T15:00:00Z"
+  },
+  {
+    "id": "eddc05ce-05dc-43bd-ad8e-00e71da81b2e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-19",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 749,
+    "protein": 56,
+    "carbs": 84,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 749,
+        "protein": 56,
+        "carbs": 84,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-19T12:30:00Z",
+    "logged_at": "2025-10-19T12:30:00Z"
+  },
+  {
+    "id": "315c004f-1ada-42b0-8344-5431f2fb7ec7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-20",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 696,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 696,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-20T15:00:00Z",
+    "logged_at": "2025-10-20T15:00:00Z"
+  },
+  {
+    "id": "0c3a88a5-47de-446c-a04b-cbf5da5c939e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-20",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 665,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 665,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-20T08:00:00Z",
+    "logged_at": "2025-10-20T08:00:00Z"
+  },
+  {
+    "id": "da052c06-c410-4ab8-84a6-a8a5d2de028e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-20",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 700,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 700,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-20T12:30:00Z",
+    "logged_at": "2025-10-20T12:30:00Z"
+  },
+  {
+    "id": "3d4621f5-2b8c-4957-b17f-97c54634dec2",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-21",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 590,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 590,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-21T08:00:00Z",
+    "logged_at": "2025-10-21T08:00:00Z"
+  },
+  {
+    "id": "10a83c4b-6ba3-4f9d-9a71-cdd6402214ba",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-21",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 581,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 581,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-21T12:30:00Z",
+    "logged_at": "2025-10-21T12:30:00Z"
+  },
+  {
+    "id": "b3af4b15-3917-4215-bb49-6f38bf3b8997",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-21",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 611,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 611,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-21T15:00:00Z",
+    "logged_at": "2025-10-21T15:00:00Z"
+  },
+  {
+    "id": "0b2100b3-14bb-444d-8eac-ebe711cfe646",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-22",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 606,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 606,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-22T15:00:00Z",
+    "logged_at": "2025-10-22T15:00:00Z"
+  },
+  {
+    "id": "aea5584f-8ec0-4ebd-8367-df5f12c621ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-22",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 677,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 677,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-22T18:30:00Z",
+    "logged_at": "2025-10-22T18:30:00Z"
+  },
+  {
+    "id": "1bda712d-eca8-4382-acb2-5b10c858d932",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-22",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 717,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 717,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-22T08:00:00Z",
+    "logged_at": "2025-10-22T08:00:00Z"
+  },
+  {
+    "id": "afef02f0-9349-4419-ac9c-39d7c3706f43",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-22",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 636,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 636,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-22T12:30:00Z",
+    "logged_at": "2025-10-22T12:30:00Z"
+  },
+  {
+    "id": "55590830-8c48-4508-abd3-8f7f4e577700",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-23",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 635,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 635,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-23T18:30:00Z",
+    "logged_at": "2025-10-23T18:30:00Z"
+  },
+  {
+    "id": "4213bd3e-7264-4f12-b83f-abfcc2238e4b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-23",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 626,
+    "protein": 46,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 626,
+        "protein": 46,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-23T12:30:00Z",
+    "logged_at": "2025-10-23T12:30:00Z"
+  },
+  {
+    "id": "106f1eaa-ac56-4451-8112-3fb258477d08",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-23",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 684,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 684,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-23T08:00:00Z",
+    "logged_at": "2025-10-23T08:00:00Z"
+  },
+  {
+    "id": "dc74bfcb-cccf-4e4f-a0a5-ef2baad5e71f",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-24",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 539,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 539,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-24T18:30:00Z",
+    "logged_at": "2025-10-24T18:30:00Z"
+  },
+  {
+    "id": "f30e7e6b-7142-461a-9f8f-e38675e5df98",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-24",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 639,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 639,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-24T12:30:00Z",
+    "logged_at": "2025-10-24T12:30:00Z"
+  },
+  {
+    "id": "18d44a2e-e637-4b68-a202-5b45edab151c",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-24",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 653,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 653,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-24T08:00:00Z",
+    "logged_at": "2025-10-24T08:00:00Z"
+  },
+  {
+    "id": "cd765d82-bc06-4a66-9399-cfc23cf20a74",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-24",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 602,
+    "protein": 45,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 602,
+        "protein": 45,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-24T15:00:00Z",
+    "logged_at": "2025-10-24T15:00:00Z"
+  },
+  {
+    "id": "e59a0ebd-5d2c-42ff-9a28-8d1b13b9e1e7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-25",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 591,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 591,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-25T08:00:00Z",
+    "logged_at": "2025-10-25T08:00:00Z"
+  },
+  {
+    "id": "857f93e4-e493-41b2-9b6e-c28c1e99971e",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-25",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 684,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 684,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-25T18:30:00Z",
+    "logged_at": "2025-10-25T18:30:00Z"
+  },
+  {
+    "id": "c0901a6f-1571-4d7f-ab21-5cf49c65ce5a",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-25",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 506,
+    "protein": 37,
+    "carbs": 56,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 506,
+        "protein": 37,
+        "carbs": 56,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-25T15:00:00Z",
+    "logged_at": "2025-10-25T15:00:00Z"
+  },
+  {
+    "id": "8c6279d7-7b44-4fe5-9a28-a35e50f8d5b7",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-26",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 743,
+    "protein": 55,
+    "carbs": 83,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 743,
+        "protein": 55,
+        "carbs": 83,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-26T18:30:00Z",
+    "logged_at": "2025-10-26T18:30:00Z"
+  },
+  {
+    "id": "9505bea3-1e81-43f4-aec5-35ad7b9c5f6b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-26",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 785,
+    "protein": 58,
+    "carbs": 88,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 785,
+        "protein": 58,
+        "carbs": 88,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-26T12:30:00Z",
+    "logged_at": "2025-10-26T12:30:00Z"
+  },
+  {
+    "id": "6841cfa2-be40-4300-9fd7-65c3be206633",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-26",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 518,
+    "protein": 38,
+    "carbs": 58,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 518,
+        "protein": 38,
+        "carbs": 58,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-26T15:00:00Z",
+    "logged_at": "2025-10-26T15:00:00Z"
+  },
+  {
+    "id": "6820d369-6be1-4f7c-8c07-109a0af74306",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-27",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 588,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 588,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-27T08:00:00Z",
+    "logged_at": "2025-10-27T08:00:00Z"
+  },
+  {
+    "id": "ca1e3184-452d-4bab-8413-83e98d87ce8b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-27",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 586,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 586,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-27T18:30:00Z",
+    "logged_at": "2025-10-27T18:30:00Z"
+  },
+  {
+    "id": "1e93f2ce-daee-45ac-b3c7-6545acfad81c",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-27",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 681,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 681,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-27T12:30:00Z",
+    "logged_at": "2025-10-27T12:30:00Z"
+  },
+  {
+    "id": "7682827d-af36-42db-bbb4-317fdba75cb5",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-28",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 586,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 586,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-28T18:30:00Z",
+    "logged_at": "2025-10-28T18:30:00Z"
+  },
+  {
+    "id": "4a451511-89ab-47b0-b198-12544a5b5e81",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-28",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 553,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 553,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-28T15:00:00Z",
+    "logged_at": "2025-10-28T15:00:00Z"
+  },
+  {
+    "id": "215c1e86-a8d5-4308-aaf0-e48a30e0b378",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-28",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 590,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 590,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-28T12:30:00Z",
+    "logged_at": "2025-10-28T12:30:00Z"
+  },
+  {
+    "id": "bfeb9055-4ffa-4cf4-b826-6a2585b7d793",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-29",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 540,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 540,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-29T15:00:00Z",
+    "logged_at": "2025-10-29T15:00:00Z"
+  },
+  {
+    "id": "a74eb6d3-fbc7-49ed-8ddd-84ad0109581d",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-29",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 673,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 673,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-29T08:00:00Z",
+    "logged_at": "2025-10-29T08:00:00Z"
+  },
+  {
+    "id": "657819e7-57cf-4600-80bb-764218cdb864",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-29",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 622,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 622,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-29T12:30:00Z",
+    "logged_at": "2025-10-29T12:30:00Z"
+  },
+  {
+    "id": "9340b303-cc03-4cd2-8025-eb3c9b77ac2f",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-29",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 671,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 671,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-29T18:30:00Z",
+    "logged_at": "2025-10-29T18:30:00Z"
+  },
+  {
+    "id": "65dc7669-dc13-4c3c-9db7-59c58f4b4fad",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-30",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 606,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 606,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-30T18:30:00Z",
+    "logged_at": "2025-10-30T18:30:00Z"
+  },
+  {
+    "id": "5319f466-a83d-432e-807a-84b0a73f1931",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-30",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 586,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 586,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-30T12:30:00Z",
+    "logged_at": "2025-10-30T12:30:00Z"
+  },
+  {
+    "id": "e1d37f2d-0774-4bc1-ad6e-aeb4d75ddf7b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-30",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 655,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 655,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-30T08:00:00Z",
+    "logged_at": "2025-10-30T08:00:00Z"
+  },
+  {
+    "id": "2d9c0fdc-a172-4ad8-8492-72c4848011ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-31",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 678,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 678,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-31T08:00:00Z",
+    "logged_at": "2025-10-31T08:00:00Z"
+  },
+  {
+    "id": "718d278b-c869-40f4-9d96-a256e436e4f3",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-31",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 608,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 608,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-31T18:30:00Z",
+    "logged_at": "2025-10-31T18:30:00Z"
+  },
+  {
+    "id": "6000b845-fa72-4e1c-8321-ab307229301b",
+    "user_id": "demo_user_90day",
+    "date": "2025-10-31",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 658,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 658,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-10-31T15:00:00Z",
+    "logged_at": "2025-10-31T15:00:00Z"
+  },
+  {
+    "id": "c01a413d-5131-4a1b-b244-d2644c3269f9",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-01",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 525,
+    "protein": 39,
+    "carbs": 59,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 525,
+        "protein": 39,
+        "carbs": 59,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-01T15:00:00Z",
+    "logged_at": "2025-11-01T15:00:00Z"
+  },
+  {
+    "id": "d4143b21-eac4-43a5-94e2-caf21f495901",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-01",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 690,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 690,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-01T18:30:00Z",
+    "logged_at": "2025-11-01T18:30:00Z"
+  },
+  {
+    "id": "234fcb4e-1c6f-4dbe-8c8c-d80ff09a38e5",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-01",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 537,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 537,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-01T12:30:00Z",
+    "logged_at": "2025-11-01T12:30:00Z"
+  },
+  {
+    "id": "c09a2fff-d7bc-48cd-9409-83cbf444b02e",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-02",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 646,
+    "protein": 48,
+    "carbs": 72,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 646,
+        "protein": 48,
+        "carbs": 72,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-02T08:00:00Z",
+    "logged_at": "2025-11-02T08:00:00Z"
+  },
+  {
+    "id": "d16453c3-3c78-41df-99c5-69e56af12a39",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-02",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 509,
+    "protein": 38,
+    "carbs": 57,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 509,
+        "protein": 38,
+        "carbs": 57,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-02T18:30:00Z",
+    "logged_at": "2025-11-02T18:30:00Z"
+  },
+  {
+    "id": "e2dfda63-d301-4a68-b841-f1da9a40315f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-02",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 719,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 719,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-02T12:30:00Z",
+    "logged_at": "2025-11-02T12:30:00Z"
+  },
+  {
+    "id": "11b12c8c-1e7b-4581-8e38-fc14262a3de5",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-02",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 734,
+    "protein": 55,
+    "carbs": 82,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 734,
+        "protein": 55,
+        "carbs": 82,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-02T15:00:00Z",
+    "logged_at": "2025-11-02T15:00:00Z"
+  },
+  {
+    "id": "fd16cb05-7ea9-45b6-93c4-bf3484476a3c",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-03",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 580,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 580,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-03T18:30:00Z",
+    "logged_at": "2025-11-03T18:30:00Z"
+  },
+  {
+    "id": "6d08a749-185a-4e64-a2d2-28c02aa9869f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-03",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 555,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 555,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-03T15:00:00Z",
+    "logged_at": "2025-11-03T15:00:00Z"
+  },
+  {
+    "id": "4fd9f1d4-7d05-4789-9f06-88744429ff6f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-03",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 595,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 595,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-03T12:30:00Z",
+    "logged_at": "2025-11-03T12:30:00Z"
+  },
+  {
+    "id": "127cd612-0c03-40b2-bc84-f269ab27087a",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-04",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 698,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 698,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-04T12:30:00Z",
+    "logged_at": "2025-11-04T12:30:00Z"
+  },
+  {
+    "id": "d07b9c91-0031-4b46-be42-2bced0dcf9c3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-04",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 683,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 683,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-04T18:30:00Z",
+    "logged_at": "2025-11-04T18:30:00Z"
+  },
+  {
+    "id": "3a7d80cd-dceb-4340-9237-8c6811ebe3d9",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-04",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 707,
+    "protein": 53,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 707,
+        "protein": 53,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-04T08:00:00Z",
+    "logged_at": "2025-11-04T08:00:00Z"
+  },
+  {
+    "id": "b3a982eb-2663-4df8-b71f-5c3613943826",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-04",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 683,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 683,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-04T15:00:00Z",
+    "logged_at": "2025-11-04T15:00:00Z"
+  },
+  {
+    "id": "79bfc180-1dae-4811-a629-1f794f1bc4cf",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-05",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 695,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 695,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-05T18:30:00Z",
+    "logged_at": "2025-11-05T18:30:00Z"
+  },
+  {
+    "id": "0aaabb97-ee50-4edd-9265-680ef3a06258",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-05",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 552,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 552,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-05T08:00:00Z",
+    "logged_at": "2025-11-05T08:00:00Z"
+  },
+  {
+    "id": "d864599b-548b-4bb5-b178-1081bccb3688",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-05",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 679,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 679,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-05T15:00:00Z",
+    "logged_at": "2025-11-05T15:00:00Z"
+  },
+  {
+    "id": "156de594-2c1e-402d-a875-abe2cdcae216",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-05",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 540,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 540,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-05T12:30:00Z",
+    "logged_at": "2025-11-05T12:30:00Z"
+  },
+  {
+    "id": "6687b9c9-4197-46e3-81c3-77867a36c7ab",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-06",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 679,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 679,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-06T15:00:00Z",
+    "logged_at": "2025-11-06T15:00:00Z"
+  },
+  {
+    "id": "1d5b1335-4cf8-4e91-a31b-935fbb56cd58",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-06",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 645,
+    "protein": 48,
+    "carbs": 72,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 645,
+        "protein": 48,
+        "carbs": 72,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-06T18:30:00Z",
+    "logged_at": "2025-11-06T18:30:00Z"
+  },
+  {
+    "id": "049d1385-2dc2-484a-a371-a194df33c8b1",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-06",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 562,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 562,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-06T08:00:00Z",
+    "logged_at": "2025-11-06T08:00:00Z"
+  },
+  {
+    "id": "e8d0a924-7d11-422f-b2e2-60e57f39b73a",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-07",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 692,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 692,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-07T12:30:00Z",
+    "logged_at": "2025-11-07T12:30:00Z"
+  },
+  {
+    "id": "97212f81-9be4-4deb-a28e-d003dc82ce99",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-07",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 630,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 630,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-07T08:00:00Z",
+    "logged_at": "2025-11-07T08:00:00Z"
+  },
+  {
+    "id": "735192dd-90fe-4fc0-8ea5-2abeb1639ab3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-07",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 592,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 592,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-07T15:00:00Z",
+    "logged_at": "2025-11-07T15:00:00Z"
+  },
+  {
+    "id": "15863662-fd38-4bf6-b1d5-c32e50f74412",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-08",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 470,
+    "protein": 35,
+    "carbs": 52,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 470,
+        "protein": 35,
+        "carbs": 52,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-08T18:30:00Z",
+    "logged_at": "2025-11-08T18:30:00Z"
+  },
+  {
+    "id": "9fbcd9ec-77a3-4242-80fc-5bffe416faa6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-08",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 811,
+    "protein": 60,
+    "carbs": 91,
+    "fats": 22,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 811,
+        "protein": 60,
+        "carbs": 91,
+        "fats": 22,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-08T12:30:00Z",
+    "logged_at": "2025-11-08T12:30:00Z"
+  },
+  {
+    "id": "bbde5886-9d6e-46ef-a2ac-d40633dc6d84",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-08",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 527,
+    "protein": 39,
+    "carbs": 59,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 527,
+        "protein": 39,
+        "carbs": 59,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-08T15:00:00Z",
+    "logged_at": "2025-11-08T15:00:00Z"
+  },
+  {
+    "id": "94f3b2e9-7395-479e-9c5e-83fce5413fa8",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-08",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 566,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 566,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-08T08:00:00Z",
+    "logged_at": "2025-11-08T08:00:00Z"
+  },
+  {
+    "id": "aacbd403-2ee3-4e19-a9a0-b51b7d87ba87",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-09",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 486,
+    "protein": 36,
+    "carbs": 54,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 486,
+        "protein": 36,
+        "carbs": 54,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-09T18:30:00Z",
+    "logged_at": "2025-11-09T18:30:00Z"
+  },
+  {
+    "id": "f98c09fb-177a-4817-8327-69acbd3aad34",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-09",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 602,
+    "protein": 45,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 602,
+        "protein": 45,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-09T12:30:00Z",
+    "logged_at": "2025-11-09T12:30:00Z"
+  },
+  {
+    "id": "167087e3-d56e-458c-ba08-ea2c391b8227",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-09",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 717,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 717,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-09T08:00:00Z",
+    "logged_at": "2025-11-09T08:00:00Z"
+  },
+  {
+    "id": "ba0b9b0e-fafd-43e6-841a-63258d472c80",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-10",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 544,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 544,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-10T18:30:00Z",
+    "logged_at": "2025-11-10T18:30:00Z"
+  },
+  {
+    "id": "2a57b5b8-4146-4379-aa2b-3da11ab8ae5b",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-10",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 536,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 536,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-10T12:30:00Z",
+    "logged_at": "2025-11-10T12:30:00Z"
+  },
+  {
+    "id": "1806e51a-5111-4614-bfeb-a42afe2707a7",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-10",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 596,
+    "protein": 44,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 596,
+        "protein": 44,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-10T15:00:00Z",
+    "logged_at": "2025-11-10T15:00:00Z"
+  },
+  {
+    "id": "0be83236-a500-4c6d-a6b9-62d71984b44e",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-11",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 682,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 682,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-11T12:30:00Z",
+    "logged_at": "2025-11-11T12:30:00Z"
+  },
+  {
+    "id": "db6e0366-65a5-4cd5-9490-0619ad4851b8",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-11",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 685,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 685,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-11T08:00:00Z",
+    "logged_at": "2025-11-11T08:00:00Z"
+  },
+  {
+    "id": "87ec838c-4f13-4342-89f9-8d559be2a4c7",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-11",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 606,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 606,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-11T15:00:00Z",
+    "logged_at": "2025-11-11T15:00:00Z"
+  },
+  {
+    "id": "c8ceabe7-7b48-47e3-95a7-c1b61e68e7fb",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-13",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 626,
+    "protein": 46,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 626,
+        "protein": 46,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-13T15:00:00Z",
+    "logged_at": "2025-11-13T15:00:00Z"
+  },
+  {
+    "id": "e64b4bef-746a-4def-adb8-92891b042d2f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-13",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 716,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 716,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-13T08:00:00Z",
+    "logged_at": "2025-11-13T08:00:00Z"
+  },
+  {
+    "id": "cf388f62-587a-494d-a357-4030e9b6a291",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-13",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 571,
+    "protein": 42,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 571,
+        "protein": 42,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-13T12:30:00Z",
+    "logged_at": "2025-11-13T12:30:00Z"
+  },
+  {
+    "id": "c6a8383f-bd9e-46d7-a8d0-878f901f31e0",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-14",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 535,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 535,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-14T18:30:00Z",
+    "logged_at": "2025-11-14T18:30:00Z"
+  },
+  {
+    "id": "1ab57b6b-3b4c-4e05-9274-0fc70b53b78c",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-14",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 645,
+    "protein": 48,
+    "carbs": 72,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 645,
+        "protein": 48,
+        "carbs": 72,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-14T15:00:00Z",
+    "logged_at": "2025-11-14T15:00:00Z"
+  },
+  {
+    "id": "1a1584d1-867e-439d-87d1-126cf67bb203",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-14",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 719,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 719,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-14T12:30:00Z",
+    "logged_at": "2025-11-14T12:30:00Z"
+  },
+  {
+    "id": "56bf95b6-6c4f-444b-8d8a-b05229e9d7dd",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-15",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 549,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 549,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-15T08:00:00Z",
+    "logged_at": "2025-11-15T08:00:00Z"
+  },
+  {
+    "id": "cb1fb870-45c3-469d-867b-17d2ad03e297",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-15",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 538,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 538,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-15T12:30:00Z",
+    "logged_at": "2025-11-15T12:30:00Z"
+  },
+  {
+    "id": "3e06af59-57c1-42cd-b7ff-9ac846ece6f5",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-15",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 755,
+    "protein": 56,
+    "carbs": 84,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 755,
+        "protein": 56,
+        "carbs": 84,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-15T15:00:00Z",
+    "logged_at": "2025-11-15T15:00:00Z"
+  },
+  {
+    "id": "961c84cb-6eac-4dab-b0a4-692483b5732e",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-16",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 782,
+    "protein": 58,
+    "carbs": 87,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 782,
+        "protein": 58,
+        "carbs": 87,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-16T15:00:00Z",
+    "logged_at": "2025-11-16T15:00:00Z"
+  },
+  {
+    "id": "92477c51-2b6f-4882-b36b-a7a44f5d2d60",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-16",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 653,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 653,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-16T18:30:00Z",
+    "logged_at": "2025-11-16T18:30:00Z"
+  },
+  {
+    "id": "aca89a9c-37f2-4dbe-b9f8-624db2d5b9f5",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-16",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 453,
+    "protein": 33,
+    "carbs": 50,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 453,
+        "protein": 33,
+        "carbs": 50,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-16T12:30:00Z",
+    "logged_at": "2025-11-16T12:30:00Z"
+  },
+  {
+    "id": "a5f90cba-98f6-43c5-8cc6-ec8064d4e908",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-16",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 767,
+    "protein": 57,
+    "carbs": 86,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 767,
+        "protein": 57,
+        "carbs": 86,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-16T08:00:00Z",
+    "logged_at": "2025-11-16T08:00:00Z"
+  },
+  {
+    "id": "a4b12982-c98e-4be2-86ae-d9c748d85640",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-17",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 656,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 656,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-17T18:30:00Z",
+    "logged_at": "2025-11-17T18:30:00Z"
+  },
+  {
+    "id": "601a47ff-4ba3-4484-8682-171b43fd89f2",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-17",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 652,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 652,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-17T15:00:00Z",
+    "logged_at": "2025-11-17T15:00:00Z"
+  },
+  {
+    "id": "bebac92c-d0c1-427c-8aae-0710f1dd2ea9",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-17",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 714,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 714,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-17T12:30:00Z",
+    "logged_at": "2025-11-17T12:30:00Z"
+  },
+  {
+    "id": "c4120bc7-714a-4584-b393-090fef22b1da",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-17",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 612,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 612,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-17T08:00:00Z",
+    "logged_at": "2025-11-17T08:00:00Z"
+  },
+  {
+    "id": "8d892d25-57b1-4c0c-bd26-9f6f79164a1b",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-18",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 545,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 545,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-18T15:00:00Z",
+    "logged_at": "2025-11-18T15:00:00Z"
+  },
+  {
+    "id": "3fea3f79-dcb8-47a6-ad62-464baa5d39c6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-18",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 720,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 720,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-18T12:30:00Z",
+    "logged_at": "2025-11-18T12:30:00Z"
+  },
+  {
+    "id": "1ea41283-77ad-4327-8ce5-31d92a2d46b0",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-18",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 584,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 584,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-18T08:00:00Z",
+    "logged_at": "2025-11-18T08:00:00Z"
+  },
+  {
+    "id": "dc483d06-3477-45d7-a8da-913fd642b249",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-18",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 715,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 715,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-18T18:30:00Z",
+    "logged_at": "2025-11-18T18:30:00Z"
+  },
+  {
+    "id": "ed5535e7-de88-4ecf-a033-7c4d8bd940a4",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-19",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 562,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 562,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-19T18:30:00Z",
+    "logged_at": "2025-11-19T18:30:00Z"
+  },
+  {
+    "id": "14b42619-0d66-4448-b103-ec14dd5fada4",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-19",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 537,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 537,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-19T08:00:00Z",
+    "logged_at": "2025-11-19T08:00:00Z"
+  },
+  {
+    "id": "4f3a499e-e4e6-434b-a24d-f0143d4ca89f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-19",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 545,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 545,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-19T12:30:00Z",
+    "logged_at": "2025-11-19T12:30:00Z"
+  },
+  {
+    "id": "7b394a64-a45a-491f-b4e6-2b902600c9fb",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-20",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 625,
+    "protein": 46,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 625,
+        "protein": 46,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-20T08:00:00Z",
+    "logged_at": "2025-11-20T08:00:00Z"
+  },
+  {
+    "id": "9b15eae3-eced-4e04-b21b-4e552e9d15b8",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-20",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 538,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 538,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-20T12:30:00Z",
+    "logged_at": "2025-11-20T12:30:00Z"
+  },
+  {
+    "id": "e8b57fd2-10ad-43d6-bc8e-5393e22ae505",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-20",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 630,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 630,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-20T15:00:00Z",
+    "logged_at": "2025-11-20T15:00:00Z"
+  },
+  {
+    "id": "f53e51e7-43cb-437e-a725-6794d6e81c81",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-21",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 595,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 595,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-21T08:00:00Z",
+    "logged_at": "2025-11-21T08:00:00Z"
+  },
+  {
+    "id": "6472e00b-997e-4f7f-b2ae-349026037152",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-21",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 536,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 536,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-21T12:30:00Z",
+    "logged_at": "2025-11-21T12:30:00Z"
+  },
+  {
+    "id": "fa32ee97-ef7a-4067-94d8-497b56889e58",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-21",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 541,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 541,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-21T15:00:00Z",
+    "logged_at": "2025-11-21T15:00:00Z"
+  },
+  {
+    "id": "d7d8d33f-9b32-4840-9fc9-4c80dd210ef6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-22",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 610,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 610,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-22T15:00:00Z",
+    "logged_at": "2025-11-22T15:00:00Z"
+  },
+  {
+    "id": "d6561d30-b25e-459a-aeeb-4a75066ad5bc",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-22",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 794,
+    "protein": 59,
+    "carbs": 89,
+    "fats": 22,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 794,
+        "protein": 59,
+        "carbs": 89,
+        "fats": 22,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-22T18:30:00Z",
+    "logged_at": "2025-11-22T18:30:00Z"
+  },
+  {
+    "id": "c294c6dc-4fce-4973-a30c-3bc569a4a3f1",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-22",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 752,
+    "protein": 56,
+    "carbs": 84,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 752,
+        "protein": 56,
+        "carbs": 84,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-22T08:00:00Z",
+    "logged_at": "2025-11-22T08:00:00Z"
+  },
+  {
+    "id": "1136912f-6c5e-42c5-a77d-51a284aa42ca",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-22",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 634,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 634,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-22T12:30:00Z",
+    "logged_at": "2025-11-22T12:30:00Z"
+  },
+  {
+    "id": "6f97fe9c-a538-48c3-ab86-8a138868ccc0",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-23",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 796,
+    "protein": 59,
+    "carbs": 89,
+    "fats": 22,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 796,
+        "protein": 59,
+        "carbs": 89,
+        "fats": 22,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-23T18:30:00Z",
+    "logged_at": "2025-11-23T18:30:00Z"
+  },
+  {
+    "id": "16e6c110-8825-46bc-9815-a35162f42738",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-23",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 758,
+    "protein": 56,
+    "carbs": 85,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 758,
+        "protein": 56,
+        "carbs": 85,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-23T12:30:00Z",
+    "logged_at": "2025-11-23T12:30:00Z"
+  },
+  {
+    "id": "2a2ce7ad-3b64-4b93-82ce-7a007b5af993",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-23",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 687,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 687,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-23T08:00:00Z",
+    "logged_at": "2025-11-23T08:00:00Z"
+  },
+  {
+    "id": "059654a7-15ce-4a8a-9ec4-3c6c7d4f5f5f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-24",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 647,
+    "protein": 48,
+    "carbs": 72,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 647,
+        "protein": 48,
+        "carbs": 72,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-24T12:30:00Z",
+    "logged_at": "2025-11-24T12:30:00Z"
+  },
+  {
+    "id": "3b8ad504-c22e-4d78-9c6a-65c29ea15b20",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-24",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 651,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 651,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-24T15:00:00Z",
+    "logged_at": "2025-11-24T15:00:00Z"
+  },
+  {
+    "id": "70e9882b-4969-41be-af21-f3eaaffb09e6",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-24",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 588,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 588,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-24T08:00:00Z",
+    "logged_at": "2025-11-24T08:00:00Z"
+  },
+  {
+    "id": "b901abb9-95ca-4fa1-94f3-95eaf4e16567",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-25",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 582,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 582,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-25T08:00:00Z",
+    "logged_at": "2025-11-25T08:00:00Z"
+  },
+  {
+    "id": "2c23c645-81bd-4fe1-9d7c-926d0e1e29b1",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-25",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 619,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 619,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-25T18:30:00Z",
+    "logged_at": "2025-11-25T18:30:00Z"
+  },
+  {
+    "id": "75c6aced-386e-40c6-bc3b-f4da51ed9f81",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-25",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 548,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 548,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-25T12:30:00Z",
+    "logged_at": "2025-11-25T12:30:00Z"
+  },
+  {
+    "id": "b8e840eb-aa0b-428e-a667-d6b7285dcc96",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-26",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 617,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 617,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-26T12:30:00Z",
+    "logged_at": "2025-11-26T12:30:00Z"
+  },
+  {
+    "id": "bb808d1b-6b0f-4617-8501-eec121fb8e1e",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-26",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 655,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 655,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-26T15:00:00Z",
+    "logged_at": "2025-11-26T15:00:00Z"
+  },
+  {
+    "id": "2e83a723-7c24-481a-a5d0-3eeccb2576f4",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-26",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 675,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 675,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-26T18:30:00Z",
+    "logged_at": "2025-11-26T18:30:00Z"
+  },
+  {
+    "id": "6dff885e-6824-475c-9705-5452a5762a8b",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-27",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 653,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 653,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-27T08:00:00Z",
+    "logged_at": "2025-11-27T08:00:00Z"
+  },
+  {
+    "id": "9da34eb3-5965-464c-8de4-9577d4a59fc3",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-27",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 536,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 536,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-27T12:30:00Z",
+    "logged_at": "2025-11-27T12:30:00Z"
+  },
+  {
+    "id": "64d9138c-95c0-4f54-90ca-820b80cab1ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-27",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 686,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 686,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-27T18:30:00Z",
+    "logged_at": "2025-11-27T18:30:00Z"
+  },
+  {
+    "id": "e5871187-b8c8-4e11-862a-247d27d38b8c",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-27",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 601,
+    "protein": 45,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 601,
+        "protein": 45,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-27T15:00:00Z",
+    "logged_at": "2025-11-27T15:00:00Z"
+  },
+  {
+    "id": "0e26f316-3643-46bf-9d22-32f298c923ec",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-28",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 658,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 658,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-28T15:00:00Z",
+    "logged_at": "2025-11-28T15:00:00Z"
+  },
+  {
+    "id": "74df4a1e-38ee-4cc6-9060-f2e21b28e0ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-28",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 535,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 535,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-28T12:30:00Z",
+    "logged_at": "2025-11-28T12:30:00Z"
+  },
+  {
+    "id": "e51f317b-ef11-4871-8520-cd301e38e2d9",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-28",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 548,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 548,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-28T08:00:00Z",
+    "logged_at": "2025-11-28T08:00:00Z"
+  },
+  {
+    "id": "d07686c8-4a59-494e-8889-d61474b365bd",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-29",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 485,
+    "protein": 36,
+    "carbs": 54,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 485,
+        "protein": 36,
+        "carbs": 54,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-29T18:30:00Z",
+    "logged_at": "2025-11-29T18:30:00Z"
+  },
+  {
+    "id": "19e70c0d-5b5f-4488-809c-f0b5cb479f7f",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-29",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 442,
+    "protein": 33,
+    "carbs": 49,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 442,
+        "protein": 33,
+        "carbs": 49,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-29T08:00:00Z",
+    "logged_at": "2025-11-29T08:00:00Z"
+  },
+  {
+    "id": "561f2366-c4b6-436b-961b-6c1891500b3a",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-29",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 520,
+    "protein": 39,
+    "carbs": 58,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 520,
+        "protein": 39,
+        "carbs": 58,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-29T12:30:00Z",
+    "logged_at": "2025-11-29T12:30:00Z"
+  },
+  {
+    "id": "067f72b9-dc70-4b2f-b37e-4c9cfd9a74e5",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-30",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 774,
+    "protein": 58,
+    "carbs": 87,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 774,
+        "protein": 58,
+        "carbs": 87,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-30T15:00:00Z",
+    "logged_at": "2025-11-30T15:00:00Z"
+  },
+  {
+    "id": "82d3e631-5e22-4c43-a7f0-091c238d7884",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-30",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 723,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 723,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-30T18:30:00Z",
+    "logged_at": "2025-11-30T18:30:00Z"
+  },
+  {
+    "id": "8efe8e5d-ec3c-4fd7-bf0c-29c1276c2579",
+    "user_id": "demo_user_90day",
+    "date": "2025-11-30",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 607,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 607,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-11-30T08:00:00Z",
+    "logged_at": "2025-11-30T08:00:00Z"
+  },
+  {
+    "id": "4309cec1-c666-4844-a6af-3f3ce37cd92c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-01",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 695,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 695,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-01T15:00:00Z",
+    "logged_at": "2025-12-01T15:00:00Z"
+  },
+  {
+    "id": "19d98ba7-93a0-4cb7-ab5c-34f737e60499",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-01",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 664,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 664,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-01T18:30:00Z",
+    "logged_at": "2025-12-01T18:30:00Z"
+  },
+  {
+    "id": "bffb846c-8e04-4ad4-ab21-b077b3758438",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-01",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 691,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 691,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-01T08:00:00Z",
+    "logged_at": "2025-12-01T08:00:00Z"
+  },
+  {
+    "id": "d176d43d-36ef-4742-9fa3-1d63f3817185",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-02",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 560,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 560,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-02T12:30:00Z",
+    "logged_at": "2025-12-02T12:30:00Z"
+  },
+  {
+    "id": "a8af0fe3-aa78-4a88-9f28-ecfb8835f188",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-02",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 718,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 718,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-02T08:00:00Z",
+    "logged_at": "2025-12-02T08:00:00Z"
+  },
+  {
+    "id": "6e9ac022-664f-425b-a9f8-a0fbfdff2916",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-02",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 696,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 696,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-02T15:00:00Z",
+    "logged_at": "2025-12-02T15:00:00Z"
+  },
+  {
+    "id": "e56c0726-3c88-4e70-8103-78763d3c0b7b",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-02",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 651,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 651,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-02T18:30:00Z",
+    "logged_at": "2025-12-02T18:30:00Z"
+  },
+  {
+    "id": "45c0d9cd-06c4-41a1-965b-cb394a2b7330",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-03",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 551,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 551,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-03T12:30:00Z",
+    "logged_at": "2025-12-03T12:30:00Z"
+  },
+  {
+    "id": "9f455149-6538-4af7-a403-3ec6f3ca00ed",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-03",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 675,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 675,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-03T15:00:00Z",
+    "logged_at": "2025-12-03T15:00:00Z"
+  },
+  {
+    "id": "7edb3376-98cd-4ac1-ad8d-0e6f9357413e",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-03",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 661,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 661,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-03T08:00:00Z",
+    "logged_at": "2025-12-03T08:00:00Z"
+  },
+  {
+    "id": "0c15e8db-a52a-45de-97b7-79d123da1e3c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-04",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 546,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 546,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-04T12:30:00Z",
+    "logged_at": "2025-12-04T12:30:00Z"
+  },
+  {
+    "id": "d34d6128-8688-403f-a303-a028df2b3e9c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-04",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 552,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 552,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-04T08:00:00Z",
+    "logged_at": "2025-12-04T08:00:00Z"
+  },
+  {
+    "id": "106f4487-30da-4f07-bf73-c420774d2477",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-04",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 628,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 628,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-04T18:30:00Z",
+    "logged_at": "2025-12-04T18:30:00Z"
+  },
+  {
+    "id": "c320c6f5-1bd8-4129-95a5-24b4ad1c536f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-05",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 651,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 651,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-05T15:00:00Z",
+    "logged_at": "2025-12-05T15:00:00Z"
+  },
+  {
+    "id": "457e5667-071d-49f8-8237-19f178ce4073",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-05",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 694,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 694,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-05T08:00:00Z",
+    "logged_at": "2025-12-05T08:00:00Z"
+  },
+  {
+    "id": "3151f7d9-d6e3-4a47-b4ce-432ee8bd6c54",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-05",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 709,
+    "protein": 53,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 709,
+        "protein": 53,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-05T18:30:00Z",
+    "logged_at": "2025-12-05T18:30:00Z"
+  },
+  {
+    "id": "a0de53ec-ba39-4244-88ec-2a630bd9b7ef",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-06",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 733,
+    "protein": 54,
+    "carbs": 82,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 733,
+        "protein": 54,
+        "carbs": 82,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-06T08:00:00Z",
+    "logged_at": "2025-12-06T08:00:00Z"
+  },
+  {
+    "id": "1a0f1e3a-b6c5-4ce8-a2f2-bfbcae91f3b0",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-06",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 548,
+    "protein": 41,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 548,
+        "protein": 41,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-06T18:30:00Z",
+    "logged_at": "2025-12-06T18:30:00Z"
+  },
+  {
+    "id": "4f1c33dc-a72d-411a-b382-b45f3433bf08",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-06",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 816,
+    "protein": 61,
+    "carbs": 91,
+    "fats": 22,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 816,
+        "protein": 61,
+        "carbs": 91,
+        "fats": 22,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-06T15:00:00Z",
+    "logged_at": "2025-12-06T15:00:00Z"
+  },
+  {
+    "id": "b42ef501-c343-4f93-800c-df10433c7f81",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-06",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 750,
+    "protein": 56,
+    "carbs": 84,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 750,
+        "protein": 56,
+        "carbs": 84,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-06T12:30:00Z",
+    "logged_at": "2025-12-06T12:30:00Z"
+  },
+  {
+    "id": "bb1b9d0c-e312-4850-80cd-734df78237ba",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-07",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 449,
+    "protein": 33,
+    "carbs": 50,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 449,
+        "protein": 33,
+        "carbs": 50,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-07T15:00:00Z",
+    "logged_at": "2025-12-07T15:00:00Z"
+  },
+  {
+    "id": "9f3a2ec2-1d32-43e1-a49b-bc2cd6bb94d4",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-07",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 683,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 683,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-07T18:30:00Z",
+    "logged_at": "2025-12-07T18:30:00Z"
+  },
+  {
+    "id": "d750f1bf-4952-4fe5-b3d5-d6db31fdca05",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-07",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 767,
+    "protein": 57,
+    "carbs": 86,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 767,
+        "protein": 57,
+        "carbs": 86,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-07T12:30:00Z",
+    "logged_at": "2025-12-07T12:30:00Z"
+  },
+  {
+    "id": "677763aa-e1da-4f07-9b9f-1e3f3ad9637e",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-08",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 622,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 622,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-08T12:30:00Z",
+    "logged_at": "2025-12-08T12:30:00Z"
+  },
+  {
+    "id": "50c83b93-705d-48bc-be82-766bf70db54f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-08",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 689,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 689,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-08T15:00:00Z",
+    "logged_at": "2025-12-08T15:00:00Z"
+  },
+  {
+    "id": "96526406-de17-4f98-8b99-5e2a62df138d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-08",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 604,
+    "protein": 45,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 604,
+        "protein": 45,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-08T08:00:00Z",
+    "logged_at": "2025-12-08T08:00:00Z"
+  },
+  {
+    "id": "ff70a039-4dec-4ab4-b6de-b5b80a3751a9",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-09",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 615,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 615,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-09T15:00:00Z",
+    "logged_at": "2025-12-09T15:00:00Z"
+  },
+  {
+    "id": "c8495d04-2c5c-463c-a8fe-bad3664f336a",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-09",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 649,
+    "protein": 48,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 649,
+        "protein": 48,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-09T12:30:00Z",
+    "logged_at": "2025-12-09T12:30:00Z"
+  },
+  {
+    "id": "0c22f245-0d62-447c-a713-590c85d84eec",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-09",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 688,
+    "protein": 51,
+    "carbs": 77,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 688,
+        "protein": 51,
+        "carbs": 77,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-09T08:00:00Z",
+    "logged_at": "2025-12-09T08:00:00Z"
+  },
+  {
+    "id": "e3e2e91c-5060-4837-83c5-c68814786958",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-09",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 699,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 699,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-09T18:30:00Z",
+    "logged_at": "2025-12-09T18:30:00Z"
+  },
+  {
+    "id": "6bc17cf2-a48e-4c3f-9267-2b42a61dba69",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-10",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 584,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 584,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-10T15:00:00Z",
+    "logged_at": "2025-12-10T15:00:00Z"
+  },
+  {
+    "id": "43889519-9246-43ce-b8f2-69fa1bcb30e2",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-10",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 663,
+    "protein": 49,
+    "carbs": 74,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 663,
+        "protein": 49,
+        "carbs": 74,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-10T12:30:00Z",
+    "logged_at": "2025-12-10T12:30:00Z"
+  },
+  {
+    "id": "7265ecdc-fb3a-4235-86a7-0b11ee23b378",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-10",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 546,
+    "protein": 40,
+    "carbs": 61,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 546,
+        "protein": 40,
+        "carbs": 61,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-10T08:00:00Z",
+    "logged_at": "2025-12-10T08:00:00Z"
+  },
+  {
+    "id": "56447d2f-a5b8-4b7d-95ad-8c490c96a1df",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-11",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 561,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 561,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-11T15:00:00Z",
+    "logged_at": "2025-12-11T15:00:00Z"
+  },
+  {
+    "id": "a5b092bd-f737-44c3-a134-2e370b6f1bae",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-11",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 599,
+    "protein": 44,
+    "carbs": 67,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 599,
+        "protein": 44,
+        "carbs": 67,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-11T12:30:00Z",
+    "logged_at": "2025-12-11T12:30:00Z"
+  },
+  {
+    "id": "e33e8816-be2a-4d0e-95fa-62a560bab556",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-11",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 631,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 631,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-11T08:00:00Z",
+    "logged_at": "2025-12-11T08:00:00Z"
+  },
+  {
+    "id": "840a1171-7755-4a4d-9424-003f22c2ead3",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-12",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 537,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 537,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-12T12:30:00Z",
+    "logged_at": "2025-12-12T12:30:00Z"
+  },
+  {
+    "id": "32505355-9442-46a9-9014-72d04ea6e374",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-12",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 570,
+    "protein": 42,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 570,
+        "protein": 42,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-12T15:00:00Z",
+    "logged_at": "2025-12-12T15:00:00Z"
+  },
+  {
+    "id": "f9701c65-104a-41d5-9bf3-8193c9643b59",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-12",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 705,
+    "protein": 52,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 705,
+        "protein": 52,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-12T18:30:00Z",
+    "logged_at": "2025-12-12T18:30:00Z"
+  },
+  {
+    "id": "e700ff98-5483-4e78-bf2c-842afa5857f0",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-13",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 636,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 636,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-13T12:30:00Z",
+    "logged_at": "2025-12-13T12:30:00Z"
+  },
+  {
+    "id": "76eb858b-225a-42dd-b1c2-596766b75d4e",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-13",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 500,
+    "protein": 37,
+    "carbs": 56,
+    "fats": 13,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 500,
+        "protein": 37,
+        "carbs": 56,
+        "fats": 13,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-13T15:00:00Z",
+    "logged_at": "2025-12-13T15:00:00Z"
+  },
+  {
+    "id": "ca918a41-565d-4afa-a816-994964bcb9d1",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-13",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 682,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 682,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-13T18:30:00Z",
+    "logged_at": "2025-12-13T18:30:00Z"
+  },
+  {
+    "id": "db84ea8d-8104-4aa1-9e67-df4bd3dfec5c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-14",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 608,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 608,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-14T12:30:00Z",
+    "logged_at": "2025-12-14T12:30:00Z"
+  },
+  {
+    "id": "0f2ed062-11cf-4d38-a8d9-5e476a514ac6",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-14",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 790,
+    "protein": 59,
+    "carbs": 88,
+    "fats": 21,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 790,
+        "protein": 59,
+        "carbs": 88,
+        "fats": 21,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-14T08:00:00Z",
+    "logged_at": "2025-12-14T08:00:00Z"
+  },
+  {
+    "id": "fec5d160-f2be-48f3-a37f-9d91b41e5e22",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-14",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 724,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 724,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-14T15:00:00Z",
+    "logged_at": "2025-12-14T15:00:00Z"
+  },
+  {
+    "id": "b09a1f68-27f1-4e0c-bb94-99880a68389f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-15",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 704,
+    "protein": 52,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 704,
+        "protein": 52,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-15T18:30:00Z",
+    "logged_at": "2025-12-15T18:30:00Z"
+  },
+  {
+    "id": "55c65bf9-729a-495d-a0b0-a8966a0290c5",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-15",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 675,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 675,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-15T15:00:00Z",
+    "logged_at": "2025-12-15T15:00:00Z"
+  },
+  {
+    "id": "ae885397-dbfa-40fe-8c7f-f25633fb9519",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-15",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 678,
+    "protein": 50,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 678,
+        "protein": 50,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-15T08:00:00Z",
+    "logged_at": "2025-12-15T08:00:00Z"
+  },
+  {
+    "id": "cb5fa574-ed40-4b98-996c-700bcadfbc84",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-17",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 583,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 583,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-17T08:00:00Z",
+    "logged_at": "2025-12-17T08:00:00Z"
+  },
+  {
+    "id": "178d7e89-2eaa-46b0-bbf6-c4b2aec99a9f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-17",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 584,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 584,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-17T18:30:00Z",
+    "logged_at": "2025-12-17T18:30:00Z"
+  },
+  {
+    "id": "eac3d55e-46ba-4656-8bad-45306d684737",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-17",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 683,
+    "protein": 51,
+    "carbs": 76,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 683,
+        "protein": 51,
+        "carbs": 76,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-17T12:30:00Z",
+    "logged_at": "2025-12-17T12:30:00Z"
+  },
+  {
+    "id": "17379809-fb38-4e1c-a922-f80c2ff52f38",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-18",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 616,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 616,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-18T18:30:00Z",
+    "logged_at": "2025-12-18T18:30:00Z"
+  },
+  {
+    "id": "7719a863-9514-4937-b57f-10307e89b7bb",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-18",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 719,
+    "protein": 53,
+    "carbs": 80,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 719,
+        "protein": 53,
+        "carbs": 80,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-18T12:30:00Z",
+    "logged_at": "2025-12-18T12:30:00Z"
+  },
+  {
+    "id": "53f8b5d5-53e9-4fe2-938b-89ba4a243d86",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-18",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 588,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 588,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-18T08:00:00Z",
+    "logged_at": "2025-12-18T08:00:00Z"
+  },
+  {
+    "id": "2a664318-e83b-4575-aa70-636742613607",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-19",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 617,
+    "protein": 46,
+    "carbs": 69,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 617,
+        "protein": 46,
+        "carbs": 69,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-19T15:00:00Z",
+    "logged_at": "2025-12-19T15:00:00Z"
+  },
+  {
+    "id": "490044ba-f562-4173-9a0c-dfaef78b99e6",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-19",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 583,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 583,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-19T18:30:00Z",
+    "logged_at": "2025-12-19T18:30:00Z"
+  },
+  {
+    "id": "3ca0afe9-59b5-416d-ad5a-06a7cdd1fe99",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-19",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 592,
+    "protein": 44,
+    "carbs": 66,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 592,
+        "protein": 44,
+        "carbs": 66,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-19T12:30:00Z",
+    "logged_at": "2025-12-19T12:30:00Z"
+  },
+  {
+    "id": "65cf2e31-d7c5-4e62-bd94-90b85d76833f",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-20",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 725,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 725,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-20T12:30:00Z",
+    "logged_at": "2025-12-20T12:30:00Z"
+  },
+  {
+    "id": "7f94de9b-542e-4f31-8a81-32d0902e982d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-20",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 555,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 555,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-20T08:00:00Z",
+    "logged_at": "2025-12-20T08:00:00Z"
+  },
+  {
+    "id": "4693ba07-7d53-4585-a1f0-1b90787f8b86",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-20",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 562,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 562,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-20T18:30:00Z",
+    "logged_at": "2025-12-20T18:30:00Z"
+  },
+  {
+    "id": "6fe0a031-2253-49a3-9609-d1f8a1380280",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-21",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 453,
+    "protein": 33,
+    "carbs": 50,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 453,
+        "protein": 33,
+        "carbs": 50,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-21T15:00:00Z",
+    "logged_at": "2025-12-21T15:00:00Z"
+  },
+  {
+    "id": "e401b7a1-9aa8-4199-be5c-ad697e98cc4d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-21",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 707,
+    "protein": 53,
+    "carbs": 79,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 707,
+        "protein": 53,
+        "carbs": 79,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-21T18:30:00Z",
+    "logged_at": "2025-12-21T18:30:00Z"
+  },
+  {
+    "id": "b7600fbe-cfd0-4296-9dfa-90e585271a7b",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-21",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 585,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 585,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-21T08:00:00Z",
+    "logged_at": "2025-12-21T08:00:00Z"
+  },
+  {
+    "id": "aa322069-7deb-4eda-8953-ed86b12233c2",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-22",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 535,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 14,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 535,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 14,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-22T15:00:00Z",
+    "logged_at": "2025-12-22T15:00:00Z"
+  },
+  {
+    "id": "f41c6118-dd77-4df8-8aa2-a785f4cc4c45",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-22",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 655,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 655,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-22T18:30:00Z",
+    "logged_at": "2025-12-22T18:30:00Z"
+  },
+  {
+    "id": "10d766f1-34c3-45f4-bc45-b2df0ad37e88",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-22",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 635,
+    "protein": 47,
+    "carbs": 71,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 635,
+        "protein": 47,
+        "carbs": 71,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-22T08:00:00Z",
+    "logged_at": "2025-12-22T08:00:00Z"
+  },
+  {
+    "id": "6d6d379f-c0c3-48c5-a0bd-1ed74d2e471d",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-23",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 610,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 610,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-23T08:00:00Z",
+    "logged_at": "2025-12-23T08:00:00Z"
+  },
+  {
+    "id": "ceb941b2-f60f-4bc3-9a30-e965962fe32a",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-23",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 574,
+    "protein": 43,
+    "carbs": 64,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 574,
+        "protein": 43,
+        "carbs": 64,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-23T15:00:00Z",
+    "logged_at": "2025-12-23T15:00:00Z"
+  },
+  {
+    "id": "666a8f79-1761-401e-b090-f97fb1684dc6",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-23",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 669,
+    "protein": 50,
+    "carbs": 75,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 669,
+        "protein": 50,
+        "carbs": 75,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-23T12:30:00Z",
+    "logged_at": "2025-12-23T12:30:00Z"
+  },
+  {
+    "id": "e0264956-5cfd-400b-b687-77edbc707dea",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-23",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 541,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 541,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-23T18:30:00Z",
+    "logged_at": "2025-12-23T18:30:00Z"
+  },
+  {
+    "id": "8d20643b-8f17-49a9-8406-d0a530bbad95",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-24",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 613,
+    "protein": 45,
+    "carbs": 68,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 613,
+        "protein": 45,
+        "carbs": 68,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-24T12:30:00Z",
+    "logged_at": "2025-12-24T12:30:00Z"
+  },
+  {
+    "id": "b2ba4f3b-61ec-4f04-a7fb-7adbadf302a8",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-24",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 694,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 694,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-24T18:30:00Z",
+    "logged_at": "2025-12-24T18:30:00Z"
+  },
+  {
+    "id": "0848b2d4-3caa-41dc-a34e-83edcf1a4577",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-24",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 722,
+    "protein": 54,
+    "carbs": 81,
+    "fats": 20,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 722,
+        "protein": 54,
+        "carbs": 81,
+        "fats": 20,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-24T08:00:00Z",
+    "logged_at": "2025-12-24T08:00:00Z"
+  },
+  {
+    "id": "27994918-ffe3-4f9d-8c4a-e1da233ed54e",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-25",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 540,
+    "protein": 40,
+    "carbs": 60,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 540,
+        "protein": 40,
+        "carbs": 60,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-25T15:00:00Z",
+    "logged_at": "2025-12-25T15:00:00Z"
+  },
+  {
+    "id": "9f0d34c1-7506-43fe-b0b0-e41592a2fd60",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-25",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 627,
+    "protein": 47,
+    "carbs": 70,
+    "fats": 17,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 627,
+        "protein": 47,
+        "carbs": 70,
+        "fats": 17,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-25T08:00:00Z",
+    "logged_at": "2025-12-25T08:00:00Z"
+  },
+  {
+    "id": "39f9e7e0-15d6-40d9-8c04-3b60ec39b91c",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-25",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 559,
+    "protein": 41,
+    "carbs": 62,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 559,
+        "protein": 41,
+        "carbs": 62,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-25T12:30:00Z",
+    "logged_at": "2025-12-25T12:30:00Z"
+  },
+  {
+    "id": "454e5b9f-076d-444b-ad86-b99ab77d8be9",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-26",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 580,
+    "protein": 43,
+    "carbs": 65,
+    "fats": 16,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 580,
+        "protein": 43,
+        "carbs": 65,
+        "fats": 16,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-26T15:00:00Z",
+    "logged_at": "2025-12-26T15:00:00Z"
+  },
+  {
+    "id": "7a10bf07-390d-4733-8cc4-7f3c57c6a9c5",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-26",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 697,
+    "protein": 52,
+    "carbs": 78,
+    "fats": 19,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 697,
+        "protein": 52,
+        "carbs": 78,
+        "fats": 19,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-26T12:30:00Z",
+    "logged_at": "2025-12-26T12:30:00Z"
+  },
+  {
+    "id": "48efc1fc-8259-482f-9a57-2c6925eb9488",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-26",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 655,
+    "protein": 49,
+    "carbs": 73,
+    "fats": 18,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 655,
+        "protein": 49,
+        "carbs": 73,
+        "fats": 18,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-26T18:30:00Z",
+    "logged_at": "2025-12-26T18:30:00Z"
+  },
+  {
+    "id": "214f1da6-7689-404a-add5-3a8a3fbdf444",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-27",
+    "meal_type": "breakfast",
+    "time": "08:00:00",
+    "calories": 461,
+    "protein": 34,
+    "carbs": 51,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Breakfast foods",
+        "amount": "1 serving",
+        "calories": 461,
+        "protein": 34,
+        "carbs": 51,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-27T08:00:00Z",
+    "logged_at": "2025-12-27T08:00:00Z"
+  },
+  {
+    "id": "f4d1cc8a-f6af-40f6-8893-090093ccd2af",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-27",
+    "meal_type": "lunch",
+    "time": "12:30:00",
+    "calories": 443,
+    "protein": 33,
+    "carbs": 49,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Lunch foods",
+        "amount": "1 serving",
+        "calories": 443,
+        "protein": 33,
+        "carbs": 49,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-27T12:30:00Z",
+    "logged_at": "2025-12-27T12:30:00Z"
+  },
+  {
+    "id": "818188d4-a847-4ba1-a1f4-31fa8e5446c6",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-27",
+    "meal_type": "snack",
+    "time": "15:00:00",
+    "calories": 452,
+    "protein": 33,
+    "carbs": 50,
+    "fats": 12,
+    "food_items": [
+      {
+        "name": "Snack foods",
+        "amount": "1 serving",
+        "calories": 452,
+        "protein": 33,
+        "carbs": 50,
+        "fats": 12,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-27T15:00:00Z",
+    "logged_at": "2025-12-27T15:00:00Z"
+  },
+  {
+    "id": "04a55d71-8e92-479e-b8de-3096e2c576f1",
+    "user_id": "demo_user_90day",
+    "date": "2025-12-27",
+    "meal_type": "dinner",
+    "time": "18:30:00",
+    "calories": 563,
+    "protein": 42,
+    "carbs": 63,
+    "fats": 15,
+    "food_items": [
+      {
+        "name": "Dinner foods",
+        "amount": "1 serving",
+        "calories": 563,
+        "protein": 42,
+        "carbs": 63,
+        "fats": 15,
+        "fdc_id": null
+      }
+    ],
+    "notes": null,
+    "created_at": "2025-12-27T18:30:00Z",
+    "logged_at": "2025-12-27T18:30:00Z"
   }
 ]

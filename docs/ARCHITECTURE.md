@@ -24,9 +24,9 @@ A full-stack SaaS application deployed on AWS, combining RAG-powered AI chatbot 
 ### Features
 1. **RAG-Powered Fitness Chatbot**
    - Evidence-based responses from scientific fitness PDFs
-   - AWS Bedrock Nova LLM
-   - Vector semantic search
-   - Conversation memory
+   - OpenAI GPT-4 Turbo with tool calling
+   - Vector semantic search (Bedrock Titan embeddings)
+   - Thread-based conversation memory
 
 2. **Energy Intake Calculator**
    - Cunningham BMR calculations
@@ -148,10 +148,10 @@ A full-stack SaaS application deployed on AWS, combining RAG-powered AI chatbot 
                                                                      ▼
  6. DISPLAY RESPONSE            5. SAVE TO MEMORY           4. LLM GENERATION
 ┌─────────────────┐             ┌─────────────────┐         ┌──────────────────┐
-│ Frontend UI     │             │ S3 or Local     │         │ AWS Bedrock Nova │
-│ • Message       │  ◄────────  │ session.json    │  ◄────  │ • Context +      │
+│ Frontend UI     │             │ S3              │         │ OpenAI GPT-4     │
+│ • Message       │  ◄────────  │ thread.json     │  ◄────  │ • Context +      │
 │ • Timestamp     │             │                 │         │   Prompt         │
-│ • Session ID    │             └─────────────────┘         │ • temp=0.3       │
+│ • Thread ID     │             └─────────────────┘         │ • Tool calling   │
 └─────────────────┘                                         └──────────────────┘
 ```
 
@@ -248,17 +248,17 @@ And OpenSearch as:
 # Key Endpoints:
 GET  /                      # API info + stats
 GET  /health               # Health check
-POST /chat                 # Chatbot (RAG-powered)
+POST /api/coach/ask        # AI Coach chatbot (OpenAI GPT-4 + RAG)
 POST /calculate-energy     # Energy calculator
+POST /generate-workout-plan # AI workout planner (Bedrock Nova)
 GET  /stats                # Vector DB statistics
-GET  /conversation/{id}    # Conversation history
 ```
 
 **Key Features:**
 - CORS middleware for cross-origin requests
-- Session-based conversation memory
-- S3 or local file storage for chat history
-- Bedrock client initialization
+- Thread-based conversation memory (OpenAI Assistants API)
+- S3 storage for conversation threads
+- Multi-LLM support (OpenAI GPT-4 for coach, Bedrock Nova for workout planner)
 - Error handling and validation
 
 #### 2. **retrieval.py** - RAG System
@@ -361,31 +361,34 @@ handler = Mangum(app)  # ASGI adapter for Lambda
 ```
 1. User types message in frontend
    ↓
-2. POST /chat with { message, session_id }
+2. POST /api/coach/ask with { user_id, message, thread_id }
    ↓
 3. Lambda receives request via API Gateway
    ↓
-4. Load conversation history from S3/local
+4. Initialize Coach Orchestrator (OpenAI GPT-4)
    ↓
-5. RAG System:
-   a. Embed query (Bedrock Titan)
-   b. Search vectors (OpenSearch/FAISS)
-   c. Retrieve top 5 chunks with metadata
+5. Load conversation thread from S3
    ↓
-6. Build system prompt with context
+6. Coach decides which tools to use:
+   a. Search knowledge base (RAG)?
+      - Embed query (Bedrock Titan)
+      - Search vectors (OpenSearch/FAISS)
+      - Retrieve top 5 chunks with metadata
+   b. Get user data (nutrition/workout logs)?
+   c. Call specialist agents (Nutrition/Training)?
    ↓
-7. Call Bedrock Nova LLM
-   a. Model: amazon.nova-lite-v1:0
-   b. Temperature: 0.3 (factual)
-   c. Max tokens: 2000
+7. Call OpenAI GPT-4 with tools
+   a. Model: gpt-4-turbo-preview
+   b. Tools: search_knowledge_base, get_user_data, etc.
+   c. Streaming responses
    ↓
-8. Extract response text
+8. Extract response text and tool calls
    ↓
-9. Save conversation to memory (S3/local)
+9. Save thread to S3 memory
    ↓
-10. Return { response, session_id }
+10. Return { message, thread_id, sources, tool_calls }
     ↓
-11. Frontend displays message
+11. Frontend displays message with sources
 ```
 
 ### 🌐 What is HTTP?
@@ -415,10 +418,10 @@ GET /health-chat
 
 When you send a message:
 ```
-POST /chat
+POST /api/coach/ask
 ```
 
-→ Browser sends your message to the backend so the model can respond.
+→ Browser sends your message to the AI Coach so it can respond.
 
 ### ☁️ What is API Gateway?
 
@@ -429,7 +432,7 @@ API Gateway is a service (for example, AWS API Gateway) that acts as a bridge be
 | ------------------------ | -------------------------------------------------------------------------- |
 | **Security**             | You don’t expose your Lambda or backend directly to the internet           |
 | **Scalability**          | Handles many concurrent requests automatically                             |
-| **Routing**              | Can map multiple endpoints (`/chat`, `/ingest`, etc.) to different Lambdas |
+| **Routing**              | Can map multiple endpoints (`/api/coach/ask`, `/calculate-energy`, etc.) to different Lambdas |
 | **Integration**          | Works natively with AWS Lambda, Cognito, Bedrock, etc.                     |
 | **Logging & Monitoring** | Built-in CloudWatch integration for debugging                              |
 
@@ -495,7 +498,7 @@ The researcher — searches the bookshelves for the most relevant paragraphs.
 
 # API Gateway
 - Type: HTTP API
-- Routes: /, /health, /chat, /calculate-energy, /stats
+- Routes: /, /health, /api/coach/ask, /calculate-energy, /generate-workout-plan, /stats
 - CORS: Enabled
 - Throttling: Configurable burst/rate limits
 
@@ -637,7 +640,7 @@ allow_origins = ["https://yourdomain.com", "https://www.yourdomain.com"]
   ↓
   
   Uses NEXT_PUBLIC_API_URL to know where to send request:
-     fetch("http://localhost:8000/chat")
+     fetch("http://localhost:8000/api/coach/ask")
      
    ↓
   
