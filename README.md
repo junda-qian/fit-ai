@@ -224,6 +224,8 @@ fit-tracker/
 │
 ├── docs/                        # Technical documentation
 │   ├── ARCHITECTURE.md
+│   ├── REPOSITORY_WALKTHROUGH.md  # High-level overview
+│   ├── REQUEST_FLOW.md         # Complete request flow diagram
 │   ├── WORKOUT_PLANNER_COMPARISON.md
 │   └── agents/                 # Agent specifications
 │
@@ -247,8 +249,6 @@ fit-tracker/
 │       ├── body_logs.json
 │       └── daily_summaries.json
 │
-├── REPOSITORY_WALKTHROUGH.md    # High-level overview
-├── REQUEST_FLOW.md              # Complete request flow diagram
 └── README.md                    # This file
 ```
 
@@ -428,8 +428,8 @@ Comprehensive guides are available in the `guides/` directory:
 - **[Terraform Explained](guides/TERRAFORM_EXPLAINED.md)** - Infrastructure as code
 
 Additional documentation:
-- **[Repository Walkthrough](REPOSITORY_WALKTHROUGH.md)** - High-level overview of the entire project
-- **[Request Flow](REQUEST_FLOW.md)** - Complete request flow diagrams
+- **[Repository Walkthrough](docs/REPOSITORY_WALKTHROUGH.md)** - High-level overview of the entire project
+- **[Request Flow](docs/REQUEST_FLOW.md)** - Complete request flow diagrams
 - **[Architecture](docs/ARCHITECTURE.md)** - System architecture documentation
 - **[Workout Planner Comparison](docs/WORKOUT_PLANNER_COMPARISON.md)** - LLM vs Algorithm analysis
 
@@ -520,4 +520,4 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 **Built with** Python, FastAPI, Next.js, AWS, Terraform, OpenAI, and lots of fitness science.
 
-For detailed technical information, see [REPOSITORY_WALKTHROUGH.md](REPOSITORY_WALKTHROUGH.md) and [REQUEST_FLOW.md](REQUEST_FLOW.md).
+For detailed technical information, see [REPOSITORY_WALKTHROUGH.md](docs/REPOSITORY_WALKTHROUGH.md) and [REQUEST_FLOW.md](docs/REQUEST_FLOW.md).
