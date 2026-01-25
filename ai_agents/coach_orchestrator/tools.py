@@ -580,12 +580,9 @@ def get_nutrition_recommendation(user_id: str) -> Dict[str, Any]:
         )
         from ai_agents.shared.models import NutritionSummary, TrainingProgressSummary
         from ai_agents.training_specialist.tools import get_iso_week
-        from database import JSONDatabase
 
-        # Use absolute path to project root data directory
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        data_path = os.path.join(project_root, "data", "tracking")
-        db = JSONDatabase(data_dir=data_path)
+        # Use the shared database instance that respects USE_DYNAMODB
+        db = _get_database()
 
         # 1. Fetch user profile
         user_profile = db.find_one("user_profiles", {"user_id": user_id})
@@ -749,12 +746,8 @@ def get_training_summary(user_id: str) -> Dict[str, Any]:
         )
         sys.path.insert(0, backend_path)
 
-        from database import JSONDatabase
-
-        # Use absolute path to project root data directory
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        data_path = os.path.join(project_root, "data", "tracking")
-        db = JSONDatabase(data_dir=data_path)
+        # Use the shared database instance that respects USE_DYNAMODB
+        db = _get_database()
 
         # Fetch latest training progress summary
         user_training_summaries = db.find('training_progress_summaries', {"user_id": user_id})
