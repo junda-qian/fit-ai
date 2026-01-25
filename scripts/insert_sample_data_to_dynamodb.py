@@ -466,6 +466,28 @@ def main():
         tables['daily_summaries'].put_item(Item=python_to_dynamodb(daily_summary))
         daily_summaries_count += 1
 
+    # Generate training progress summary (so chatbot can answer training questions)
+    print("\n📈 Generating training progress summary...")
+    training_summary = {
+        "id": str(uuid.uuid4()),
+        "user_id": TEST_USER_ID,
+        "week": f"{END_DATE.year}-W{END_DATE.isocalendar()[1]:02d}",
+        "published_by": "training_agent",
+        "published_at": datetime.now().isoformat(),
+        "overall_strength_trend": "stable",
+        "exercises_analyzed": len(exercise_configs),
+        "exercises_progressing": 2,
+        "exercises_plateaued": len(exercise_configs) - 2,
+        "exercises_regressing": 0,
+        "avg_weekly_volume_kg": 85000.0,
+        "trend_confidence": 1.0,
+        "days_of_data": 14,
+        "workouts_completed": 7,
+        "data_quality": "good"
+    }
+    tables['training_progress_summaries'].put_item(Item=python_to_dynamodb(training_summary))
+    print("  ✅ Training progress summary generated")
+
     # Final stats
     final_weight = weights[-1]
     weight_loss = START_WEIGHT - final_weight
@@ -478,6 +500,7 @@ def main():
     print(f"  • Nutrition logs: {nutrition_logs_count}")
     print(f"  • Workout logs: {workout_logs_count}")
     print(f"  • Daily summaries: {daily_summaries_count}")
+    print(f"  • Training progress summaries: 1")
     print(f"\n  • Starting weight: {START_WEIGHT}kg")
     print(f"  • Final weight: {final_weight}kg")
     print(f"  • Total loss: {weight_loss:.1f}kg ({(weight_loss/START_WEIGHT)*100:.1f}%)\n")
