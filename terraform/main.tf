@@ -230,8 +230,8 @@ resource "aws_lambda_function" "api" {
       S3_BUCKET           = aws_s3_bucket.memory.id
       USE_S3              = "true"
       BEDROCK_MODEL_ID    = var.bedrock_model_id
-      USE_OPENSEARCH      = "false"
-      # OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint  # Disabled to save costs
+      USE_OPENSEARCH      = "true"
+      OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint
       DEFAULT_AWS_REGION  = data.aws_region.current.id
 
       # Coach Orchestrator (OpenAI)

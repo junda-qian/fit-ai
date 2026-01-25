@@ -46,6 +46,13 @@ def main():
         if os.path.exists(file):
             shutil.copy2(file, "lambda-package/")
 
+    # Copy FAISS vector index for RAG (knowledge base search)
+    print("Copying FAISS vector index...")
+    for file in ["faiss_index.bin", "faiss_metadata.json"]:
+        if os.path.exists(file):
+            shutil.copy2(file, "lambda-package/")
+            print(f"  ✓ {file}")
+
     # Copy data directory
     if os.path.exists("data"):
         shutil.copytree("data", "lambda-package/data")

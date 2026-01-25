@@ -24,8 +24,10 @@ class VectorStore:
         """Initialize FAISS for local development"""
         import faiss
 
-        self.index_path = "./faiss_index.bin"  # Use .bin for FAISS native format
-        self.metadata_path = "./faiss_metadata.json"
+        # Use absolute path relative to this module for Lambda compatibility
+        module_dir = os.path.dirname(os.path.abspath(__file__))
+        self.index_path = os.path.join(module_dir, "faiss_index.bin")
+        self.metadata_path = os.path.join(module_dir, "faiss_metadata.json")
 
         if os.path.exists(self.index_path):
             try:
