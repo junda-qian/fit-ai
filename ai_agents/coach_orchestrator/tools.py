@@ -395,17 +395,17 @@ def search_knowledge_base(query: str, top_k: int = 5) -> Dict[str, Any]:
 # ============================================================================
 
 def _get_database():
-    """Get database instance"""
+    """Get database instance - uses DynamoDB or JSON based on USE_DYNAMODB env var"""
     import sys
     import os
     # Get project root directory (3 levels up from this file)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     backend_path = os.path.join(project_root, "backend")
-    data_path = os.path.join(project_root, "data", "tracking")
 
     sys.path.insert(0, backend_path)
-    from database import JSONDatabase
-    return JSONDatabase(data_dir=data_path)
+    # Import the db instance which automatically selects JSON or DynamoDB
+    from database import db
+    return db
 
 
 def get_user_profile(user_id: str) -> Dict[str, Any]:
@@ -522,7 +522,7 @@ def get_body_logs(user_id: str, days: int = 14) -> Dict[str, Any]:
         ]
         filtered_logs.sort(key=lambda x: x.get('date', ''), reverse=True)
 
-        weights = [log.get("weight_kg", 0) for log in filtered_logs if log.get("weight_kg")]
+        weights = [log.get("weight", 0) for log in filtered_logs if log.get("weight")]
         if weights:
             latest_weight = weights[0]
             weight_change = weights[0] - weights[-1]

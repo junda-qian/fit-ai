@@ -57,3 +57,10 @@ variable "usda_api_key" {
   type        = string
   sensitive   = true
 }
+
+variable "openai_api_key" {
+  description = "OpenAI API Key for Coach Orchestrator (GPT-4)"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

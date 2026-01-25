@@ -234,6 +234,9 @@ resource "aws_lambda_function" "api" {
       # OPENSEARCH_ENDPOINT = aws_opensearchserverless_collection.health_docs.collection_endpoint  # Disabled to save costs
       DEFAULT_AWS_REGION  = data.aws_region.current.id
 
+      # Coach Orchestrator (OpenAI)
+      OPENAI_API_KEY                      = var.openai_api_key
+
       # Tracking System Environment Variables
       USE_DYNAMODB                        = "true"
       USDA_API_KEY                        = var.usda_api_key
@@ -447,6 +450,19 @@ resource "aws_apigatewayv2_route" "get_training_exercise_config" {
 resource "aws_apigatewayv2_route" "post_training_weekly_summary" {
   api_id    = aws_apigatewayv2_api.main.id
   route_key = "POST /api/training/weekly-summary"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+# Coach Orchestrator Routes
+resource "aws_apigatewayv2_route" "post_coach_ask" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/coach/ask"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
+}
+
+resource "aws_apigatewayv2_route" "post_coach_clear_memory" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /api/coach/clear-memory"
   target    = "integrations/${aws_apigatewayv2_integration.lambda.id}"
 }
 
